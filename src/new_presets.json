@@ -1,0 +1,2954 @@
+[
+  {
+    "name": "MEZZOTINT",
+    "category": [
+      "PRINTMAKING",
+      "HISTORICAL",
+      "ENGRAVING",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a mezzotint print. Mezzotint is an intaglio printmaking technique where the artist works from dark to light by smoothing a roughened copper plate. The image should feature rich, velvety blacks with luminous highlights emerging from darkness, characteristic of this 17th-century Dutch technique.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Use authentic mezzotint tonal gradations\n• Rich velvety black backgrounds\n• Smooth tonal transitions from dark to light\n• No visible line work - pure tonal technique\n• Copper plate printing texture"
+  },
+  {
+    "name": "AQUATINT",
+    "category": [
+      "PRINTMAKING",
+      "HISTORICAL",
+      "ART",
+      "TONAL"
+    ],
+    "message": "Take a picture and transform it into an aquatint print. Aquatint is an intaglio printmaking process that creates tonal effects by etching areas of a metal plate with acid through a porous ground of resin particles. The result should resemble a watercolor wash rendered in print form, with granular tonal areas and crisp etched lines.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Granular tonal areas characteristic of aquatint\n• Watercolor-like wash effects in print form\n• Visible plate tone and acid-bitten texture\n• Limited color palette typical of printmaking"
+  },
+  {
+    "name": "DRYPOINT ETCHING",
+    "category": [
+      "PRINTMAKING",
+      "DRAWING",
+      "ART",
+      "SKETCH"
+    ],
+    "message": "Take a picture and transform it into a drypoint etching. Drypoint is an intaglio printmaking technique where the artist scratches directly into a metal plate with a sharp needle, creating a characteristic soft, velvety burr along the incised lines. The image should have rich, feathery lines with soft edges and limited edition print quality.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Characteristic burr creating soft, fuzzy line edges\n• Rich ink accumulation along scratched lines\n• Plate tone visible in background\n• Hand-pulled print appearance on dampened paper"
+  },
+  {
+    "name": "NIHONGA",
+    "category": [
+      "JAPANESE",
+      "PAINTING",
+      "TRADITIONAL",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Nihonga painting. Nihonga is a traditional Japanese painting style using natural mineral pigments, shell pigments (gofun), and animal-skin glue on washi paper or silk. The image should embody Japanese aesthetic values of subtlety, harmony, and reverence for nature with luminous mineral pigment colors and delicate brushwork.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Use luminous mineral pigment appearance\n• Delicate, refined brushwork\n• Japanese aesthetic sensibility (wabi-sabi, mono no aware)\n• Gold leaf or silver leaf accents where appropriate\n• Silk or washi paper texture"
+  },
+  {
+    "name": "RINPA SCHOOL",
+    "category": [
+      "JAPANESE",
+      "PAINTING",
+      "DECORATIVE",
+      "HISTORICAL",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Rinpa school painting. Rinpa is a 17th-century Japanese decorative art movement founded in Kyoto, characterized by bold compositions on gold leaf backgrounds, vibrant colors, and the tarashikomi technique of pooling wet pigments. The image should feature flat decorative surfaces, stylized natural motifs, and opulent gold backgrounds.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Gold leaf background\n• Bold, flat decorative composition\n• Tarashikomi wet-on-wet pigment pooling technique\n• Vibrant mineral pigment colors\n• Stylized natural elements (waves, flowers, clouds)"
+  },
+  {
+    "name": "YAMATO-E",
+    "category": [
+      "JAPANESE",
+      "PAINTING",
+      "HISTORICAL",
+      "CLASSICAL",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Yamato-e painting. Yamato-e is a classical Japanese painting style from the Heian period (794-1185) characterized by narrative scroll compositions, elevated bird's-eye perspective, blown-off roof technique (fukinuki yatai), and delicate mineral pigment colors on gold-leafed surfaces depicting scenes of Japanese court life and literature.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Elevated bird's-eye perspective\n• Fukinuki yatai (blown-off roof) technique\n• Delicate mineral pigment colors\n• Narrative scroll composition\n• Heian period court aesthetic"
+  },
+  {
+    "name": "MINHWA KOREAN FOLK PAINTING",
+    "category": [
+      "KOREAN",
+      "FOLK ART",
+      "PAINTING",
+      "TRADITIONAL",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Korean Minhwa folk painting. Minhwa is traditional Korean folk art produced by itinerant artists, featuring bold colors, symbolic imagery, and decorative compositions depicting tigers, magpies, peonies, and mythical creatures. The style reflects the dreams and aspirations of common Korean people with vibrant, uninhibited artistic expression.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Bold, vibrant colors\n• Symbolic Korean folk imagery\n• Decorative flat composition\n• Traditional Korean paper (hanji) texture\n• Uninhibited, expressive brushwork"
+  },
+  {
+    "name": "DANCHEONG",
+    "category": [
+      "KOREAN",
+      "ARCHITECTURAL",
+      "DECORATIVE",
+      "TRADITIONAL",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Korean Dancheong decorative painting. Dancheong is the traditional Korean art of ornamental painting applied to wooden buildings, palaces, and temples, dating back to the Goguryeo period (37 BCE-668 CE). The image should feature intricate geometric patterns, lotus flowers, vines, and vibrant traditional colors arranged in symmetrical decorative borders.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Traditional five-color palette (obangsaek)\n• Intricate geometric and floral patterns\n• Symmetrical decorative borders\n• Lotus flower and vine motifs\n• Wooden architectural surface texture"
+  },
+  {
+    "name": "ADIRE TEXTILE",
+    "category": [
+      "AFRICAN",
+      "TEXTILE",
+      "TRADITIONAL",
+      "NIGERIAN",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Yoruba Adire textile design. Adire is a traditional Nigerian resist-dye technique where Yoruba women create intricate patterns on cloth using indigo dye and various resist methods including starch paste (adire eleko) and tied/stitched fabric (adire oniko). The image should feature deep indigo blue and white patterns with geometric and symbolic Yoruba motifs.",
+    "options": [
+      {
+        "id": "001",
+        "text": "Adire Eleko style with hand-painted cassava starch resist patterns creating intricate white designs on deep indigo cloth"
+      },
+      {
+        "id": "002",
+        "text": "Adire Oniko style with tied and stitched resist patterns creating organic circular and linear designs in indigo"
+      },
+      {
+        "id": "003",
+        "text": "Adire Alabere style with machine-stitched resist patterns creating fine detailed geometric designs"
+      }
+    ],
+    "randomizeOptions": true,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Deep indigo blue and white color palette\n• Traditional Yoruba symbolic motifs\n• Hand-crafted resist-dye texture\n• Cloth/textile surface appearance"
+  },
+  {
+    "name": "BOGOLANFINI MUDCLOTH",
+    "category": [
+      "AFRICAN",
+      "TEXTILE",
+      "TRADITIONAL",
+      "MALIAN",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Malian Bogolanfini (mudcloth) design. Bogolanfini is a traditional Malian textile art where handwoven cotton cloth is painted with fermented mud to create bold geometric patterns in earth tones. Each symbol carries cultural meaning passed down through generations of Bambara women artists.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Earth-toned color palette (browns, blacks, creams)\n• Bold geometric symbolic patterns\n• Handwoven cotton cloth texture\n• Fermented mud paint appearance\n• Traditional Bambara symbolic motifs"
+  },
+  {
+    "name": "KENTE CLOTH",
+    "category": [
+      "AFRICAN",
+      "TEXTILE",
+      "GHANAIAN",
+      "TRADITIONAL",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Ghanaian Kente cloth design. Kente is a traditional Ghanaian hand-woven textile featuring vibrant, colorful geometric strip patterns created on narrow looms and sewn together. Each color and pattern combination carries symbolic meaning in Akan culture, traditionally worn during ceremonial occasions.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Vibrant multi-colored geometric strip patterns\n• Hand-woven textile texture\n• Traditional Akan symbolic color combinations\n• Interlocking geometric designs\n• Silk and cotton thread appearance"
+  },
+  {
+    "name": "SHIBORI",
+    "category": [
+      "JAPANESE",
+      "TEXTILE",
+      "TRADITIONAL",
+      "DYE",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Japanese Shibori textile design. Shibori is a Japanese manual resist-dyeing technique that creates three-dimensional patterns through folding, crumpling, stitching, plaiting, or twisting fabric before dyeing. The image should feature organic indigo patterns with characteristic white resist areas and dimensional textile texture.",
+    "options": [
+      {
+        "id": "001",
+        "text": "Kanoko Shibori (bound resist) creating small dotted tie-dye patterns"
+      },
+      {
+        "id": "002",
+        "text": "Arashi Shibori (pole-wrapping) creating diagonal stripe patterns"
+      },
+      {
+        "id": "003",
+        "text": "Itajime Shibori (folded and clamped) creating geometric repeat patterns"
+      },
+      {
+        "id": "004",
+        "text": "Kumo Shibori (spider web) creating radiating circular patterns"
+      }
+    ],
+    "randomizeOptions": true,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Indigo blue and white color palette\n• Three-dimensional textile texture\n• Organic resist-dye patterns\n• Hand-crafted imperfections\n• Fabric fold and crumple marks visible"
+  },
+  {
+    "name": "IKAT WEAVING",
+    "category": [
+      "TEXTILE",
+      "WEAVING",
+      "TRADITIONAL",
+      "GLOBAL",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into an Ikat woven textile design. Ikat is a complex handweaving technique practiced across Southeast Asia, Central Asia, and Latin America where threads are selectively bound and dyed before weaving, creating characteristic blurred-edge patterns. The image should feature the distinctive feathered edges of ikat patterns with rich, saturated dye colors.",
+    "options": [
+      {
+        "id": "001",
+        "text": "Indonesian double ikat (geringsing) with intricate ceremonial patterns"
+      },
+      {
+        "id": "002",
+        "text": "Uzbek silk ikat (atlas) with bold abstract cloud-like patterns in vibrant colors"
+      },
+      {
+        "id": "003",
+        "text": "Japanese kasuri ikat with indigo geometric patterns on cotton"
+      }
+    ],
+    "randomizeOptions": true,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Characteristic blurred/feathered pattern edges\n• Rich saturated dye colors\n• Woven textile texture\n• Pre-dyed thread pattern appearance"
+  },
+  {
+    "name": "WAYANG KULIT",
+    "category": [
+      "INDONESIAN",
+      "SHADOW ART",
+      "TRADITIONAL",
+      "THEATRICAL",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Javanese Wayang Kulit shadow puppet. Wayang Kulit is a traditional Indonesian shadow puppet art form over 1,000 years old, where intricately carved and perforated leather puppets are illuminated from behind to cast detailed shadows. The image should transform the subject into an ornate leather puppet with characteristic Javanese stylization, elaborate headdresses, and intricate perforated patterns.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Intricate leather carving and perforation patterns\n• Characteristic Javanese puppet proportions and stylization\n• Backlit shadow projection appearance\n• Gold leaf and paint details on leather\n• Articulated jointed limbs"
+  },
+  {
+    "name": "CELADON GLAZE",
+    "category": [
+      "CERAMIC",
+      "KOREAN",
+      "CHINESE",
+      "TRADITIONAL",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Korean celadon ceramic artwork. Celadon is a translucent, pale jade-green glaze achieved through reduction firing of iron oxide in stoneware or porcelain. The image should appear as if carved or inlaid into a celadon-glazed ceramic surface with the characteristic luminous blue-green color, crackle patterns, and sanggam inlay technique of Goryeo dynasty Korean celadon.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Translucent jade-green celadon glaze color\n• Characteristic crackle pattern in glaze\n• Carved or inlaid (sanggam) design technique\n• Smooth ceramic surface texture\n• Goryeo dynasty aesthetic"
+  },
+  {
+    "name": "RAKU CERAMIC",
+    "category": [
+      "CERAMIC",
+      "JAPANESE",
+      "TRADITIONAL",
+      "ZEN",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Raku ceramic artwork. Raku is a Japanese ceramic technique rooted in Zen philosophy, first produced in 16th-century Kyoto for tea ceremony vessels. The image should feature the characteristic crackle glaze, metallic lusters, carbon-blackened unglazed areas, and the wabi-sabi aesthetic of beautiful imperfection created by rapid firing and reduction cooling.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Crackle glaze with carbon penetration\n• Metallic copper and gold luster effects\n• Carbon-blackened unglazed areas\n• Wabi-sabi aesthetic of imperfection\n• Handmade ceramic surface texture"
+  },
+  {
+    "name": "MAJOLICA CERAMIC",
+    "category": [
+      "CERAMIC",
+      "ITALIAN",
+      "RENAISSANCE",
+      "DECORATIVE",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into an Italian Majolica ceramic painting. Majolica is a Renaissance-era decorative ceramic technique where colorful metallic oxide glazes are painted over an opaque tin-based white glaze on earthenware. The image should feature the vibrant painterly decoration, rich cobalt blues, manganese purples, copper greens, and antimony yellows characteristic of Italian Renaissance maiolica pottery.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Opaque white tin-glaze background\n• Vibrant metallic oxide colors\n• Painterly brushwork on ceramic surface\n• Renaissance-era decorative motifs\n• Earthenware ceramic texture"
+  },
+  {
+    "name": "COLLAGRAPH PRINT",
+    "category": [
+      "PRINTMAKING",
+      "MIXED MEDIA",
+      "TEXTURE",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a collagraph print. A collagraph is a printmaking technique where a collage of textured materials (cardboard, fabric, leaves, string, sand) is glued to a plate, sealed, inked, and printed. The image should feature rich textural variety, embossed paper quality, and the unique combination of relief and intaglio printing effects.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Rich variety of textures from collaged materials\n• Embossed paper impression\n• Combined relief and intaglio ink effects\n• Handmade plate irregularities\n• Dampened printmaking paper texture"
+  },
+  {
+    "name": "CHINE-COLLÉ",
+    "category": [
+      "PRINTMAKING",
+      "COLLAGE",
+      "FINE ART",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a chine-collé print. Chine-collé is a printmaking technique where thin sheets of colored or decorative paper are adhered to a heavier printing paper during the printing process, combining printed imagery with delicate collaged paper elements. The image should feature layered translucent papers with printed imagery creating depth and color variation.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Layered thin papers of different colors and textures\n• Printed imagery over collaged paper\n• Delicate translucent paper edges visible\n• Fine art printmaking quality\n• Subtle color variations from paper layers"
+  },
+  {
+    "name": "VISCOSITY PRINTING",
+    "category": [
+      "PRINTMAKING",
+      "EXPERIMENTAL",
+      "COLOR",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a viscosity print. Viscosity printing is an experimental intaglio technique developed by Stanley William Hayter where inks of different viscosities are applied to a single plate, causing them to repel each other and create complex multi-color prints in a single pass. The image should feature rich overlapping colors with organic separation patterns.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Multiple ink colors separating organically\n• Rich intaglio plate texture\n• Complex color interactions from viscosity differences\n• Single-pass multi-color printing appearance\n• Experimental fine art printmaking quality"
+  },
+  {
+    "name": "CLOISONNÉ ENAMEL",
+    "category": [
+      "METALWORK",
+      "DECORATIVE",
+      "TRADITIONAL",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a cloisonné enamel artwork. Cloisonné is an ancient metalworking technique where thin metal wire strips (cloisons) are soldered to a metal surface to create compartments that are filled with colored enamel paste and fired. The image should feature bold outlines of gold or copper wire separating vibrant jewel-toned enamel colors with a smooth, glossy fired surface.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Thin gold or copper wire outlines (cloisons)\n• Vibrant jewel-toned enamel colors\n• Smooth glossy fired enamel surface\n• Metal base visible at edges\n• Traditional decorative motifs"
+  },
+  {
+    "name": "CHAMPLEVÉ ENAMEL",
+    "category": [
+      "METALWORK",
+      "MEDIEVAL",
+      "DECORATIVE",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a champlevé enamel artwork. Champlevé is a medieval metalworking technique where troughs are carved or cast into a thick metal plate, filled with vitreous enamel, fired, and polished flush with the metal surface. The image should feature the characteristic appearance of colored enamel fields separated by raised metal ridges, typical of Romanesque and Gothic decorative arts.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Carved metal troughs filled with enamel\n• Raised copper or bronze metal ridges\n• Polished flush surface\n• Medieval decorative aesthetic\n• Limoges enamel color palette"
+  },
+  {
+    "name": "PIETRA DURA",
+    "category": [
+      "ITALIAN",
+      "STONE INLAY",
+      "DECORATIVE",
+      "RENAISSANCE",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Pietra Dura stone inlay artwork. Pietra Dura (also called commesso) is an Italian decorative art technique where precisely cut pieces of semi-precious stones (lapis lazuli, malachite, jasper, agate) are fitted together like a jigsaw puzzle to create images on marble surfaces. The image should feature the luminous, polished stone surfaces and precise geometric fitting characteristic of Florentine workshops.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Precisely cut semi-precious stone pieces\n• Polished stone surface with natural veining\n• Rich colors from natural minerals\n• Black marble or slate background\n• Florentine Renaissance craftsmanship"
+  },
+  {
+    "name": "SGRAFITTO POTTERY",
+    "category": [
+      "CERAMIC",
+      "DECORATIVE",
+      "HISTORICAL",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a sgraffito pottery design. Sgraffito is a ceramic decoration technique where a layer of colored slip or glaze is applied over a contrasting clay body, then scratched through to reveal the color beneath, creating linear designs. The image should feature bold scratched-through line work revealing contrasting clay colors beneath the surface slip.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Scratched-through surface revealing contrasting color\n• Bold linear design work\n• Ceramic slip and clay body texture\n• Hand-carved line quality\n• Traditional pottery surface"
+  },
+  {
+    "name": "PERSIAN MINIATURE",
+    "category": [
+      "PERSIAN",
+      "MINIATURE",
+      "PAINTING",
+      "HISTORICAL",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Persian miniature painting. Persian miniature painting is a richly detailed art form from Iran dating to the 13th century, characterized by intricate detail, vibrant colors, gold leaf illumination, flat perspective, and elaborate decorative borders. Subjects are depicted with idealized features within lush garden settings or architectural frames.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Intricate fine detail and miniature scale\n• Vibrant gouache and gold leaf colors\n• Flat perspective with multiple viewpoints\n• Elaborate decorative borders and margins\n• Lush garden or architectural settings"
+  },
+  {
+    "name": "MUGHAL MINIATURE",
+    "category": [
+      "INDIAN",
+      "MINIATURE",
+      "PAINTING",
+      "HISTORICAL",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Mughal miniature painting. Mughal miniature painting flourished in the Indian subcontinent from the 16th to 19th centuries under Mughal patronage, blending Persian, Indian, and European influences. The image should feature meticulous naturalistic detail, rich jewel-toned colors, gold embellishment, and the characteristic Mughal profile portrait style with elaborate costume and architectural settings.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Meticulous naturalistic detail\n• Rich jewel-toned pigments and gold\n• Characteristic profile or three-quarter view\n• Elaborate Mughal costume and jewelry\n• Architectural or garden settings with fine detail"
+  },
+  {
+    "name": "RAJPUT PAINTING",
+    "category": [
+      "INDIAN",
+      "PAINTING",
+      "HISTORICAL",
+      "TRADITIONAL",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Rajput painting. Rajput painting (also called Rajasthani painting) developed in the royal courts of Rajputana in India from the 16th to 19th centuries. The style features bold colors, strong outlines, flat areas of color, expressive faces, and themes from Hindu epics and romantic poetry, with distinctive regional schools including Mewar, Bundi, and Kishangarh.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Bold flat areas of vibrant color\n• Strong dark outlines\n• Expressive stylized faces\n• Indian miniature painting scale\n• Decorative borders and text panels"
+  },
+  {
+    "name": "TANJORE PAINTING",
+    "category": [
+      "INDIAN",
+      "PAINTING",
+      "RELIGIOUS",
+      "DECORATIVE",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Tanjore painting. Tanjore (Thanjavur) painting is a classical South Indian art form from Tamil Nadu dating to the 16th century, characterized by rich gold leaf overlay, semi-precious stone embellishments, vibrant colors, and three-dimensional surface decoration depicting Hindu deities and saints on wooden panels.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Rich gold leaf overlay and embossing\n• Semi-precious stone and glass bead embellishments\n• Vibrant colors on wooden panel\n• Three-dimensional raised surface decoration\n• Ornate arch frame and decorative border"
+  },
+  {
+    "name": "PICHWAI PAINTING",
+    "category": [
+      "INDIAN",
+      "PAINTING",
+      "RELIGIOUS",
+      "TRADITIONAL",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Pichwai painting. Pichwai is a traditional Indian painting style from Nathdwara, Rajasthan, created as devotional cloth hangings for temples. The style features intricate detail, rich dark backgrounds, lotus motifs, cows, and elaborate floral patterns painted on cloth with natural pigments and gold detailing.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Rich dark background (typically black or deep blue)\n• Intricate lotus and floral motifs\n• Natural pigment colors with gold detailing\n• Cloth painting texture\n• Devotional art aesthetic"
+  },
+  {
+    "name": "KALIGHAT PAINTING",
+    "category": [
+      "INDIAN",
+      "PAINTING",
+      "FOLK ART",
+      "BENGALI",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Kalighat painting. Kalighat painting originated in 19th-century Calcutta near the Kalighat temple, featuring bold sweeping brushstrokes, minimal backgrounds, strong outlines, and flat areas of color. Originally depicting Hindu deities, the style evolved into social and political commentary with characteristic simplified forms and dynamic compositions.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Bold sweeping brushstrokes\n• Minimal or plain backgrounds\n• Strong dark outlines\n• Flat areas of vibrant color\n• Simplified dynamic forms"
+  },
+  {
+    "name": "ETHIOPIAN ICONOGRAPHY",
+    "category": [
+      "AFRICAN",
+      "RELIGIOUS",
+      "PAINTING",
+      "HISTORICAL",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into an Ethiopian Orthodox Christian icon painting. Ethiopian iconography is a distinctive African Christian art tradition dating to the 4th century, characterized by large almond-shaped eyes, frontal poses for holy figures, profile views for evil characters, bold outlines, flat vibrant colors, and geometric patterned backgrounds on wooden panels or parchment.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Large almond-shaped eyes with direct gaze\n• Frontal pose with stylized proportions\n• Bold dark outlines\n• Flat vibrant colors (especially reds, blues, yellows)\n• Geometric patterned backgrounds"
+  },
+  {
+    "name": "NDEBELE HOUSE PAINTING",
+    "category": [
+      "AFRICAN",
+      "SOUTH AFRICAN",
+      "MURAL",
+      "GEOMETRIC",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a South African Ndebele house painting. Ndebele house painting is a vibrant geometric mural art tradition of the Ndebele people of South Africa, featuring bold black outlines filled with bright primary and secondary colors in symmetrical geometric patterns painted on exterior walls as expressions of cultural identity.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Bold black outlines\n• Bright primary and secondary colors\n• Symmetrical geometric patterns\n• Wall/architectural surface texture\n• Traditional Ndebele motifs (chevrons, triangles, rectangles)"
+  },
+  {
+    "name": "TAPA CLOTH",
+    "category": [
+      "PACIFIC ISLAND",
+      "TEXTILE",
+      "TRADITIONAL",
+      "POLYNESIAN",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Pacific Island tapa cloth design. Tapa cloth (also called bark cloth) is a traditional Polynesian and Melanesian art form made from beaten inner bark of the paper mulberry tree, decorated with geometric patterns using natural pigments. The image should feature bold geometric designs in earth tones on a fibrous bark cloth surface.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Beaten bark cloth texture\n• Bold geometric patterns\n• Earth-toned natural pigments (brown, black, rust)\n• Traditional Polynesian motifs\n• Hand-stamped or painted appearance"
+  },
+  {
+    "name": "ABORIGINAL BARK PAINTING",
+    "category": [
+      "AUSTRALIAN",
+      "INDIGENOUS",
+      "TRADITIONAL",
+      "PAINTING",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into an Australian Aboriginal bark painting. Aboriginal bark painting is a traditional art form from Arnhem Land in northern Australia, painted on flattened eucalyptus bark using natural ochre pigments. The style features cross-hatching (rarrk), X-ray style depicting internal anatomy, and symbolic representations of Dreamtime stories.",
+    "options": [
+      {
+        "id": "001",
+        "text": "X-ray style showing internal skeletal and organ structures of the subject in traditional ochre colors"
+      },
+      {
+        "id": "002",
+        "text": "Cross-hatching (rarrk) style with fine parallel lines creating tonal variation in ochre pigments"
+      },
+      {
+        "id": "003",
+        "text": "Figurative Dreamtime narrative style with symbolic representations and journey lines"
+      }
+    ],
+    "randomizeOptions": true,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Natural ochre pigments (red, yellow, white, black)\n• Eucalyptus bark surface texture\n• Traditional cross-hatching patterns\n• Symbolic Aboriginal motifs\n• Flat composition without Western perspective"
+  },
+  {
+    "name": "INUIT PRINTMAKING",
+    "category": [
+      "INDIGENOUS",
+      "CANADIAN",
+      "PRINTMAKING",
+      "ARCTIC",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into an Inuit print in the style of Cape Dorset printmaking. Inuit printmaking from the Canadian Arctic features bold simplified forms, limited color palettes, and subjects drawn from Arctic life, mythology, and nature. The style uses stonecut, stencil, and lithographic techniques with characteristic flat areas of color and strong graphic compositions.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Bold simplified graphic forms\n• Limited color palette\n• Flat areas of solid color\n• Strong graphic composition\n• Stonecut or stencil print texture"
+  },
+  {
+    "name": "HAIDA FORMLINE",
+    "category": [
+      "INDIGENOUS",
+      "PACIFIC NORTHWEST",
+      "TRADITIONAL",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Haida formline art design. Formline art is the traditional art style of the Haida, Tlingit, and other Pacific Northwest Coast Indigenous peoples, characterized by flowing ovoid and U-form shapes, bold black primary formlines, red secondary elements, and blue-green tertiary fills depicting stylized animals and supernatural beings.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Flowing ovoid and U-form shapes\n• Bold black primary formlines\n• Red secondary design elements\n• Blue-green tertiary fills\n• Traditional Northwest Coast stylization"
+  },
+  {
+    "name": "PUEBLO POTTERY",
+    "category": [
+      "INDIGENOUS",
+      "NATIVE AMERICAN",
+      "CERAMIC",
+      "TRADITIONAL",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Pueblo pottery design. Pueblo pottery is a traditional Native American ceramic art from the American Southwest, featuring hand-coiled vessels decorated with geometric and naturalistic designs using mineral and plant-based pigments. Each pueblo has distinctive styles, from Acoma's fine-line geometric patterns to San Ildefonso's black-on-black polished ware.",
+    "options": [
+      {
+        "id": "001",
+        "text": "Acoma Pueblo style with fine-line geometric patterns in black and white on thin-walled pottery"
+      },
+      {
+        "id": "002",
+        "text": "San Ildefonso black-on-black style with matte designs on highly polished blackware"
+      },
+      {
+        "id": "003",
+        "text": "Hopi pottery style with bold geometric and bird motifs in earth tones on yellow-orange clay"
+      }
+    ],
+    "randomizeOptions": true,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Hand-coiled pottery surface\n• Traditional mineral and plant pigments\n• Geometric and naturalistic motifs\n• Pueblo-specific design traditions\n• Polished or matte clay surface"
+  },
+  {
+    "name": "PERSIAN CARPET DESIGN",
+    "category": [
+      "PERSIAN",
+      "TEXTILE",
+      "DECORATIVE",
+      "TRADITIONAL",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Persian carpet design. Persian carpet weaving is an ancient Iranian art form featuring intricate hand-knotted patterns with central medallions, elaborate borders, and dense floral or geometric motifs. The image should appear as a finely knotted wool or silk carpet with rich jewel-toned colors and the characteristic symmetrical composition of Isfahan, Tabriz, or Kashan traditions.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Intricate hand-knotted texture\n• Rich jewel-toned color palette\n• Central medallion composition\n• Elaborate multi-layered borders\n• Dense floral arabesque patterns"
+  },
+  {
+    "name": "IZNIK TILE",
+    "category": [
+      "TURKISH",
+      "CERAMIC",
+      "ISLAMIC",
+      "DECORATIVE",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into an Iznik ceramic tile design. Iznik pottery is a decorated Ottoman-era ceramic art from the Turkish city of Iznik (ancient Nicaea), famous for its cobalt blue, turquoise, emerald green, and distinctive raised coral red (Armenian bole) colors depicting tulips, carnations, hyacinths, and arabesque patterns on a brilliant white ground.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Brilliant white ceramic ground\n• Cobalt blue, turquoise, green, and coral red palette\n• Tulip, carnation, and arabesque motifs\n• Raised coral red (Armenian bole) details\n• Ottoman decorative aesthetic"
+  },
+  {
+    "name": "ZELLIGE MOSAIC",
+    "category": [
+      "MOROCCAN",
+      "ISLAMIC",
+      "GEOMETRIC",
+      "TILE",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Moroccan Zellige mosaic tile design. Zellige is a traditional Moroccan art of hand-cut geometric mosaic tilework, where individually chiseled glazed terracotta pieces are assembled into complex mathematical star and polygon patterns. The image should feature intricate interlocking geometric patterns in traditional Moroccan colors.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Hand-cut geometric tile pieces\n• Complex interlocking star and polygon patterns\n• Traditional Moroccan color palette (blue, green, white, yellow)\n• Glazed terracotta tile texture\n• Mathematical precision in pattern geometry"
+  },
+  {
+    "name": "DELFT BLUE",
+    "category": [
+      "DUTCH",
+      "CERAMIC",
+      "HISTORICAL",
+      "DECORATIVE",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Dutch Delft Blue ceramic tile or plate design. Delftware is a traditional Dutch tin-glazed earthenware featuring hand-painted cobalt blue designs on white backgrounds, originally inspired by Chinese porcelain. The image should feature the characteristic blue-and-white palette with painterly brushwork depicting landscapes, figures, or floral motifs within decorative borders.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Cobalt blue on white tin-glaze palette\n• Hand-painted brushwork quality\n• Decorative corner motifs and borders\n• Ceramic tile or plate format\n• 17th-century Dutch aesthetic"
+  },
+  {
+    "name": "WILLOW PATTERN",
+    "category": [
+      "CERAMIC",
+      "CHINOISERIE",
+      "BRITISH",
+      "DECORATIVE",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Willow Pattern ceramic design. The Willow Pattern is an iconic blue-and-white transferware design created in 18th-century England, depicting a Chinese-inspired landscape with a pagoda, willow tree, bridge with figures, boat, and pair of doves. The image should transform the subject into this distinctive narrative ceramic illustration style.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Blue-and-white transferware palette\n• Chinese-inspired landscape elements\n• Engraved line quality of transfer printing\n• Decorative geometric border\n• Ceramic plate or dish format"
+  },
+  {
+    "name": "UKIYO-E WOODBLOCK",
+    "category": [
+      "JAPANESE",
+      "WOODBLOCK",
+      "HISTORICAL",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Japanese Ukiyo-e woodblock print. Ukiyo-e (pictures of the floating world) flourished from the 17th to 19th centuries, featuring bold outlines, flat areas of color, and distinctive compositions depicting kabuki actors, beautiful women, landscapes, and nature. The image should feature the characteristic woodblock printing texture with visible wood grain, registration marks, and water-based pigment colors.",
+    "options": [
+      {
+        "id": "001",
+        "text": "Hokusai style with dynamic natural forms, bold compositions, and Prussian blue palette"
+      },
+      {
+        "id": "002",
+        "text": "Hiroshige style with atmospheric landscapes, rain effects, and seasonal poetry"
+      },
+      {
+        "id": "003",
+        "text": "Utamaro style with elegant portraits, subtle color gradients, and mica backgrounds"
+      },
+      {
+        "id": "004",
+        "text": "Sharaku style with dramatic kabuki actor portraits and exaggerated expressions"
+      }
+    ],
+    "randomizeOptions": true,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Bold outlines with flat color areas\n• Woodblock printing texture and wood grain\n• Water-based pigment colors\n• Traditional Japanese composition\n• Bokashi gradient printing technique"
+  },
+  {
+    "name": "SOSAKU HANGA",
+    "category": [
+      "JAPANESE",
+      "PRINTMAKING",
+      "MODERN",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Sosaku Hanga (creative print). Sosaku Hanga is a 20th-century Japanese printmaking movement where the artist personally designs, carves, and prints the work (as opposed to the collaborative ukiyo-e system). The style emphasizes individual artistic expression, bold graphic compositions, and experimental techniques while maintaining Japanese aesthetic sensibility.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Bold graphic composition\n• Individual artistic expression\n• Woodblock or linocut printing texture\n• Modern Japanese aesthetic\n• Experimental color and form"
+  },
+  {
+    "name": "SHIN HANGA",
+    "category": [
+      "JAPANESE",
+      "PRINTMAKING",
+      "EARLY 20TH CENTURY",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Shin Hanga (new print) woodblock print. Shin Hanga was an early 20th-century Japanese art movement that revitalized traditional ukiyo-e woodblock printing with Western elements like light effects and individualism. The style features soft atmospheric effects, subtle color gradations, and romantic depictions of landscapes, women, and actors.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Soft atmospheric light effects\n• Subtle color gradations (bokashi)\n• Romantic, idealized aesthetic\n• Fine woodblock printing quality\n• Blend of Japanese and Western sensibilities"
+  },
+  {
+    "name": "GONGBI PAINTING",
+    "category": [
+      "CHINESE",
+      "PAINTING",
+      "TRADITIONAL",
+      "FINE DETAIL",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Chinese Gongbi (meticulous) painting. Gongbi is a traditional Chinese painting technique characterized by extremely fine, detailed brushwork using ink and mineral pigments on silk or sized paper. Unlike the spontaneous xieyi (freehand) style, Gongbi requires careful planning, precise outlines, and multiple layers of translucent color washes to build up rich, luminous imagery.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Extremely fine detailed brushwork\n• Precise ink outlines\n• Multiple translucent color wash layers\n• Silk or sized paper texture\n• Traditional Chinese mineral pigments"
+  },
+  {
+    "name": "SHANSHUI LANDSCAPE",
+    "category": [
+      "CHINESE",
+      "PAINTING",
+      "LANDSCAPE",
+      "TRADITIONAL",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Chinese Shanshui (mountain-water) landscape painting. Shanshui is the classical Chinese landscape painting tradition emphasizing the philosophical relationship between mountains and water, using ink wash on silk or paper. The image should feature misty atmospheric perspective, dramatic mountain forms, flowing water, and the characteristic empty space (留白) that embodies Taoist philosophy.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Ink wash on silk or paper\n• Misty atmospheric perspective\n• Dramatic mountain and water forms\n• Significant empty space (liu bai)\n• Vertical scroll composition"
+  },
+  {
+    "name": "LITERATI PAINTING",
+    "category": [
+      "CHINESE",
+      "PAINTING",
+      "SCHOLARLY",
+      "INK",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Chinese Literati (wenrenhua) painting. Literati painting is the scholarly tradition of Chinese ink painting practiced by educated elites who valued personal expression over technical virtuosity. The style features spontaneous brushwork, sparse compositions, poetic inscriptions, and subjects like bamboo, orchids, plum blossoms, and chrysanthemums (the Four Gentlemen).",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Spontaneous expressive brushwork\n• Sparse elegant composition\n• Black ink with minimal color\n• Calligraphic inscription and seal stamps\n• Scholar's aesthetic sensibility"
+  },
+  {
+    "name": "THANGKA PAINTING",
+    "category": [
+      "TIBETAN",
+      "BUDDHIST",
+      "PAINTING",
+      "RELIGIOUS",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Tibetan Thangka painting. Thangka is a traditional Tibetan Buddhist scroll painting on cotton or silk, featuring precise iconographic proportions, rich mineral pigments, gold detailing, and elaborate decorative elements. The image should transform the subject using the characteristic Thangka style with symmetrical composition, lotus throne, aureole, and cloud motifs.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Precise iconographic proportions\n• Rich mineral pigment colors\n• Gold leaf detailing and outlines\n• Symmetrical composition with aureole\n• Silk brocade mounting border"
+  },
+  {
+    "name": "PYSANKA",
+    "category": [
+      "UKRAINIAN",
+      "FOLK ART",
+      "DECORATIVE",
+      "TRADITIONAL",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Ukrainian Pysanka (Easter egg) design. Pysanka is a traditional Ukrainian art of decorating eggs using a wax-resist (batik) method, creating intricate geometric and symbolic patterns in multiple colors. The image should feature the characteristic fine-line geometric patterns, symbolic motifs (sun, stars, wheat, deer), and rich layered colors on an egg-shaped format.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Fine-line wax-resist patterns\n• Intricate geometric and symbolic motifs\n• Rich layered colors (red, black, yellow, orange)\n• Egg-shaped format\n• Traditional Ukrainian folk symbols"
+  },
+  {
+    "name": "WYCINANKI",
+    "category": [
+      "POLISH",
+      "FOLK ART",
+      "PAPER CUT",
+      "TRADITIONAL",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Polish Wycinanki paper cutting design. Wycinanki is a traditional Polish folk art of intricate paper cutting, featuring symmetrical designs of roosters, flowers, trees, and geometric patterns cut from brightly colored layered paper. The image should feature the characteristic bold symmetrical compositions with vibrant layered colored paper and precise cut details.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Symmetrical paper-cut design\n• Brightly colored layered paper\n• Precise cut details and patterns\n• Traditional Polish folk motifs\n• Flat layered paper appearance"
+  },
+  {
+    "name": "ROSEMALING",
+    "category": [
+      "NORWEGIAN",
+      "FOLK ART",
+      "DECORATIVE",
+      "PAINTING",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Norwegian Rosemaling decorative painting. Rosemaling is a traditional Norwegian folk art of decorative painting featuring flowing acanthus scrolls, stylized flowers, and C and S curves in rich colors on wooden surfaces. The image should feature the characteristic flowing organic scrollwork, symmetrical floral compositions, and the painted-on-wood aesthetic of this Scandinavian tradition.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Flowing acanthus scroll patterns\n• Stylized floral motifs\n• C and S curve compositions\n• Rich colors on wooden surface\n• Traditional Norwegian folk aesthetic"
+  },
+  {
+    "name": "GZHEL PORCELAIN",
+    "category": [
+      "RUSSIAN",
+      "CERAMIC",
+      "FOLK ART",
+      "DECORATIVE",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Russian Gzhel porcelain design. Gzhel is a traditional Russian ceramic art from the Gzhel region near Moscow, characterized by distinctive cobalt blue hand-painted floral and bird motifs on white porcelain. The image should feature the characteristic blue-on-white palette with flowing brushstroke flowers, birds, and decorative patterns.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Cobalt blue on white porcelain palette\n• Flowing brushstroke floral motifs\n• Traditional Russian decorative patterns\n• Porcelain surface texture\n• Hand-painted quality with visible brushwork"
+  },
+  {
+    "name": "KHOKHLOMA",
+    "category": [
+      "RUSSIAN",
+      "FOLK ART",
+      "DECORATIVE",
+      "LACQUER",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Russian Khokhloma lacquerware design. Khokhloma is a traditional Russian folk art of painting wooden objects with distinctive red, gold, and black lacquer designs featuring flowing berries, leaves, and floral patterns. The image should feature the characteristic warm palette of gold, red, and black with organic berry and leaf motifs on a lacquered wooden surface.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Gold, red, and black color palette\n• Flowing berry and leaf motifs\n• Lacquered wooden surface texture\n• Traditional Russian folk patterns\n• Warm golden background"
+  },
+  {
+    "name": "PALEKH LACQUER MINIATURE",
+    "category": [
+      "RUSSIAN",
+      "MINIATURE",
+      "LACQUER",
+      "FOLK ART",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Russian Palekh lacquer miniature painting. Palekh is a traditional Russian art of painting intricate miniature scenes on papier-mâché lacquer boxes, featuring luminous tempera colors and gold leaf on jet-black backgrounds. The style depicts fairy tales, folklore, and historical scenes with elongated figures and rich decorative detail.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Jet-black lacquer background\n• Luminous tempera colors\n• Gold leaf detailing and highlights\n• Intricate miniature scale\n• Elongated elegant figures"
+  },
+  {
+    "name": "REVERSE GLASS PAINTING (HINTERGLASMALEREI)",
+    "category": [
+      "EUROPEAN",
+      "FOLK ART",
+      "GLASS",
+      "PAINTING",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Hinterglasmalerei (reverse glass painting). This traditional European folk art technique involves painting on the back side of glass, requiring the artist to work in reverse order (details first, background last). The image should feature the characteristic luminous quality of paint viewed through glass, bold colors, and the slightly naive folk art aesthetic.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Luminous paint-through-glass quality\n• Bold flat colors\n• Reverse painting technique (fine details over broad areas)\n• Folk art aesthetic\n• Glass surface reflection and depth"
+  },
+  {
+    "name": "FILIGREE METALWORK",
+    "category": [
+      "METALWORK",
+      "DECORATIVE",
+      "JEWELRY",
+      "TRADITIONAL",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a filigree metalwork design. Filigree is an ancient jewelry and metalworking technique using fine threads and tiny beads of gold or silver wire twisted and soldered together to create intricate lace-like openwork patterns. The image should feature delicate twisted wire patterns, granulation details, and the characteristic airy openwork quality of fine metalwork.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Fine twisted wire threads\n• Intricate lace-like openwork patterns\n• Gold or silver metallic appearance\n• Granulation bead details\n• Delicate handcrafted quality"
+  },
+  {
+    "name": "DAMASCENE METALWORK",
+    "category": [
+      "METALWORK",
+      "ISLAMIC",
+      "DECORATIVE",
+      "TRADITIONAL",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Damascene metalwork design. Damascening is a traditional metalworking technique originating in Damascus, Syria, where gold or silver wire is inlaid into grooves cut in steel or iron to create intricate decorative patterns. The image should feature the characteristic contrast of precious metal inlay against dark oxidized steel with Islamic arabesque and geometric patterns.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Gold or silver inlay on dark steel\n• Islamic arabesque and geometric patterns\n• Oxidized dark metal background\n• Precise inlay craftsmanship\n• Traditional Damascus metalwork aesthetic"
+  },
+  {
+    "name": "REPOUSSÉ AND CHASING",
+    "category": [
+      "METALWORK",
+      "SCULPTURE",
+      "TRADITIONAL",
+      "RELIEF",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a repoussé and chasing metalwork relief. Repoussé is an ancient metalworking technique where sheet metal is shaped from the reverse side by hammering, then refined from the front (chasing) to create detailed relief sculptures. The image should feature the characteristic hammered metal relief with dimensional depth, tool marks, and the warm patina of worked metal.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Hammered metal relief depth\n• Visible tool marks and hand-worked quality\n• Copper, bronze, or silver metal appearance\n• Dimensional sculptural form\n• Aged patina on metal surface"
+  },
+  {
+    "name": "NIELLO",
+    "category": [
+      "METALWORK",
+      "ENGRAVING",
+      "DECORATIVE",
+      "HISTORICAL",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a niello metalwork design. Niello is an ancient decorative technique where a black metallic alloy (mixture of copper, silver, and lead sulfides) is inlaid into engraved lines on silver or gold to create high-contrast detailed imagery. The image should feature fine engraved lines filled with black niello against polished silver, creating detailed graphic imagery.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Black niello inlay in engraved lines\n• Polished silver or gold background\n• Fine detailed engraving\n• High contrast black-on-silver imagery\n• Historical metalwork craftsmanship"
+  },
+  {
+    "name": "OPUS SECTILE",
+    "category": [
+      "ROMAN",
+      "MOSAIC",
+      "STONE",
+      "HISTORICAL",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Roman Opus Sectile artwork. Opus Sectile is an ancient Roman technique of creating images by cutting and fitting together precisely shaped pieces of colored marble, stone, or glass into a design, unlike mosaic which uses small uniform tesserae. The image should feature large precisely cut stone pieces fitted together to form the composition with visible natural stone veining and color.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Precisely cut large stone pieces\n• Natural marble and stone colors and veining\n• Fitted jigsaw-like composition\n• Polished stone surface\n• Roman decorative aesthetic"
+  },
+  {
+    "name": "COSMATI MOSAIC",
+    "category": [
+      "ITALIAN",
+      "MEDIEVAL",
+      "MOSAIC",
+      "GEOMETRIC",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Cosmati mosaic design. Cosmatesque work is a medieval Italian decorative technique using small triangles, squares, and circles of colored marble, porphyry, and gold glass tesserae arranged in intricate geometric patterns. The image should feature the characteristic complex geometric patterns in rich colored marbles (green serpentine, red porphyry, white marble) and gold glass.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Complex geometric patterns\n• Colored marble pieces (green, red, white)\n• Gold glass tesserae accents\n• Medieval Italian decorative aesthetic\n• Circular and interlocking geometric forms"
+  },
+  {
+    "name": "TERRAZZO FLOORING",
+    "category": [
+      "ITALIAN",
+      "DECORATIVE",
+      "ARCHITECTURAL",
+      "MATERIAL",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a terrazzo floor design. Terrazzo is a composite material of marble, quartz, granite, or glass chips set in concrete or epoxy resin, then ground and polished smooth. The image should feature the characteristic speckled appearance of colorful stone chips suspended in a smooth polished matrix, with the subject rendered through the arrangement of aggregate patterns.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Colorful stone chip aggregate\n• Smooth polished surface\n• Speckled composite material appearance\n• Concrete or resin matrix\n• Mid-century modern aesthetic"
+  },
+  {
+    "name": "VERDURE TAPESTRY",
+    "category": [
+      "TEXTILE",
+      "MEDIEVAL",
+      "EUROPEAN",
+      "WEAVING",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a medieval Verdure tapestry. Verdure tapestries are a genre of European woven wall hangings dominated by lush green foliage, trees, and plants, often with animals, birds, and small figures set within dense botanical landscapes. The image should feature the characteristic woven textile texture with rich greens and the millefleurs (thousand flowers) background tradition.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Woven tapestry textile texture\n• Lush green foliage dominance\n• Millefleurs (thousand flowers) background\n• Medieval European aesthetic\n• Decorative border framing"
+  },
+  {
+    "name": "AUBUSSON TAPESTRY",
+    "category": [
+      "FRENCH",
+      "TEXTILE",
+      "WEAVING",
+      "DECORATIVE",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a French Aubusson tapestry. Aubusson tapestries are renowned French flat-woven textiles produced in the town of Aubusson since the 15th century, featuring pastoral scenes, mythological subjects, and elaborate floral borders in soft, muted color palettes. The image should feature the characteristic flat-weave texture and refined French decorative aesthetic.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Flat-weave tapestry texture\n• Soft muted color palette\n• Pastoral or mythological composition\n• Elaborate floral border\n• French decorative refinement"
+  },
+  {
+    "name": "JACOBEAN CREWELWORK",
+    "category": [
+      "BRITISH",
+      "TEXTILE",
+      "EMBROIDERY",
+      "HISTORICAL",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Jacobean crewelwork embroidery design. Jacobean crewelwork is a 17th-century English embroidery style using wool yarn on linen, featuring exuberant stylized floral designs with large exotic flowers, twisting vines, and fantastical leaves inspired by Indian textiles. The image should feature bold wool embroidery stitches creating dimensional floral patterns on natural linen.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Wool yarn embroidery stitches on linen\n• Exuberant stylized floral designs\n• Large exotic flowers and twisting vines\n• Natural linen background texture\n• 17th-century English decorative style"
+  },
+  {
+    "name": "HARDANGER EMBROIDERY",
+    "category": [
+      "NORWEGIAN",
+      "TEXTILE",
+      "EMBROIDERY",
+      "GEOMETRIC",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Norwegian Hardanger embroidery design. Hardanger is a traditional Norwegian whitework embroidery technique featuring geometric satin stitch blocks (kloster blocks) surrounding areas of cut and drawn threadwork, creating a lace-like openwork effect. The image should feature the characteristic white-on-white geometric patterns with cut-thread openwork areas.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• White-on-white embroidery\n• Geometric satin stitch blocks\n• Cut and drawn threadwork openings\n• Lace-like openwork effect\n• Even-weave fabric texture"
+  },
+  {
+    "name": "TEMARI BALL",
+    "category": [
+      "JAPANESE",
+      "TEXTILE",
+      "GEOMETRIC",
+      "CRAFT",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Japanese Temari ball design. Temari are traditional Japanese embroidered thread balls featuring intricate geometric patterns created by wrapping and stitching colored threads in precise mathematical divisions. The image should feature the characteristic spherical format with complex interlocking geometric thread patterns in vibrant colors.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Spherical format\n• Intricate geometric thread patterns\n• Precise mathematical divisions\n• Vibrant colored thread\n• Wrapped and stitched texture"
+  },
+  {
+    "name": "KOGIN EMBROIDERY",
+    "category": [
+      "JAPANESE",
+      "TEXTILE",
+      "EMBROIDERY",
+      "GEOMETRIC",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Japanese Kogin embroidery design. Kogin-zashi is a traditional Japanese counted-thread embroidery from the Tsugaru region of northern Japan, originally used to reinforce and insulate hemp clothing. The technique creates dense geometric diamond patterns using white cotton thread on indigo-dyed fabric.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Dense geometric diamond patterns\n• White thread on indigo fabric\n• Counted-thread technique precision\n• Traditional Tsugaru motifs\n• Textile surface texture"
+  },
+  {
+    "name": "SASHIKO STITCHING",
+    "category": [
+      "JAPANESE",
+      "TEXTILE",
+      "EMBROIDERY",
+      "TRADITIONAL",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Japanese Sashiko stitching design. Sashiko is a traditional Japanese decorative reinforcement stitching using white running stitches on indigo-dyed fabric to create geometric patterns. Originally functional (strengthening worn fabric), it evolved into a decorative art featuring patterns like asanoha (hemp leaf), seigaiha (waves), and shippo (seven treasures).",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• White running stitches on indigo fabric\n• Traditional geometric patterns\n• Hand-stitched quality with slight irregularities\n• Layered fabric texture\n• Functional-decorative aesthetic"
+  },
+  {
+    "name": "SUZANI EMBROIDERY",
+    "category": [
+      "CENTRAL ASIAN",
+      "TEXTILE",
+      "EMBROIDERY",
+      "UZBEK",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Central Asian Suzani embroidery design. Suzani is a traditional embroidered textile from Uzbekistan and neighboring Central Asian countries, featuring large bold floral medallions, sun and moon motifs, and vine scrolls in vibrant silk thread on cotton or linen. The image should feature the characteristic large-scale floral compositions in rich saturated colors.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Large bold floral medallion motifs\n• Vibrant silk thread colors\n• Chain stitch and couching techniques\n• Cotton or linen ground fabric\n• Central Asian decorative aesthetic"
+  },
+  {
+    "name": "OTOMI EMBROIDERY",
+    "category": [
+      "MEXICAN",
+      "TEXTILE",
+      "FOLK ART",
+      "EMBROIDERY",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Mexican Otomi embroidery design. Otomi embroidery (Tenango) is a traditional textile art from the Otomi people of Tenango de Doria, Hidalgo, Mexico, featuring whimsical multicolored animals, birds, flowers, and human figures embroidered in satin stitch on white cotton cloth, creating vibrant narrative scenes.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Multicolored satin stitch embroidery\n• Whimsical animals, birds, and flowers\n• White cotton cloth background\n• Narrative folk art composition\n• Vibrant color palette"
+  },
+  {
+    "name": "MOLA TEXTILE",
+    "category": [
+      "PANAMANIAN",
+      "TEXTILE",
+      "INDIGENOUS",
+      "APPLIQUÉ",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Kuna Mola textile design. Molas are traditional reverse-appliqué textile panels made by the Guna (Kuna) people of Panama and Colombia, featuring multiple layers of brightly colored fabric cut away to reveal intricate geometric and figurative designs with characteristic narrow channels of color between layers.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Multiple layers of colored fabric\n• Reverse-appliqué technique\n• Narrow channels revealing underlying colors\n• Bold geometric and figurative designs\n• Vibrant tropical color palette"
+  },
+  {
+    "name": "AMATE BARK PAINTING",
+    "category": [
+      "MEXICAN",
+      "FOLK ART",
+      "PAINTING",
+      "INDIGENOUS",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Mexican Amate bark painting. Amate painting is a traditional Nahua folk art from Guerrero, Mexico, where brightly colored scenes of village life, birds, flowers, and animals are painted on handmade amate (fig bark) paper. The image should feature vibrant acrylic colors on the characteristic rough brown bark paper surface.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Rough brown bark paper surface\n• Vibrant acrylic paint colors\n• Folk art style with bold outlines\n• Floral and nature motifs\n• Nahua artistic tradition"
+  },
+  {
+    "name": "RETABLO PAINTING",
+    "category": [
+      "MEXICAN",
+      "RELIGIOUS",
+      "FOLK ART",
+      "PAINTING",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Mexican Retablo (ex-voto) painting. Retablos are small devotional paintings on tin or wood panels depicting miraculous events and divine interventions, created as offerings of gratitude. The style features naive folk art painting with text narratives, religious figures, and dramatic scenes rendered in oil or acrylic on recycled tin sheets.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Small tin or wood panel format\n• Naive folk art painting style\n• Text narrative at bottom\n• Religious figures and dramatic scenes\n• Oil or acrylic on recycled tin surface"
+  },
+  {
+    "name": "TRUCK ART",
+    "category": [
+      "PAKISTANI",
+      "FOLK ART",
+      "DECORATIVE",
+      "PAINTING",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into Pakistani Truck Art. Pakistani truck art (jingle trucks) is a vibrant folk art tradition of elaborately decorating vehicles with colorful paintings, reflective materials, wood carving, and metalwork. The style features bold colors, floral patterns, landscapes, portraits, calligraphy, and ornate borders covering every surface.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Extremely vibrant bold colors\n• Floral patterns and ornate borders\n• Calligraphic text elements\n• Reflective and metallic accents\n• Every surface decorated"
+  },
+  {
+    "name": "FILETEADO PORTEÑO",
+    "category": [
+      "ARGENTINIAN",
+      "FOLK ART",
+      "DECORATIVE",
+      "SIGN PAINTING",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into an Argentinian Fileteado Porteño design. Fileteado is a traditional decorative art from Buenos Aires featuring ornate lettering, scrollwork, flowers, dragons, and ribbons painted in vibrant colors with dramatic drop shadows and symmetrical compositions. Originally used on buses and storefronts, it was declared UNESCO Intangible Cultural Heritage in 2015.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Ornate scrollwork and acanthus leaves\n• Vibrant colors with dramatic drop shadows\n• Symmetrical decorative composition\n• Decorative lettering and ribbons\n• Buenos Aires folk art aesthetic"
+  },
+  {
+    "name": "CINEMA NOVO",
+    "category": [
+      "BRAZILIAN",
+      "FILM",
+      "ARTISTIC",
+      "PHOTOGRAPHY",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Brazilian Cinema Novo film still. Cinema Novo was a Brazilian film movement of the 1960s-70s characterized by raw, documentary-style cinematography, high-contrast black and white imagery, social realism, and the aesthetic of 'hunger' - using limited resources to create powerful visual statements about inequality and identity.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• High-contrast black and white\n• Raw documentary-style cinematography\n• Social realist composition\n• Grainy film stock texture\n• 1960s Brazilian aesthetic"
+  },
+  {
+    "name": "GERMAN EXPRESSIONIST FILM",
+    "category": [
+      "GERMAN",
+      "FILM",
+      "EXPRESSIONISM",
+      "HISTORICAL",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a German Expressionist film still from the 1920s. German Expressionist cinema (Das Cabinet des Dr. Caligari, Nosferatu, Metropolis) featured extreme angular set designs, dramatic chiaroscuro lighting, distorted perspectives, painted shadows, and exaggerated makeup to externalize psychological states.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Extreme angular set designs\n• Dramatic chiaroscuro lighting\n• Distorted perspectives and painted shadows\n• High-contrast black and white\n• Exaggerated theatrical makeup"
+  },
+  {
+    "name": "SOVIET CONSTRUCTIVIST POSTER",
+    "category": [
+      "RUSSIAN",
+      "GRAPHIC DESIGN",
+      "POLITICAL",
+      "AVANT-GARDE",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Soviet Constructivist poster design. Soviet Constructivism (1920s-30s) was a revolutionary art movement featuring bold geometric compositions, photomontage, diagonal dynamic lines, limited color palettes (red, black, white), and strong typographic elements promoting social and political messages.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Bold geometric composition\n• Diagonal dynamic lines and angles\n• Red, black, and white color palette\n• Photomontage elements\n• Strong typographic integration"
+  },
+  {
+    "name": "SWISS INTERNATIONAL STYLE",
+    "category": [
+      "SWISS",
+      "GRAPHIC DESIGN",
+      "MODERNIST",
+      "TYPOGRAPHY",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Swiss International Typographic Style (Swiss Style) design. Developed in the 1950s in Switzerland, this graphic design movement emphasizes cleanliness, readability, and objectivity through mathematical grid systems, sans-serif typography (Helvetica, Univers), asymmetric layouts, and photography over illustration.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Mathematical grid-based layout\n• Sans-serif typography (Helvetica style)\n• Asymmetric composition\n• Clean objective photography\n• Limited color palette with white space"
+  },
+  {
+    "name": "POLISH POSTER SCHOOL",
+    "category": [
+      "POLISH",
+      "GRAPHIC DESIGN",
+      "POSTER",
+      "ARTISTIC",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Polish Poster School design. The Polish School of Posters (1950s-80s) was a distinctive graphic art movement where artists created highly artistic, metaphorical, and surreal poster designs that prioritized artistic expression over commercial messaging. The style features painterly techniques, symbolic imagery, and bold conceptual approaches.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Painterly artistic technique\n• Symbolic and metaphorical imagery\n• Bold conceptual approach\n• Surreal or expressionist elements\n• Hand-lettered typography"
+  },
+  {
+    "name": "PSYCHEDELIC CONCERT POSTER",
+    "category": [
+      "AMERICAN",
+      "GRAPHIC DESIGN",
+      "1960S",
+      "POSTER",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a 1960s San Francisco psychedelic concert poster. This style, pioneered by artists like Wes Wilson, Victor Moscoso, and Rick Griffin for Fillmore and Avalon Ballroom shows, features flowing Art Nouveau-inspired lettering, vibrating complementary colors, organic forms, and optical illusions designed to evoke altered states of consciousness.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Flowing Art Nouveau-inspired lettering\n• Vibrating complementary color combinations\n• Organic flowing forms\n• Optical vibration effects\n• Dense decorative composition filling all space"
+  },
+  {
+    "name": "VIENNA SECESSION",
+    "category": [
+      "AUSTRIAN",
+      "ART NOUVEAU",
+      "DECORATIVE",
+      "MODERNIST",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Vienna Secession style artwork. The Vienna Secession (founded 1897) was an Austrian art movement led by Gustav Klimt, featuring geometric ornamentation, gold leaf, mosaic-like patterns, flat decorative surfaces, and the integration of fine art with decorative design. The style bridges Art Nouveau and early Modernism.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Geometric ornamentation and patterns\n• Gold leaf and metallic elements\n• Mosaic-like decorative surfaces\n• Flat patterned backgrounds\n• Integration of figure and ornament"
+  },
+  {
+    "name": "GLASGOW SCHOOL",
+    "category": [
+      "SCOTTISH",
+      "ART NOUVEAU",
+      "DESIGN",
+      "MODERNIST",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Glasgow School style artwork. The Glasgow School (1890s-1910s), led by Charles Rennie Mackintosh and the 'Glasgow Four,' developed a distinctive Art Nouveau variant featuring elongated vertical forms, geometric rose motifs, muted color palettes (purple, pink, silver, white), and the integration of architecture, furniture, and graphic design.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Elongated vertical forms\n• Geometric stylized rose motifs\n• Muted palette (purple, pink, silver, white)\n• Linear geometric Art Nouveau\n• Integration of decorative and structural elements"
+  },
+  {
+    "name": "JUGENDSTIL",
+    "category": [
+      "GERMAN",
+      "ART NOUVEAU",
+      "DECORATIVE",
+      "GRAPHIC",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a German Jugendstil artwork. Jugendstil (Youth Style) is the German and Scandinavian variant of Art Nouveau, named after the Munich magazine 'Jugend' (1896). The style features organic whiplash curves, stylized natural forms, flat decorative patterns, and bold graphic outlines with influences from Japanese woodblock prints.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Organic whiplash curves\n• Stylized natural forms\n• Flat decorative patterns\n• Bold graphic outlines\n• Japanese-influenced composition"
+  },
+  {
+    "name": "ARTS AND CRAFTS MOVEMENT",
+    "category": [
+      "BRITISH",
+      "DECORATIVE",
+      "DESIGN",
+      "VICTORIAN",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into an Arts and Crafts Movement design. The Arts and Crafts Movement (1880s-1920s), led by William Morris, emphasized handcraftsmanship, medieval inspiration, and the unity of art and craft. The style features intricate flat-pattern designs of intertwining foliage, flowers, and birds with rich earthy colors and hand-printed quality.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Intricate flat-pattern designs\n• Intertwining foliage and flowers\n• Rich earthy color palette\n• Hand-printed quality\n• Medieval-inspired decorative motifs"
+  },
+  {
+    "name": "AESTHETIC MOVEMENT",
+    "category": [
+      "BRITISH",
+      "VICTORIAN",
+      "DECORATIVE",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into an Aesthetic Movement artwork. The Aesthetic Movement (1860s-1900s) championed 'art for art's sake,' featuring Japanese-influenced compositions, peacock motifs, sunflowers, lilies, muted sage greens and golds, and an emphasis on beauty and sensory pleasure over narrative or moral content.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Japanese-influenced composition\n• Peacock, sunflower, and lily motifs\n• Muted sage green and gold palette\n• Emphasis on decorative beauty\n• Refined Victorian aesthetic"
+  },
+  {
+    "name": "WIENER WERKSTÄTTE",
+    "category": [
+      "AUSTRIAN",
+      "DESIGN",
+      "DECORATIVE",
+      "MODERNIST",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Wiener Werkstätte (Vienna Workshop) design. The Wiener Werkstätte (1903-1932) was an Austrian design collective that created total works of art integrating architecture, furniture, fashion, and graphics. The style features bold geometric patterns, black-and-white contrasts, checkerboard motifs, and the integration of fine art with everyday objects.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Bold geometric patterns\n• Black-and-white contrasts\n• Checkerboard and grid motifs\n• Decorative total design approach\n• Early modernist geometric aesthetic"
+  },
+  {
+    "name": "OMEGA WORKSHOPS",
+    "category": [
+      "BRITISH",
+      "POST-IMPRESSIONIST",
+      "DECORATIVE",
+      "MODERNIST",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into an Omega Workshops design. The Omega Workshops (1913-1919), founded by Roger Fry in London, applied Post-Impressionist and Fauvist painting principles to decorative arts. The style features bold abstract patterns, vibrant colors, loose painterly brushwork applied to furniture, textiles, and ceramics with deliberate artistic spontaneity.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Bold abstract patterns\n• Vibrant Post-Impressionist colors\n• Loose painterly brushwork\n• Decorative arts application\n• Artistic spontaneity and freedom"
+  },
+  {
+    "name": "SUPREMATIST COMPOSITION",
+    "category": [
+      "RUSSIAN",
+      "ABSTRACT",
+      "GEOMETRIC",
+      "AVANT-GARDE",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Suprematist composition. Suprematism, founded by Kazimir Malevich around 1915, reduced art to pure geometric forms - squares, circles, crosses, and rectangles - floating on white backgrounds. The image should transform the subject into an arrangement of basic geometric shapes in primary colors against a white void, expressing pure artistic feeling.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity through geometric abstraction\n• Pure geometric forms (squares, circles, rectangles, crosses)\n• White background as infinite space\n• Primary colors plus black\n• Floating dynamic composition\n• Non-objective pure form"
+  },
+  {
+    "name": "ANALYTICAL CUBISM",
+    "category": [
+      "FRENCH",
+      "CUBISM",
+      "ABSTRACT",
+      "MODERNIST",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into an Analytical Cubist painting. Analytical Cubism (1909-1912), developed by Picasso and Braque, deconstructs subjects into fragmented geometric facets viewed simultaneously from multiple angles. The image should feature the characteristic monochromatic palette (browns, grays, ochres), shattered planes, and the intellectual dissection of form.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Fragmented geometric facets\n• Multiple simultaneous viewpoints\n• Monochromatic palette (browns, grays, ochres)\n• Shattered intersecting planes\n• Intellectual deconstruction of form"
+  },
+  {
+    "name": "SYNTHETIC CUBISM",
+    "category": [
+      "FRENCH",
+      "CUBISM",
+      "COLLAGE",
+      "MODERNIST",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Synthetic Cubist artwork. Synthetic Cubism (1912-1914) reversed the analytical process by building up images from flat decorative shapes, incorporating collage elements like newspaper, wallpaper, and sheet music. The image should feature bold flat colored shapes, collaged textures, stenciled letters, and playful compositions.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Bold flat colored shapes\n• Collaged paper and texture elements\n• Stenciled letters and numbers\n• Newspaper and wallpaper fragments\n• Playful decorative composition"
+  },
+  {
+    "name": "SECTION D'OR",
+    "category": [
+      "FRENCH",
+      "CUBISM",
+      "MATHEMATICAL",
+      "MODERNIST",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Section d'Or (Golden Section) painting. Section d'Or was a Parisian collective of Cubist artists (1911-1914) including Duchamp, Léger, and Metzinger who emphasized mathematical proportions, the golden ratio, and dynamic movement in their geometric abstractions, using brighter colors than Analytical Cubism.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Golden ratio proportional composition\n• Geometric abstraction with movement\n• Brighter color palette than Analytical Cubism\n• Mathematical precision in form\n• Dynamic angular composition"
+  },
+  {
+    "name": "PURISM",
+    "category": [
+      "FRENCH",
+      "MODERNIST",
+      "GEOMETRIC",
+      "PAINTING",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Purist painting. Purism was a post-Cubist movement founded by Le Corbusier and Amédée Ozenfant in 1918, advocating for clarity, order, and precision in art. The style features clean geometric forms of everyday objects (bottles, glasses, guitars) rendered with smooth surfaces, muted colors, and machine-age precision.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Clean geometric forms\n• Smooth precise surfaces\n• Muted harmonious color palette\n• Machine-age clarity and order\n• Overlapping transparent planes"
+  },
+  {
+    "name": "TUBISM",
+    "category": [
+      "FRENCH",
+      "CUBISM",
+      "MODERNIST",
+      "PAINTING",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Tubist painting in the style of Fernand Léger. Tubism (a variant of Cubism associated with Léger) renders subjects as bold cylindrical and tubular forms with machine-like precision, bright primary colors, and thick black outlines. The style celebrates the mechanical age with robust, volumetric geometric figures.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Cylindrical and tubular forms\n• Bold primary colors\n• Thick black outlines\n• Machine-like volumetric precision\n• Robust mechanical aesthetic"
+  },
+  {
+    "name": "CUBO-FUTURISM",
+    "category": [
+      "RUSSIAN",
+      "AVANT-GARDE",
+      "MODERNIST",
+      "PAINTING",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Russian Cubo-Futurist painting. Cubo-Futurism (1912-1915) was a Russian avant-garde movement combining French Cubist fragmentation with Italian Futurist dynamism and speed. The style features angular geometric forms, dynamic diagonal compositions, metallic colors, and the energy of modern industrial life.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Angular geometric fragmentation\n• Dynamic diagonal compositions\n• Metallic and industrial colors\n• Sense of speed and energy\n• Russian avant-garde aesthetic"
+  },
+  {
+    "name": "SYNCHROMISM",
+    "category": [
+      "AMERICAN",
+      "ABSTRACT",
+      "COLOR",
+      "MODERNIST",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Synchromist painting. Synchromism (1912-1920s) was an American abstract art movement founded by Morgan Russell and Stanton Macdonald-Wright, based on the idea that color and music are analogous phenomena. The style features rhythmic arrangements of pure spectral colors in overlapping curved forms creating visual harmonies.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Rhythmic arrangements of pure spectral colors\n• Overlapping curved forms\n• Musical color harmonies\n• Luminous prismatic palette\n• Abstract color-based composition"
+  },
+  {
+    "name": "CAMDEN TOWN STYLE",
+    "category": [
+      "BRITISH",
+      "POST-IMPRESSIONIST",
+      "URBAN",
+      "PAINTING",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Camden Town Group painting. The Camden Town Group (1911-1913) was a British Post-Impressionist movement depicting everyday urban life in London with bold color, thick paint application, and intimate domestic scenes. The style features muted but rich colors, strong tonal contrasts, and the unglamorous reality of working-class interiors.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Bold Post-Impressionist color\n• Thick paint application\n• Intimate domestic composition\n• Muted rich color palette\n• Strong tonal contrasts"
+  },
+  {
+    "name": "NEUE WILDE",
+    "category": [
+      "GERMAN",
+      "NEO-EXPRESSIONIST",
+      "1980S",
+      "PAINTING",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Neue Wilde (New Wild Ones) painting. Neue Wilde was a German Neo-Expressionist movement of the early 1980s featuring aggressive, spontaneous painting with raw emotional energy, bold colors, crude figuration, and deliberate rejection of conceptual art's intellectualism in favor of visceral painterly expression.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Aggressive spontaneous brushwork\n• Raw emotional energy\n• Bold vivid colors\n• Crude expressive figuration\n• Visceral painterly surface"
+  },
+  {
+    "name": "TRANSAVANGUARDIA",
+    "category": [
+      "ITALIAN",
+      "NEO-EXPRESSIONIST",
+      "1980S",
+      "PAINTING",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into an Italian Transavanguardia painting. Transavanguardia (1979-1980s) was an Italian Neo-Expressionist movement championed by critic Achille Bonito Oliva, featuring a return to figurative painting with mythological references, Mediterranean colors, and a nomadic wandering between historical styles and personal mythology.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Figurative painting with mythological references\n• Mediterranean warm color palette\n• Historical style references\n• Personal mythological imagery\n• Expressive Italian painterly tradition"
+  },
+  {
+    "name": "COBRA PAINTING",
+    "category": [
+      "EUROPEAN",
+      "EXPRESSIONIST",
+      "SPONTANEOUS",
+      "PAINTING",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a CoBrA movement painting. CoBrA (Copenhagen, Brussels, Amsterdam, 1948-1951) was a European avant-garde movement featuring spontaneous, childlike expression with bright colors, thick impasto paint, primitive figuration, and the rejection of Western cultural tradition in favor of raw creative energy inspired by children's art and folk art.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Spontaneous childlike expression\n• Bright vivid colors\n• Thick impasto paint application\n• Primitive figuration\n• Raw creative energy"
+  },
+  {
+    "name": "LETTRISM",
+    "category": [
+      "FRENCH",
+      "AVANT-GARDE",
+      "TYPOGRAPHY",
+      "EXPERIMENTAL",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Lettrist artwork. Lettrism (Lettrisme), founded by Isidore Isou in Paris in 1945, is an avant-garde movement that reduces art to its basic elements - letters, signs, and symbols. The image should feature the subject constructed from or overlaid with typographic characters, alphabetic fragments, and symbolic notation.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Letters, signs, and symbols as primary elements\n• Typographic character construction\n• Alphabetic fragments and notation\n• Avant-garde experimental composition\n• Text-as-image aesthetic"
+  },
+  {
+    "name": "SITUATIONIST DÉTOURNEMENT",
+    "category": [
+      "FRENCH",
+      "POLITICAL",
+      "COLLAGE",
+      "AVANT-GARDE",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Situationist détournement artwork. Détournement is a technique developed by the Situationist International (1957-1972) of subversively repurposing existing cultural materials - comics, advertisements, films - by altering their meaning through juxtaposition, altered speech bubbles, and critical recontextualization.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Subversive repurposing of existing imagery\n• Altered speech bubbles and text\n• Critical juxtaposition\n• Comic strip or advertisement base\n• Political subversion aesthetic"
+  },
+  {
+    "name": "FLUXUS EVENT SCORE",
+    "category": [
+      "INTERNATIONAL",
+      "CONCEPTUAL",
+      "EXPERIMENTAL",
+      "GRAPHIC",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Fluxus event score or instruction piece. Fluxus (1960s-70s) was an international avant-garde network creating simple, playful instruction-based artworks. The image should transform the subject into a minimalist typographic instruction card or diagram in the style of Yoko Ono's instruction paintings or George Brecht's event scores.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Minimalist typographic layout\n• Simple instruction-based format\n• Clean white space\n• Playful conceptual approach\n• Typewriter or hand-stamped text aesthetic"
+  },
+  {
+    "name": "MAIL ART",
+    "category": [
+      "INTERNATIONAL",
+      "COLLAGE",
+      "POSTAL",
+      "EXPERIMENTAL",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Mail Art (Correspondence Art) piece. Mail Art is a worldwide artistic movement using the postal system as a medium, featuring decorated envelopes, artist stamps (artistamps), rubber stamp art, collaged postcards, and mixed-media postal objects. The image should feature postal elements, stamps, cancellation marks, and collaged artistic decoration.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Postal elements (stamps, cancellation marks, addresses)\n• Collaged mixed-media decoration\n• Rubber stamp art elements\n• Envelope or postcard format\n• Hand-decorated postal aesthetic"
+  },
+  {
+    "name": "CONCRETE POETRY",
+    "category": [
+      "LITERARY",
+      "VISUAL",
+      "TYPOGRAPHY",
+      "EXPERIMENTAL",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Concrete Poetry (visual poetry) artwork. Concrete poetry is a literary-visual art form where the typographic arrangement of words on the page creates a visual image that reinforces the poem's meaning. The image should transform the subject into a shape made entirely of carefully arranged text, where the words form the visual outline and texture of the subject.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Text arranged to form visual shapes\n• Typography as primary visual element\n• Meaningful word choices relating to subject\n• Clean typographic composition\n• Shape poetry format"
+  },
+  {
+    "name": "PHOTOREALIST WATERCOLOR",
+    "category": [
+      "WATERCOLOR",
+      "PHOTOREALISM",
+      "CONTEMPORARY",
+      "PAINTING",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a photorealist watercolor painting. Photorealist watercolor combines the transparent luminosity of watercolor medium with extreme photographic detail and precision. The image should feature the characteristic wet-on-wet blooms, hard and soft edges, transparent color glazing, and white paper highlights of watercolor while maintaining photographic accuracy.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Transparent watercolor luminosity\n• Photographic level of detail\n• Wet-on-wet blooms and bleeds\n• White paper as highlights\n• Visible brushwork within precision"
+  },
+  {
+    "name": "PLEIN AIR PAINTING",
+    "category": [
+      "PAINTING",
+      "LANDSCAPE",
+      "OUTDOOR",
+      "IMPRESSIONIST",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a plein air painting. Plein air (open air) painting is the practice of painting outdoors to capture natural light, atmosphere, and color directly from observation. The image should feature the characteristic spontaneous brushwork, vibrant natural light effects, visible paint texture, and the fresh immediacy of painting completed in a single outdoor session.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Spontaneous outdoor brushwork\n• Vibrant natural light effects\n• Visible paint texture and impasto\n• Fresh immediate quality\n• Atmospheric color and shadow"
+  },
+  {
+    "name": "TONALIST LANDSCAPE",
+    "category": [
+      "AMERICAN",
+      "LANDSCAPE",
+      "ATMOSPHERIC",
+      "PAINTING",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Tonalist landscape painting. Tonalism (1880s-1920s) was an American art movement featuring soft, muted, atmospheric landscapes dominated by a single overall tone. The style emphasizes mood over detail, with misty veils of color, indistinct forms, and the poetic suggestion of twilight, dawn, or fog.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Single dominant overall tone\n• Soft muted atmospheric quality\n• Misty veils of color\n• Indistinct poetic forms\n• Twilight or dawn mood"
+  },
+  {
+    "name": "CLOISONNISM PAINTING",
+    "category": [
+      "FRENCH",
+      "POST-IMPRESSIONIST",
+      "DECORATIVE",
+      "PAINTING",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Cloisonnist painting. Cloisonnism (1880s-1890s) was a Post-Impressionist style developed by Émile Bernard and Louis Anquetin, featuring bold flat areas of color separated by dark outlines, inspired by cloisonné enamelwork and stained glass. The style influenced Gauguin's Synthetist paintings.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Bold flat areas of pure color\n• Dark defining outlines separating color areas\n• Simplified forms\n• Stained glass or enamel-like appearance\n• Post-Impressionist color intensity"
+  },
+  {
+    "name": "PONT-AVEN SCHOOL",
+    "category": [
+      "FRENCH",
+      "POST-IMPRESSIONIST",
+      "SYNTHETIST",
+      "PAINTING",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Pont-Aven School painting. The Pont-Aven School was a group of artists working in Pont-Aven, Brittany in the 1880s-90s, led by Paul Gauguin. The style (also called Synthetism) features simplified forms, flat areas of bold color, strong outlines, and the synthesis of observed reality with memory, emotion, and imagination.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Simplified synthesized forms\n• Flat areas of bold color\n• Strong dark outlines\n• Emotional and imaginative interpretation\n• Breton folk art influence"
+  },
+  {
+    "name": "INTIMISM",
+    "category": [
+      "FRENCH",
+      "POST-IMPRESSIONIST",
+      "DOMESTIC",
+      "PAINTING",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into an Intimist painting. Intimism was a Post-Impressionist style associated with Pierre Bonnard and Édouard Vuillard, depicting quiet domestic interiors with rich decorative patterns, warm ambient light, and the intimate poetry of everyday private life. The style features complex patterned surfaces and figures absorbed in daily activities.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Quiet domestic interior setting\n• Rich decorative patterns\n• Warm ambient light\n• Complex patterned surfaces\n• Intimate everyday poetry"
+  },
+  {
+    "name": "MACCHIAIOLI",
+    "category": [
+      "ITALIAN",
+      "IMPRESSIONIST",
+      "19TH CENTURY",
+      "PAINTING",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Macchiaioli painting. The Macchiaioli were a group of Italian painters active in Tuscany in the 1850s-70s who painted with bold patches (macchie) of color and strong chiaroscuro, predating French Impressionism. The style features bold tonal contrasts, patches of flat color, outdoor light, and scenes of Italian daily life and landscape.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Bold patches (macchie) of color\n• Strong chiaroscuro contrasts\n• Flat color areas with tonal definition\n• Outdoor natural light\n• Italian landscape and daily life"
+  },
+  {
+    "name": "LUMINISM PAINTING",
+    "category": [
+      "AMERICAN",
+      "LANDSCAPE",
+      "LIGHT",
+      "19TH CENTURY",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Luminist painting. Luminism was a 19th-century American landscape painting style characterized by attention to the effects of light, smooth invisible brushwork, calm atmospheric conditions, and a sense of quiet contemplation. The style features mirror-like water reflections, hazy atmospheric light, and meticulous hidden brushstrokes.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Luminous atmospheric light effects\n• Smooth invisible brushwork\n• Calm contemplative mood\n• Mirror-like water reflections\n• Hazy golden atmospheric quality"
+  },
+  {
+    "name": "TENEBRISM PAINTING",
+    "category": [
+      "ITALIAN",
+      "BAROQUE",
+      "DRAMATIC",
+      "PAINTING",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Tenebrist painting. Tenebrism is a dramatic Baroque painting technique using extreme contrasts between deep darkness and intense illumination, associated with Caravaggio and his followers. The image should feature a single dramatic light source illuminating the subject against an almost completely black background.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Extreme dark-to-light contrast\n• Single dramatic light source\n• Deep black background\n• Intense illumination on subject\n• Baroque dramatic intensity"
+  },
+  {
+    "name": "VEDUTA PAINTING",
+    "category": [
+      "ITALIAN",
+      "LANDSCAPE",
+      "ARCHITECTURAL",
+      "18TH CENTURY",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Veduta (view painting). Veduta is an 18th-century Italian genre of highly detailed, large-scale topographic paintings of cityscapes, particularly Venice, Rome, and other grand European cities. Associated with Canaletto and Bellotto, the style features precise architectural detail, atmospheric perspective, and documentary accuracy.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Precise architectural detail\n• Atmospheric perspective\n• Documentary topographic accuracy\n• Grand cityscape composition\n• 18th-century Italian painting technique"
+  },
+  {
+    "name": "CAPRICCIO PAINTING",
+    "category": [
+      "ITALIAN",
+      "LANDSCAPE",
+      "FANTASY",
+      "18TH CENTURY",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Capriccio painting. A Capriccio is an 18th-century genre of architectural fantasy painting combining real and imaginary buildings, ruins, and monuments in impossible but visually convincing compositions. The image should place the subject within a fantastical architectural landscape combining classical ruins, grand buildings, and imaginary structures.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Combination of real and imaginary architecture\n• Classical ruins and grand buildings\n• Atmospheric perspective and light\n• 18th-century oil painting technique\n• Fantastical but convincing composition"
+  },
+  {
+    "name": "QUADRATURA",
+    "category": [
+      "ITALIAN",
+      "BAROQUE",
+      "CEILING",
+      "ILLUSIONISTIC",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Quadratura ceiling painting. Quadratura is a Baroque illusionistic painting technique creating the appearance of three-dimensional architecture on flat ceilings and walls through extreme foreshortening and perspective. The image should feature dramatic di sotto in sù (from below upward) perspective with painted architectural elements opening to sky.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Extreme di sotto in sù foreshortening\n• Illusionistic painted architecture\n• Opening to painted sky\n• Baroque dramatic perspective\n• Ceiling fresco appearance"
+  },
+  {
+    "name": "ANAMORPHIC ART",
+    "category": [
+      "OPTICAL",
+      "ILLUSION",
+      "PERSPECTIVE",
+      "HISTORICAL",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into an anamorphic artwork. Anamorphosis is a distorted projection technique where an image appears normal only when viewed from a specific angle or reflected in a curved mirror. The image should feature the characteristic extreme elongation or distortion that resolves into a recognizable image from the correct viewpoint, as in Holbein's 'The Ambassadors' skull.",
+    "options": [
+      {
+        "id": "001",
+        "text": "Oblique anamorphosis requiring extreme side-angle viewing to resolve the image"
+      },
+      {
+        "id": "002",
+        "text": "Cylindrical mirror anamorphosis requiring a reflective cylinder to reveal the image"
+      },
+      {
+        "id": "003",
+        "text": "Conical mirror anamorphosis requiring a cone-shaped reflector to decode the image"
+      }
+    ],
+    "randomizeOptions": true,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity (when viewed correctly)\n• Extreme perspective distortion\n• Historical anamorphic technique\n• Requires specific viewing angle or mirror\n• Renaissance or Baroque painting style\n• Optical illusion quality"
+  },
+  {
+    "name": "TROMPE-L'OEIL STILL LIFE",
+    "category": [
+      "PAINTING",
+      "ILLUSION",
+      "PHOTOREALISM",
+      "HISTORICAL",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a trompe-l'oeil still life painting. Trompe-l'oeil (fool the eye) is a painting technique creating such realistic imagery that viewers are momentarily deceived into thinking the painted objects are real. The image should feature the subject rendered as objects pinned to a board, tucked behind ribbons, or arranged on a shelf with extreme photographic realism in oil paint.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Extreme photographic realism in paint\n• Objects appearing to project from surface\n• Painted shadows creating depth illusion\n• Letter rack or pinboard composition\n• Deceptive three-dimensional appearance"
+  },
+  {
+    "name": "VANITAS STILL LIFE",
+    "category": [
+      "DUTCH",
+      "STILL LIFE",
+      "SYMBOLIC",
+      "BAROQUE",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Dutch Golden Age Vanitas still life painting. Vanitas paintings are symbolic works featuring objects representing the transience of life, the futility of pleasure, and the certainty of death. The image should incorporate the subject alongside traditional vanitas symbols: skulls, extinguished candles, hourglasses, wilting flowers, and decaying fruit.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Symbolic vanitas objects (skull, candle, hourglass)\n• Dutch Golden Age oil painting technique\n• Dark atmospheric background\n• Dramatic side lighting\n• Memento mori symbolism"
+  },
+  {
+    "name": "PRONKSTILLEVEN",
+    "category": [
+      "DUTCH",
+      "STILL LIFE",
+      "OPULENT",
+      "BAROQUE",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Dutch Pronkstilleven (ostentatious still life) painting. Pronkstilleven is a lavish subgenre of Dutch Golden Age still life featuring extravagant displays of luxury objects: silver vessels, Venetian glass, Chinese porcelain, lobsters, exotic fruits, and rich fabrics cascading from tables. The image should incorporate the subject within this opulent arrangement.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Lavish luxury objects arrangement\n• Silver, glass, porcelain, and fabric\n• Rich cascading table composition\n• Dutch Golden Age oil technique\n• Dramatic chiaroscuro lighting"
+  },
+  {
+    "name": "FLOWER PIECE",
+    "category": [
+      "DUTCH",
+      "STILL LIFE",
+      "FLORAL",
+      "PAINTING",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Dutch Golden Age flower piece painting. The Dutch flower piece (bloemstuk) is a genre of elaborate floral still life painting featuring impossible bouquets combining flowers from different seasons, with insects, dewdrops, and scattered petals. The image should transform the subject into or incorporate it within a lush, meticulously detailed floral arrangement.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Elaborate multi-season floral arrangement\n• Meticulous botanical detail\n• Insects, dewdrops, and scattered petals\n• Dark background with dramatic lighting\n• Dutch Golden Age oil painting technique"
+  },
+  {
+    "name": "SINGERIE",
+    "category": [
+      "FRENCH",
+      "DECORATIVE",
+      "ROCOCO",
+      "HUMOR",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Singerie artwork. Singerie is a decorative art genre popular in Rococo France depicting monkeys (singes) engaged in human activities - painting, playing music, dining, or dressing in fashionable clothing. The image should transform the subject into an elegantly dressed monkey performing human activities in a lavish Rococo interior setting.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Monkey performing human activities\n• Elegant Rococo costume and setting\n• Decorative pastel color palette\n• Playful satirical tone\n• French 18th-century decorative style"
+  },
+  {
+    "name": "FÊTE GALANTE",
+    "category": [
+      "FRENCH",
+      "ROCOCO",
+      "PASTORAL",
+      "PAINTING",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Fête Galante painting. Fête Galante is a Rococo painting genre invented by Antoine Watteau depicting elegant figures in outdoor pastoral settings engaged in courtship, music, and leisure. The image should feature the subject in an idyllic parkland setting with soft atmospheric light, pastel colors, and the dreamy romantic mood of aristocratic outdoor entertainment.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Idyllic outdoor pastoral setting\n• Soft atmospheric light\n• Pastel Rococo color palette\n• Dreamy romantic mood\n• Elegant aristocratic figures and costume"
+  },
+  {
+    "name": "CHINOISERIE PAINTING",
+    "category": [
+      "EUROPEAN",
+      "DECORATIVE",
+      "ASIAN-INSPIRED",
+      "18TH CENTURY",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Chinoiserie decorative painting. Chinoiserie is the European artistic interpretation of Chinese and East Asian aesthetics popular in the 17th-18th centuries, featuring fanciful pagodas, exotic birds, flowering branches, and figures in imagined Chinese costume. The image should feature the characteristic European fantasy of Asian motifs with gold backgrounds and delicate brushwork.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• European fantasy of Asian motifs\n• Pagodas, exotic birds, flowering branches\n• Gold or pale background\n• Delicate decorative brushwork\n• 18th-century European decorative style"
+  },
+  {
+    "name": "TURQUERIE",
+    "category": [
+      "EUROPEAN",
+      "ORIENTALIST",
+      "18TH CENTURY",
+      "DECORATIVE",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Turquerie artwork. Turquerie was the 18th-century European fashion for Turkish and Ottoman-inspired art and design, depicting subjects in turbans, flowing robes, and exotic settings with rich textiles, hookahs, and imagined harem scenes. The image should transform the subject into this European fantasy of Ottoman luxury and exoticism.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Ottoman-inspired costume (turbans, robes)\n• Rich textile and carpet backgrounds\n• European fantasy of Eastern luxury\n• 18th-century oil painting technique\n• Exotic decorative setting"
+  },
+  {
+    "name": "JAPONISME",
+    "category": [
+      "EUROPEAN",
+      "JAPANESE-INSPIRED",
+      "19TH CENTURY",
+      "PAINTING",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Japonisme artwork. Japonisme was the 19th-century European artistic movement inspired by Japanese art following the opening of Japan in 1853. The style features asymmetric compositions, flat areas of color, bold cropping, elevated viewpoints, and decorative patterns influenced by ukiyo-e prints, as seen in works by Monet, Van Gogh, and Whistler.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Asymmetric Japanese-inspired composition\n• Flat areas of color\n• Bold cropping and elevated viewpoints\n• Decorative patterns\n• Western painting with Japanese aesthetic influence"
+  },
+  {
+    "name": "ORIENTALIST PAINTING",
+    "category": [
+      "EUROPEAN",
+      "19TH CENTURY",
+      "EXOTIC",
+      "PAINTING",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a 19th-century Orientalist painting. Orientalism was a Western art movement depicting romanticized scenes of North Africa and the Middle East with rich colors, dramatic light, and exotic settings. The style features detailed architectural interiors, bazaar scenes, desert landscapes, and figures in traditional dress rendered with academic painting technique.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Romanticized exotic setting\n• Rich warm color palette\n• Dramatic light effects\n• Detailed architectural elements\n• Academic oil painting technique"
+  },
+  {
+    "name": "TROUBADOUR STYLE",
+    "category": [
+      "FRENCH",
+      "HISTORICAL",
+      "ROMANTIC",
+      "19TH CENTURY",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Troubadour Style painting. The Troubadour Style was a 19th-century French painting movement depicting romanticized medieval and Renaissance historical scenes with meticulous period detail, rich colors, and anecdotal narrative. The image should place the subject in an idealized medieval setting with historically detailed costume and architecture.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Romanticized medieval or Renaissance setting\n• Meticulous period costume detail\n• Rich jewel-toned colors\n• Anecdotal narrative composition\n• Academic painting technique"
+  },
+  {
+    "name": "NAZARENE PAINTING",
+    "category": [
+      "GERMAN",
+      "RELIGIOUS",
+      "PRE-RAPHAELITE",
+      "19TH CENTURY",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Nazarene movement painting. The Nazarenes were a group of early 19th-century German Romantic painters who sought to revive the spirituality and craftsmanship of medieval and early Renaissance art. The style features clear outlines, pure colors, simple compositions, and the devotional sincerity of early Italian and German masters.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Clear precise outlines\n• Pure luminous colors\n• Simple devotional composition\n• Early Renaissance influence\n• Spiritual sincerity and clarity"
+  },
+  {
+    "name": "BIEDERMEIER",
+    "category": [
+      "GERMAN",
+      "AUSTRIAN",
+      "DOMESTIC",
+      "19TH CENTURY",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Biedermeier era painting. Biedermeier (1815-1848) was a Central European artistic period emphasizing domestic comfort, bourgeois values, and intimate realism. The style features detailed interior scenes, family portraits, flower paintings, and landscapes rendered with precise craftsmanship, warm lighting, and a sense of cozy domesticity.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Intimate domestic setting\n• Precise detailed craftsmanship\n• Warm comfortable lighting\n• Bourgeois interior elements\n• Early 19th-century Central European aesthetic"
+  },
+  {
+    "name": "AMERICAN SCENE PAINTING",
+    "category": [
+      "AMERICAN",
+      "REALIST",
+      "1930S",
+      "PAINTING",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into an American Scene painting. American Scene painting (1920s-1950s) depicted everyday American life, landscapes, and small-town scenes in a realistic, accessible style. The movement includes both Regionalists (Grant Wood, Thomas Hart Benton) and Social Realists, featuring clear compositions, strong forms, and distinctly American subject matter.",
+    "options": [
+      {
+        "id": "001",
+        "text": "Regionalist style with rolling Midwestern landscapes, farming scenes, and idealized rural America"
+      },
+      {
+        "id": "002",
+        "text": "Social Realist style depicting urban working-class life, labor, and social commentary"
+      },
+      {
+        "id": "003",
+        "text": "Small-town America style with Main Street scenes, local characters, and community life"
+      }
+    ],
+    "randomizeOptions": true,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Clear realistic composition\n• Strong sculptural forms\n• Distinctly American subject matter\n• Accessible narrative style\n• 1930s-40s American aesthetic"
+  },
+  {
+    "name": "MAGIC REALIST PAINTING",
+    "category": [
+      "PAINTING",
+      "REALISM",
+      "SURREAL",
+      "20TH CENTURY",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Magic Realist painting. Magic Realism in visual art (distinct from literary magic realism) is a painting style featuring precisely rendered realistic imagery with an uncanny, mysterious, or dreamlike quality. Associated with artists like Andrew Wyeth and George Tooker, the style creates unease through hyper-detailed realism combined with strange stillness and ambiguous narrative.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Precise hyper-detailed realism\n• Uncanny mysterious atmosphere\n• Strange stillness and silence\n• Ambiguous narrative tension\n• Dreamlike quality within realism"
+  },
+  {
+    "name": "VERISM (NEUE SACHLICHKEIT WING)",
+    "category": [
+      "GERMAN",
+      "REALIST",
+      "1920S",
+      "SATIRICAL",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Verist painting from the harsh realist wing of the New Objectivity movement. Verism, practiced by Otto Dix and George Grosz in 1920s Weimar Germany, featured grotesque satirical social commentary, unflinching depictions of war veterans, prostitutes, and corrupt bourgeoisie with sharp-focus detail and biting social criticism.",
+    "options": [
+      {
+        "id": "001",
+        "text": "Otto Dix style with unflinching war veteran portraits and harsh social realism"
+      },
+      {
+        "id": "002",
+        "text": "George Grosz style with grotesque satirical caricatures of Weimar society"
+      }
+    ],
+    "randomizeOptions": true,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Sharp-focus precise detail\n• Grotesque satirical social commentary\n• Harsh unflinching realism\n• 1920s Weimar Republic aesthetic\n• Biting social criticism"
+  },
+  {
+    "name": "PHOTOMECHANICAL REPRODUCTION",
+    "category": [
+      "PRINTING",
+      "HISTORICAL",
+      "MECHANICAL",
+      "GRAPHIC",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a photomechanical reproduction from the early 20th century. Photomechanical processes (photogravure, collotype, photolithography) were early methods of reproducing photographs in print. The image should feature the characteristic dot patterns, tonal limitations, ink spread, and paper texture of early mass-printed photographic reproductions.",
+    "options": [
+      {
+        "id": "001",
+        "text": "Photogravure with rich continuous tones, velvety blacks, and copper plate printing quality"
+      },
+      {
+        "id": "002",
+        "text": "Collotype with fine grain continuous tone and no visible dot pattern on smooth paper"
+      },
+      {
+        "id": "003",
+        "text": "Halftone newspaper reproduction with visible dot screen pattern and ink spread"
+      }
+    ],
+    "randomizeOptions": true,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Period-appropriate printing technique\n• Characteristic tonal qualities\n• Paper and ink texture\n• Early 20th-century printing limitations\n• Mechanical reproduction aesthetic"
+  },
+  {
+    "name": "HELIOGRAVURE",
+    "category": [
+      "PRINTMAKING",
+      "PHOTOGRAPHY",
+      "HISTORICAL",
+      "FINE ART",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a heliogravure (photogravure) print. Heliogravure is a high-quality photomechanical intaglio printing process producing rich, continuous-tone prints with velvety blacks and subtle tonal gradations. Used by photographers like Alfred Stieglitz and Edward Steichen, the process creates prints with the depth and richness of fine art etchings.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Rich continuous tonal gradations\n• Velvety deep blacks\n• Subtle highlight detail\n• Copper plate printing texture\n• Fine art photographic print quality"
+  },
+  {
+    "name": "PICTORIALIST PHOTOGRAPHY",
+    "category": [
+      "PHOTOGRAPHY",
+      "ARTISTIC",
+      "HISTORICAL",
+      "SOFT FOCUS",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Pictorialist photograph. Pictorialism (1880s-1920s) was a photographic movement that emphasized photography as fine art through soft focus, atmospheric effects, and artistic manipulation. The style features diffused light, soft edges, painterly tonality, and subjects treated with the same artistic sensibility as painting.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Soft focus and diffused light\n• Atmospheric painterly effects\n• Artistic tonal manipulation\n• Fine art photographic print quality\n• Romantic artistic sensibility"
+  },
+  {
+    "name": "STRAIGHT PHOTOGRAPHY",
+    "category": [
+      "PHOTOGRAPHY",
+      "MODERNIST",
+      "SHARP FOCUS",
+      "AMERICAN",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Straight Photography image. Straight Photography (1910s-1930s), championed by the f/64 Group (Edward Weston, Imogen Cunningham), rejected Pictorialist manipulation in favor of sharp focus, full tonal range, precise composition, and the inherent beauty of photographic seeing. The style features extreme clarity, geometric forms, and the pure photographic medium.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Extreme sharp focus throughout\n• Full tonal range from black to white\n• Precise geometric composition\n• No manipulation or soft effects\n• Pure photographic clarity"
+  },
+  {
+    "name": "NEW TOPOGRAPHICS",
+    "category": [
+      "PHOTOGRAPHY",
+      "LANDSCAPE",
+      "DOCUMENTARY",
+      "1970S",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a New Topographics photograph. New Topographics (1975) was a photography movement documenting the altered American landscape - suburban sprawl, industrial parks, tract housing, and the intersection of nature and human development. The style features neutral, deadpan observation, frontal compositions, and the banal beauty of man-altered environments.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Neutral deadpan observation\n• Frontal documentary composition\n• Man-altered landscape subject\n• Banal suburban or industrial setting\n• Large-format photographic clarity"
+  },
+  {
+    "name": "DÜSSELDORF SCHOOL PHOTOGRAPHY",
+    "category": [
+      "GERMAN",
+      "PHOTOGRAPHY",
+      "CONTEMPORARY",
+      "LARGE FORMAT",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Düsseldorf School photograph. The Düsseldorf School (Becher School) of photography, led by Bernd and Hilla Becher, features large-format, highly detailed, objective documentation with typological serial approaches. Students like Andreas Gursky, Thomas Struth, and Candida Höfer created monumental, precisely composed images of contemporary life.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Large-format extreme detail\n• Objective documentary approach\n• Precise frontal composition\n• Monumental scale feeling\n• Contemporary typological aesthetic"
+  },
+  {
+    "name": "WET PLATE COLLODION",
+    "category": [
+      "PHOTOGRAPHY",
+      "HISTORICAL",
+      "PROCESS",
+      "PORTRAIT",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a wet plate collodion photograph. The wet plate collodion process (1851-1880s) produces unique photographic images on glass or metal plates with characteristic shallow depth of field, long exposure motion blur, luminous skin tones, and distinctive chemical artifacts including drips, uneven coating, and dark vignetting at edges.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Shallow depth of field\n• Luminous ethereal skin tones\n• Chemical drips and uneven coating at edges\n• Dark vignetting\n• Glass or metal plate surface quality"
+  },
+  {
+    "name": "ALBUMEN PRINT",
+    "category": [
+      "PHOTOGRAPHY",
+      "HISTORICAL",
+      "VICTORIAN",
+      "PROCESS",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Victorian-era albumen print photograph. Albumen printing (1850s-1890s) was the dominant photographic printing process of the 19th century, using egg white to bind photographic chemicals to paper. The image should feature the characteristic warm sepia-brown tones, glossy surface, fine detail, and the yellowing and fading patterns of aged albumen prints.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Warm sepia-brown tonal range\n• Glossy albumen surface\n• Fine photographic detail\n• Characteristic yellowing and fading\n• Victorian-era portrait aesthetic"
+  },
+  {
+    "name": "PLATINUM PALLADIUM PRINT",
+    "category": [
+      "PHOTOGRAPHY",
+      "FINE ART",
+      "PROCESS",
+      "TONAL",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a platinum/palladium print photograph. Platinum printing is a fine art photographic process producing images with an extraordinarily long tonal range, matte surface, and permanent neutral gray to warm brown tones. The image should feature the characteristic velvety matte surface, subtle tonal gradations, and the archival permanence aesthetic of this noble metal process.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Extraordinarily long tonal range\n• Velvety matte surface\n• Neutral gray to warm brown tones\n• Subtle tonal gradations\n• Fine art photographic print quality"
+  },
+  {
+    "name": "SALT PRINT",
+    "category": [
+      "PHOTOGRAPHY",
+      "HISTORICAL",
+      "EARLIEST",
+      "PROCESS",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a salt print photograph. The salted paper print (1840s-1860s) was one of the earliest photographic printing processes, producing images with a characteristic soft, matte appearance, warm reddish-brown tones, and fibers of the paper visible through the image. The image should feature the gentle, diffused quality of this pioneering photographic technique.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Soft matte appearance\n• Warm reddish-brown tones\n• Paper fibers visible through image\n• Gentle diffused quality\n• 1840s-1860s photographic aesthetic"
+  },
+  {
+    "name": "BROMOIL PRINT",
+    "category": [
+      "PHOTOGRAPHY",
+      "ARTISTIC",
+      "PROCESS",
+      "PAINTERLY",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a bromoil print photograph. Bromoil is a photographic printing process where a gelatin silver print is bleached and then inked by hand with oil-based inks using brushes, creating a unique hybrid of photography and painting. The image should feature the characteristic painterly brushwork quality, rich ink tones, and the hand-manipulated artistic surface.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Painterly brushwork from hand-inking\n• Rich oil-based ink tones\n• Hand-manipulated surface quality\n• Photography-painting hybrid aesthetic\n• Artistic Pictorialist sensibility"
+  },
+  {
+    "name": "CARBON PRINT",
+    "category": [
+      "PHOTOGRAPHY",
+      "HISTORICAL",
+      "PROCESS",
+      "ARCHIVAL",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a carbon print photograph. Carbon printing is a photographic process using pigmented gelatin tissue to create permanent, richly toned prints with extraordinary depth and three-dimensional relief quality. The image should feature the characteristic deep rich tones, subtle surface relief, and the permanent pigment quality that makes carbon prints among the most beautiful photographic objects.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Deep rich pigment tones\n• Subtle three-dimensional surface relief\n• Extraordinary tonal depth\n• Permanent pigment quality\n• Fine art photographic print aesthetic"
+  },
+  {
+    "name": "ANTHOTYPE",
+    "category": [
+      "PHOTOGRAPHY",
+      "BOTANICAL",
+      "ALTERNATIVE PROCESS",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into an anthotype print. Anthotype is a photographic process using photosensitive plant pigments (from flowers, berries, or leaves) as the emulsion, creating images through extended sun exposure that fades the plant dye. The image should feature the characteristic soft, ethereal quality with colors derived from natural plant pigments (purples, greens, pinks, yellows).",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Natural plant pigment colors\n• Soft ethereal faded quality\n• Sun-bleached exposure effect\n• Botanical color palette\n• Delicate organic appearance"
+  },
+  {
+    "name": "CHEMIGRAM",
+    "category": [
+      "PHOTOGRAPHY",
+      "ABSTRACT",
+      "EXPERIMENTAL",
+      "PROCESS",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a chemigram. A chemigram is a cameraless photographic technique combining painting and photography by applying resists (varnish, oil, wax) to photographic paper and then processing it in developer and fixer, creating abstract patterns through chemical reactions. The image should feature organic abstract patterns with rich metallic colors from silver gelatin chemistry.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Organic abstract chemical patterns\n• Rich metallic silver and gold tones\n• Resist-based texture variations\n• Chemical reaction artifacts\n• Cameraless photographic aesthetic"
+  },
+  {
+    "name": "MORDANÇAGE",
+    "category": [
+      "PHOTOGRAPHY",
+      "EXPERIMENTAL",
+      "SURREAL",
+      "PROCESS",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a mordançage photograph. Mordançage (also called etch-bleach) is an experimental darkroom technique where a silver gelatin print is partially bleached and the softened emulsion is physically manipulated - lifted, folded, or peeled away - creating surreal, ghostly images with veils of displaced gelatin and reversed tones.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Displaced gelatin veils and folds\n• Ghostly reversed tones\n• Surreal ethereal quality\n• Physical emulsion manipulation\n• Experimental darkroom aesthetic"
+  },
+  {
+    "name": "SABATTIER EFFECT",
+    "category": [
+      "PHOTOGRAPHY",
+      "DARKROOM",
+      "EXPERIMENTAL",
+      "SURREAL",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a photograph exhibiting the Sabattier Effect (pseudo-solarization). The Sabattier Effect occurs when photographic paper or film is briefly re-exposed to light during development, creating partial tone reversal with characteristic dark outlines (Mackie lines) between light and dark areas, producing a surreal, otherworldly appearance.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Partial tone reversal\n• Characteristic Mackie lines (dark edge outlines)\n• Surreal otherworldly appearance\n• Silver gelatin print quality\n• Darkroom experimental aesthetic"
+  },
+  {
+    "name": "VERISMO OPERA POSTER",
+    "category": [
+      "ITALIAN",
+      "THEATRICAL",
+      "POSTER",
+      "ART NOUVEAU",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into an Italian Verismo opera poster from the early 1900s. Verismo opera posters featured dramatic, emotionally charged lithographic illustrations advertising operas by Puccini, Mascagni, and Leoncavallo. The style features theatrical dramatic poses, rich chromolithographic colors, Art Nouveau decorative elements, and bold theatrical typography.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Dramatic theatrical pose\n• Rich chromolithographic colors\n• Art Nouveau decorative elements\n• Bold theatrical typography\n• Early 1900s Italian poster aesthetic"
+  },
+  {
+    "name": "COMMEDIA DELL'ARTE",
+    "category": [
+      "ITALIAN",
+      "THEATRICAL",
+      "HISTORICAL",
+      "COSTUME",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Commedia dell'Arte character illustration. Commedia dell'Arte was Italian improvisational theater (16th-18th century) with stock masked characters like Harlequin, Colombina, Pulcinella, and Pantalone. The image should transform the subject into one of these iconic characters with their distinctive masks, costumes, and theatrical poses.",
+    "options": [
+      {
+        "id": "001",
+        "text": "Harlequin (Arlecchino) with diamond-patterned costume, black half-mask, and acrobatic pose"
+      },
+      {
+        "id": "002",
+        "text": "Colombina with elegant servant's dress, small mask, and coquettish pose"
+      },
+      {
+        "id": "003",
+        "text": "Pulcinella with white costume, long-nosed mask, and hunched posture"
+      },
+      {
+        "id": "004",
+        "text": "Pantalone with red tights, long black cloak, hooked-nose mask, and miserly gesture"
+      }
+    ],
+    "randomizeOptions": true,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Characteristic commedia mask and costume\n• Theatrical exaggerated pose\n• Historical Italian theatrical illustration style\n• Stage or street performance setting\n• 16th-18th century costume accuracy"
+  },
+  {
+    "name": "SHADOW THEATER",
+    "category": [
+      "THEATRICAL",
+      "SILHOUETTE",
+      "TRADITIONAL",
+      "PERFORMANCE",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a shadow theater (shadow play) artwork. Shadow theater is an ancient performance art form found across Asia, the Middle East, and Europe where flat articulated figures are held between a light source and a translucent screen. The image should feature the subject as a detailed silhouette figure backlit against a glowing screen with the warm amber light of traditional oil lamps.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Detailed silhouette figure\n• Backlit translucent screen\n• Warm amber light glow\n• Articulated jointed figure\n• Traditional shadow play aesthetic"
+  },
+  {
+    "name": "KARAGÖZ SHADOW PUPPET",
+    "category": [
+      "TURKISH",
+      "THEATRICAL",
+      "SHADOW ART",
+      "TRADITIONAL",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Turkish Karagöz shadow puppet. Karagöz is a traditional Turkish shadow puppet theater featuring colorful translucent leather puppets (made from camel or cow hide) with intricate cut-out patterns that project colored light. The image should transform the subject into a colorful translucent leather puppet with characteristic Turkish decorative patterns.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Translucent colored leather material\n• Intricate cut-out patterns\n• Projected colored light effect\n• Traditional Turkish decorative motifs\n• Articulated puppet joints"
+  },
+  {
+    "name": "EBRU MARBLING",
+    "category": [
+      "TURKISH",
+      "PAPER ART",
+      "TRADITIONAL",
+      "DECORATIVE",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Turkish Ebru (paper marbling) artwork. Ebru is a traditional Turkish art of creating colorful patterns on water using pigments and ox gall, then transferring them to paper. The image should feature the characteristic flowing, organic patterns of marbled paper with swirling colors, combed designs, and the fluid dynamics of pigment on water.",
+    "options": [
+      {
+        "id": "001",
+        "text": "Battal Ebru (stone pattern) with random scattered droplets creating organic spotted patterns"
+      },
+      {
+        "id": "002",
+        "text": "Gel-Git (come-and-go) with combed parallel wave patterns"
+      },
+      {
+        "id": "003",
+        "text": "Hatip Ebru with stylized floral forms created by manipulating droplets with a stylus"
+      },
+      {
+        "id": "004",
+        "text": "Nightingale's Nest (Bülbül Yuvası) with concentric circular spiral patterns"
+      }
+    ],
+    "randomizeOptions": true,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Flowing organic marbled patterns\n• Swirling pigment-on-water effects\n• Traditional Turkish color palette\n• Paper surface texture\n• Fluid dynamic patterns"
+  },
+  {
+    "name": "SUMINAGASHI",
+    "category": [
+      "JAPANESE",
+      "PAPER ART",
+      "TRADITIONAL",
+      "INK",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Japanese Suminagashi (floating ink) artwork. Suminagashi is the ancient Japanese art of marbling paper by floating sumi ink and pine resin on water, creating delicate concentric ring patterns. The image should feature the characteristic subtle, meditative patterns of floating ink rings in black and indigo on white washi paper.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Delicate concentric ink ring patterns\n• Subtle black and indigo tones\n• White washi paper surface\n• Meditative floating quality\n• Organic water-movement patterns"
+  },
+  {
+    "name": "WASHI CHIGIRI-E",
+    "category": [
+      "JAPANESE",
+      "PAPER ART",
+      "COLLAGE",
+      "TRADITIONAL",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Japanese Chigiri-e (torn paper art). Chigiri-e is a traditional Japanese art form where images are created by tearing pieces of handmade washi paper and layering them to form pictures. The image should feature the characteristic soft torn edges of translucent washi paper layers building up color and form.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Torn washi paper edges (no cutting)\n• Layered translucent paper\n• Soft organic forms\n• Natural fiber paper texture\n• Japanese aesthetic sensibility"
+  },
+  {
+    "name": "KINTSUGI REPAIR",
+    "category": [
+      "JAPANESE",
+      "CERAMIC",
+      "PHILOSOPHY",
+      "GOLD",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Kintsugi (golden joinery) artwork. Kintsugi is the Japanese art of repairing broken pottery with lacquer mixed with powdered gold, silver, or platinum, treating breakage as part of the object's history rather than something to disguise. The image should feature the subject appearing as a ceramic piece with visible cracks filled with luminous gold, celebrating imperfection.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Visible crack lines filled with gold\n• Ceramic surface texture\n• Luminous gold lacquer in fractures\n• Wabi-sabi philosophy of beautiful imperfection\n• Japanese aesthetic of embracing damage"
+  },
+  {
+    "name": "URUSHI LACQUERWARE",
+    "category": [
+      "JAPANESE",
+      "LACQUER",
+      "DECORATIVE",
+      "TRADITIONAL",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Japanese Urushi lacquerware design. Urushi is the traditional Japanese art of lacquerwork using refined tree sap, built up in many thin layers to create a deep, luminous surface. Decorative techniques include maki-e (sprinkled gold), raden (mother-of-pearl inlay), and chinkin (incised gold). The image should feature the characteristic deep glossy black or red lacquer with gold decoration.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Deep glossy lacquer surface (black or red)\n• Maki-e gold powder decoration\n• Mother-of-pearl inlay accents\n• Multiple lacquer layer depth\n• Traditional Japanese decorative motifs"
+  },
+  {
+    "name": "MINGEI CRAFT",
+    "category": [
+      "JAPANESE",
+      "FOLK CRAFT",
+      "FUNCTIONAL",
+      "TRADITIONAL",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Japanese Mingei (folk craft) artwork. Mingei is the Japanese folk art movement founded by Yanagi Sōetsu in 1926, celebrating the beauty of ordinary handmade objects created by anonymous craftspeople. The style emphasizes functional beauty, honest materials, simple forms, and the warmth of handcraft in everyday objects like pottery, textiles, and woodwork.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Functional handmade beauty\n• Honest natural materials\n• Simple unpretentious forms\n• Warmth of anonymous handcraft\n• Japanese folk aesthetic"
+  },
+  {
+    "name": "BINGATA",
+    "category": [
+      "OKINAWAN",
+      "TEXTILE",
+      "STENCIL",
+      "TRADITIONAL",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into an Okinawan Bingata textile design. Bingata is a traditional Okinawan (Ryukyuan) resist-dyed textile art using stencils and pigments to create vibrant, colorful patterns of tropical flowers, birds, fish, and water motifs. The style features bold colors, dynamic compositions, and the distinctive tropical aesthetic of the Ryukyu Kingdom.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Vibrant tropical colors\n• Stencil-dyed patterns\n• Tropical flowers, birds, and water motifs\n• Bold dynamic composition\n• Ryukyuan textile aesthetic"
+  },
+  {
+    "name": "KANTHA EMBROIDERY",
+    "category": [
+      "BENGALI",
+      "TEXTILE",
+      "EMBROIDERY",
+      "TRADITIONAL",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Bengali Kantha embroidery design. Kantha is a traditional embroidery art from Bengal (Bangladesh and West Bengal, India) where layers of old sari cloth are stitched together with simple running stitches to create quilted textiles with narrative scenes, animals, flowers, and geometric patterns in colorful thread.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Simple running stitch texture\n• Layered recycled cloth surface\n• Narrative folk art scenes\n• Colorful thread on white cloth\n• Bengali folk art aesthetic"
+  },
+  {
+    "name": "PHULKARI EMBROIDERY",
+    "category": [
+      "PUNJABI",
+      "TEXTILE",
+      "EMBROIDERY",
+      "TRADITIONAL",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Punjabi Phulkari embroidery design. Phulkari (flower work) is a traditional embroidery technique from Punjab featuring geometric patterns created with long darn stitches in vibrant untwisted silk floss (pat) on coarse cotton cloth. The characteristic style covers the entire fabric surface with dense, colorful geometric floral patterns.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Long darn stitch technique\n• Vibrant silk floss colors\n• Dense geometric floral patterns\n• Coarse cotton cloth background\n• Punjabi folk textile aesthetic"
+  },
+  {
+    "name": "ZARDOZI EMBROIDERY",
+    "category": [
+      "INDIAN",
+      "TEXTILE",
+      "METALLIC",
+      "LUXURY",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Zardozi embroidery design. Zardozi is a luxurious Indian metallic embroidery technique using gold and silver threads, sequins, beads, and precious stones on heavy fabrics like velvet and silk. The style creates opulent raised three-dimensional designs of flowers, paisleys, and royal motifs for ceremonial garments and furnishings.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Gold and silver metallic threads\n• Raised three-dimensional embroidery\n• Sequins, beads, and stone embellishments\n• Rich velvet or silk background\n• Mughal-era luxury aesthetic"
+  },
+  {
+    "name": "AJRAKH BLOCK PRINT",
+    "category": [
+      "INDIAN",
+      "TEXTILE",
+      "BLOCK PRINT",
+      "TRADITIONAL",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into an Ajrakh block print textile design. Ajrakh is an ancient resist block-printing technique from Sindh (Pakistan/India) using natural indigo and madder dyes to create intricate geometric and floral patterns through multiple stages of printing, dyeing, washing, and drying. The characteristic deep blue and red color palette features complex interlocking geometric designs.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Deep indigo blue and madder red palette\n• Intricate geometric block-printed patterns\n• Multiple layer resist-printing technique\n• Natural dye colors\n• Traditional Sindhi geometric motifs"
+  },
+  {
+    "name": "WARLI TRIBAL ART",
+    "category": [
+      "INDIAN",
+      "TRIBAL",
+      "FOLK ART",
+      "PAINTING",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Warli tribal painting. Warli art is a traditional tribal art form from the Warli people of Maharashtra, India, featuring simple geometric shapes (circles, triangles, squares) painted in white rice paste on mud-brown walls. The style depicts daily life, farming, dancing, and nature using stick figures and basic geometric forms.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• White figures on brown/terracotta background\n• Simple geometric shapes (circles, triangles, squares)\n• Stick figure human forms\n• Daily life and nature scenes\n• Tribal folk art simplicity"
+  },
+  {
+    "name": "BHIL PAINTING",
+    "category": [
+      "INDIAN",
+      "TRIBAL",
+      "FOLK ART",
+      "DOT PATTERN",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Bhil tribal painting. Bhil painting is a traditional art form of the Bhil tribe from Madhya Pradesh, India, characterized by bold colorful figures and forms filled with intricate dot patterns. The distinctive style uses thousands of tiny colored dots to fill shapes, creating a vibrant, textured appearance against bright backgrounds.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Bold colorful figures\n• Intricate dot pattern fill\n• Thousands of tiny colored dots\n• Vibrant bright colors\n• Tribal folk art aesthetic"
+  },
+  {
+    "name": "CHERIYAL SCROLL PAINTING",
+    "category": [
+      "INDIAN",
+      "NARRATIVE",
+      "SCROLL",
+      "FOLK ART",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Cheriyal scroll painting. Cheriyal painting is a traditional narrative scroll art from Telangana, India, featuring bold red backgrounds with stylized figures telling stories from Hindu epics and folklore. The scrolls are painted in horizontal panels with vivid colors, strong outlines, and characteristic simplified facial features.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Bold red background\n• Horizontal narrative panel format\n• Vivid colors with strong outlines\n• Stylized simplified figures\n• Indian folk narrative aesthetic"
+  },
+  {
+    "name": "KANGRA MINIATURE",
+    "category": [
+      "INDIAN",
+      "MINIATURE",
+      "PAINTING",
+      "PAHARI",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Kangra miniature painting. Kangra painting is a Pahari (hill) school of Indian miniature painting from Himachal Pradesh (18th-19th century), known for its lyrical depictions of love, nature, and devotion. The style features delicate brushwork, soft pastel colors, lush green landscapes, and graceful figures with distinctive facial profiles.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Delicate fine brushwork\n• Soft pastel color palette\n• Lush green landscape settings\n• Graceful figures with distinctive profiles\n• Lyrical romantic mood"
+  },
+  {
+    "name": "COMPANY PAINTING",
+    "category": [
+      "INDIAN",
+      "COLONIAL",
+      "BOTANICAL",
+      "HISTORICAL",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Company painting (Company School). Company painting was a hybrid Indo-European art style that developed in India during British East India Company rule (18th-19th century), combining Indian miniature painting techniques with Western naturalism. The style features detailed botanical illustrations, natural history subjects, and portraits with Indian pigments and Western perspective.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Hybrid Indo-European painting style\n• Detailed naturalistic rendering\n• Indian mineral pigments\n• Western perspective and shading\n• Botanical illustration precision"
+  },
+  {
+    "name": "BENGAL SCHOOL",
+    "category": [
+      "INDIAN",
+      "MODERNIST",
+      "NATIONALIST",
+      "PAINTING",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Bengal School painting. The Bengal School of Art (early 20th century) was an Indian modernist movement led by Abanindranath Tagore that rejected Western academic realism in favor of a pan-Asian aesthetic. The style features soft wash techniques, misty atmospheric effects, spiritual subjects, and the influence of Japanese wash painting combined with Indian miniature traditions.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Soft watercolor wash technique\n• Misty atmospheric effects\n• Pan-Asian aesthetic sensibility\n• Spiritual and mythological subjects\n• Indian modernist nationalist aesthetic"
+  },
+  {
+    "name": "PROGRESSIVE ARTISTS GROUP",
+    "category": [
+      "INDIAN",
+      "MODERNIST",
+      "POST-INDEPENDENCE",
+      "PAINTING",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Progressive Artists' Group painting. The Progressive Artists' Group (founded Bombay, 1947) was India's most influential post-independence modern art collective, including M.F. Husain, F.N. Souza, and S.H. Raza. The style synthesizes Indian themes with European modernist techniques - bold colors, expressive brushwork, and the fusion of traditional Indian imagery with abstract and expressionist forms.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Bold expressive colors\n• Synthesis of Indian and European modernism\n• Expressive dynamic brushwork\n• Traditional Indian imagery in modern form\n• Post-independence Indian identity"
+  },
+  {
+    "name": "TANTRIC ART",
+    "category": [
+      "INDIAN",
+      "SPIRITUAL",
+      "GEOMETRIC",
+      "MYSTICAL",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Tantric art painting. Tantric art from the Indian subcontinent uses geometric diagrams (yantras), symbolic imagery, and vibrant colors as tools for meditation and spiritual practice. The style features sacred geometry, mandala-like compositions, bold primary colors, and the visual representation of cosmic energy and divine forces.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Sacred geometric forms (yantras)\n• Bold primary colors\n• Mandala-like composition\n• Symbolic spiritual imagery\n• Cosmic energy visualization"
+  },
+  {
+    "name": "ABORIGINAL WESTERN DESERT ART",
+    "category": [
+      "AUSTRALIAN",
+      "INDIGENOUS",
+      "CONTEMPORARY",
+      "DOT",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into an Australian Aboriginal Western Desert painting. Western Desert art (from the 1970s Papunya Tula movement) features intricate dot-painting compositions representing Dreamtime stories and sacred landscapes through aerial-view maps of country. The style uses concentric circles, connecting lines, and dense dot fields in earth tones and vibrant acrylics.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Dense dot-painting technique\n• Concentric circles and connecting lines\n• Aerial-view landscape mapping\n• Earth tones or vibrant acrylics\n• Dreamtime narrative symbolism"
+  },
+  {
+    "name": "TLINGIT FORMLINE",
+    "category": [
+      "INDIGENOUS",
+      "ALASKA",
+      "PACIFIC NORTHWEST",
+      "TRADITIONAL",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Tlingit formline art design. Tlingit art from Southeast Alaska uses the Northwest Coast formline system of ovoids, U-forms, and S-curves to depict clan crests and supernatural beings. The style features bold red and black on natural wood or blue-green backgrounds, with characteristic split representation showing both sides of an animal simultaneously.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Formline ovoids, U-forms, and S-curves\n• Red and black primary colors\n• Split representation technique\n• Clan crest stylization\n• Northwest Coast Indigenous aesthetic"
+  },
+  {
+    "name": "HUICHOL YARN PAINTING",
+    "category": [
+      "MEXICAN",
+      "INDIGENOUS",
+      "YARN",
+      "SPIRITUAL",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Huichol (Wixárika) yarn painting. Huichol yarn paintings are created by pressing brightly colored yarn into beeswax on wooden boards to create intricate spiritual imagery depicting peyote visions, deer, corn, eagles, and sacred symbols. The style features dense, vibrant yarn-filled surfaces with psychedelic colors and shamanic symbolism.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Dense pressed yarn texture\n• Vibrant psychedelic colors\n• Shamanic spiritual symbols\n• Intricate detailed yarn work\n• Wixárika sacred imagery"
+  },
+  {
+    "name": "TINGATINGA PAINTING",
+    "category": [
+      "TANZANIAN",
+      "AFRICAN",
+      "FOLK ART",
+      "PAINTING",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Tingatinga painting. Tingatinga is a Tanzanian painting style founded by Edward Said Tingatinga in the 1960s, featuring brightly colored, stylized animals and nature scenes painted in enamel paint on masonite board. The style uses bold flat colors, decorative dot patterns, and whimsical stylized forms of African wildlife.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Bright enamel paint colors\n• Stylized animal and nature forms\n• Decorative dot and pattern fills\n• Flat bold color areas\n• Tanzanian folk art aesthetic"
+  },
+  {
+    "name": "CONGOLESE POPULAR PAINTING",
+    "category": [
+      "AFRICAN",
+      "CONGOLESE",
+      "URBAN",
+      "NARRATIVE",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Congolese Popular Painting (Peinture Populaire). This urban art tradition from the Democratic Republic of Congo features narrative paintings depicting daily life, historical events, and social commentary in a bold, colorful figurative style. Artists like Chéri Samba and Moké created vibrant scenes with text integration and social messaging.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Bold colorful figurative style\n• Narrative social commentary\n• Text integration within image\n• Urban daily life scenes\n• Congolese popular art aesthetic"
+  },
+  {
+    "name": "SIGNWRITING",
+    "category": [
+      "COMMERCIAL",
+      "LETTERING",
+      "TRADITIONAL",
+      "CRAFT",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a traditional hand-painted signwriting artwork. Signwriting is the craft of hand-painting commercial signs, shop fronts, and vehicles using specialized brushes and techniques. The image should feature the subject rendered in the style of a traditional painted sign with gold leaf lettering, drop shadows, decorative scrollwork, and the skilled brushwork of a master sign painter.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Hand-painted lettering quality\n• Gold leaf and drop shadow effects\n• Decorative scrollwork and borders\n• Skilled brush technique visible\n• Traditional commercial sign aesthetic"
+  },
+  {
+    "name": "CANAL BOAT ART",
+    "category": [
+      "BRITISH",
+      "FOLK ART",
+      "DECORATIVE",
+      "PAINTING",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into British canal boat (narrowboat) art. Canal boat art is a traditional English folk art decorating narrowboats with characteristic roses, castles, geometric patterns, and playing card motifs painted in bold colors on dark backgrounds. The style features stylized roses and daisies, romantic castle landscapes, and diamond patterns.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Stylized roses and daisies\n• Romantic castle landscapes\n• Bold colors on dark background\n• Diamond and geometric border patterns\n• English narrowboat folk art aesthetic"
+  },
+  {
+    "name": "THEOREM PAINTING",
+    "category": [
+      "AMERICAN",
+      "FOLK ART",
+      "STENCIL",
+      "19TH CENTURY",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into an American theorem painting. Theorem painting was a popular 19th-century American folk art technique where stencils (theorems) were used to paint still life compositions of fruits, flowers, and birds on velvet or paper. The style features soft, blended colors applied through stencils creating a characteristic diffused, velvety appearance.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Stencil-applied paint technique\n• Soft blended diffused colors\n• Velvet or paper surface texture\n• Still life composition (fruits, flowers)\n• 19th-century American folk art aesthetic"
+  },
+  {
+    "name": "FRAKTUR",
+    "category": [
+      "PENNSYLVANIA DUTCH",
+      "FOLK ART",
+      "CALLIGRAPHY",
+      "DECORATIVE",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Pennsylvania Dutch Fraktur artwork. Fraktur is a form of folk art calligraphy and illustration created by Pennsylvania German communities (18th-19th century), featuring ornate hand-lettered text surrounded by colorful decorative motifs including tulips, hearts, birds, angels, and geometric borders in watercolor and ink.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Ornate calligraphic lettering\n• Colorful tulip, heart, and bird motifs\n• Watercolor and ink on paper\n• Symmetrical decorative borders\n• Pennsylvania Dutch folk art aesthetic"
+  },
+  {
+    "name": "HEX SIGN",
+    "category": [
+      "PENNSYLVANIA DUTCH",
+      "FOLK ART",
+      "GEOMETRIC",
+      "BARN",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Pennsylvania Dutch hex sign design. Hex signs are colorful circular folk art designs painted on barns in the Pennsylvania Dutch country, featuring geometric star patterns, rosettes, birds (distelfinks), hearts, and tulips within circular borders. The image should transform the subject into a bold circular geometric design with traditional hex sign motifs.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Circular format\n• Bold geometric star and rosette patterns\n• Traditional hex sign colors\n• Distelfink birds and tulip motifs\n• Barn art folk aesthetic"
+  },
+  {
+    "name": "TOLEWARE",
+    "category": [
+      "DECORATIVE",
+      "METALWORK",
+      "FOLK ART",
+      "PAINTED",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a toleware (painted tinware) design. Toleware is the art of decorative painting on tin and metal objects, popular in 18th-19th century America and Europe. The style features colorful freehand brushstroke flowers, fruits, and leaves painted on dark (usually black, dark green, or red) japanned metal surfaces with characteristic comma strokes and S-curves.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Freehand brushstroke flowers and fruits\n• Dark japanned metal background\n• Characteristic comma and S-curve strokes\n• Gold striping and border details\n• Painted tinware folk art aesthetic"
+  },
+  {
+    "name": "BAUERNMALEREI",
+    "category": [
+      "GERMAN",
+      "FOLK ART",
+      "DECORATIVE",
+      "PAINTING",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Bauernmalerei (German peasant painting) design. Bauernmalerei is a traditional German and Austrian folk art of decorative painting on furniture, wooden objects, and walls, featuring stylized flowers, birds, hearts, and scrollwork in bright colors. The style is characterized by bold brushwork, symmetrical compositions, and cheerful pastoral motifs.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Stylized flowers and bird motifs\n• Bright cheerful colors\n• Bold decorative brushwork\n• Wooden surface texture\n• German/Austrian folk art aesthetic"
+  },
+  {
+    "name": "HOREZU CERAMICS",
+    "category": [
+      "ROMANIAN",
+      "CERAMIC",
+      "FOLK ART",
+      "UNESCO",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Romanian Horezu ceramic design. Horezu ceramics is a traditional Romanian pottery art from Horezu, Vâlcea County, recognized by UNESCO as Intangible Cultural Heritage. The style features distinctive hand-painted motifs including the rooster of Horezu, concentric circles, spirals, dots, wavy lines, and stylized plants in a characteristic palette of brown, red, green, and blue on cream backgrounds.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Hand-painted traditional motifs\n• Rooster, spiral, and concentric circle patterns\n• Brown, red, green, blue on cream palette\n• Ceramic plate or vessel format\n• Romanian folk art aesthetic"
+  },
+  {
+    "name": "TALAVERA POTTERY",
+    "category": [
+      "MEXICAN",
+      "CERAMIC",
+      "DECORATIVE",
+      "COLONIAL",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Mexican Talavera pottery design. Talavera is a traditional Mexican ceramic art from Puebla, combining Spanish Moorish and Indigenous Mexican influences. The style features hand-painted designs in cobalt blue, yellow, orange, green, and black on white tin-glazed earthenware with intricate floral, geometric, and figurative patterns.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• White tin-glazed earthenware surface\n• Cobalt blue dominant with accent colors\n• Intricate hand-painted patterns\n• Spanish-Mexican hybrid motifs\n• Colonial-era ceramic aesthetic"
+  },
+  {
+    "name": "IMARI PORCELAIN",
+    "category": [
+      "JAPANESE",
+      "CERAMIC",
+      "DECORATIVE",
+      "EXPORT",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Japanese Imari porcelain design. Imari ware is a style of Japanese porcelain made in the Arita area and exported from the port of Imari, characterized by elaborate overglaze decoration in a distinctive palette of cobalt blue, iron red, and gold. The style features dense decorative compositions with panels, flowers, birds, and geometric patterns.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Cobalt blue, iron red, and gold palette\n• Dense decorative composition\n• Paneled design with varied motifs\n• Floral and geometric patterns\n• Japanese export porcelain aesthetic"
+  },
+  {
+    "name": "FAMILLE ROSE PORCELAIN",
+    "category": [
+      "CHINESE",
+      "CERAMIC",
+      "DECORATIVE",
+      "QING DYNASTY",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Chinese Famille Rose porcelain design. Famille Rose is a style of Chinese porcelain decoration developed during the Qing Dynasty (early 18th century) featuring a distinctive palette of opaque pink (rose) enamel along with other overglaze colors. The style depicts flowers (especially peonies), birds, figures, and landscapes with delicate brushwork on white porcelain.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Distinctive pink/rose enamel color\n• Delicate overglaze brushwork\n• Peony flowers and bird motifs\n• White porcelain ground\n• Qing Dynasty decorative aesthetic"
+  },
+  {
+    "name": "BLUE AND WHITE PORCELAIN",
+    "category": [
+      "CHINESE",
+      "CERAMIC",
+      "DECORATIVE",
+      "CLASSICAL",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Chinese blue and white porcelain design. Blue and white porcelain (qinghua ci) is one of China's most iconic ceramic traditions, featuring cobalt blue painted designs under a clear glaze on white porcelain. The style depicts dragons, phoenixes, landscapes, flowers, and narrative scenes with masterful brushwork in varying shades of blue.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Cobalt blue on white porcelain\n• Masterful brushwork in blue tones\n• Traditional Chinese motifs\n• Under-glaze painting technique\n• Classical Chinese ceramic aesthetic"
+  },
+  {
+    "name": "MEISSEN PORCELAIN",
+    "category": [
+      "GERMAN",
+      "CERAMIC",
+      "EUROPEAN",
+      "DECORATIVE",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Meissen porcelain design. Meissen is Europe's first hard-paste porcelain, produced in Saxony, Germany since 1710. The style features refined hand-painted decoration including the famous Blue Onion pattern, scattered flower bouquets (Streublumen), figurative scenes, and gilt borders on pristine white porcelain with characteristic European Baroque and Rococo elegance.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Refined hand-painted decoration\n• Pristine white porcelain ground\n• Gilt gold borders and accents\n• European Baroque/Rococo elegance\n• Meissen crossed swords quality"
+  },
+  {
+    "name": "WEDGWOOD JASPERWARE",
+    "category": [
+      "BRITISH",
+      "CERAMIC",
+      "NEOCLASSICAL",
+      "RELIEF",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Wedgwood Jasperware design. Jasperware is Wedgwood's iconic unglazed stoneware featuring white bas-relief classical figures and motifs applied to a colored (typically pale blue, sage green, or black) matte background. The style depicts neoclassical scenes from Greek and Roman mythology with elegant white relief figures.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• White bas-relief on colored background\n• Pale blue, sage green, or black matte surface\n• Neoclassical figures and motifs\n• Unglazed stoneware texture\n• Elegant Wedgwood aesthetic"
+  },
+  {
+    "name": "ARTS AND CRAFTS TILE",
+    "category": [
+      "BRITISH",
+      "CERAMIC",
+      "ARTS AND CRAFTS",
+      "DECORATIVE",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into an Arts and Crafts movement ceramic tile design. Arts and Crafts tiles (1880s-1920s) by makers like William De Morgan and Minton featured hand-painted or tube-lined designs of stylized flora, fauna, ships, and mythical creatures in rich glazes. The style features bold outlines, flat decorative patterns, and the handcrafted quality championed by the movement.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Hand-painted or tube-lined outlines\n• Stylized flora and fauna\n• Rich colored glazes\n• Square tile format\n• Arts and Crafts handcrafted aesthetic"
+  },
+  {
+    "name": "ENCAUSTIC TILE",
+    "category": [
+      "MEDIEVAL",
+      "CERAMIC",
+      "ARCHITECTURAL",
+      "GEOMETRIC",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a medieval encaustic floor tile design. Encaustic tiles are ceramic tiles where the pattern is created by inlaying different colored clays into the tile body, creating a design that is integral to the tile rather than painted on. The style features geometric and heraldic patterns in earth tones (buff, red, brown, black) characteristic of medieval English churches and abbeys.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Inlaid clay pattern technique\n• Earth-toned color palette\n• Geometric and heraldic motifs\n• Medieval tile format\n• Church and abbey floor aesthetic"
+  },
+  {
+    "name": "AZULEJO",
+    "category": [
+      "PORTUGUESE",
+      "CERAMIC",
+      "TILE",
+      "ARCHITECTURAL",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Portuguese Azulejo tile panel. Azulejos are traditional Portuguese painted tin-glazed ceramic tiles used to cover building facades and interiors, featuring elaborate narrative scenes, geometric patterns, or figurative compositions predominantly in blue and white. The image should feature the subject rendered across a panel of individual tiles with characteristic blue painting on white glaze.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Blue and white tile painting\n• Individual tile grid visible\n• Narrative or figurative composition\n• Tin-glazed ceramic surface\n• Portuguese architectural tile aesthetic"
+  },
+  {
+    "name": "CUERDA SECA",
+    "category": [
+      "ISLAMIC",
+      "CERAMIC",
+      "TILE",
+      "SPANISH",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Cuerda Seca (dry cord) tile design. Cuerda Seca is a ceramic decoration technique from Islamic Spain where a greasy manganese outline prevents different colored glazes from running together during firing, creating crisp multi-colored designs. The style features bold geometric and arabesque patterns with distinct color separations.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Dark manganese outline separations\n• Multiple distinct glaze colors\n• Geometric and arabesque patterns\n• Islamic Spanish decorative motifs\n• Crisp color boundaries"
+  },
+  {
+    "name": "OPUS ANGLICANUM",
+    "category": [
+      "MEDIEVAL",
+      "EMBROIDERY",
+      "ENGLISH",
+      "RELIGIOUS",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into an Opus Anglicanum embroidery. Opus Anglicanum (English Work) was the finest medieval embroidery in Europe (13th-14th century), created for ecclesiastical vestments and royal garments. The style features intricate gold thread couching, split stitch figures, architectural framing, and religious narrative scenes on silk and velvet grounds.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Gold thread couching technique\n• Split stitch figurative work\n• Architectural Gothic framing\n• Rich silk and velvet ground\n• Medieval English ecclesiastical aesthetic"
+  },
+  {
+    "name": "BARGELLO NEEDLEWORK",
+    "category": [
+      "ITALIAN",
+      "TEXTILE",
+      "EMBROIDERY",
+      "GEOMETRIC",
+      "ART"
+    ],
+    "message": "Take a picture and transform it into a Bargello (Florentine stitch) needlework design. Bargello is a type of needlepoint embroidery featuring dramatic zigzag, flame, or wave patterns created by straight vertical stitches of varying lengths in graduated color sequences. The style creates striking optical effects through rhythmic color progressions.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Zigzag flame or wave patterns\n• Straight vertical stitches\n• Graduated color sequences\n• Striking optical rhythm effects\n• Canvas needlework texture"
+  }
+]
