@@ -3786,7 +3786,22 @@ async function batchDeleteImages() {
   if (selectedBatchImages.size === 0) return;
   
   const count = selectedBatchImages.size;
-  const confirmed = await confirm(`Move ${count} selected image${count > 1 ? 's' : ''} to trash? They can be restored from Settings \u2192 Restore Deleted Items.`);
+  // Count folders and images separately so the message describes the right things.
+  // Deleting a folder is NOT a trash move — the folder goes away and its images
+  // return to the main gallery — so the wording must not promise trash restore.
+  const selIds = Array.from(selectedBatchImages);
+  const folderSelCount = selIds.filter(id => id.startsWith('folder-')).length;
+  const imageSelCount = selIds.length - folderSelCount;
+
+  let confirmMsg;
+  if (folderSelCount > 0 && imageSelCount > 0) {
+    confirmMsg = `Delete ${folderSelCount} folder${folderSelCount > 1 ? 's' : ''} and move ${imageSelCount} image${imageSelCount > 1 ? 's' : ''} to trash? Images inside deleted folders move back to the main gallery. Trashed images can be restored from Settings \u2192 Restore Deleted Items.`;
+  } else if (folderSelCount > 0) {
+    confirmMsg = `Delete ${folderSelCount} folder${folderSelCount > 1 ? 's' : ''}? The images inside will move back to the main gallery.`;
+  } else {
+    confirmMsg = `Move ${imageSelCount} selected image${imageSelCount > 1 ? 's' : ''} to trash? They can be restored from Settings \u2192 Restore Deleted Items.`;
+  }
+  const confirmed = await confirm(confirmMsg);
   
   if (!confirmed) return;
   
@@ -3799,31 +3814,33 @@ async function batchDeleteImages() {
     await deleteFolderAndContents(folderId);
   }
   
-  // Show progress
-  const overlay = document.createElement('div');
-  overlay.className = 'batch-progress-overlay';
-  overlay.innerHTML = `
-    <div class="batch-progress-text">Deleting <span id="batch-current">0</span> / ${count}</div>
-    <div class="batch-progress-bar">
-      <div class="batch-progress-fill" id="batch-progress-fill" style="width: 0%"></div>
-    </div>
-  `;
-  document.body.appendChild(overlay);
-  
+  // Show progress (only when there are images to move — folder removal is instant)
   let deleted = 0;
-  
-  for (const imageId of imagesToDelete) {
-    try {
-      await softDeleteImage(imageId);
-      deleted++;
-      document.getElementById('batch-current').textContent = deleted;
-      document.getElementById('batch-progress-fill').style.width = `${(deleted / count) * 100}%`;
-    } catch (error) {
-      console.error(`Failed to delete image ${imageId}:`, error);
+
+  if (imagesToDelete.length > 0) {
+    const overlay = document.createElement('div');
+    overlay.className = 'batch-progress-overlay';
+    overlay.innerHTML = `
+      <div class="batch-progress-text">Deleting <span id="batch-current">0</span> / ${imagesToDelete.length}</div>
+      <div class="batch-progress-bar">
+        <div class="batch-progress-fill" id="batch-progress-fill" style="width: 0%"></div>
+      </div>
+    `;
+    document.body.appendChild(overlay);
+
+    for (const imageId of imagesToDelete) {
+      try {
+        await softDeleteImage(imageId);
+        deleted++;
+        document.getElementById('batch-current').textContent = deleted;
+        document.getElementById('batch-progress-fill').style.width = `${(deleted / imagesToDelete.length) * 100}%`;
+      } catch (error) {
+        console.error(`Failed to delete image ${imageId}:`, error);
+      }
     }
+
+    document.body.removeChild(overlay);
   }
-  
-  document.body.removeChild(overlay);
 
   // Exit batch mode cleanly — set flag first then update UI without toggling
   isBatchMode = false;
@@ -3841,8 +3858,10 @@ async function batchDeleteImages() {
 
   showGallery(true);
 
-  const totalDeleted = deleted + foldersToDelete.length;
-  alert(`${totalDeleted} item${totalDeleted !== 1 ? 's' : ''} deleted successfully.`);
+  const resultParts = [];
+  if (deleted > 0) resultParts.push(`${deleted} image${deleted !== 1 ? 's' : ''} moved to trash`);
+  if (foldersToDelete.length > 0) resultParts.push(`${foldersToDelete.length} folder${foldersToDelete.length !== 1 ? 's' : ''} deleted`);
+  alert(resultParts.length > 0 ? resultParts.join(' and ') + '.' : 'Nothing was deleted.');
 }
 
 function openMultiPresetSelector(imageId) {
@@ -11171,7 +11190,7 @@ function _resetDbShowConfirm() {
     nomagic:      '• No Magic Mode turned off',
     manualopts:   '• Manually Selected Options turned off',
     masterprompt: '• Master Prompt cleared and disabled',
-    gallery:      '• ⚠️ALL IMAGES PERMANENTLY DELETED'
+    gallery:      '• ⚠️ALL IMAGES AND FOLDERS PERMANENTLY DELETED'
   };
   const lines = ['The following will be permanently reset:\n'];
   Object.entries(map).forEach(([k, v]) => { if (checks[k]) lines.push(v); });
@@ -11455,7 +11474,13 @@ YOU MUST RESTART PROGRAM!`];
     if (checks.gallery) {
       await _deleteAllGalleryImages();
       galleryImages = [];
-      successLines.push('• All gallery images deleted');
+      // Also remove all user-created folders — they live in a separate
+      // storage spot (localStorage), so clearing the image database alone
+      // used to leave empty folder shells behind in the gallery.
+      galleryFolders = [];
+      saveFolders();
+      currentFolderView = null;
+      successLines.push('• All gallery images and folders deleted');
     }
   } catch (e) { errors.push('Gallery: ' + e.message); }
 
