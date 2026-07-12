@@ -1862,6 +1862,19 @@ function openImageViewer(index) {
   const presetHeader = document.getElementById('viewer-preset-header');
   if (presetHeader) presetHeader.textContent = 'NO PRESET LOADED';
 
+  // Also cancel any pending "restore text" from a submission or flash that
+  // was still in flight on the PREVIOUS image — otherwise it fires later
+  // (after this image is already open) and overwrites this header with
+  // that old image's stale preset name.
+  if (_viewerHeaderRestoreTimer) {
+    clearTimeout(_viewerHeaderRestoreTimer);
+    _viewerHeaderRestoreTimer = null;
+  }
+  _viewerHeaderTrueText     = null;
+  _viewerHeaderBusy         = false;
+  _viewerHeaderPendingFlash = null;
+  _gallerySubmitShowNames   = false;
+
   // Show combined indicator if in combined mode
   const combinedIndicator = document.getElementById('viewer-combined-indicator');
   if (combinedIndicator) {
@@ -9094,6 +9107,12 @@ const quality = currentResolutionIndex >= 2 ? 0.7 : 0.8;
   // Add to gallery
   addToGallery(dataUrl);
   
+  // NO PRESETS LOADED: nothing to send — the photo was already saved to the
+  // gallery above, so skip the queue entirely (prevents jamming the sync).
+  if (!currentPreset) {
+    return;
+  }
+  
   const queueItem = {
     id: Date.now().toString() + '-' + photoNumber,
     imageBase64: dataUrl,
@@ -9535,7 +9554,7 @@ async function resolveCameraLayerManualSelections() {
 function capturePhoto() {
   if (!stream) return;
   
-  if (isRandomMode) {
+  if (isRandomMode && CAMERA_PRESETS.length > 0) {
     currentPresetIndex = getRandomPresetIndex();
     showStyleReveal(CAMERA_PRESETS[currentPresetIndex].name);
   }
@@ -9754,6 +9773,23 @@ addToGallery(dataUrl);
   const currentPreset = window.voicePreset || CAMERA_PRESETS[currentPresetIndex];
   window.voicePreset = null;
   
+  // NO PRESETS LOADED: there is nothing to send to the AI, and queueing a
+  // photo without a preset used to jam the sync queue permanently. The photo
+  // was already saved to the gallery above, so just say so and stop here —
+  // the same way No Magic Mode saves without sending.
+  if (!currentPreset) {
+    statusElement.textContent = 'Photo saved! (no presets loaded)';
+    if (typeof PluginMessageHandler !== 'undefined') {
+      PluginMessageHandler.postMessage(JSON.stringify({
+        action: 'photo_captured',
+        queued: false,
+        queueLength: photoQueue.length,
+        timestamp: Date.now()
+      }));
+    }
+    return;
+  }
+  
   const queueItem = {
     id: Date.now().toString(),
     imageBase64: dataUrl,
@@ -9901,6 +9937,19 @@ async function syncQueuedPhotos(fromAutoRetry) {
     }
 
     const item = photoQueue[0];
+
+    // SELF-HEAL: an older bug could queue a photo with NO preset attached
+    // (taken when no presets were loaded). There is nothing to send for such
+    // an item — the photo is already in the gallery — so remove it and move
+    // on, instead of letting it error out and block everything behind it
+    // forever. This automatically unjams queues stuck from before this fix.
+    if (!item || !item.preset) {
+      photoQueue.shift();
+      saveQueue();
+      updateQueueDisplay();
+      continue;
+    }
+
     // Update the gallery header (if it's showing) with this preset's name —
     // visual only, mirrors the camera screen's own countdown rhythm.
     updateGallerySubmittingIndicator(item.preset && item.preset.name);
