@@ -6437,29 +6437,3 @@ button, .touchable {
 #import-scroll-container.import-scrolling .preset-ticket-updated {
     animation-play-state: paused;
 }
-
-/* ═══════════════════════════════════
-   PERFORMANCE FIX: Import Presets list scrolling
-   ═══════════════════════════════════ */
-
-/* (a) The menu overlay is already 95% opaque black, and the content panel
-   inside it is solid — yet the device still computes a live 15px blur of
-   whatever sits behind the menu on every frame. That blur is invisible in
-   practice but very expensive, and scrolling a long list INSIDE a
-   backdrop-filtered surface is a worst-case rendering pattern. Removing
-   it looks the same and frees the graphics pipeline. */
-.styles-menu {
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-}
-
-/* (b) With 1700+ presets, the browser was laying out and painting every
-   row on every scroll frame — including the ~1690 rows nowhere near the
-   screen. content-visibility lets it skip all of that work for off-screen
-   rows and render only what's visible; each row's real height is
-   remembered once seen (the 52px is just a first-pass estimate). Browsers
-   that don't know these properties simply ignore them. */
-#import-presets-list > .menu-item {
-    content-visibility: auto;
-    contain-intrinsic-size: auto 52px;
-}
