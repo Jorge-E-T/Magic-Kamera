@@ -534,21 +534,10 @@ export class PresetImporter {
       scrollContainer.style.paddingTop = '0'; // Remove top padding to close gap
       scrollContainer.style.paddingBottom = '22px';
 
-      // Flag the list as "moving" while it scrolls (finger drags, momentum,
-      // and jump-navigation alike). CSS uses this to rest the UPDATED-badge
-      // pulse during motion — dozens of badges animating mid-drag was a big
-      // part of the choppy scrolling on large libraries. The flag clears a
-      // moment after the last scroll tick, so badges resume at rest.
-      let _importScrollIdleTimer = null;
-      scrollContainer.addEventListener('scroll', () => {
-        if (!scrollContainer.classList.contains('import-scrolling')) {
-          scrollContainer.classList.add('import-scrolling');
-        }
-        clearTimeout(_importScrollIdleTimer);
-        _importScrollIdleTimer = setTimeout(() => {
-          scrollContainer.classList.remove('import-scrolling');
-        }, 200);
-      }, { passive: true });
+      // The scroll-time class toggle that used to pause badge pulsing has
+      // been removed along with the pulse animation itself: recalculating
+      // styles across every row the instant a scroll began was itself a
+      // cause of the "stuck" feeling on the first touch-scroll.
 
       // Filter input (sticky at top, immediately below header)
       const filterSection = document.createElement('div');
@@ -698,6 +687,11 @@ export class PresetImporter {
       // Set right after a long-press action fires so the click that follows
       // the finger lift doesn't also toggle the row or its checkbox.
       let _suppressNextItemClick = false;
+      // Finished row elements, built once per dialog and reused by every
+      // later render. Re-arranging existing rows is what makes typing and
+      // clearing the search fast — instead of re-creating thousands of
+      // nodes, styles and handlers, renders just re-append what exists.
+      const _rowElementCache = new Map();
 
       presetsList.addEventListener('touchstart', (e) => {
         const item = e.target.closest('.menu-item');
@@ -794,6 +788,17 @@ export class PresetImporter {
         const fragment = document.createDocumentFragment();
 
         filteredPresets.forEach((preset, index) => {
+          // Reuse the finished row if this preset was built before — just
+          // refresh the bits that can change between renders.
+          const _cachedRow = _rowElementCache.get(preset.name);
+          if (_cachedRow) {
+            _cachedRow.dataset.presetIndex = index;
+            if (_cachedRow._importCheckbox) {
+              _cachedRow._importCheckbox.checked = this.checkboxStates.get(preset.name) || false;
+            }
+            fragment.appendChild(_cachedRow);
+            return;
+          }
           const isAlreadyImported = importedMap.has(preset.name);
           const isLocked = !isAlreadyImported && !unlockedNames.has(preset.name) && !permanentlyOwned.has(preset.name) && !preset._sourcePublicBase;
           const existingPreset = importedMap.get(preset.name);
@@ -951,6 +956,8 @@ export class PresetImporter {
             }
           };
 
+          item._importCheckbox = checkbox;
+          _rowElementCache.set(preset.name, item);
           fragment.appendChild(item);
         });
 
