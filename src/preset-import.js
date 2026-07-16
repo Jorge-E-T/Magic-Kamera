@@ -452,7 +452,8 @@ export class PresetImporter {
       const cats = Array.isArray(preset.category) ? stripAccents(preset.category.join(' ').toLowerCase()) : '';
       const opts = Array.isArray(preset.options) ? stripAccents(preset.options.map(o => o.text || '').join(' ').toLowerCase()) : '';
       const groupOpts = Array.isArray(preset.optionGroups) ? stripAccents(preset.optionGroups.map(g => (g.title || '') + ' ' + (g.options ? g.options.map(o => o.text || '').join(' ') : '')).join(' ').toLowerCase()) : '';
-      return name + ' ' + message + ' ' + cats + ' ' + opts + ' ' + groupOpts;
+      const addl = stripAccents((preset.additionalInstructions || '').toLowerCase());
+      return name + ' ' + message + ' ' + cats + ' ' + opts + ' ' + groupOpts + ' ' + addl;
     });
   }
 
@@ -685,12 +686,35 @@ export class PresetImporter {
       let _delegatedLongPressTimer = null;
       const LONG_PRESS_MS = 600;
 
+      // Cache each preset's NEW/UPDATED status for the life of this dialog.
+      // Computing it fresh meant thousands of deep text comparisons on every
+      // re-render (typing, clearing the search, select all) — the source of
+      // the freeze when clearing a search on large libraries. The status
+      // cannot change while the dialog is open, so compute it only once.
+      const _ticketStatusCache = new Map();
+      // Names of presets whose first-line reveal is currently open. Lives at
+      // dialog scope so open rows stay open across filter re-renders.
+      const _openPresetNames = new Set();
+      // Set right after a long-press action fires so the click that follows
+      // the finger lift doesn't also toggle the row or its checkbox.
+      let _suppressNextItemClick = false;
+
       presetsList.addEventListener('touchstart', (e) => {
         const item = e.target.closest('.menu-item');
         if (!item) return;
         const preset = _presetsLookup.get(item.dataset.presetName);
         if (!preset) return;
-        _delegatedLongPressTimer = setTimeout(() => { showPreview(preset); }, LONG_PRESS_MS);
+        _delegatedLongPressTimer = setTimeout(() => {
+          if (_openPresetNames.has(preset.name)) {
+            // OPEN row: hard-press reads the preset aloud
+            _suppressNextItemClick = true;
+            setTimeout(() => { _suppressNextItemClick = false; }, 400);
+            this.speakMessage(preset.message);
+          } else {
+            // CLOSED row: hard-press shows the preview image (as before)
+            showPreview(preset);
+          }
+        }, LONG_PRESS_MS);
       }, { passive: true });
 
       presetsList.addEventListener('touchend', () => {
@@ -714,7 +738,15 @@ export class PresetImporter {
         if (!item) return;
         const preset = _presetsLookup.get(item.dataset.presetName);
         if (!preset) return;
-        _delegatedLongPressTimer = setTimeout(() => { showPreview(preset); }, LONG_PRESS_MS);
+        _delegatedLongPressTimer = setTimeout(() => {
+          if (_openPresetNames.has(preset.name)) {
+            _suppressNextItemClick = true;
+            setTimeout(() => { _suppressNextItemClick = false; }, 400);
+            this.speakMessage(preset.message);
+          } else {
+            showPreview(preset);
+          }
+        }, LONG_PRESS_MS);
       });
 
       presetsList.addEventListener('mouseup', () => {
@@ -790,22 +822,47 @@ export class PresetImporter {
           nameRow.textContent = preset.name;
           nameRow.style.cssText = 'font-weight: bold; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%; display: flex; align-items: center;';
 
-          const previewRow = document.createElement('span');
-          previewRow.textContent = firstLine;
-          previewRow.style.cssText = 'font-weight: normal; color: #fff; font-size: 10px; width: 100%; white-space: normal; word-break: break-word;';
-          previewRow.className = 'import-preview-row';
-
           nameSpan.appendChild(nameRow);
-          nameSpan.appendChild(previewRow);
 
-          // NEW / UPDATED tickets
+          // Tap-to-reveal first line (accordion, like the gallery preset
+          // lists). The reveal element is created lazily on first open, so
+          // closed rows carry no preview text at all — that is the whole
+          // scrolling win: ~1700 blocks of wrapped text no longer exist.
+          let previewRow = null;
+          const openReveal = () => {
+            if (!previewRow) {
+              previewRow = document.createElement('span');
+              previewRow.textContent = firstLine;
+              previewRow.style.cssText = 'font-weight: normal; color: #fff; font-size: 10px; width: 100%; white-space: normal; word-break: break-word;';
+              previewRow.className = 'import-preview-row';
+              nameSpan.appendChild(previewRow);
+            }
+            previewRow.style.display = '';
+            _openPresetNames.add(preset.name);
+          };
+          const closeReveal = () => {
+            if (previewRow) previewRow.style.display = 'none';
+            _openPresetNames.delete(preset.name);
+          };
+          if (_openPresetNames.has(preset.name)) openReveal();
 
-          if (!existingPreset) {
+          // NEW / UPDATED tickets — status computed once per preset per
+          // dialog session, then reused from the cache on every re-render
+
+          let _ticketStatus = _ticketStatusCache.get(preset.name);
+          if (_ticketStatus === undefined) {
+            if (!existingPreset) _ticketStatus = 'new';
+            else if (presetsAreDifferent(existingPreset, preset)) _ticketStatus = 'updated';
+            else _ticketStatus = '';
+            _ticketStatusCache.set(preset.name, _ticketStatus);
+          }
+
+          if (_ticketStatus === 'new') {
             const ticket = document.createElement('span');
             ticket.className = 'preset-ticket preset-ticket-new';
             ticket.textContent = 'NEW';
             nameRow.appendChild(ticket);
-          } else if (presetsAreDifferent(existingPreset, preset)) {
+          } else if (_ticketStatus === 'updated') {
             const ticket = document.createElement('span');
             ticket.className = 'preset-ticket preset-ticket-updated';
             ticket.textContent = 'UPDATED';
@@ -867,6 +924,11 @@ export class PresetImporter {
 
           checkbox.onclick = (e) => {
             e.stopPropagation();
+            if (_suppressNextItemClick) {
+              _suppressNextItemClick = false;
+              checkbox.checked = this.checkboxStates.get(preset.name) || false;
+              return;
+            }
             const newChecked = checkbox.checked;
             if (!handleLockToggle(newChecked)) {
               checkbox.checked = false;
@@ -878,11 +940,15 @@ export class PresetImporter {
 
           item.onclick = (e) => {
             if (e.target === checkbox) return;
-            const newChecked = !checkbox.checked;
-            if (!handleLockToggle(newChecked)) return;
-            checkbox.checked = newChecked;
-            this.checkboxStates.set(preset.name, newChecked);
-            if (newChecked) this.speakMessage(preset.message);
+            if (_suppressNextItemClick) { _suppressNextItemClick = false; return; }
+            // Tapping the row toggles the first-line reveal open/closed.
+            // Checking a preset for import now happens on the checkbox only,
+            // where the credit logic already lives.
+            if (_openPresetNames.has(preset.name)) {
+              closeReveal();
+            } else {
+              openReveal();
+            }
           };
 
           fragment.appendChild(item);
@@ -949,6 +1015,14 @@ footerSection.innerHTML = `
       content.appendChild(scrollContainer);
       modal.appendChild(content);
       modal.appendChild(footerSection);
+      // Rest the live camera feed while this dialog is open — decoding and
+      // compositing video frames behind an opaque menu wastes the device's
+      // limited graphics power and makes list scrolling choppier. It resumes
+      // automatically in closeModal on every way out of this dialog.
+      const _cameraVideoEl = document.getElementById('video');
+      const _cameraWasPlaying = !!(_cameraVideoEl && !_cameraVideoEl.paused);
+      if (_cameraWasPlaying) { try { _cameraVideoEl.pause(); } catch (e) {} }
+
       document.body.appendChild(modal);
 
       renderPresetsList();
@@ -1077,6 +1151,10 @@ footerSection.innerHTML = `
         sessionUnlocked.clear();
         this.isImportModalOpen = false;
         this.stopSpeaking();
+        // Wake the camera feed back up (paused while this dialog was open)
+        if (_cameraWasPlaying && _cameraVideoEl) {
+          try { _cameraVideoEl.play().catch(() => {}); } catch (e) {}
+        }
         document.body.removeChild(modal);
       };
 

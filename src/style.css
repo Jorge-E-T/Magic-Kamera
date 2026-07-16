@@ -6437,3 +6437,18 @@ button, .touchable {
 #import-scroll-container.import-scrolling .preset-ticket-updated {
     animation-play-state: paused;
 }
+
+/* ═══════════════════════════════════
+   PERFORMANCE FIX: Import Presets menu
+   ═══════════════════════════════════ */
+
+/* The menu overlay is already 95% opaque black, and the content panel
+   inside it is solid — yet the device still computes a live 15px blur of
+   whatever sits behind the menu on every frame. That blur is invisible in
+   practice but very expensive, and scrolling a long list INSIDE a
+   backdrop-filtered surface is a worst-case rendering pattern. Removing
+   it looks the same and frees the graphics pipeline. */
+.styles-menu {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+}
