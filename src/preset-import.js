@@ -685,6 +685,16 @@ export class PresetImporter {
       let _delegatedLongPressTimer = null;
       const LONG_PRESS_MS = 600;
 
+      // Cache each preset's NEW/UPDATED status for the life of this dialog.
+      // Computing it fresh meant thousands of deep text comparisons on every
+      // re-render (typing, clearing the search, select all) — the source of
+      // the multi-second freeze when clearing a search on large libraries.
+      // The status cannot change while the dialog is open, so compute once.
+      const _ticketStatusCache = new Map();
+      // Increments on every render; lets an in-progress chunked build abandon
+      // itself the moment a newer render starts.
+      let _importRenderToken = 0;
+
       presetsList.addEventListener('touchstart', (e) => {
         const item = e.target.closest('.menu-item');
         if (!item) return;
@@ -759,9 +769,16 @@ export class PresetImporter {
 
         // Build all items into a fragment — single DOM write at the end
 
-        const fragment = document.createDocumentFragment();
+        // Build rows in chunks so huge lists never freeze the screen: the
+        // first chunk appears instantly and the rest stream in right behind
+        // it, one animation frame at a time.
+        _importRenderToken++;
+        const _myRenderToken = _importRenderToken;
+        presetsList.innerHTML = '';
 
-        filteredPresets.forEach((preset, index) => {
+        const _IMPORT_CHUNK_SIZE = 120;
+
+        const _buildRow = (preset, index) => {
           const isAlreadyImported = importedMap.has(preset.name);
           const isLocked = !isAlreadyImported && !unlockedNames.has(preset.name) && !permanentlyOwned.has(preset.name) && !preset._sourcePublicBase;
           const existingPreset = importedMap.get(preset.name);
@@ -798,14 +815,23 @@ export class PresetImporter {
           nameSpan.appendChild(nameRow);
           nameSpan.appendChild(previewRow);
 
-          // NEW / UPDATED tickets
+          // NEW / UPDATED tickets — status computed once per preset per
+          // dialog session, then reused from the cache on every re-render
 
-          if (!existingPreset) {
+          let _ticketStatus = _ticketStatusCache.get(preset.name);
+          if (_ticketStatus === undefined) {
+            if (!existingPreset) _ticketStatus = 'new';
+            else if (presetsAreDifferent(existingPreset, preset)) _ticketStatus = 'updated';
+            else _ticketStatus = '';
+            _ticketStatusCache.set(preset.name, _ticketStatus);
+          }
+
+          if (_ticketStatus === 'new') {
             const ticket = document.createElement('span');
             ticket.className = 'preset-ticket preset-ticket-new';
             ticket.textContent = 'NEW';
             nameRow.appendChild(ticket);
-          } else if (presetsAreDifferent(existingPreset, preset)) {
+          } else if (_ticketStatus === 'updated') {
             const ticket = document.createElement('span');
             ticket.className = 'preset-ticket preset-ticket-updated';
             ticket.textContent = 'UPDATED';
@@ -885,14 +911,26 @@ export class PresetImporter {
             if (newChecked) this.speakMessage(preset.message);
           };
 
-          fragment.appendChild(item);
-        });
+          return item;
+        };
 
-        // Single DOM write — replaces innerHTML = '' + 800x appendChild
-        presetsList.innerHTML = '';
-        presetsList.appendChild(fragment);
-
-        updateImportSelection();
+        let _chunkStart = 0;
+        const _buildChunk = () => {
+          if (_myRenderToken !== _importRenderToken) return; // a newer render started — stop
+          const fragment = document.createDocumentFragment();
+          const end = Math.min(_chunkStart + _IMPORT_CHUNK_SIZE, filteredPresets.length);
+          for (let i = _chunkStart; i < end; i++) {
+            fragment.appendChild(_buildRow(filteredPresets[i], i));
+          }
+          presetsList.appendChild(fragment);
+          const isFirstChunk = _chunkStart === 0;
+          _chunkStart = end;
+          if (isFirstChunk) updateImportSelection();
+          if (_chunkStart < filteredPresets.length) {
+            requestAnimationFrame(_buildChunk);
+          }
+        };
+        _buildChunk();
       };
 
       const updateImportSelection = () => {
@@ -949,6 +987,14 @@ footerSection.innerHTML = `
       content.appendChild(scrollContainer);
       modal.appendChild(content);
       modal.appendChild(footerSection);
+      // Rest the live camera feed while this dialog is open — decoding and
+      // compositing video frames behind an opaque menu wastes the device's
+      // limited graphics power and makes list scrolling choppier. It resumes
+      // automatically in closeModal on every way out of this dialog.
+      const _cameraVideoEl = document.getElementById('video');
+      const _cameraWasPlaying = !!(_cameraVideoEl && !_cameraVideoEl.paused);
+      if (_cameraWasPlaying) { try { _cameraVideoEl.pause(); } catch (e) {} }
+
       document.body.appendChild(modal);
 
       renderPresetsList();
@@ -1077,6 +1123,10 @@ footerSection.innerHTML = `
         sessionUnlocked.clear();
         this.isImportModalOpen = false;
         this.stopSpeaking();
+        // Wake the camera feed back up (paused while this dialog was open)
+        if (_cameraWasPlaying && _cameraVideoEl) {
+          try { _cameraVideoEl.play().catch(() => {}); } catch (e) {}
+        }
         document.body.removeChild(modal);
       };
 
