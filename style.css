@@ -4827,7 +4827,6 @@ button:disabled {
   background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
   color: white;
   box-shadow: 0 2px 4px rgba(76, 175, 80, 0.3);
-  animation: ticketPulse 2s ease-in-out infinite;
 }
 
 /* Pulse animation for UPDATED tickets only */
