@@ -2581,6 +2581,7 @@ function populatePresetList() {
       );
       const textMatch = stripAccents(preset.name.toLowerCase()).includes(searchText) ||
              stripAccents((preset.message || '').toLowerCase()).includes(searchText) ||
+             stripAccents((preset.additionalInstructions || '').toLowerCase()).includes(searchText) ||
              categoryMatch || optionsMatch;
       if (!textMatch) return false;
     }
@@ -6627,7 +6628,14 @@ const allPresets = CAMERA_PRESETS.filter(p => {
     if (_visibleSearchText) {
       const searchText = _visibleSearchText;
       const categoryMatch = preset.category && preset.category.some(cat => stripAccents(cat.toLowerCase()).includes(searchText));
-      const textMatch = stripAccents(preset.name.toLowerCase()).includes(searchText) || categoryMatch;
+      const optionsMatch = (
+        (preset.options && preset.options.some(o => o.text && stripAccents(o.text.toLowerCase()).includes(searchText))) ||
+        (preset.optionGroups && preset.optionGroups.some(g => g.title && stripAccents(g.title.toLowerCase()).includes(searchText) || g.options && g.options.some(o => o.text && stripAccents(o.text.toLowerCase()).includes(searchText))))
+      );
+      const textMatch = stripAccents(preset.name.toLowerCase()).includes(searchText) ||
+             stripAccents((preset.message || '').toLowerCase()).includes(searchText) ||
+             stripAccents((preset.additionalInstructions || '').toLowerCase()).includes(searchText) ||
+             categoryMatch || optionsMatch;
       if (!textMatch) return false;
     }
     
@@ -12996,6 +13004,7 @@ function _doPopulateStylesList(list, preserveScroll) {
         );
         const textMatch = stripAccents(preset.name.toLowerCase()).includes(searchText) ||
                          stripAccents((preset.message || '').toLowerCase()).includes(searchText) ||
+                         stripAccents((preset.additionalInstructions || '').toLowerCase()).includes(searchText) ||
                          categoryMatch || optionsMatch;
         if (!textMatch) return false;
       }
@@ -13015,6 +13024,7 @@ function _doPopulateStylesList(list, preserveScroll) {
         );
         const textMatch = stripAccents(preset.name.toLowerCase()).includes(searchText) ||
                          stripAccents((preset.message || '').toLowerCase()).includes(searchText) ||
+                         stripAccents((preset.additionalInstructions || '').toLowerCase()).includes(searchText) ||
                          categoryMatch || optionsMatch;
         if (!textMatch) return false;
       }

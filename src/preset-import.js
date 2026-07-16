@@ -692,6 +692,12 @@ export class PresetImporter {
       // clearing the search fast — instead of re-creating thousands of
       // nodes, styles and handlers, renders just re-append what exists.
       const _rowElementCache = new Map();
+      // True once the full list has been built and appended (this happens a
+      // single time, when the dialog opens, behind the loading spinner).
+      // From then on filtering never touches the DOM tree — it only shows
+      // and hides existing rows, exactly like the main menu and gallery
+      // preset searches do, which is why those feel instant.
+      let _allRowsBuilt = false;
 
       presetsList.addEventListener('touchstart', (e) => {
         const item = e.target.closest('.menu-item');
@@ -757,6 +763,22 @@ export class PresetImporter {
         const filteredPresets = this.getFilteredPresets(availablePresets);
         const countElement = document.getElementById('import-preset-count');
         if (countElement) countElement.textContent = filteredPresets.length;
+
+        // FAST PATH — every row already exists in the list (built once when
+        // the dialog opened). Filtering works like the main menu and gallery
+        // preset searches: nothing is created, destroyed or moved; matching
+        // rows are shown and the rest are hidden with a CSS class.
+        if (_allRowsBuilt) {
+          const _visibleNames = new Set(filteredPresets.map(p => p.name));
+          _rowElementCache.forEach((row, name) => {
+            row.classList.toggle('import-row-hidden', !_visibleNames.has(name));
+            if (row._importCheckbox) {
+              row._importCheckbox.checked = this.checkboxStates.get(name) || false;
+            }
+          });
+          updateImportSelection();
+          return;
+        }
 
         // --- Pre-build O(1) lookup maps once per render ---
 
@@ -965,11 +987,15 @@ export class PresetImporter {
         presetsList.innerHTML = '';
         presetsList.appendChild(fragment);
 
+        // The one-time full build is done; every render from here on uses
+        // the show/hide fast path above.
+        _allRowsBuilt = true;
+
         updateImportSelection();
       };
 
       const updateImportSelection = () => {
-        const items = presetsList.querySelectorAll('.menu-item');
+        const items = presetsList.querySelectorAll('.menu-item:not(.import-row-hidden)');
         items.forEach(item => item.classList.remove('menu-selected'));
 
         if (this.currentImportScrollIndex >= 0 && this.currentImportScrollIndex < items.length) {
@@ -1207,7 +1233,7 @@ footerSection.innerHTML = `
 
       // ── Reusable alpha jump functions (used by both double-tap and hard-press) ──
       const _importJumpUp = () => {
-        const items = Array.from(presetsList.querySelectorAll('.menu-item'));
+        const items = Array.from(presetsList.querySelectorAll('.menu-item:not(.import-row-hidden)'));
         if (!items.length) return;
         const idx = Math.max(0, Math.min(this.currentImportScrollIndex, items.length - 1));
         const currentItem = items[idx];
@@ -1238,7 +1264,7 @@ footerSection.innerHTML = `
       };
 
       const _importJumpDown = () => {
-        const items = Array.from(presetsList.querySelectorAll('.menu-item'));
+        const items = Array.from(presetsList.querySelectorAll('.menu-item:not(.import-row-hidden)'));
         if (!items.length) return;
         const idx = Math.max(0, Math.min(this.currentImportScrollIndex, items.length - 1));
         const currentItem = items[idx];
@@ -1271,7 +1297,7 @@ footerSection.innerHTML = `
           importUpCount = 0;
           if (count === 1) {
             scrollContainer.scrollTop = Math.max(0, scrollContainer.scrollTop - scrollContainer.clientHeight);
-            const items = presetsList.querySelectorAll('.menu-item');
+            const items = presetsList.querySelectorAll('.menu-item:not(.import-row-hidden)');
             const containerTop = scrollContainer.getBoundingClientRect().top;
             for (let i = 0; i < items.length; i++) {
               if (items[i].getBoundingClientRect().top >= containerTop) {
@@ -1304,7 +1330,7 @@ footerSection.innerHTML = `
               scrollContainer.scrollHeight - scrollContainer.clientHeight,
               scrollContainer.scrollTop + scrollContainer.clientHeight
             );
-            const items = presetsList.querySelectorAll('.menu-item');
+            const items = presetsList.querySelectorAll('.menu-item:not(.import-row-hidden)');
             const containerTop = scrollContainer.getBoundingClientRect().top;
             for (let i = 0; i < items.length; i++) {
               if (items[i].getBoundingClientRect().top >= containerTop) {
@@ -1317,7 +1343,7 @@ footerSection.innerHTML = `
             _importJumpDown();
           } else {
             scrollContainer.scrollTop = scrollContainer.scrollHeight;
-            const items = presetsList.querySelectorAll('.menu-item');
+            const items = presetsList.querySelectorAll('.menu-item:not(.import-row-hidden)');
             this.currentImportScrollIndex = items.length - 1;
             updateImportSelection();
           }
@@ -1337,14 +1363,14 @@ footerSection.innerHTML = `
       }
 
       this.scrollImportUp = () => {
-        const items = presetsList.querySelectorAll('.menu-item');
+        const items = presetsList.querySelectorAll('.menu-item:not(.import-row-hidden)');
         if (items.length === 0) return;
         this.currentImportScrollIndex = Math.max(0, this.currentImportScrollIndex - 1);
         updateImportSelection();
       };
 
       this.scrollImportDown = () => {
-        const items = presetsList.querySelectorAll('.menu-item');
+        const items = presetsList.querySelectorAll('.menu-item:not(.import-row-hidden)');
         if (items.length === 0) return;
         this.currentImportScrollIndex = Math.min(items.length - 1, this.currentImportScrollIndex + 1);
         updateImportSelection();
