@@ -4276,6 +4276,98 @@ function getDistance(touch1, touch2) {
   return Math.sqrt(dx * dx + dy * dy);
 }
 
+// ===== VIEWER SWIPE NAVIGATION =====
+// Swipe UP on the photo = next image, swipe DOWN = previous image.
+// Cycling stays inside the group being viewed: photos inside a folder cycle
+// only within that folder; photos at the root cycle only through root photos.
+// The list follows the same order (and any active date filter) as the gallery
+// grid, and wraps around at the ends. Reuses openImageViewer, so everything
+// that normally happens when opening an image happens here too.
+
+function viewerSwipeNavigate(direction) {
+  // direction: +1 = next, -1 = previous
+  if (currentViewerImageIndex < 0 || currentViewerImageIndex >= galleryImages.length) return;
+  if (window.isCombinedMode) return; // temp combined preview isn't part of a browsable group
+  const currentItem = galleryImages[currentViewerImageIndex];
+
+  // Same images the gallery grid shows for this view (root vs folder),
+  // honoring the active date filter...
+  const viewImages = getImagesInCurrentView().filter(img => {
+    if (!galleryStartDate && !galleryEndDate) return true;
+    const d = new Date(img.timestamp);
+    d.setHours(0, 0, 0, 0);
+    const t = d.getTime();
+    if (galleryStartDate && t < new Date(galleryStartDate + 'T00:00:00').getTime()) return false;
+    if (galleryEndDate && t > new Date(galleryEndDate + 'T00:00:00').getTime()) return false;
+    return true;
+  });
+  // ...in the same order the grid displays them
+  const ordered = gallerySortOrder === 'oldest'
+    ? [...viewImages].sort((a, b) => a.timestamp - b.timestamp)
+    : [...viewImages].sort((a, b) => b.timestamp - a.timestamp);
+
+  if (ordered.length < 2) return; // nothing else to cycle to
+
+  const pos = ordered.findIndex(img => img.id === currentItem.id);
+  if (pos === -1) return; // open image isn't part of this view's list
+
+  const nextPos = (pos + direction + ordered.length) % ordered.length; // wraps at the ends
+  const targetIndex = galleryImages.findIndex(img => img.id === ordered[nextPos].id);
+  if (targetIndex === -1) return;
+
+  openImageViewer(targetIndex);
+}
+
+function setupViewerSwipeNavigation() {
+  const container = document.querySelector('.image-viewer-container');
+  if (!container) return;
+
+  let swipeStartX = 0;
+  let swipeStartY = 0;
+  let swipeValid = false;
+
+  container.addEventListener('touchstart', (e) => {
+    // Only a single finger on an UNZOOMED photo can begin a swipe.
+    // Two fingers = pinch zoom, one finger while zoomed in = pan — both are
+    // handled by setupViewerPinchZoom and are left completely alone here.
+    if (e.touches.length === 1 && viewerZoom === 1) {
+      swipeStartX = e.touches[0].clientX;
+      swipeStartY = e.touches[0].clientY;
+      swipeValid = true;
+    } else {
+      swipeValid = false;
+    }
+  }, { passive: true });
+
+  container.addEventListener('touchmove', (e) => {
+    if (e.touches.length > 1) swipeValid = false; // a pinch began mid-gesture
+  }, { passive: true });
+
+  container.addEventListener('touchend', (e) => {
+    if (e.touches.length > 0) return;      // wait until the last finger lifts
+    if (!swipeValid) return;
+    swipeValid = false;
+    if (viewerZoom !== 1) return;
+
+    const t = e.changedTouches && e.changedTouches[0];
+    if (!t) return;
+    const dx = t.clientX - swipeStartX;
+    const dy = t.clientY - swipeStartY;
+
+    // A deliberate, mostly-vertical swipe: at least 50px of travel and
+    // clearly more vertical than horizontal. Plain taps stay well below
+    // this, so tap behaviors (like toggling the side buttons) are unaffected.
+    if (Math.abs(dy) >= 50 && Math.abs(dy) > Math.abs(dx) * 1.5) {
+      // Keep this swipe from ALSO counting as a tap on the viewer backdrop
+      // (which would flip the side-button carousels in single-tap mode).
+      e.stopPropagation();
+      viewerSwipeNavigate(dy < 0 ? 1 : -1); // up = next, down = previous
+    }
+  }, { passive: true });
+
+  container.addEventListener('touchcancel', () => { swipeValid = false; }, { passive: true });
+}
+
 function updateMenuSelection() {
   if (!isMenuOpen) return;
 
@@ -7988,7 +8080,7 @@ const TOUR_STEPS = [
   { section: 'Gallery', title: '📁+ New Folder', body: 'Create a new folder to organize your saved images. Name the folder and save. Long press edits name. Images may be moved by selecting image(s) then long pressing the last image.' },
   { section: 'Gallery', title: '🖼️🖼️ Combine Images', body: 'Tap the Select button to enter batch mode. Select two images, then click Combine to create one image. You can apply presets to create combined subjects into one final image using existing presets.' }, 
   { section: 'Gallery', title: '🔀 Sort and Filter', body: 'Use the SORT button — to the right of Start and End — to sort images by Newest First or Oldest First. Filter by date range using the Start and End buttons.' },
-  { section: 'Gallery', title: '🖼️ Image Viewer', body: 'Tap a thumbnail image in the gallery to view it full-screen. The viewer is redesigned to give your photo maximum screen space. Pinch to zoom in and out.' },
+  { section: 'Gallery', title: '🖼️ Image Viewer', body: 'Tap a thumbnail image in the gallery to view it full-screen. The viewer is redesigned to give your photo maximum screen space. Pinch to zoom in and out. Touch swipe up or down to cycle through other images within the gallery root directory or user folder.' },
   { section: 'Gallery', title: '🎨 Applying Presets to Single Image', body: 'After clicking on a single image, Tap LOAD or MULTI to transform a saved image. Click twice on a preset to apply to the image. You can stack multiple transformations. You may also layer up to five presets.' },
   { section: 'Gallery', title: '🏷️ Preset Header', body: 'At the very top of the image viewer a header shows the name of the currently loaded preset. Tap the header to hear the preset name and description.' },
   { section: 'Gallery', title: '🗑️ Delete Button', body: 'The delete button is on the top-left corner of the single image viewer.' },
@@ -8080,7 +8172,6 @@ function endGuidedTour() {
     localStorage.setItem(TOUR_PROGRESS_KEY, tourCurrentStep.toString());
   }
   document.getElementById('guided-tour-overlay').style.display = 'none';
-  document.getElementById('tour-spotlight').style.display = 'none';
   showTutorialSubmenu();
 }
 
@@ -16921,6 +17012,7 @@ const result = await presetImporter.import();
     console.error('Failed to initialize database:', err);
   });
   setupViewerPinchZoom();
+  setupViewerSwipeNavigation();
 
 });
 
