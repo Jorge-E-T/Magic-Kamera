@@ -65,7 +65,7 @@ export function saveDefaultPresetEnabled(enabled) {
 // ===== PRESET UNLOCK GAME =====
 
 const UNLOCK_GAME_KEY = 'r1_preset_unlock_game';
-const STARTER_PRESETS = ['CARICATURE', 'IMPRESSIONISM'];
+const STARTER_PRESETS = ['CARICATURE', 'CLAYMATION', 'IMPRESSIONISM', 'LEGO'];
 
 function loadUnlockState() {
   try {
