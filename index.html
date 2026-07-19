@@ -1937,8 +1937,55 @@ All of the presets are optimized to avoid "camera ran dry" or "content filter" i
         <span class="alpha-overlay-letter">A</span>
     </div>
 
-    <script src="./qrcode.min.js"></script>
+<script src="./qrcode.min.js"></script>
     <script src="./jsQR.js"></script>
+    <script>
+      // FAILSAFE: if the local QR libraries didn't load, fetch each one from
+      // its original CDN. The app only needs these when a QR feature is
+      // actually used, so a slightly late fallback load is safe.
+      (function () {
+        function fallback(globalName, url) {
+          if (window[globalName] !== undefined) return;
+          var s = document.createElement('script');
+          s.src = url;
+          document.head.appendChild(s);
+        }
+        fallback('QRCode', 'https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js');
+        fallback('jsQR', 'https://unpkg.com/jsqr@1.4.0/dist/jsQR.js');
+      })();
+    </script>
+    <script>
+      // TEMPORARY DIAGNOSTIC — delete this whole block once the import bug is found.
+      (function () {
+        var t0 = Date.now();
+        var firstError = null;
+        function record(msg) {
+          if (firstError) return;
+          firstError = msg;
+          if (Date.now() - t0 > 8000) {
+            try { alert('IMPORT DIAGNOSTIC — first error:\n' + msg); } catch (_) {}
+          }
+        }
+        window.addEventListener('error', function (e) {
+          if (e && e.message) {
+            record(e.message + (e.filename ? ' @ ' + String(e.filename).split('/').pop() + ':' + e.lineno : ''));
+          } else if (e && e.target && (e.target.src || e.target.href)) {
+            record('failed to load: ' + String(e.target.src || e.target.href).split('/').pop());
+          }
+        }, true);
+        window.addEventListener('unhandledrejection', function (e) {
+          record('promise: ' + (e && e.reason && e.reason.message ? e.reason.message : String(e && e.reason)));
+        });
+        setTimeout(function () {
+          try {
+            alert('DIAGNOSTIC STATUS\n' +
+              'QRCode library: ' + (typeof QRCode !== 'undefined' ? 'LOADED' : 'MISSING') + '\n' +
+              'jsQR library: ' + (typeof jsQR !== 'undefined' ? 'LOADED' : 'MISSING') + '\n' +
+              'First error so far: ' + (firstError || 'none'));
+          } catch (_) {}
+        }, 6000);
+      })();
+    </script>
     <script type="module" src="./src/main.js"></script>
 </body>
 </html>
