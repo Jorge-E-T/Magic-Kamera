@@ -17200,7 +17200,7 @@ async function importPreviewImageFromQR(url) {
       'https://api.codetabs.com/v1/proxy?quest='
     ];
 
-    let response = null;
+    let blob = null;
     for (let i = 0; i < proxies.length; i++) {
       try {
         const fetchUrl = proxies[i] ? proxies[i] + encodeURIComponent(imageUrl) : imageUrl;
@@ -17208,16 +17208,16 @@ async function importPreviewImageFromQR(url) {
         const timeoutId = setTimeout(() => controller.abort(), 20000);
         const res = await fetch(fetchUrl, { signal: controller.signal });
         clearTimeout(timeoutId);
-        if (res.ok) { response = res; break; }
+        if (res.ok) {
+          // Only accept real image bytes — a proxy's OK-shaped error page
+          // must not end the climb (see blobLooksLikeImage).
+          const candidate = await res.blob();
+          if (await blobLooksLikeImage(candidate)) { blob = candidate; break; }
+        }
       } catch (e) { continue; }
     }
 
-    if (!response || !response.ok) throw new Error('All download methods failed. Check the URL and try again.');
-
-    let blob = await response.blob();
-    const isImageType = blob.type.startsWith('image/');
-    const isOctetStream = blob.type === 'application/octet-stream' || blob.type === '';
-    if (blob.type && !isImageType && !isOctetStream) throw new Error('Not an image file: ' + blob.type);
+    if (!blob) throw new Error('All download methods failed — the link may be expired, or the download services are unavailable. Check the URL and try again.');
 
     // Resize to a reasonable preview size
     const previewResizeResult = await resizeAndCompressImage(blob, 800, 800, 0.85);
@@ -17756,6 +17756,24 @@ async function resizeAndCompressImage(blob, maxWidth = 640, maxHeight = 480, qua
   });
 }
 
+// Returns true only if the blob's first bytes carry a real image signature
+// (PNG, JPEG, GIF, WEBP, or BMP). Free download proxies often answer
+// "200 OK" with an HTML or JSON error page — those must count as failures,
+// not as downloads. Bytes cannot lie about what they are.
+async function blobLooksLikeImage(blob) {
+  if (!blob || blob.size < 12) return false;
+  try {
+    const b = new Uint8Array(await blob.slice(0, 12).arrayBuffer());
+    if (b[0] === 0x89 && b[1] === 0x50 && b[2] === 0x4E && b[3] === 0x47) return true; // PNG
+    if (b[0] === 0xFF && b[1] === 0xD8 && b[2] === 0xFF) return true;                  // JPEG
+    if (b[0] === 0x47 && b[1] === 0x49 && b[2] === 0x46) return true;                  // GIF
+    if (b[0] === 0x52 && b[1] === 0x49 && b[2] === 0x46 && b[3] === 0x46 &&
+        b[8] === 0x57 && b[9] === 0x45 && b[10] === 0x42 && b[11] === 0x50) return true; // WEBP
+    if (b[0] === 0x42 && b[1] === 0x4D) return true;                                   // BMP
+    return false;
+  } catch (e) { return false; }
+}
+
 // Import image from QR code
 async function importFromQRCode() {
   if (!lastDetectedQR) {
@@ -17779,7 +17797,7 @@ async function importFromQRCode() {
       'https://api.codetabs.com/v1/proxy?quest='   // Generic CORS proxy
     ];
 
-    let response = null;
+    let blob = null;
 
     for (let i = 0; i < proxies.length; i++) {
       try {
@@ -17796,31 +17814,29 @@ async function importFromQRCode() {
         clearTimeout(timeoutId);
 
         if (res.ok) {
-          response = res;
-          updateQRScannerStatus('Download successful!', 'success');
-          break;
+          // "200 OK" is not proof of success: free proxies often answer OK
+          // with an HTML or JSON error page. Only accept real image bytes —
+          // otherwise keep climbing the ladder to the next method.
+          const candidate = await res.blob();
+          if (await blobLooksLikeImage(candidate)) {
+            blob = candidate;
+            updateQRScannerStatus('Download successful!', 'success');
+            break;
+          }
         }
       } catch (error) {
         continue; // Try next proxy
       }
     }
 
-    if (!response || !response.ok) {
-      throw new Error('All download methods failed. Check the URL and try again.');
+    if (!blob) {
+      throw new Error('All download methods failed — the link may be expired, or the download services are unavailable. Check the URL and try again.');
     }
 
     updateQRScannerStatus('Reading image data...', '');
-    let blob = await response.blob();
 
     const originalSize = Math.round(blob.size / 1024);
     updateQRScannerStatus('Original size: ' + originalSize + 'KB', '');
-
-    // Accept image types and octet-stream (some proxies strip content-type)
-    const isImageType = blob.type.startsWith('image/');
-    const isOctetStream = blob.type === 'application/octet-stream' || blob.type === '';
-    if (blob.type && !isImageType && !isOctetStream) {
-      throw new Error('Not an image file: ' + blob.type);
-    }
 
     updateQRScannerStatus('Optimizing image...', '');
     const importRes = IMPORT_RESOLUTION_OPTIONS[currentImportResolutionIndex];
