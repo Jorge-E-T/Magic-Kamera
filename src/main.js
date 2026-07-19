@@ -17620,6 +17620,12 @@ function stopQRDetection() {
 
 // Detect QR code in video stream
 function detectQRCode() {
+  // FAILSAFE: if the jsQR library never loaded, say so on the scanner screen
+  // instead of silently scanning forever and never detecting anything.
+  if (typeof jsQR !== 'function') {
+    updateQRScannerStatus('QR library failed to load — cannot scan', 'error');
+    return;
+  }
   const scannerVideo = document.getElementById('qr-scanner-video');
   if (!scannerVideo || scannerVideo.readyState !== scannerVideo.HAVE_ENOUGH_DATA) return;
   
