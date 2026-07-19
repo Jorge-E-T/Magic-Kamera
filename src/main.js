@@ -8083,7 +8083,7 @@ const TOUR_STEPS = [
   { section: 'Gallery', title: '🖼️ Gallery Activities', body: 'Within the gallery there are thumbnails of captured images. You can either select multiple images to apply a preset, or select a single image to either edit, export or apply one or several presets.' },
   { section: 'Uploading Images', title: '📥 Importing External Images', body: 'In the gallery, you may also bring any image from the web into the gallery using a QR code. Upload the image to catbox.moe, copy the direct link, and generate a QR code at qr-code-generator.com.' },
   { section: 'Uploading Images', title: '📷 Scanning the QR Code', body: 'In the gallery, press Import then Scan QR Code. Point your R1 camera at the QR code and wait. The image will be automatically saved to your gallery.' },
-  { section: 'Uploading Images', title: '⚠️ Verify Your Link First', body: 'Before making the QR code, paste the link into a browser. If it shows only the image with nothing around it, it will work. If it shows a webpage with the image embedded, it will not work.' },
+  { section: 'Uploading Images', title: '⚠️ Verify Your Link First ⚠️', body: 'Before making the QR code, paste the link into a browser. If it shows only the image with nothing around it, it will work. If it shows a blank page or a webpage with the image embedded, it will not work.' },
   { section: 'Gallery', title: '☑️ Batch Operations', body: 'Tap the Select button to enter batch mode. Select multiple images, then apply one preset to all of them or delete them in bulk. If only two are selected, you may also combine them. Always tap DONE when finished.' },
   { section: 'Gallery', title: '📁+ New Folder', body: 'Create a new folder to organize your saved images. Name the folder and save. Long press edits name. Images may be moved by selecting image(s) then long pressing the last image.' },
   { section: 'Gallery', title: '🖼️🖼️ Combine Images', body: 'Tap the Select button to enter batch mode. Select two images, then click Combine to create one image. You can apply presets to create combined subjects into one final image using existing presets.' }, 
@@ -8140,7 +8140,29 @@ const TOUR_STEPS = [
   { section: 'Done!', title: '🎉 Tour Complete!', body: 'That\'s Magic Kamera. Now go make magic! This tour or the text tutorial in this menu is here if you need a refresher. If you come across The One Ron G, The One Hashtag Cyber or The One Rabbit Jesus, tell them you enjoy this program.' },
 ];
 
+let tourSpeaking = false;
+
+// Repaints the sound button to match tourSpeaking: solid orange while ON,
+// dark + pulsing while OFF (a hint to press it). Visual only.
+function updateTourSoundButton() {
+  const btn = document.getElementById('tour-btn-sound');
+  if (!btn) return;
+  if (tourSpeaking) {
+    btn.style.background = '#FE5F00';
+    btn.style.color = '#000';
+    btn.style.border = '1px solid #FE5F00';
+    btn.style.animation = 'none';
+  } else {
+    btn.style.background = '#222';
+    btn.style.color = '#fff';
+    btn.style.border = '1px solid #444';
+    btn.style.animation = 'tourSoundPulse 1.4s ease-in-out infinite';
+  }
+}
+
 function tourSpeak(text) {
+  tourSpeaking = true;
+  updateTourSoundButton();
   if (typeof PluginMessageHandler !== 'undefined') {
     PluginMessageHandler.postMessage(JSON.stringify({
       message: text,
@@ -8151,13 +8173,29 @@ function tourSpeak(text) {
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.rate = 0.9;
     utterance.pitch = 1.0;
+    // When speech finishes or stops on its own, flip the button back to OFF.
+    utterance.onend = () => { tourSpeaking = false; updateTourSoundButton(); };
+    utterance.oncancel = () => { tourSpeaking = false; updateTourSoundButton(); };
     window.speechSynthesis.speak(utterance);
   }
 }
 
 function tourStopSpeaking() {
+  tourSpeaking = false;
+  updateTourSoundButton();
   if (window.speechSynthesis) {
     window.speechSynthesis.cancel();
+  }
+}
+
+// One press = toggle speech for the current step (used by both the on-screen
+// sound button and the R1 side button).
+function tourToggleSpeak() {
+  if (tourSpeaking) {
+    tourStopSpeaking();
+  } else {
+    const step = TOUR_STEPS[tourCurrentStep];
+    if (step) tourSpeak(step.title.replace(/[\p{Emoji}]/gu, '') + '. ' + step.body);
   }
 }
 
@@ -8218,9 +8256,10 @@ function renderTourStep(speak) {
   const soundBtn = document.getElementById('tour-btn-sound');
   if (soundBtn) {
     soundBtn.onclick = () => {
-      tourSpeak(step.title.replace(/[\p{Emoji}]/gu, '') + '. ' + step.body);
+      tourToggleSpeak();
     };
   }
+  updateTourSoundButton();
 
   const nextBtn = document.getElementById('tour-btn-next');
   if (nextBtn) nextBtn.textContent = tourCurrentStep === total - 1 ? 'Finish ✓' : 'Next ›';
@@ -10261,9 +10300,10 @@ function captureRawPhotoDataUrl() {
 window.addEventListener('sideClick', () => {
   console.log('Side button pressed');
 
-  // Block side button during guided tour — advance to next step instead
+  // Side button during guided tour — toggle speech for the current step.
+  // (Navigation is on-screen Back/Next; the scroll wheel scrolls the text.)
   if (tourActive) {
-    tourNext();
+    tourToggleSpeak();
     return;
   }
 
@@ -10541,9 +10581,10 @@ window.addEventListener('scrollUp', () => {
     return;
   }
 
-  // Guided tour
+  // Guided tour — let the wheel scroll the text box, don't change steps
   if (tourActive) {
-    tourBack();
+    const _tb = document.getElementById('tour-card-body');
+    if (_tb) _tb.scrollTop = Math.max(0, _tb.scrollTop - 80);
     return;
   }
 
@@ -10713,9 +10754,10 @@ window.addEventListener('scrollDown', () => {
     return;
   }
 
-  // Guided tour
+  // Guided tour — let the wheel scroll the text box, don't change steps
   if (tourActive) {
-    tourNext();
+    const _tb = document.getElementById('tour-card-body');
+    if (_tb) _tb.scrollTop = Math.min(_tb.scrollHeight - _tb.clientHeight, _tb.scrollTop + 80);
     return;
   }
 
