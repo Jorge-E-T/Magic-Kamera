@@ -1399,6 +1399,9 @@
                          <p class="tutorial-text">
                             <strong>Program not resetting database:</strong> After you reset any portion of the database, you MUST restart the program for the settings to be reset. Otherwise, you will get incorrect settings or visual inconsistencies. 
                         </p>
+                         <p class="tutorial-text">
+                            <strong>Image import failed:</strong> When importing images using the QR code, you may get an import failed error importing said image. This may be for several reasons. Sometimes the qr code link expired, the image is unsuitable, or the download services are unavailable. However, try refreshing the qr code link or resizing the image to different vertical/horizontal dimensions and try again.
+                        </p>
                         <p class="tutorial-text">
                             <strong>AI transformation not working:</strong> If you took a picture and the rabbit did not respond indicating picture is being transformed/prepared, first check your settings to see if NO MAGIC mode is enabled. Disable if you want the Magic to happen. If this is not the solution, check your network connections. <br>
 All of the presets are optimized to avoid "camera ran dry" or "content filter" issues.  However, if you get a camera ran dry or content filter message-sometimes it helps re-prompting it over and over until you break through the content filter barrier. You may also edit the prompt (avoid using offensive language, and trademark/copyrighted words) to make it content filter friendly. 
@@ -1952,38 +1955,6 @@ All of the presets are optimized to avoid "camera ran dry" or "content filter" i
         }
         fallback('QRCode', 'https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js');
         fallback('jsQR', 'https://unpkg.com/jsqr@1.4.0/dist/jsQR.js');
-      })();
-    </script>
-    <script>
-      // TEMPORARY DIAGNOSTIC — delete this whole block once the import bug is found.
-      (function () {
-        var t0 = Date.now();
-        var firstError = null;
-        function record(msg) {
-          if (firstError) return;
-          firstError = msg;
-          if (Date.now() - t0 > 8000) {
-            try { alert('IMPORT DIAGNOSTIC — first error:\n' + msg); } catch (_) {}
-          }
-        }
-        window.addEventListener('error', function (e) {
-          if (e && e.message) {
-            record(e.message + (e.filename ? ' @ ' + String(e.filename).split('/').pop() + ':' + e.lineno : ''));
-          } else if (e && e.target && (e.target.src || e.target.href)) {
-            record('failed to load: ' + String(e.target.src || e.target.href).split('/').pop());
-          }
-        }, true);
-        window.addEventListener('unhandledrejection', function (e) {
-          record('promise: ' + (e && e.reason && e.reason.message ? e.reason.message : String(e && e.reason)));
-        });
-        setTimeout(function () {
-          try {
-            alert('DIAGNOSTIC STATUS\n' +
-              'QRCode library: ' + (typeof QRCode !== 'undefined' ? 'LOADED' : 'MISSING') + '\n' +
-              'jsQR library: ' + (typeof jsQR !== 'undefined' ? 'LOADED' : 'MISSING') + '\n' +
-              'First error so far: ' + (firstError || 'none'));
-          } catch (_) {}
-        }, 6000);
       })();
     </script>
     <script type="module" src="./src/main.js"></script>

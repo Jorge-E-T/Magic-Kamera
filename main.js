@@ -8136,6 +8136,7 @@ const TOUR_STEPS = [
   { section: 'Tips and Advanced', title: '↑↓ Jump Navigation (Settings)', body: 'In the settings submenu, clicking the up/down arrows once moves one setting. Double-clicking jumps all the way to the top or bottom of the list.' },
   { section: 'Troubleshooting', title: '❌ Camera access denied', body: 'This error will appear at the bottom of your main camera screen if you do not have any active presets, either imported or made with the preset builder.' },
   { section: 'Troubleshooting', title: '❌ Image stuck in queue status', body: 'This error will occur if you attempt to take a picture without a preset in your menu preset list. To clear, go to Reset Database in the settings submenu. Click the Photo Queue button and then click apply.' },
+  { section: 'Troubleshooting', title: '❌ Image import failed', body: 'This error may appear when importing images using the QR code. Causes: the qr code link expired, the download services are unavailable, or the image is unsuitable as sized. Refresh the link or resize the image to different dimensions and retry.' },
   { section: 'Done!', title: '🎉 Tour Complete!', body: 'That\'s Magic Kamera. Now go make magic! This tour or the text tutorial in this menu is here if you need a refresher. If you come across The One Ron G, The One Hashtag Cyber or The One Rabbit Jesus, tell them you enjoy this program.' },
 ];
 
@@ -17037,6 +17038,12 @@ window.startGuidedTour = startGuidedTour;
 
 // Upload image to gofile.io
 async function uploadViewerImage() {
+  // FAILSAFE: if the QRCode library never loaded, say so instead of
+  // uploading an image we cannot turn into a code.
+  if (typeof QRCode !== 'function') {
+    showGalleryStatusMessage('QR library failed to load — cannot create export code', 'error', 4000);
+    return;
+  }
   if (currentViewerImageIndex < 0) return;
   
   const statusElement = document.getElementById('status');
@@ -17798,6 +17805,7 @@ async function importFromQRCode() {
     ];
 
     let blob = null;
+    const verdicts = [];
 
     for (let i = 0; i < proxies.length; i++) {
       try {
@@ -17823,14 +17831,26 @@ async function importFromQRCode() {
             updateQRScannerStatus('Download successful!', 'success');
             break;
           }
+          // Record what this method actually returned, for the failure toast
+          let kind = 'notimg';
+          try {
+            const b0 = new Uint8Array(await candidate.slice(0, 1).arrayBuffer())[0];
+            if (candidate.size === 0) kind = 'empty';
+            else if (b0 === 0x3C) kind = 'html';
+            else if (b0 === 0x7B || b0 === 0x5B) kind = 'json';
+          } catch (e) {}
+          verdicts.push((i + 1) + ':' + kind + Math.round(candidate.size / 1024) + 'KB');
+        } else {
+          verdicts.push((i + 1) + ':http' + res.status);
         }
       } catch (error) {
+        verdicts.push((i + 1) + ':' + (error && error.name === 'AbortError' ? 'timeout' : 'net'));
         continue; // Try next proxy
       }
     }
 
     if (!blob) {
-      throw new Error('All download methods failed — the link may be expired, or the download services are unavailable. Check the URL and try again.');
+      throw new Error('All download methods failed — the link may be expired, or the download services are unavailable. [' + verdicts.join(' ') + ']');
     }
 
     updateQRScannerStatus('Reading image data...', '');
