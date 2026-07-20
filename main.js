@@ -556,6 +556,47 @@ let editingStyleIndex = -1;
 let isOnline = navigator.onLine;
 let photoQueue = [];
 let isSyncing = false;
+
+// ── DEFERRED CREDIT CELEBRATION ──
+// Credits are earned (banked to storage) the instant a preset is used, online
+// or offline. But the *celebration* (chime + popup) is deferred: it fires only
+// once the photos that earned it have actually SENT — i.e. when the sync queue
+// fully drains. This tally accumulates newly-earned credits until then, and
+// survives app restarts so a credit earned while offline still gets celebrated
+// on the next successful sync. Choice: all pending credits show as ONE toast.
+const PENDING_CREDIT_KEY = 'r1_pending_credit_celebration';
+function addPendingCreditCelebration(count) {
+  if (!count || count < 1) return;
+  let cur = 0;
+  try { cur = parseInt(localStorage.getItem(PENDING_CREDIT_KEY) || '0', 10) || 0; } catch (e) {}
+  try { localStorage.setItem(PENDING_CREDIT_KEY, String(cur + count)); } catch (e) {}
+}
+// Shows the combined celebration for everything that just sent, then clears the
+// tally. Uses the camera-screen toast if the gallery viewer isn't open, or the
+// gallery flash if it is — so the message matches whatever screen you're on.
+function flushPendingCreditCelebration() {
+  let pending = 0;
+  try { pending = parseInt(localStorage.getItem(PENDING_CREDIT_KEY) || '0', 10) || 0; } catch (e) {}
+  if (pending < 1) return;
+  try { localStorage.removeItem(PENDING_CREDIT_KEY); } catch (e) {}
+  const total = getCredits();
+  const msg = `🪙 ${pending > 1 ? pending + ' Credits' : 'Credit'} Earned!\n(${total} total)`;
+  const creditsEl = document.getElementById('import-credits-display');
+  if (creditsEl) creditsEl.textContent = `Credits: ${total}`;
+  playTaDaSound();
+  const viewer = document.getElementById('image-viewer');
+  const viewerOpen = viewer && viewer.style.display !== 'none' && viewer.style.display !== '';
+  if (viewerOpen && typeof showGalleryCreditFlash === 'function') {
+    showGalleryCreditFlash(msg);
+  } else if (typeof showStyleReveal === 'function') {
+    showStyleReveal(msg);
+    if (statusElement) {
+      const prev = statusElement.textContent;
+      statusElement.textContent = `🪙 ${pending > 1 ? pending + ' credits' : 'credit'} earned! You have ${total} credit${total !== 1 ? 's' : ''}`;
+      setTimeout(() => { if (statusElement) statusElement.textContent = prev || ''; }, 4000);
+    }
+  }
+}
 let _connectionMonitoringActive = false;
 
 // Scroll debouncing variables
@@ -2788,10 +2829,8 @@ async function submitMagicTransform() {
         if (totalNewCredits > 0) {
           const creditsEl = document.getElementById('import-credits-display');
           if (creditsEl) creditsEl.textContent = `Credits: ${getCredits()}`;
-          setTimeout(() => {
-            const newTotal = getCredits();
-            showGalleryCreditFlash(`🪙 ${totalNewCredits > 1 ? totalNewCredits + ' Credits' : 'Credit'} Earned!\n(${newTotal} total)`);
-          }, 300);
+          // Defer the celebration until these photos actually send.
+          addPendingCreditCelebration(totalNewCredits);
         }
       }
     } catch (e) { /* non-critical */ }
@@ -2875,10 +2914,8 @@ async function submitMagicTransform() {
         if (totalNewCredits > 0) {
           const creditsEl = document.getElementById('import-credits-display');
           if (creditsEl) creditsEl.textContent = `Credits: ${getCredits()}`;
-          setTimeout(() => {
-            const newTotal = getCredits();
-            showGalleryCreditFlash(`🪙 ${totalNewCredits > 1 ? totalNewCredits + ' Credits' : 'Credit'} Earned!\n(${newTotal} total)`);
-          }, 300);
+          // Defer the celebration until these photos actually send.
+          addPendingCreditCelebration(totalNewCredits);
         }
       }
     } catch (e) { /* non-critical */ }
@@ -2996,10 +3033,8 @@ async function submitMagicTransform() {
       if (credited) {
         const creditsEl = document.getElementById('import-credits-display');
         if (creditsEl) creditsEl.textContent = `Credits: ${getCredits()}`;
-        setTimeout(() => {
-          const newTotal = getCredits();
-          showGalleryCreditFlash(`🪙 Credit Earned!\n(${newTotal} total)`);
-        }, 300);
+        // Defer the celebration until this photo actually sends.
+        addPendingCreditCelebration(1);
       }
     }
   } catch (e) { /* non-critical */ }
@@ -4170,10 +4205,8 @@ async function applyMultiplePresets() {
       if (totalNewCredits > 0) {
         const creditsEl = document.getElementById('import-credits-display');
         if (creditsEl) creditsEl.textContent = `Credits: ${getCredits()}`;
-        setTimeout(() => {
-          const newTotal = getCredits();
-          showGalleryCreditFlash(`🪙 ${totalNewCredits > 1 ? totalNewCredits + ' Credits' : 'Credit'} Earned!\n(${newTotal} total)`);
-        }, 300);
+        // Defer the celebration until these photos actually send.
+        addPendingCreditCelebration(totalNewCredits);
       }
     }
   } catch (e) { /* non-critical */ }
@@ -7460,10 +7493,8 @@ async function applyGalleryLayerPresets() {
         if (_layerNewCredits > 0) {
           const _layerCreditsEl = document.getElementById('import-credits-display');
           if (_layerCreditsEl) _layerCreditsEl.textContent = `Credits: ${getCredits()}`;
-          setTimeout(() => {
-            const _layerTotal = getCredits();
-            showGalleryCreditFlash(`🪙 ${_layerNewCredits > 1 ? _layerNewCredits + ' Credits' : 'Credit'} Earned!\n(${_layerTotal} total)`);
-          }, 300);
+          // Defer the celebration until these photos actually send.
+          addPendingCreditCelebration(_layerNewCredits);
         }
       }
     } catch (e) { /* non-critical */ }
@@ -9865,16 +9896,8 @@ addToGallery(dataUrl);
         }
 
         if (totalNewCredits > 0) {
-          playTaDaSound();
-          const newTotal = getCredits();
-          setTimeout(() => {
-            showStyleReveal(`🪙 ${totalNewCredits > 1 ? totalNewCredits + ' Credits' : 'Credit'} Earned!\n(${newTotal} total)`);
-            if (statusElement) {
-              const prev = statusElement.textContent;
-              statusElement.textContent = `🪙 Credit${totalNewCredits > 1 ? 's' : ''} earned! You have ${newTotal} credit${newTotal !== 1 ? 's' : ''}`;
-              setTimeout(() => { statusElement.textContent = prev || ''; }, 4000);
-            }
-          }, 1800);
+          // Defer the celebration until this photo actually sends.
+          addPendingCreditCelebration(totalNewCredits);
         }
       }
     } catch (e) { /* non-critical, ignore errors */ }
@@ -10194,6 +10217,9 @@ async function syncQueuedPhotos(fromAutoRetry) {
       ? `All ${successCount} photos saved!`
       : `All ${successCount} photos synced successfully!`;
     statusElement.textContent = message;
+    // Everything queued has now actually sent — celebrate any credits those
+    // photos earned (combined into one toast), whether earned now or offline.
+    flushPendingCreditCelebration();
     setTimeout(() => {
       updatePresetDisplay();
     }, 2000);
