@@ -8059,6 +8059,7 @@ function updateTutorialGlossarySelection() {
 let tourCurrentStep = 0;
 let tourActive = false;
 let tourLaunchedFromSplash = false; // true when the tour was opened from the splash screen
+let _splashLaunchPending = false;   // one-shot: set by the splash button just before it launches the tour
 
 const TOUR_STEPS = [
   { section: 'Welcome', title: '👋 Welcome to the Audio Tour!', body: 'This tour walks you through every feature of Magic Kamera. Use Next and Back to navigate. The scroll wheel or touch screen scrolls the text. Pressing the side button or sound button reads the text of the current step. Tap Skip Tour to exit. Program saves your position.' },
@@ -8201,6 +8202,12 @@ function tourToggleSpeak() {
 }
 
 function startGuidedTour() {
+  // If this call was NOT flagged as coming from the splash button, it came
+  // from the tutorial (including the button's inline onclick), so exit should
+  // return to the tutorial. The splash handler sets _splashLaunchPending true
+  // right before calling; consume it here so the flag is correct either way.
+  tourLaunchedFromSplash = _splashLaunchPending;
+  _splashLaunchPending = false;
   const saved = localStorage.getItem(TOUR_PROGRESS_KEY);
   tourCurrentStep = saved ? parseInt(saved, 10) : 0;
   if (isNaN(tourCurrentStep) || tourCurrentStep >= TOUR_STEPS.length) tourCurrentStep = 0;
@@ -13776,12 +13783,12 @@ window.addEventListener('load', () => {
   const splashTourBtn = document.getElementById('splash-tour-button');
   if (splashTourBtn) {
     splashTourBtn.addEventListener('click', () => {
-      tourLaunchedFromSplash = true;
+      _splashLaunchPending = true;
       startGuidedTour();
     });
     splashTourBtn.addEventListener('touchend', (e) => {
       e.preventDefault();
-      tourLaunchedFromSplash = true;
+      _splashLaunchPending = true;
       startGuidedTour();
     });
   }
@@ -16176,10 +16183,9 @@ const result = await presetImporter.import();
   }
 
   const startTourBtn = document.getElementById('start-guided-tour');
-  const _tutorialTourLaunch = () => { tourLaunchedFromSplash = false; startGuidedTour(); };
   if (startTourBtn) {
-    startTourBtn.addEventListener('click', _tutorialTourLaunch);
-    startTourBtn.addEventListener('touchend', (e) => { e.preventDefault(); _tutorialTourLaunch(); });
+    startTourBtn.addEventListener('click', startGuidedTour);
+    startTourBtn.addEventListener('touchend', (e) => { e.preventDefault(); startGuidedTour(); });
   }
 
   const tourSkipBtn = document.getElementById('tour-btn-skip');
