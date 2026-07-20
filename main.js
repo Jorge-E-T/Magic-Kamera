@@ -8212,7 +8212,13 @@ function startGuidedTour() {
   tourCurrentStep = saved ? parseInt(saved, 10) : 0;
   if (isNaN(tourCurrentStep) || tourCurrentStep >= TOUR_STEPS.length) tourCurrentStep = 0;
   tourActive = true;
-  hideTutorialSubmenu();
+  // Hide the tutorial submenu element directly. We must NOT call
+  // hideTutorialSubmenu() here — it cascades into showSettingsSubmenu(),
+  // which would stage the settings screen behind the tour overlay and make
+  // exit land on settings instead of where the user actually came from.
+  const _tsub = document.getElementById('tutorial-submenu');
+  if (_tsub) _tsub.style.display = 'none';
+  isTutorialSubmenuOpen = false;
   document.getElementById('guided-tour-overlay').style.display = 'block';
   setTimeout(() => { renderTourStep(false); }, 300);
 }
