@@ -8239,7 +8239,10 @@ function endGuidedTour() {
     // press Start normally (which runs the real camera init and removes the
     // splash cleanly). Do NOT open the tutorial menu in this case.
     const _ss = document.getElementById('start-screen');
-    if (_ss) _ss.style.display = 'block';
+    // Use 'flex' (not 'block') — the splash centers its camera animation with
+    // display:flex; align-items:center. An inline 'block' would override that
+    // and shove the animation to the left edge.
+    if (_ss) _ss.style.display = 'flex';
   } else {
     showTutorialSubmenu();
   }
