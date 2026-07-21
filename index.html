@@ -1629,10 +1629,10 @@ All of the presets are optimized to avoid "camera ran dry" or "content filter" i
 
                 <!-- Draw controls (replace brightness/contrast while Draw is active) -->
                 <div class="editor-top-controls" id="editor-draw-controls" style="display: none;">
-                    <button type="button" id="draw-blank-canvas-btn" class="editor-draw-ctrl-btn">⬛<br><span class="editor-draw-ctrl-label">Blank</span></button>
+                    <button type="button" id="draw-blank-canvas-btn" class="editor-draw-ctrl-btn"><span class="draw-ctrl-icon">⬛</span><span class="editor-draw-ctrl-label">Blank</span></button>
                     <input type="hidden" id="draw-color-picker" value="#ffffff">
-                    <button type="button" id="draw-color-btn" class="editor-draw-ctrl-btn hsv-swatch-btn" data-for="draw-color-picker" style="background:#ffffff;"><span class="editor-draw-ctrl-label">Color</span></button>
-                    <button type="button" id="draw-tip-btn" class="editor-draw-ctrl-btn">✏️<br><span class="editor-draw-ctrl-label">Tip</span></button>
+                    <button type="button" id="draw-color-btn" class="editor-draw-ctrl-btn hsv-swatch-btn" data-for="draw-color-picker"><span class="draw-ctrl-swatch" id="draw-color-swatch" style="background:#ffffff;"></span><span class="editor-draw-ctrl-label">Color</span></button>
+                    <button type="button" id="draw-tip-btn" class="editor-draw-ctrl-btn"><span class="draw-tip-preview" id="draw-tip-preview" style="background:#ffffff;"></span><span class="editor-draw-ctrl-label">Tip</span><span class="draw-tip-size-readout" id="draw-tip-size-readout">6</span></button>
                 </div>
 
                 <!-- Pencil tip size selector (opens from Tip button) -->

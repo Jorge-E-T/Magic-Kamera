@@ -15674,12 +15674,29 @@ function closeImageEditor() {
 // ===== DRAW MODE =====
 
 // Enter draw mode: light up the button, swap slider row for draw controls.
+// Keep the Tip button's preview dot (color + relative size), the size
+// readout, and the Color swatch in sync with the current pencil settings.
+function updateDrawTipPreview() {
+  const dot = document.getElementById('draw-tip-preview');
+  if (dot) {
+    dot.style.background = drawColor;
+    const px = Math.max(12, Math.min(26, 10 + drawTipSize * 0.5));
+    dot.style.width = px + 'px';
+    dot.style.height = px + 'px';
+  }
+  const readout = document.getElementById('draw-tip-size-readout');
+  if (readout) readout.textContent = String(drawTipSize);
+  const swatch = document.getElementById('draw-color-swatch');
+  if (swatch) swatch.style.background = drawColor;
+}
+
 function enterDrawMode() {
   isDrawMode = true;
   document.getElementById('draw-button').classList.add('active');
   document.getElementById('editor-adjust-controls').style.display = 'none';
   document.getElementById('editor-draw-controls').style.display = 'flex';
   if (editorCanvas) editorCanvas.classList.add('draw-active');
+  updateDrawTipPreview();
   // If crop mode was active, cancel it — the two tools shouldn't overlap.
   if (isCropMode) {
     isCropMode = false;
@@ -15895,6 +15912,7 @@ document.getElementById('draw-blank-canvas-btn')?.addEventListener('click', draw
 // into drawColor whenever it changes.
 document.getElementById('draw-color-picker')?.addEventListener('input', (e) => {
   drawColor = e.target.value || '#ffffff';
+  updateDrawTipPreview();
 });
 
 // Pencil tip menu: open/close under the Tip button, pick a size.
@@ -15927,6 +15945,7 @@ document.getElementById('draw-tip-btn')?.addEventListener('click', (e) => {
 document.querySelectorAll('.draw-tip-option').forEach(opt => {
   opt.addEventListener('click', () => {
     drawTipSize = parseInt(opt.dataset.size) || 6;
+    updateDrawTipPreview();
     const menu = document.getElementById('draw-tip-menu');
     if (menu) menu.style.display = 'none';
   });
