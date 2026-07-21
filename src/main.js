@@ -8134,6 +8134,7 @@ const TOUR_STEPS = [
   { section: 'Image Editor', title: '⬛ Blank Canvas Button', body: 'The Blank button replaces the photo with a solid black canvas to draw on from scratch. Your original photo is not deleted, it is only set aside. If you skip Blank, you draw directly on the photo instead.' },
   { section: 'Image Editor', title: '🎨 Color and ✏️ Tip Buttons', body: 'The Color button opens the color picker for your pencil, and its little swatch shows the current color, white by default. The Tip button opens a size selector from Fine up to Extra Large, with a preview dot and a size number that match your choices.' },
   { section: 'Image Editor', title: '✏️ Drawing and Fill', body: 'Drag your finger on the canvas to draw. Because the R1 screen is small, a small finger movement covers more canvas so drawing feels natural. To fill, hard press and hold for about half a second: on a blank canvas it fills the whole canvas with your color, and inside a closed shape it fills just that shape. Undo reverses a fill in one step.' },
+  { section: 'Image Editor', title: '⚙️ Draw Settings', body: 'The gear button next to the Edit Image title opens Draw Settings. Here you can adjust the Fill tolerance and contiguous settings and Pencil pressure, tip feel and stabilization settings.' },
   { section: 'Image Editor', title: '✂️ Crop Tool', body: 'Tap Crop to activate. Two orange corner markers appear. Drag them to frame your desired area. Tap Crop again to apply.' },
   { section: 'Image Editor', title: '🔄 Rotate Tool', body: 'Rotates your image 90 degrees clockwise each tap. Tap multiple times to reach 180, 270, or back to 0 degrees.' },
   { section: 'Image Editor', title: '🔍 Sharpen and Auto Correct', body: 'Sharpen makes edges crisper. Auto Correct automatically balances brightness, contrast, and color. Great as a first step before manual tweaks.' },
@@ -11335,7 +11336,7 @@ async function hideUnifiedMenu() {
 const _ALL_RESET_CBS = [
   'reset-cb-custom','reset-cb-edits','reset-cb-queue','reset-cb-visibility',
   'reset-cb-favorites','reset-cb-buttons','reset-cb-credits','reset-cb-pfs','reset-cb-imported','reset-cb-settings',
-  'reset-cb-nomagic','reset-cb-manualopts','reset-cb-masterprompt','reset-cb-gallery'
+  'reset-cb-nomagic','reset-cb-manualopts','reset-cb-masterprompt','reset-cb-drawsettings','reset-cb-gallery'
 ];
 
 function showResetDatabaseSubmenu() {
@@ -11388,12 +11389,14 @@ function _resetDbShowConfirm() {
     nomagic:      '• No Magic Mode turned off',
     manualopts:   '• Manually Selected Options turned off',
     masterprompt: '• Master Prompt cleared and disabled',
+    drawsettings: '• Draw settings reset to default',
     gallery:      '• ⚠️ALL IMAGES AND FOLDERS PERMANENTLY DELETED'
   };
   const lines = ['The following will be permanently reset:\n'];
   Object.entries(map).forEach(([k, v]) => { if (checks[k]) lines.push(v); });
   if (checks.settings && !checks.favorites) lines.push('• Favorites cleared');
   if (checks.settings && !checks.pfs) lines.push('• Preset file settings reset to default');
+  if (checks.settings && !checks.drawsettings) lines.push('• Draw settings reset to default');
   lines.push('\nThis cannot be undone.');
   document.getElementById('reset-db-confirm-text').textContent = lines.join('\n');
   document.getElementById('reset-db-confirm-overlay').style.display = 'flex';
@@ -11701,6 +11704,23 @@ YOU MUST RESTART PROGRAM!`];
       successLines.push('• Preset file settings reset to default');
     }
   } catch (e) { errors.push('Preset File Settings: ' + e.message); }
+
+  // 15. Draw Settings (fill tolerance/contiguous + pencil pressure/firmness/
+  //     stabilization). Fires on its own checkbox OR as part of All Settings.
+  try {
+    if (checks.drawsettings || checks.settings) {
+      drawFillTolerance = 32;     // 13%
+      drawFillContiguous = true;  // On
+      drawPressure = 1.6;         // Medium
+      drawFirmness = 1.0;         // Firm
+      drawStabilization = 0;      // Off
+      saveDrawSettings();
+      // Update the modal controls live so the change is visible immediately,
+      // without needing to restart the program.
+      if (typeof syncDrawSettingsControls === 'function') syncDrawSettingsControls();
+      successLines.push('• Draw settings reset to default');
+    }
+  } catch (e) { errors.push('Draw Settings: ' + e.message); }
 
   // ── Re-render all preset lists immediately ──────────────────────────────
   try {
