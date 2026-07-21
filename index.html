@@ -1629,6 +1629,7 @@ All of the presets are optimized to avoid "camera ran dry" or "content filter" i
                 <div class="image-editor-header">
                     <h3>Edit Image</h3>
                     <div class="editor-header-buttons">
+                        <button id="draw-settings-button" class="close-button" title="Draw settings">⚙</button>
                         <button id="undo-edit-button" class="editor-header-undo-button">↶ Undo</button>
                         <button id="save-edit-button" class="editor-header-save-button">💾 Save</button>
                         <button id="close-image-editor" class="close-button">×</button>
@@ -1655,6 +1656,62 @@ All of the presets are optimized to avoid "camera ran dry" or "content filter" i
                     <input type="hidden" id="draw-color-picker" value="#ffffff">
                     <button type="button" id="draw-color-btn" class="editor-draw-ctrl-btn hsv-swatch-btn" data-for="draw-color-picker"><span class="draw-ctrl-swatch" id="draw-color-swatch" style="background:#ffffff;"></span><span class="editor-draw-ctrl-label">Color</span></button>
                     <button type="button" id="draw-tip-btn" class="editor-draw-ctrl-btn"><span class="draw-tip-preview" id="draw-tip-preview" style="background:#ffffff;"></span><span class="editor-draw-ctrl-label">Tip</span><span class="draw-tip-size-readout" id="draw-tip-size-readout">6</span></button>
+                </div>
+
+                <!-- Draw Settings modal -->
+                <div id="draw-settings-modal" class="draw-settings-modal" style="display: none;">
+                    <div class="draw-settings-panel">
+                        <div class="draw-settings-header">
+                            <h3>Draw Settings</h3>
+                            <button id="draw-settings-close" class="close-button" title="Close">×</button>
+                        </div>
+                        <div class="draw-settings-body">
+
+                            <div class="draw-settings-group-title">Fill Tool</div>
+
+                            <div class="draw-settings-row">
+                                <label for="draw-set-tolerance">Tolerance <span class="draw-settings-hint">how similar colors must be to fill</span></label>
+                                <div class="draw-settings-control">
+                                    <input type="range" id="draw-set-tolerance" min="0" max="100" step="1" value="13">
+                                    <span id="draw-set-tolerance-val" class="draw-settings-val">13%</span>
+                                </div>
+                            </div>
+
+                            <div class="draw-settings-row">
+                                <label for="draw-set-contiguous">Contiguous <span class="draw-settings-hint">fill only touching pixels</span></label>
+                                <div class="draw-settings-control">
+                                    <input type="checkbox" id="draw-set-contiguous" checked>
+                                </div>
+                            </div>
+
+                            <div class="draw-settings-group-title">Pencil</div>
+
+                            <div class="draw-settings-row">
+                                <label for="draw-set-pressure">Pressure / Sensitivity <span class="draw-settings-hint">light to heavy</span></label>
+                                <div class="draw-settings-control">
+                                    <input type="range" id="draw-set-pressure" min="1" max="5" step="1" value="3">
+                                    <span id="draw-set-pressure-val" class="draw-settings-val">Medium</span>
+                                </div>
+                            </div>
+
+                            <div class="draw-settings-row">
+                                <label for="draw-set-firmness">Tip Feel (Firmness) <span class="draw-settings-hint">soft to firm</span></label>
+                                <div class="draw-settings-control">
+                                    <input type="range" id="draw-set-firmness" min="1" max="5" step="1" value="5">
+                                    <span id="draw-set-firmness-val" class="draw-settings-val">Firm</span>
+                                </div>
+                            </div>
+
+                            <div class="draw-settings-row">
+                                <label for="draw-set-stabilization">Stabilization <span class="draw-settings-hint">smooths jittery lines</span></label>
+                                <div class="draw-settings-control">
+                                    <input type="range" id="draw-set-stabilization" min="0" max="5" step="1" value="0">
+                                    <span id="draw-set-stabilization-val" class="draw-settings-val">Off</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Pencil tip size selector (opens from Tip button) -->
