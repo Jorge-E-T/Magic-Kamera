@@ -4524,6 +4524,108 @@ button:disabled {
     touch-action: none;
     cursor: crosshair;
 }
+
+/* ===== DRAW SETTINGS MODAL ===== */
+.draw-settings-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 400;
+    background: rgba(0, 0, 0, 0.75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.draw-settings-panel {
+    width: 92vw;
+    max-width: 92vw;
+    max-height: 90vh;
+    background: #111;
+    border: 2px solid #FE5F00;
+    border-radius: 3vw;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.7);
+}
+
+.draw-settings-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 3vw;
+    border-bottom: 1px solid #333;
+    flex-shrink: 0;
+}
+
+.draw-settings-header h3 {
+    margin: 0;
+    color: #FE5F00;
+    font-size: 4.5vw;
+}
+
+.draw-settings-body {
+    padding: 3vw;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.draw-settings-group-title {
+    color: #FE5F00;
+    font-size: 3.4vw;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 2vw 0 1.5vw 0;
+    border-bottom: 1px solid #333;
+    padding-bottom: 1vw;
+}
+
+.draw-settings-row {
+    margin-bottom: 3.5vw;
+}
+
+.draw-settings-row > label {
+    display: block;
+    color: #fff;
+    font-size: 3.4vw;
+    font-weight: 600;
+    margin-bottom: 1.5vw;
+}
+
+.draw-settings-hint {
+    display: block;
+    color: #999;
+    font-size: 2.6vw;
+    font-weight: 400;
+    margin-top: 0.4vw;
+}
+
+.draw-settings-control {
+    display: flex;
+    align-items: center;
+    gap: 3vw;
+}
+
+.draw-settings-control input[type="range"] {
+    flex: 1;
+    accent-color: #FE5F00;
+    height: 6vw;
+}
+
+.draw-settings-control input[type="checkbox"] {
+    width: 6vw;
+    height: 6vw;
+    accent-color: #FE5F00;
+}
+
+.draw-settings-val {
+    min-width: 18vw;
+    text-align: right;
+    color: #FE5F00;
+    font-weight: 700;
+    font-size: 3.2vw;
+}
 /* ===== END DRAW MODE CONTROLS ===== */
 
 .editor-slider-group {

@@ -15261,15 +15261,46 @@ let drawLastX = 0, drawLastY = 0;  // last point in CANVAS coordinates
 // hard-pressing inside a closed white circle floods it, stopping at the
 // outline. Tolerance controls how similar a pixel must be to be included.
 let drawFillTolerance = 32;        // 0-255 per-channel similarity threshold
+let drawFillContiguous = true;     // fill only touching pixels (vs whole image)
 let _drawPressTimer = null;        // hard-press timer
 let _drawPressFired = false;       // true once a hard-press action ran
 const DRAW_PRESS_MS = 500;         // how long to hold for a fill
 let _drawPreDotSnapshot = null;    // canvas pixels before the starting dot
 let _drawDownCanvasX = 0, _drawDownCanvasY = 0; // press point in canvas px
 // R1 has a tiny screen, so a small finger move should cover more canvas.
-// Strokes are drawn in canvas space; this multiplier amplifies finger
-// displacement so drawing feels natural rather than cramped. 1 = 1:1.
-const DRAW_SENSITIVITY = 1.6;
+// These settings amplify and smooth finger movement, with defaults that
+// reproduce the original feel. Adjustable via the draw Settings modal.
+let drawPressure = 1.6;        // base multiplier (0.8 light .. 2.6 heavy)
+let drawFirmness = 1.0;        // 0.6 soft .. 1.0 firm (scales pressure)
+let drawStabilization = 0;     // 0 none .. 0.9 max smoothing
+function drawEffectiveSensitivity() {
+  return drawPressure * drawFirmness;
+}
+
+const DRAW_SETTINGS_KEY = 'r1_draw_settings_v1';
+function saveDrawSettings() {
+  try {
+    localStorage.setItem(DRAW_SETTINGS_KEY, JSON.stringify({
+      tol: drawFillTolerance,
+      contig: drawFillContiguous,
+      pressure: drawPressure,
+      firmness: drawFirmness,
+      stab: drawStabilization
+    }));
+  } catch (e) {}
+}
+function loadDrawSettings() {
+  try {
+    const raw = localStorage.getItem(DRAW_SETTINGS_KEY);
+    if (!raw) return;
+    const s = JSON.parse(raw);
+    if (typeof s.tol === 'number') drawFillTolerance = s.tol;
+    if (typeof s.contig === 'boolean') drawFillContiguous = s.contig;
+    if (typeof s.pressure === 'number') drawPressure = s.pressure;
+    if (typeof s.firmness === 'number') drawFirmness = s.firmness;
+    if (typeof s.stab === 'number') drawStabilization = s.stab;
+  } catch (e) {}
+}
 
 // Open image editor
 function openImageEditor() {
@@ -15736,6 +15767,52 @@ function toggleDrawMode() {
   if (isDrawMode) exitDrawMode(); else enterDrawMode();
 }
 
+// ===== DRAW SETTINGS MODAL =====
+// Opens as an overlay on top of the editor without disturbing editor state,
+// so closing it returns the user exactly where they were.
+function openDrawSettings() {
+  const modal = document.getElementById('draw-settings-modal');
+  if (!modal) return;
+  syncDrawSettingsControls();
+  modal.style.display = 'flex';
+}
+function closeDrawSettings() {
+  const modal = document.getElementById('draw-settings-modal');
+  if (modal) modal.style.display = 'none';
+}
+
+function syncDrawSettingsControls() {
+  const tolPct = Math.round((drawFillTolerance / 255) * 100);
+  const tolSlider = document.getElementById('draw-set-tolerance');
+  const tolVal = document.getElementById('draw-set-tolerance-val');
+  if (tolSlider) tolSlider.value = tolPct;
+  if (tolVal) tolVal.textContent = tolPct + '%';
+
+  const contig = document.getElementById('draw-set-contiguous');
+  if (contig) contig.checked = !!drawFillContiguous;
+
+  const pSlider = document.getElementById('draw-set-pressure');
+  const pVal = document.getElementById('draw-set-pressure-val');
+  const pLabels = ['Light', 'Med-Light', 'Medium', 'Med-Heavy', 'Heavy'];
+  const pStep = Math.round(((drawPressure - 0.8) / (2.6 - 0.8)) * 4) + 1;
+  if (pSlider) pSlider.value = Math.min(5, Math.max(1, pStep));
+  if (pVal) pVal.textContent = pLabels[Math.min(5, Math.max(1, pStep)) - 1];
+
+  const fSlider = document.getElementById('draw-set-firmness');
+  const fVal = document.getElementById('draw-set-firmness-val');
+  const fLabels = ['Soft', 'Med-Soft', 'Medium', 'Med-Firm', 'Firm'];
+  const fStep = Math.round(((drawFirmness - 0.6) / (1.0 - 0.6)) * 4) + 1;
+  if (fSlider) fSlider.value = Math.min(5, Math.max(1, fStep));
+  if (fVal) fVal.textContent = fLabels[Math.min(5, Math.max(1, fStep)) - 1];
+
+  const sSlider = document.getElementById('draw-set-stabilization');
+  const sVal = document.getElementById('draw-set-stabilization-val');
+  const sLabels = ['Off', 'Low', 'Medium', 'High', 'Very High', 'Max'];
+  const sStep = Math.round((drawStabilization / 0.9) * 5);
+  if (sSlider) sSlider.value = Math.min(5, Math.max(0, sStep));
+  if (sVal) sVal.textContent = sLabels[Math.min(5, Math.max(0, sStep))];
+}
+
 // Replace the working image with a solid black canvas of the same size.
 // The original gallery image is untouched (it stays in the gallery); only
 // the editor's working copy is swapped, so nothing is deleted.
@@ -15792,9 +15869,16 @@ function drawPointerMove(e) {
   if (!isDrawMode || !isDrawing || !editorCtx) return;
   e.preventDefault();
   const p = drawEventToCanvasXY(e);
-  // Amplify displacement from the last point for the small R1 screen.
-  const dx = (p.x - drawLastX) * DRAW_SENSITIVITY;
-  const dy = (p.y - drawLastY) * DRAW_SENSITIVITY;
+  // Amplify displacement from the last point, scaled by pressure/firmness.
+  const sens = drawEffectiveSensitivity();
+  let dx = (p.x - drawLastX) * sens;
+  let dy = (p.y - drawLastY) * sens;
+  // Stabilization damps each step to smooth out hand jitter.
+  if (drawStabilization > 0) {
+    const k = 1 - drawStabilization;
+    dx *= k;
+    dy *= k;
+  }
   const nx = drawLastX + dx;
   const ny = drawLastY + dy;
   editorCtx.beginPath();
@@ -15847,6 +15931,20 @@ function drawFloodFill(sx, sy) {
   function matches(i) {
     const dr = d[i] - sr, dg = d[i + 1] - sg, db = d[i + 2] - sb;
     return (dr * dr + dg * dg + db * db) <= tolSq;
+  }
+
+  // GLOBAL (non-contiguous) mode: replace every matching pixel anywhere in
+  // the image, regardless of whether it touches the start point.
+  if (!drawFillContiguous) {
+    for (let i = 0; i < w * h; i++) {
+      const p = i * 4;
+      const dr = d[p] - sr, dg = d[p + 1] - sg, db = d[p + 2] - sb;
+      if ((dr * dr + dg * dg + db * db) <= tolSq) {
+        d[p] = fr; d[p + 1] = fg; d[p + 2] = fb; d[p + 3] = 255;
+      }
+    }
+    editorCtx.putImageData(img, 0, 0);
+    return;
   }
 
   // Scanline flood fill (fast, low memory) using an explicit stack.
@@ -16012,6 +16110,58 @@ document.getElementById('filter-fade-button')?.addEventListener('click', applyFi
 document.getElementById('draw-button')?.addEventListener('click', toggleDrawMode);
 document.getElementById('draw-blank-canvas-btn')?.addEventListener('click', drawBlankCanvas);
 
+// Load saved draw settings once at startup.
+loadDrawSettings();
+
+// Draw Settings modal: open button (editor header) + close button.
+document.getElementById('draw-settings-button')?.addEventListener('click', openDrawSettings);
+document.getElementById('draw-settings-close')?.addEventListener('click', closeDrawSettings);
+
+// Tolerance (percentage 0-100 -> 0-255)
+document.getElementById('draw-set-tolerance')?.addEventListener('input', (e) => {
+  const pct = parseInt(e.target.value) || 0;
+  drawFillTolerance = Math.round((pct / 100) * 255);
+  const v = document.getElementById('draw-set-tolerance-val');
+  if (v) v.textContent = pct + '%';
+  saveDrawSettings();
+});
+
+// Contiguous on/off
+document.getElementById('draw-set-contiguous')?.addEventListener('change', (e) => {
+  drawFillContiguous = !!e.target.checked;
+  saveDrawSettings();
+});
+
+// Pressure (1-5 -> 0.8..2.6)
+document.getElementById('draw-set-pressure')?.addEventListener('input', (e) => {
+  const step = parseInt(e.target.value) || 3;
+  drawPressure = 0.8 + ((step - 1) / 4) * (2.6 - 0.8);
+  const labels = ['Light', 'Med-Light', 'Medium', 'Med-Heavy', 'Heavy'];
+  const v = document.getElementById('draw-set-pressure-val');
+  if (v) v.textContent = labels[step - 1];
+  saveDrawSettings();
+});
+
+// Firmness / Tip Feel (1-5 -> 0.6..1.0)
+document.getElementById('draw-set-firmness')?.addEventListener('input', (e) => {
+  const step = parseInt(e.target.value) || 5;
+  drawFirmness = 0.6 + ((step - 1) / 4) * (1.0 - 0.6);
+  const labels = ['Soft', 'Med-Soft', 'Medium', 'Med-Firm', 'Firm'];
+  const v = document.getElementById('draw-set-firmness-val');
+  if (v) v.textContent = labels[step - 1];
+  saveDrawSettings();
+});
+
+// Stabilization / Streamline (0-5 -> 0..0.9)
+document.getElementById('draw-set-stabilization')?.addEventListener('input', (e) => {
+  const step = parseInt(e.target.value) || 0;
+  drawStabilization = (step / 5) * 0.9;
+  const labels = ['Off', 'Low', 'Medium', 'High', 'Very High', 'Max'];
+  const v = document.getElementById('draw-set-stabilization-val');
+  if (v) v.textContent = labels[step];
+  saveDrawSettings();
+});
+
 // Pencil color: the hidden #draw-color-picker feeds the shared HSV picker
 // (its swatch button carries data-for="draw-color-picker"). Mirror its value
 // into drawColor whenever it changes.
@@ -16141,11 +16291,18 @@ document.getElementById('contrast-slider')?.addEventListener('input', (e) => {
 // Drag crop corners
 let draggedCorner = null;
 
+let _cropGrabOffX = 0, _cropGrabOffY = 0;
 document.querySelectorAll('.crop-corner').forEach(corner => {
   corner.addEventListener('touchstart', (e) => {
     e.preventDefault();
     draggedCorner = corner;
-  });
+    // Record where within the handle the finger landed, so the corner tracks
+    // the finger smoothly from the first move instead of snapping/jumping.
+    const t = e.touches[0];
+    const r = corner.getBoundingClientRect();
+    _cropGrabOffX = t.clientX - r.left;
+    _cropGrabOffY = t.clientY - r.top;
+  }, { passive: false });
 });
 
 document.addEventListener('touchmove', (e) => {
@@ -16157,9 +16314,10 @@ document.addEventListener('touchmove', (e) => {
   const containerRect = container.getBoundingClientRect();
   const canvasRect = editorCanvas.getBoundingClientRect();
   
-  // Calculate position relative to container
-  let x = touch.clientX - containerRect.left;
-  let y = touch.clientY - containerRect.top;
+  // Position relative to container, minus where the finger grabbed the handle,
+  // so the handle follows the finger without jumping.
+  let x = touch.clientX - containerRect.left - _cropGrabOffX;
+  let y = touch.clientY - containerRect.top - _cropGrabOffY;
   
   // Get canvas boundaries relative to container
   const canvasLeft = canvasRect.left - containerRect.left;
