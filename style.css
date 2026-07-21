@@ -4564,6 +4564,32 @@ button:disabled {
     font-size: 4.5vw;
 }
 
+/* Let the title take remaining space so Default + close sit at the right */
+.draw-settings-header h3 { flex: 1; }
+
+/* Default (reset) button — same height as the close button */
+.draw-settings-default-btn {
+    height: 8vw;
+    min-height: 32px;
+    padding: 0 3vw;
+    margin-right: 2vw;
+    background-color: transparent;
+    color: #FE5F00;
+    border: 2px solid #FE5F00;
+    border-radius: 1vw;
+    font-size: 3.2vw;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.draw-settings-default-btn:active {
+    background-color: #FE5F00;
+    color: #000;
+}
+
 .draw-settings-body {
     padding: 3vw;
     overflow-y: auto;
