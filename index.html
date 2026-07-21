@@ -426,6 +426,13 @@
                         </div>
                     </label>
                     <label class="reset-db-item">
+                        <input type="checkbox" id="reset-cb-drawsettings" class="reset-db-check">
+                        <div class="reset-db-label">
+                            <span class="reset-db-title">Draw Settings</span>
+                            <span class="reset-db-desc">Resets the editor draw tool settings (fill tolerance &amp; contiguous, pencil pressure, tip feel &amp; stabilization) to default</span>
+                        </div>
+                    </label>
+                    <label class="reset-db-item">
                         <input type="checkbox" id="reset-cb-buttons" class="reset-db-check">
                         <div class="reset-db-label">
                             <span class="reset-db-title">Button Settings</span>
@@ -436,7 +443,7 @@
                         <input type="checkbox" id="reset-cb-settings" class="reset-db-check">
                         <div class="reset-db-label">
                             <span class="reset-db-title">All Settings</span>
-                            <span class="reset-db-desc">Resets resolution, aspect ratio, burst, timer, motion detection, manual options, import resolution, preset file settings &amp; button settings to default</span>
+                            <span class="reset-db-desc">Resets resolution, aspect ratio, burst, timer, motion detection, manual options, import resolution, preset file settings, draw settings &amp; button settings to default</span>
                         </div>
                     </label>
                     <label class="reset-db-item">
@@ -1260,6 +1267,18 @@
                             • On a <strong>blank (or solid-colored) canvas</strong>, a hard press fills the entire canvas with the selected color.<br>
                             • Inside a <strong>closed shape</strong> (for example, a circle you drew), a hard press fills only the inside of that shape with the selected color, stopping at the outline. For instance, hard-pressing inside a white circle while red is selected turns the inside of the circle red, leaving the outline intact.<br>
                             The fill spreads only across touching areas of similar color, so it will not “leak” past a solid outline. If you drag your finger instead of holding still, you draw a line rather than filling. A single Undo reverses an entire fill.<br><br>
+
+                            <strong>⚙️ Draw Settings (gear button):</strong><br>
+                            Tap the gear button next to the Edit Image title to open Draw Settings. This modal opens on top of the editor, so when you close it you return exactly where you were — same image, same drawing, nothing lost. Every setting shows its default value in its label, and a <strong>Default</strong> button at the top of the modal resets all draw settings back to default at once. Your settings are remembered between sessions.<br><br>
+
+                            <strong>Fill tool settings:</strong><br>
+                            • <strong>Tolerance (default 13%):</strong> Controls how similar in color a neighboring pixel must be to get filled. A low tolerance fills only colors almost identical to the spot you press; a higher tolerance fills a broader range of similar colors. It is shown as a percentage.<br>
+                            • <strong>Contiguous (default On):</strong> When on, a fill spreads only through pixels that are connected to the spot you press (so it stops at edges — for example, staying inside a shape). When off, the fill replaces every matching color across the entire image at once, even areas that are not touching.<br><br>
+
+                            <strong>Pencil settings:</strong><br>
+                            • <strong>Pressure / Sensitivity (default Medium):</strong> This sets how much your finger movement is amplified into stroke movement, from Light to Heavy. Heavier makes a small finger movement cover more canvas.<br>
+                            • <strong>Tip Feel / Firmness (default Firm):</strong> Adjusts how much effort a stroke takes to reach full strength. A Soft feel responds to a light touch, while a Firm feel requires a firmer, more deliberate drag (kept below the amount that triggers a fill).<br>
+                            • <strong>Stabilization (default Off):</strong> Smooths out jittery hand movements so your lines come out cleaner. Higher settings produce smoother, steadier line art; Off draws exactly what your finger does.<br><br>
 
                             <strong>Draw mode tips:</strong><br>
                             • Set your Color and Tip before you start — the preview dot on the Tip button confirms both at a glance.<br>
