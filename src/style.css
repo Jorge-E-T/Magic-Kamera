@@ -4374,27 +4374,31 @@ button:disabled {
 /* The draw controls row occupies the SAME vertical space as the slider row:
    same padding, same background, same border, so the swap is seamless. */
 #editor-draw-controls {
-    align-items: stretch;
-    gap: 3vw;
-    justify-content: center;
+    align-items: center;
+    gap: 2vw;
 }
 
+/* Buttons lay out icon + label HORIZONTALLY and are height-capped to one
+   slider group's content (label 2.5vw + gap 0.5vw + input 5vw = 8vw), so
+   this row is exactly as tall as the brightness/contrast row it replaces. */
 .editor-draw-ctrl-btn {
     flex: 1;
-    max-width: 26vw;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 0.5vw;
+    gap: 1.2vw;
+    height: 8vw;
+    min-height: 32px;
     background: rgba(30, 30, 30, 0.92);
     color: #FE5F00;
     border: 2px solid #FE5F00;
-    border-radius: 2vw;
-    font-size: 5vw;
+    border-radius: 1.5vw;
+    font-size: 3.6vw;
     line-height: 1;
-    padding: 1vw 0;
+    padding: 0 1vw;
     cursor: pointer;
+    overflow: hidden;
 }
 
 .editor-draw-ctrl-btn:active {
@@ -4402,18 +4406,56 @@ button:disabled {
     color: #000;
 }
 
-/* The Color button shows the chosen color as its background, so keep its
-   label readable with a subtle text shadow and no emoji glyph. */
-#draw-color-btn {
-    font-size: 0;
+.draw-ctrl-icon {
+    font-size: 4vw;
+    line-height: 1;
 }
 
 .editor-draw-ctrl-label {
-    font-size: 2.5vw;
+    font-size: 2.6vw;
     line-height: 1;
     color: #ffffff;
-    display: block;
     text-shadow: 0 1px 2px rgba(0,0,0,0.9);
+    white-space: nowrap;
+}
+
+/* Color button: a swatch square shows the chosen pencil color */
+.draw-ctrl-swatch {
+    width: 4vw;
+    height: 4vw;
+    min-width: 14px;
+    min-height: 14px;
+    border-radius: 1vw;
+    border: 1px solid rgba(255,255,255,0.6);
+    flex-shrink: 0;
+}
+
+/* Tip button: a dot reflecting the CURRENT COLOR (scales a little with size),
+   plus a numeric size readout on the right. */
+.draw-tip-preview {
+    display: inline-block;
+    width: 4vw;
+    height: 4vw;
+    min-width: 12px;
+    min-height: 12px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.6);
+    flex-shrink: 0;
+}
+
+.draw-tip-size-readout {
+    font-size: 2.6vw;
+    line-height: 1;
+    color: #FE5F00;
+    font-weight: bold;
+    margin-left: 0.6vw;
+    min-width: 5vw;
+    text-align: center;
+}
+
+.editor-draw-ctrl-btn:active .editor-draw-ctrl-label,
+.editor-draw-ctrl-btn:active .draw-tip-size-readout {
+    color: #000;
 }
 
 /* Pencil tip size menu — small popup anchored under the Tip button */
