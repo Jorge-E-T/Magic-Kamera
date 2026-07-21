@@ -11712,8 +11712,10 @@ YOU MUST RESTART PROGRAM!`];
   //     controls live and saves, so no restart is needed.
   try {
     if (checks.drawsettings || checks.settings) {
-      resetDrawSettings();
-      successLines.push('• Draw settings reset to default');
+      if (typeof window.resetDrawSettings === 'function') {
+        window.resetDrawSettings();
+        successLines.push('• Draw settings reset to default');
+      }
     }
   } catch (e) { errors.push('Draw Settings: ' + e.message); }
 
@@ -15838,6 +15840,11 @@ function resetDrawSettings() {
   syncDrawSettingsControls();
   saveDrawSettings();
 }
+// Expose the draw-settings reset so code OUTSIDE this load callback (the
+// Reset Database logic lives at the top level) can trigger it. The draw
+// variables and this function are scoped inside this callback, so this is
+// the bridge — the same pattern used for window._applyCamBtnStyles.
+window.resetDrawSettings = resetDrawSettings;
 
 // Replace the working image with a solid black canvas of the same size.
 // The original gallery image is untouched (it stays in the gallery); only
