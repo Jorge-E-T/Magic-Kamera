@@ -11707,17 +11707,12 @@ YOU MUST RESTART PROGRAM!`];
 
   // 15. Draw Settings (fill tolerance/contiguous + pencil pressure/firmness/
   //     stabilization). Fires on its own checkbox OR as part of All Settings.
+  //     Calls the shared resetDrawSettings() helper, which lives next to the
+  //     draw variables so they are in scope; it also refreshes the modal
+  //     controls live and saves, so no restart is needed.
   try {
     if (checks.drawsettings || checks.settings) {
-      drawFillTolerance = 32;     // 13%
-      drawFillContiguous = true;  // On
-      drawPressure = 1.6;         // Medium
-      drawFirmness = 1.0;         // Firm
-      drawStabilization = 0;      // Off
-      saveDrawSettings();
-      // Update the modal controls live so the change is visible immediately,
-      // without needing to restart the program.
-      if (typeof syncDrawSettingsControls === 'function') syncDrawSettingsControls();
+      resetDrawSettings();
       successLines.push('• Draw settings reset to default');
     }
   } catch (e) { errors.push('Draw Settings: ' + e.message); }
