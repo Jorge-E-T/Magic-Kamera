@@ -15264,7 +15264,7 @@ let drawFillTolerance = 32;        // 0-255 per-channel similarity threshold
 let drawFillContiguous = true;     // fill only touching pixels (vs whole image)
 let _drawPressTimer = null;        // hard-press timer
 let _drawPressFired = false;       // true once a hard-press action ran
-const DRAW_PRESS_MS = 550;         // how long to hold for a fill
+const DRAW_PRESS_MS = 500;         // how long to hold for a fill
 let _drawPreDotSnapshot = null;    // canvas pixels before the starting dot
 let _drawDownCanvasX = 0, _drawDownCanvasY = 0; // press point in canvas px
 // R1 has a tiny screen, so a small finger move should cover more canvas.
