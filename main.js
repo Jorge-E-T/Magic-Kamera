@@ -19120,6 +19120,10 @@ console.log('AI Camera Styles app initialized!');
       get: function () { return _v; },
       set: function (v) {
         _v = v;
+        // The draw Color button must stay black with an orange border — its
+        // chosen color shows only in the small inner swatch (handled by
+        // updateDrawTipPreview). So DON'T paint the button itself here.
+        if (id === 'draw-color-picker') return;
         const swatch = document.querySelector('.hsv-swatch-btn[data-for="' + id + '"]');
         if (swatch) swatch.style.background = v;
       }
