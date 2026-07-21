@@ -15251,6 +15251,15 @@ let isDrawing = false;             // a stroke is currently in progress
 let drawColor = '#ffffff';         // current pencil color (default white)
 let drawTipSize = 6;               // current pencil tip size (canvas px baseline)
 let drawLastX = 0, drawLastY = 0;  // last point in CANVAS coordinates
+// Flood fill (paint bucket): triggered by a hard-press on the canvas while
+// draw mode is active. Fills the contiguous region of similar-colored pixels
+// under the finger with the current pencil color, bounded by edges — e.g.
+// hard-pressing inside a closed white circle floods it, stopping at the
+// outline. Tolerance controls how similar a pixel must be to be included.
+let drawFillTolerance = 32;        // 0-255 per-channel similarity threshold
+let _drawPressTimer = null;        // hard-press timer
+let _drawPressFired = false;       // true once a hard-press action ran
+const DRAW_PRESS_MS = 550;         // how long to hold for a fill
 // R1 has a tiny screen, so a small finger move should cover more canvas.
 // Strokes are drawn in canvas space; this multiplier amplifies finger
 // displacement so drawing feels natural rather than cramped. 1 = 1:1.
@@ -15795,6 +15804,85 @@ function drawPointerUp() {
   refreshEditorImage();
 }
 
+// Contiguous flood fill (paint bucket). Starts at (sx,sy) in canvas pixels,
+// replaces the touched region of similarly-colored pixels with drawColor.
+// Uses a tolerance (color similarity) and only spreads to touching pixels
+// (contiguous), so a closed shape is filled but color does not leak past
+// its outline.
+function drawFloodFill(sx, sy) {
+  if (!editorCanvas || !editorCtx) return;
+  const w = editorCanvas.width, h = editorCanvas.height;
+  sx = Math.floor(sx); sy = Math.floor(sy);
+  if (sx < 0 || sy < 0 || sx >= w || sy >= h) return;
+
+  const img = editorCtx.getImageData(0, 0, w, h);
+  const d = img.data;
+  const startIdx = (sy * w + sx) * 4;
+  const sr = d[startIdx], sg = d[startIdx + 1], sb = d[startIdx + 2], sa = d[startIdx + 3];
+
+  // Target fill color (drawColor is a hex string)
+  const fr = parseInt(drawColor.slice(1, 3), 16);
+  const fg = parseInt(drawColor.slice(3, 5), 16);
+  const fb = parseInt(drawColor.slice(5, 7), 16);
+
+  // If the start pixel already equals the fill color, nothing to do.
+  if (sr === fr && sg === fg && sb === fb && sa === 255) return;
+
+  const tol = drawFillTolerance;
+  const tolSq = tol * tol * 3; // compare squared distance across 3 channels
+
+  function matches(i) {
+    const dr = d[i] - sr, dg = d[i + 1] - sg, db = d[i + 2] - sb;
+    return (dr * dr + dg * dg + db * db) <= tolSq;
+  }
+
+  // Scanline flood fill (fast, low memory) using an explicit stack.
+  const stack = [[sx, sy]];
+  const seen = new Uint8Array(w * h);
+  while (stack.length) {
+    let [x, y] = stack.pop();
+    let idx = (y * w + x);
+    // move to the left edge of this run
+    while (x >= 0 && !seen[idx] && matches(idx * 4)) { x--; idx--; }
+    x++; idx++;
+    let spanUp = false, spanDown = false;
+    while (x < w && !seen[idx] && matches(idx * 4)) {
+      // paint
+      const p = idx * 4;
+      d[p] = fr; d[p + 1] = fg; d[p + 2] = fb; d[p + 3] = 255;
+      seen[idx] = 1;
+      // check pixel above
+      if (y > 0) {
+        const upIdx = idx - w;
+        if (!seen[upIdx] && matches(upIdx * 4)) {
+          if (!spanUp) { stack.push([x, y - 1]); spanUp = true; }
+        } else spanUp = false;
+      }
+      // check pixel below
+      if (y < h - 1) {
+        const dnIdx = idx + w;
+        if (!seen[dnIdx] && matches(dnIdx * 4)) {
+          if (!spanDown) { stack.push([x, y + 1]); spanDown = true; }
+        } else spanDown = false;
+      }
+      x++; idx++;
+    }
+  }
+
+  editorCtx.putImageData(img, 0, 0);
+}
+
+// Run a fill at a pointer event position, with an undo snapshot first.
+function drawDoFillAtEvent(e) {
+  if (!isDrawMode || !editorCtx) return;
+  // Cancel any stroke that may have started so the press doesn't also draw.
+  isDrawing = false;
+  saveToHistory();
+  const p = drawEventToCanvasXY(e);
+  drawFloodFill(p.x, p.y);
+  refreshEditorImage();
+}
+
 // ===== CSS FILTER FUNCTIONS (pure canvas — no API call needed) =====
 
 // Helper: commit the current canvas state as a new editorCurrentImage and re-render.
@@ -15965,18 +16053,44 @@ document.addEventListener('pointerdown', (e) => {
 (function wireDrawCanvas() {
   const canvas = document.getElementById('editor-canvas');
   if (!canvas) return;
+  let _pressStartX = 0, _pressStartY = 0;
   canvas.addEventListener('pointerdown', (e) => {
     if (!isDrawMode) return;
     canvas.setPointerCapture(e.pointerId);
+    _drawPressFired = false;
+    _pressStartX = e.clientX; _pressStartY = e.clientY;
+    // Start the hard-press timer: if the finger stays down (and mostly still)
+    // long enough, do a flood fill instead of a stroke.
+    clearTimeout(_drawPressTimer);
+    _drawPressTimer = setTimeout(() => {
+      _drawPressFired = true;
+      drawDoFillAtEvent(e);
+    }, DRAW_PRESS_MS);
     drawPointerDown(e);
   });
   canvas.addEventListener('pointermove', (e) => {
-    if (!isDrawMode || !isDrawing) return;
+    if (!isDrawMode) return;
+    // If the finger moves more than a small amount, it is a stroke, not a
+    // hard-press — cancel the pending fill.
+    const moved = Math.abs(e.clientX - _pressStartX) + Math.abs(e.clientY - _pressStartY);
+    if (moved > 8 && _drawPressTimer) { clearTimeout(_drawPressTimer); _drawPressTimer = null; }
+    if (!isDrawing || _drawPressFired) return;
     drawPointerMove(e);
   });
-  canvas.addEventListener('pointerup', () => { if (isDrawMode) drawPointerUp(); });
-  canvas.addEventListener('pointercancel', () => { if (isDrawMode) drawPointerUp(); });
-  canvas.addEventListener('pointerleave', () => { if (isDrawMode && isDrawing) drawPointerUp(); });
+  canvas.addEventListener('pointerup', () => {
+    if (!isDrawMode) return;
+    clearTimeout(_drawPressTimer); _drawPressTimer = null;
+    if (_drawPressFired) { _drawPressFired = false; isDrawing = false; return; }
+    drawPointerUp();
+  });
+  canvas.addEventListener('pointercancel', () => {
+    clearTimeout(_drawPressTimer); _drawPressTimer = null;
+    if (isDrawMode) drawPointerUp();
+  });
+  canvas.addEventListener('pointerleave', () => {
+    clearTimeout(_drawPressTimer); _drawPressTimer = null;
+    if (isDrawMode && isDrawing) drawPointerUp();
+  });
 })();
 
 // Crop button toggles crop mode, then applies crop on second click
@@ -19060,7 +19174,8 @@ console.log('AI Camera Styles app initialized!');
   });
   document.addEventListener('pointerdown', (e) => {
     if (popup.style.display === 'none') return;
-    if (!popup.contains(e.target) && !e.target.classList.contains('hsv-swatch-btn')) {
+    const onSwatch = e.target.closest && e.target.closest('.hsv-swatch-btn');
+    if (!popup.contains(e.target) && !onSwatch) {
       closePopup();
     }
   }, true);
@@ -19095,9 +19210,14 @@ console.log('AI Camera Styles app initialized!');
     redrawAndCommit();
   }
 
-  // Single delegated click listener for all swatch buttons
+  // Single delegated click listener for all swatch buttons.
+  // Use closest() so taps that land on a child element (e.g. the draw Color
+  // button's inner swatch or its label) still open the picker — previously
+  // those taps hit a child span, missed the class check, and did nothing,
+  // which is why that button sometimes needed a second click.
   document.addEventListener('click', (e) => {
-    if (e.target.classList.contains('hsv-swatch-btn')) openPicker(e.target);
+    const btn = e.target.closest && e.target.closest('.hsv-swatch-btn');
+    if (btn) openPicker(btn);
   });
 
   // --- Patch the .value setter on each hidden input so the swatch
