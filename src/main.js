@@ -15264,7 +15264,7 @@ let drawFillTolerance = 32;        // 0-255 per-channel similarity threshold
 let drawFillContiguous = true;     // fill only touching pixels (vs whole image)
 let _drawPressTimer = null;        // hard-press timer
 let _drawPressFired = false;       // true once a hard-press action ran
-const DRAW_PRESS_MS = 500;         // how long to hold for a fill
+const DRAW_PRESS_MS = 550;         // how long to hold for a fill
 let _drawPreDotSnapshot = null;    // canvas pixels before the starting dot
 let _drawDownCanvasX = 0, _drawDownCanvasY = 0; // press point in canvas px
 // R1 has a tiny screen, so a small finger move should cover more canvas.
@@ -15813,6 +15813,17 @@ function syncDrawSettingsControls() {
   if (sVal) sVal.textContent = sLabels[Math.min(5, Math.max(0, sStep))];
 }
 
+// Reset every draw setting to its default, refresh the controls, and save.
+function resetDrawSettings() {
+  drawFillTolerance = 32;     // 13%
+  drawFillContiguous = true;  // On
+  drawPressure = 1.6;         // Medium
+  drawFirmness = 1.0;         // Firm
+  drawStabilization = 0;      // Off
+  syncDrawSettingsControls();
+  saveDrawSettings();
+}
+
 // Replace the working image with a solid black canvas of the same size.
 // The original gallery image is untouched (it stays in the gallery); only
 // the editor's working copy is swapped, so nothing is deleted.
@@ -16116,6 +16127,7 @@ loadDrawSettings();
 // Draw Settings modal: open button (editor header) + close button.
 document.getElementById('draw-settings-button')?.addEventListener('click', openDrawSettings);
 document.getElementById('draw-settings-close')?.addEventListener('click', closeDrawSettings);
+document.getElementById('draw-settings-default')?.addEventListener('click', resetDrawSettings);
 
 // Tolerance (percentage 0-100 -> 0-255)
 document.getElementById('draw-set-tolerance')?.addEventListener('input', (e) => {
