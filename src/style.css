@@ -4423,8 +4423,8 @@ button:disabled {
 .draw-ctrl-swatch {
     width: 4vw;
     height: 4vw;
-    min-width: 14px;
-    min-height: 14px;
+    min-width: 12px;
+    min-height: 12px;
     border-radius: 1vw;
     border: 1px solid rgba(255,255,255,0.6);
     flex-shrink: 0;
