@@ -15245,6 +15245,17 @@ let isCropMode = false;
 let cropPoint1 = null;
 let cropPoint2 = null;
 
+// ===== DRAW MODE STATE =====
+let isDrawMode = false;            // draw tool toggled on/off
+let isDrawing = false;             // a stroke is currently in progress
+let drawColor = '#ffffff';         // current pencil color (default white)
+let drawTipSize = 6;               // current pencil tip size (canvas px baseline)
+let drawLastX = 0, drawLastY = 0;  // last point in CANVAS coordinates
+// R1 has a tiny screen, so a small finger move should cover more canvas.
+// Strokes are drawn in canvas space; this multiplier amplifies finger
+// displacement so drawing feels natural rather than cramped. 1 = 1:1.
+const DRAW_SENSITIVITY = 1.6;
+
 // Open image editor
 function openImageEditor() {
   const imageToEdit = galleryImages[currentViewerImageIndex];
@@ -15276,6 +15287,9 @@ function openImageEditor() {
     
     renderEditorImage();
     updateUndoButton();
+
+    // Always start with draw mode OFF for a freshly opened image
+    if (isDrawMode) exitDrawMode();
   };
   img.src = imageToEdit.imageBase64;
 }
@@ -15650,6 +15664,118 @@ function closeImageEditor() {
   isCropMode = false;
   document.getElementById('crop-overlay').style.display = 'none';
   document.getElementById('crop-button').classList.remove('active');
+
+  // Reset draw mode
+  if (isDrawMode) exitDrawMode();
+  const tipMenu = document.getElementById('draw-tip-menu');
+  if (tipMenu) tipMenu.style.display = 'none';
+}
+
+// ===== DRAW MODE =====
+
+// Enter draw mode: light up the button, swap slider row for draw controls.
+function enterDrawMode() {
+  isDrawMode = true;
+  document.getElementById('draw-button').classList.add('active');
+  document.getElementById('editor-adjust-controls').style.display = 'none';
+  document.getElementById('editor-draw-controls').style.display = 'flex';
+  if (editorCanvas) editorCanvas.classList.add('draw-active');
+  // If crop mode was active, cancel it — the two tools shouldn't overlap.
+  if (isCropMode) {
+    isCropMode = false;
+    document.getElementById('crop-overlay').style.display = 'none';
+    document.getElementById('crop-button').classList.remove('active');
+  }
+}
+
+// Exit draw mode: un-light the button, restore the slider row.
+function exitDrawMode() {
+  isDrawMode = false;
+  isDrawing = false;
+  document.getElementById('draw-button').classList.remove('active');
+  document.getElementById('editor-draw-controls').style.display = 'none';
+  document.getElementById('editor-adjust-controls').style.display = 'flex';
+  const tipMenu = document.getElementById('draw-tip-menu');
+  if (tipMenu) tipMenu.style.display = 'none';
+  if (editorCanvas) editorCanvas.classList.remove('draw-active');
+}
+
+function toggleDrawMode() {
+  if (isDrawMode) exitDrawMode(); else enterDrawMode();
+}
+
+// Replace the working image with a solid black canvas of the same size.
+// The original gallery image is untouched (it stays in the gallery); only
+// the editor's working copy is swapped, so nothing is deleted.
+function drawBlankCanvas() {
+  if (!editorCanvas || !editorCtx) return;
+  saveToHistory();
+  // Keep whatever dimensions the canvas currently has (image resolution).
+  const w = editorCanvas.width || 1080;
+  const h = editorCanvas.height || 1080;
+  editorCtx.fillStyle = '#000000';
+  editorCtx.fillRect(0, 0, w, h);
+  // Commit this black fill as the new working image so brightness/contrast,
+  // undo, and save all treat it exactly like any other edited image.
+  refreshEditorImage();
+}
+
+// Convert a pointer event to CANVAS pixel coordinates, applying the R1
+// sensitivity amplification around the stroke's starting point.
+function drawEventToCanvasXY(e) {
+  const rect = editorCanvas.getBoundingClientRect();
+  // Displayed size can differ from the canvas's internal pixel size because
+  // CSS scales it to fit — map screen → canvas pixels with this ratio.
+  const scaleX = editorCanvas.width / rect.width;
+  const scaleY = editorCanvas.height / rect.height;
+  const rawX = (e.clientX - rect.left) * scaleX;
+  const rawY = (e.clientY - rect.top) * scaleY;
+  return { x: rawX, y: rawY };
+}
+
+function drawPointerDown(e) {
+  if (!isDrawMode || !editorCtx) return;
+  e.preventDefault();
+  isDrawing = true;
+  // Snapshot BEFORE the stroke so undo removes the whole stroke at once.
+  saveToHistory();
+  const p = drawEventToCanvasXY(e);
+  drawLastX = p.x;
+  drawLastY = p.y;
+  // Draw a dot so a single tap leaves a mark.
+  editorCtx.beginPath();
+  editorCtx.fillStyle = drawColor;
+  editorCtx.arc(p.x, p.y, Math.max(0.5, drawTipSize / 2), 0, 6.2832);
+  editorCtx.fill();
+}
+
+function drawPointerMove(e) {
+  if (!isDrawMode || !isDrawing || !editorCtx) return;
+  e.preventDefault();
+  const p = drawEventToCanvasXY(e);
+  // Amplify displacement from the last point for the small R1 screen.
+  const dx = (p.x - drawLastX) * DRAW_SENSITIVITY;
+  const dy = (p.y - drawLastY) * DRAW_SENSITIVITY;
+  const nx = drawLastX + dx;
+  const ny = drawLastY + dy;
+  editorCtx.beginPath();
+  editorCtx.strokeStyle = drawColor;
+  editorCtx.lineWidth = drawTipSize;
+  editorCtx.lineCap = 'round';
+  editorCtx.lineJoin = 'round';
+  editorCtx.moveTo(drawLastX, drawLastY);
+  editorCtx.lineTo(nx, ny);
+  editorCtx.stroke();
+  drawLastX = nx;
+  drawLastY = ny;
+}
+
+function drawPointerUp() {
+  if (!isDrawing) return;
+  isDrawing = false;
+  // Commit the finished stroke as the new working image so subsequent
+  // filters/adjustments build on top of it and save captures it.
+  refreshEditorImage();
 }
 
 // ===== CSS FILTER FUNCTIONS (pure canvas — no API call needed) =====
@@ -15759,6 +15885,80 @@ document.getElementById('filter-warm-button')?.addEventListener('click', applyFi
 document.getElementById('filter-cool-button')?.addEventListener('click', applyFilterCool);
 document.getElementById('filter-bw-button')?.addEventListener('click', applyFilterBW);
 document.getElementById('filter-fade-button')?.addEventListener('click', applyFilterFade);
+
+// ===== DRAW MODE WIRING =====
+document.getElementById('draw-button')?.addEventListener('click', toggleDrawMode);
+document.getElementById('draw-blank-canvas-btn')?.addEventListener('click', drawBlankCanvas);
+
+// Pencil color: the hidden #draw-color-picker feeds the shared HSV picker
+// (its swatch button carries data-for="draw-color-picker"). Mirror its value
+// into drawColor whenever it changes.
+document.getElementById('draw-color-picker')?.addEventListener('input', (e) => {
+  drawColor = e.target.value || '#ffffff';
+});
+
+// Pencil tip menu: open/close under the Tip button, pick a size.
+document.getElementById('draw-tip-btn')?.addEventListener('click', (e) => {
+  const menu = document.getElementById('draw-tip-menu');
+  if (!menu) return;
+  if (menu.style.display === 'none' || !menu.style.display) {
+    const rect = e.currentTarget.getBoundingClientRect();
+    menu.style.display = 'flex';
+    // Position just below the Tip button, kept on-screen.
+    let left = rect.left;
+    let top = rect.bottom + 4;
+    const mw = menu.offsetWidth || 160;
+    const mh = menu.offsetHeight || 200;
+    if (left + mw > window.innerWidth - 6) left = window.innerWidth - mw - 6;
+    if (top + mh > window.innerHeight - 6) top = rect.top - mh - 4;
+    if (left < 6) left = 6;
+    if (top < 6) top = 6;
+    menu.style.left = left + 'px';
+    menu.style.top = top + 'px';
+    // Highlight the active size
+    menu.querySelectorAll('.draw-tip-option').forEach(opt => {
+      opt.classList.toggle('active', parseInt(opt.dataset.size) === drawTipSize);
+    });
+  } else {
+    menu.style.display = 'none';
+  }
+});
+
+document.querySelectorAll('.draw-tip-option').forEach(opt => {
+  opt.addEventListener('click', () => {
+    drawTipSize = parseInt(opt.dataset.size) || 6;
+    const menu = document.getElementById('draw-tip-menu');
+    if (menu) menu.style.display = 'none';
+  });
+});
+
+// Close the tip menu if the user taps elsewhere while it's open.
+document.addEventListener('pointerdown', (e) => {
+  const menu = document.getElementById('draw-tip-menu');
+  if (!menu || menu.style.display === 'none') return;
+  if (!menu.contains(e.target) && e.target.id !== 'draw-tip-btn') {
+    menu.style.display = 'none';
+  }
+}, true);
+
+// Drawing pointer events on the editor canvas. Registered once; they no-op
+// unless draw mode is active, so they never interfere with crop/other tools.
+(function wireDrawCanvas() {
+  const canvas = document.getElementById('editor-canvas');
+  if (!canvas) return;
+  canvas.addEventListener('pointerdown', (e) => {
+    if (!isDrawMode) return;
+    canvas.setPointerCapture(e.pointerId);
+    drawPointerDown(e);
+  });
+  canvas.addEventListener('pointermove', (e) => {
+    if (!isDrawMode || !isDrawing) return;
+    drawPointerMove(e);
+  });
+  canvas.addEventListener('pointerup', () => { if (isDrawMode) drawPointerUp(); });
+  canvas.addEventListener('pointercancel', () => { if (isDrawMode) drawPointerUp(); });
+  canvas.addEventListener('pointerleave', () => { if (isDrawMode && isDrawing) drawPointerUp(); });
+})();
 
 // Crop button toggles crop mode, then applies crop on second click
 let cropClickCount = 0;
@@ -17590,7 +17790,10 @@ function _flashViewerHeader(message, duration, multiline, withSound) {
 }
 
 function showGalleryCreditFlash(message) {
-  _flashViewerHeader(message, 3500, true, true);
+  // Sound is played by flushPendingCreditCelebration (the single chime source
+  // for both camera and gallery). Pass withSound=false here so the gallery
+  // doesn't chime a second time — that was the duplicate/echo.
+  _flashViewerHeader(message, 3500, true, false);
 }
 
 // Brief static message for when a preset gets queued while offline — nothing
@@ -18887,7 +19090,8 @@ console.log('AI Camera Styles app initialized!');
     'cam-btn-border-color-picker',
     'viewer-btn-color-picker',
     'viewer-btn-font-color-picker',
-    'viewer-btn-border-color-picker'
+    'viewer-btn-border-color-picker',
+    'draw-color-picker'
   ].forEach(function (id) {
     const el = document.getElementById(id);
     if (!el) return;

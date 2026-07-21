@@ -1614,7 +1614,7 @@ All of the presets are optimized to avoid "camera ran dry" or "content filter" i
                 </div>
                 
                 <!-- Brightness and Contrast Sliders (on top of image) -->
-                <div class="editor-top-controls">
+                <div class="editor-top-controls" id="editor-adjust-controls">
                     <div class="editor-slider-group">
                         <label>Brightness</label>
                         <input type="range" id="brightness-slider" min="-100" max="100" value="0" step="1">
@@ -1625,6 +1625,23 @@ All of the presets are optimized to avoid "camera ran dry" or "content filter" i
                         <input type="range" id="contrast-slider" min="-100" max="100" value="0" step="1">
                         <span id="contrast-value">0</span>
                     </div>
+                </div>
+
+                <!-- Draw controls (replace brightness/contrast while Draw is active) -->
+                <div class="editor-top-controls" id="editor-draw-controls" style="display: none;">
+                    <button type="button" id="draw-blank-canvas-btn" class="editor-draw-ctrl-btn">⬛<br><span class="editor-draw-ctrl-label">Blank</span></button>
+                    <input type="hidden" id="draw-color-picker" value="#ffffff">
+                    <button type="button" id="draw-color-btn" class="editor-draw-ctrl-btn hsv-swatch-btn" data-for="draw-color-picker" style="background:#ffffff;"><span class="editor-draw-ctrl-label">Color</span></button>
+                    <button type="button" id="draw-tip-btn" class="editor-draw-ctrl-btn">✏️<br><span class="editor-draw-ctrl-label">Tip</span></button>
+                </div>
+
+                <!-- Pencil tip size selector (opens from Tip button) -->
+                <div id="draw-tip-menu" class="draw-tip-menu" style="display: none;">
+                    <button type="button" class="draw-tip-option" data-size="3"><span class="draw-tip-dot" style="width:3px;height:3px;"></span>Fine</button>
+                    <button type="button" class="draw-tip-option" data-size="6"><span class="draw-tip-dot" style="width:6px;height:6px;"></span>Small</button>
+                    <button type="button" class="draw-tip-option" data-size="12"><span class="draw-tip-dot" style="width:12px;height:12px;"></span>Medium</button>
+                    <button type="button" class="draw-tip-option" data-size="22"><span class="draw-tip-dot" style="width:22px;height:22px;"></span>Large</button>
+                    <button type="button" class="draw-tip-option" data-size="36"><span class="draw-tip-dot" style="width:36px;height:36px;"></span>Xtra Large</button>
                 </div>
                 
                 <!-- Main Editor Area: Image Left, Buttons Right -->
@@ -1642,6 +1659,7 @@ All of the presets are optimized to avoid "camera ran dry" or "content filter" i
                     <!-- Edit Buttons Carousel (right side) — always visible, touch-scrollable -->
                     <div class="editor-btn-carousel">
                         <div class="editor-btn-carousel-track">
+                            <button id="draw-button" class="editor-carousel-btn">✏️<br><span class="editor-carousel-label">Draw</span></button>
                             <button id="crop-button" class="editor-carousel-btn">✂️<br><span class="editor-carousel-label">Crop</span></button>
                             <button id="rotate-button" class="editor-carousel-btn">🔄<br><span class="editor-carousel-label">Rotate</span></button>
                             <button id="sharpen-button" class="editor-carousel-btn">🔍<br><span class="editor-carousel-label">Sharpen</span></button>
