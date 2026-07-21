@@ -4423,8 +4423,8 @@ button:disabled {
 .draw-ctrl-swatch {
     width: 4vw;
     height: 4vw;
-    min-width: 12px;
-    min-height: 12px;
+    min-width: 14px;
+    min-height: 14px;
     border-radius: 1vw;
     border: 1px solid rgba(255,255,255,0.6);
     flex-shrink: 0;
@@ -4456,6 +4456,19 @@ button:disabled {
 .editor-draw-ctrl-btn:active .editor-draw-ctrl-label,
 .editor-draw-ctrl-btn:active .draw-tip-size-readout {
     color: #000;
+}
+
+/* The Color button also carries .hsv-swatch-btn (to reuse the shared color
+   picker), and that class hard-codes width:52px; height:38px — which is
+   taller than the other two draw buttons and pushed the image/canvas down.
+   Re-assert the shared draw-button sizing on THIS button only, so all three
+   are identical. The swatch buttons on the button-color settings screens are
+   untouched and keep their original fixed size. */
+#draw-color-btn.hsv-swatch-btn {
+    width: auto;
+    height: 8vw;
+    min-height: 32px;
+    box-shadow: none;
 }
 
 /* Pencil tip size menu — small popup anchored under the Tip button */
