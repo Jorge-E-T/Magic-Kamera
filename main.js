@@ -15259,7 +15259,9 @@ let drawLastX = 0, drawLastY = 0;  // last point in CANVAS coordinates
 let drawFillTolerance = 32;        // 0-255 per-channel similarity threshold
 let _drawPressTimer = null;        // hard-press timer
 let _drawPressFired = false;       // true once a hard-press action ran
-const DRAW_PRESS_MS = 550;         // how long to hold for a fill
+const DRAW_PRESS_MS = 500;         // how long to hold for a fill
+let _drawPreDotSnapshot = null;    // canvas pixels before the starting dot
+let _drawDownCanvasX = 0, _drawDownCanvasY = 0; // press point in canvas px
 // R1 has a tiny screen, so a small finger move should cover more canvas.
 // Strokes are drawn in canvas space; this multiplier amplifies finger
 // displacement so drawing feels natural rather than cramped. 1 = 1:1.
@@ -15765,9 +15767,16 @@ function drawPointerDown(e) {
   isDrawing = true;
   // Snapshot BEFORE the stroke so undo removes the whole stroke at once.
   saveToHistory();
+  // Also keep a pixel snapshot of the canvas BEFORE the starting dot, so a
+  // hard-press-to-fill can wipe the dot it just drew and fill cleanly.
+  try {
+    _drawPreDotSnapshot = editorCtx.getImageData(0, 0, editorCanvas.width, editorCanvas.height);
+  } catch (err) { _drawPreDotSnapshot = null; }
   const p = drawEventToCanvasXY(e);
   drawLastX = p.x;
   drawLastY = p.y;
+  _drawDownCanvasX = p.x;
+  _drawDownCanvasY = p.y;
   // Draw a dot so a single tap leaves a mark.
   editorCtx.beginPath();
   editorCtx.fillStyle = drawColor;
@@ -15872,14 +15881,18 @@ function drawFloodFill(sx, sy) {
   editorCtx.putImageData(img, 0, 0);
 }
 
-// Run a fill at a pointer event position, with an undo snapshot first.
+// Run a fill at the press location. Removes the tiny starting dot first (by
+// restoring the pre-dot snapshot), then floods from the exact canvas-space
+// point recorded on pointerdown. History was already snapshotted on
+// pointerdown, so undo reverses the whole fill in one step.
 function drawDoFillAtEvent(e) {
   if (!isDrawMode || !editorCtx) return;
-  // Cancel any stroke that may have started so the press doesn't also draw.
-  isDrawing = false;
-  saveToHistory();
-  const p = drawEventToCanvasXY(e);
-  drawFloodFill(p.x, p.y);
+  isDrawing = false; // a fill is not a stroke
+  // Wipe the starting dot so it doesn't remain under/around the fill.
+  if (_drawPreDotSnapshot) {
+    try { editorCtx.putImageData(_drawPreDotSnapshot, 0, 0); } catch (err) {}
+  }
+  drawFloodFill(_drawDownCanvasX, _drawDownCanvasY);
   refreshEditorImage();
 }
 
@@ -16070,12 +16083,15 @@ document.addEventListener('pointerdown', (e) => {
   });
   canvas.addEventListener('pointermove', (e) => {
     if (!isDrawMode) return;
-    // If the finger moves more than a small amount, it is a stroke, not a
-    // hard-press — cancel the pending fill.
+    if (_drawPressFired) return; // a fill already happened for this press
     const moved = Math.abs(e.clientX - _pressStartX) + Math.abs(e.clientY - _pressStartY);
-    if (moved > 8 && _drawPressTimer) { clearTimeout(_drawPressTimer); _drawPressTimer = null; }
-    if (!isDrawing || _drawPressFired) return;
-    drawPointerMove(e);
+    // Only a clear, deliberate drag (> 16px total) counts as a stroke. Until
+    // then we hold off — small resting jitter neither cancels the fill nor
+    // leaves stray marks. Once it IS a stroke, cancel the pending fill.
+    if (moved > 16) {
+      if (_drawPressTimer) { clearTimeout(_drawPressTimer); _drawPressTimer = null; }
+      if (isDrawing) drawPointerMove(e);
+    }
   });
   canvas.addEventListener('pointerup', () => {
     if (!isDrawMode) return;
