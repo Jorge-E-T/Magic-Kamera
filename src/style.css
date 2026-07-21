@@ -4469,6 +4469,12 @@ button:disabled {
     height: 8vw;
     min-height: 32px;
     box-shadow: none;
+    /* Keep the editor's orange border — .hsv-swatch-btn otherwise forces gray */
+    border: 2px solid #FE5F00;
+    border-radius: 1.5vw;
+}
+#draw-color-btn.hsv-swatch-btn:hover {
+    border-color: #FE5F00;
 }
 
 /* Pencil tip size menu — small popup anchored under the Tip button */
