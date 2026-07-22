@@ -15289,7 +15289,7 @@ let drawFillTolerance = 32;        // 0-255 per-channel similarity threshold
 let drawFillContiguous = true;     // fill only touching pixels (vs whole image)
 let _drawPressTimer = null;        // hard-press timer
 let _drawPressFired = false;       // true once a hard-press action ran
-const DRAW_PRESS_MS = 500;         // how long to hold for a fill
+const DRAW_PRESS_MS = 600;         // how long to hold for a fill
 let _drawPreDotSnapshot = null;    // canvas pixels before the starting dot
 let _drawDownCanvasX = 0, _drawDownCanvasY = 0; // press point in canvas px
 // R1 has a tiny screen, so a small finger move should cover more canvas.
@@ -15299,7 +15299,11 @@ let drawPressure = 1.6;        // base multiplier (0.8 light .. 2.6 heavy)
 let drawFirmness = 1.0;        // 0.6 soft .. 1.0 firm (scales pressure)
 let drawStabilization = 0;     // 0 none .. 0.9 max smoothing
 function drawEffectiveSensitivity() {
-  return drawPressure * drawFirmness;
+  // Cap at 1.9: this follower is only mathematically stable below 2. Above
+  // that the pencil oscillates with GROWING amplitude and draws wild zig-zags
+  // that leave gaps in shapes — and a gap is exactly what lets the fill tool
+  // escape and flood the whole canvas.
+  return Math.min(1.9, drawPressure * drawFirmness);
 }
 
 const DRAW_SETTINGS_KEY = 'r1_draw_settings_v1';
