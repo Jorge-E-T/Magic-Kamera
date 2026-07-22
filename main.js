@@ -15268,6 +15268,14 @@ let cropPoint2 = null;
 
 // ===== DRAW MODE STATE =====
 let isDrawMode = false;            // draw tool toggled on/off
+
+// ===== ZOOM / PAN STATE =====
+// Zoom is purely a VIEW transform applied to the canvas ELEMENT with CSS.
+// It never alters the canvas pixels, so it is not an edit: saving copies the
+// canvas pixels and is therefore never affected by the zoom level or pan.
+let isZoomMode = false;            // zoom tool toggled on/off
+let editorZoom = 1;                // 1 = fit to screen (100%)
+let editorPanX = 0, editorPanY = 0; // pan offset in screen pixels
 let isDrawing = false;             // a stroke is currently in progress
 let drawColor = '#ffffff';         // current pencil color (default white)
 let drawTipSize = 6;               // current pencil tip size (canvas px baseline)
@@ -15353,6 +15361,9 @@ function openImageEditor() {
 
     // Always start with draw mode OFF for a freshly opened image
     if (isDrawMode) exitDrawMode();
+    // ...and always start at fit (100%), not at the previous image's zoom
+    if (isZoomMode) exitZoomMode();
+    resetEditorZoom();
   };
   img.src = imageToEdit.imageBase64;
 }
@@ -15553,6 +15564,10 @@ function enterCropMode() {
   const cropButton = document.getElementById('crop-button');
   
   if (isCropMode) {
+    // Crop places its corner handles relative to the canvas on screen, so the
+    // view must be back at fit or the handles would sit outside the window.
+    if (isZoomMode) exitZoomMode();
+    resetEditorZoom();
     cropOverlay.style.display = 'block';
     cropButton.classList.add('active');
     cropPoint1 = null;
@@ -15732,6 +15747,10 @@ function closeImageEditor() {
   if (isDrawMode) exitDrawMode();
   const tipMenu = document.getElementById('draw-tip-menu');
   if (tipMenu) tipMenu.style.display = 'none';
+
+  // Reset zoom mode and return the view to fit
+  if (isZoomMode) exitZoomMode();
+  resetEditorZoom();
 }
 
 // ===== DRAW MODE =====
@@ -15754,6 +15773,9 @@ function updateDrawTipPreview() {
 }
 
 function enterDrawMode() {
+  // Zoom and Draw are mutually exclusive — entering Draw leaves Zoom (the
+  // zoomed position is kept so you can draw on the area you zoomed into).
+  if (isZoomMode) exitZoomMode();
   isDrawMode = true;
   document.getElementById('draw-button').classList.add('active');
   document.getElementById('editor-adjust-controls').style.display = 'none';
@@ -15782,6 +15804,89 @@ function exitDrawMode() {
 
 function toggleDrawMode() {
   if (isDrawMode) exitDrawMode(); else enterDrawMode();
+}
+
+// ===== ZOOM / PAN MODE =====
+
+// Keep the pan within sensible limits: you can push the view far enough to
+// reach every edge and corner of the zoomed image, but never so far that the
+// image leaves the window. At fit (100%) the image re-centres itself.
+function clampEditorPan() {
+  const container = document.querySelector('.editor-image-container');
+  if (!container || !editorCanvas) { editorPanX = 0; editorPanY = 0; return; }
+  const baseW = editorCanvas.offsetWidth;
+  const baseH = editorCanvas.offsetHeight;
+  const maxX = Math.max(0, (baseW * editorZoom - container.clientWidth) / 2);
+  const maxY = Math.max(0, (baseH * editorZoom - container.clientHeight) / 2);
+  editorPanX = Math.max(-maxX, Math.min(maxX, editorPanX));
+  editorPanY = Math.max(-maxY, Math.min(maxY, editorPanY));
+}
+
+// Apply the current zoom/pan to the canvas element (visual only).
+function applyEditorZoomTransform() {
+  if (!editorCanvas) return;
+  clampEditorPan();
+  editorCanvas.style.transformOrigin = 'center center';
+  editorCanvas.style.transform =
+    'translate(' + editorPanX + 'px, ' + editorPanY + 'px) scale(' + editorZoom + ')';
+}
+
+function syncZoomControls() {
+  const pct = Math.round(editorZoom * 100);
+  const slider = document.getElementById('editor-zoom-slider');
+  const val = document.getElementById('editor-zoom-value');
+  if (slider) slider.value = pct;
+  if (val) val.textContent = pct + '%';
+}
+
+// Return the view to fit (100%, centred).
+function resetEditorZoom() {
+  editorZoom = 1;
+  editorPanX = 0;
+  editorPanY = 0;
+  applyEditorZoomTransform();
+  syncZoomControls();
+}
+
+function enterZoomMode() {
+  // Zoom and Draw are mutually exclusive — turning one on turns the other off.
+  if (isDrawMode) exitDrawMode();
+  // Crop shouldn't be open while panning either.
+  if (isCropMode) {
+    isCropMode = false;
+    document.getElementById('crop-overlay').style.display = 'none';
+    document.getElementById('crop-button').classList.remove('active');
+  }
+  isZoomMode = true;
+  document.getElementById('zoom-button').classList.add('active');
+  document.getElementById('editor-adjust-controls').style.display = 'none';
+  document.getElementById('editor-draw-controls').style.display = 'none';
+  document.getElementById('editor-zoom-controls').style.display = 'flex';
+  if (editorCanvas) editorCanvas.classList.add('zoom-active');
+  const container = document.querySelector('.editor-image-container');
+  if (container) container.classList.add('zoom-panning');
+  syncZoomControls();
+}
+
+function exitZoomMode() {
+  isZoomMode = false;
+  document.getElementById('zoom-button').classList.remove('active');
+  document.getElementById('editor-zoom-controls').style.display = 'none';
+  // Restore whichever row belongs to the tool that is now active.
+  if (isDrawMode) {
+    document.getElementById('editor-draw-controls').style.display = 'flex';
+  } else {
+    document.getElementById('editor-adjust-controls').style.display = 'flex';
+  }
+  if (editorCanvas) editorCanvas.classList.remove('zoom-active');
+  const container = document.querySelector('.editor-image-container');
+  if (container) container.classList.remove('zoom-panning');
+  // The zoom/pan position is intentionally KEPT so the user can carry on
+  // editing (drawing, filling, adjusting) on the area they zoomed into.
+}
+
+function toggleZoomMode() {
+  if (isZoomMode) exitZoomMode(); else enterZoomMode();
 }
 
 // ===== DRAW SETTINGS MODAL =====
@@ -16141,6 +16246,47 @@ document.getElementById('filter-fade-button')?.addEventListener('click', applyFi
 
 // ===== DRAW MODE WIRING =====
 document.getElementById('draw-button')?.addEventListener('click', toggleDrawMode);
+
+// ===== ZOOM MODE WIRING =====
+document.getElementById('zoom-button')?.addEventListener('click', toggleZoomMode);
+
+// Zoom slider: 50%..400% of the fitted size.
+document.getElementById('editor-zoom-slider')?.addEventListener('input', (e) => {
+  editorZoom = (parseInt(e.target.value) || 100) / 100;
+  applyEditorZoomTransform();
+  const val = document.getElementById('editor-zoom-value');
+  if (val) val.textContent = Math.round(editorZoom * 100) + '%';
+});
+
+// Drag anywhere on the image area to pan while Zoom is active. These handlers
+// do nothing unless zoom mode is on, so they never interfere with drawing,
+// filling or cropping.
+(function wireEditorZoomPan() {
+  const container = document.querySelector('.editor-image-container');
+  if (!container) return;
+  let panning = false;
+  let panStartX = 0, panStartY = 0, panOriginX = 0, panOriginY = 0;
+
+  container.addEventListener('touchstart', (e) => {
+    if (!isZoomMode || e.touches.length !== 1) return;
+    panning = true;
+    panStartX = e.touches[0].clientX;
+    panStartY = e.touches[0].clientY;
+    panOriginX = editorPanX;
+    panOriginY = editorPanY;
+  }, { passive: true });
+
+  container.addEventListener('touchmove', (e) => {
+    if (!isZoomMode || !panning || e.touches.length !== 1) return;
+    e.preventDefault();
+    editorPanX = panOriginX + (e.touches[0].clientX - panStartX);
+    editorPanY = panOriginY + (e.touches[0].clientY - panStartY);
+    applyEditorZoomTransform();
+  }, { passive: false });
+
+  container.addEventListener('touchend', () => { panning = false; }, { passive: true });
+  container.addEventListener('touchcancel', () => { panning = false; }, { passive: true });
+})();
 document.getElementById('draw-blank-canvas-btn')?.addEventListener('click', drawBlankCanvas);
 
 // Load saved draw settings once at startup.
