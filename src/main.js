@@ -592,8 +592,18 @@ function flushPendingCreditCelebration() {
     showStyleReveal(msg);
     if (statusElement) {
       const prev = statusElement.textContent;
-      statusElement.textContent = `🪙 ${pending > 1 ? pending + ' credits' : 'credit'} earned! You have ${total} credit${total !== 1 ? 's' : ''}`;
-      setTimeout(() => { if (statusElement) statusElement.textContent = prev || ''; }, 4000);
+      const creditStatusMsg = `🪙 ${pending > 1 ? pending + ' credits' : 'credit'} earned! You have ${total} credit${total !== 1 ? 's' : ''}`;
+      statusElement.textContent = creditStatusMsg;
+      setTimeout(() => {
+        // Only clear the credit line if it is STILL the thing on screen.
+        // Something newer may have replaced it in the meantime (e.g.
+        // updatePresetDisplay writing "MULTI PRESETS (3)" two seconds later),
+        // and blindly restoring the old snapshot would wipe that out — which
+        // is what left the camera status stuck on a stale message.
+        if (statusElement && statusElement.textContent === creditStatusMsg) {
+          statusElement.textContent = prev || '';
+        }
+      }, 4000);
     }
   }
 }
@@ -8135,6 +8145,7 @@ const TOUR_STEPS = [
   { section: 'Image Editor', title: '🎨 Color and ✏️ Tip Buttons', body: 'The Color button opens the color picker for your pencil, and its little swatch shows the current color, white by default. The Tip button opens a size selector from Fine up to Extra Large, with a preview dot and a size number that match your choices.' },
   { section: 'Image Editor', title: '✏️ Drawing and Fill', body: 'Drag your finger on the canvas to draw. Because the R1 screen is small, a small finger movement covers more canvas so drawing feels natural. To fill, hard press and hold for about half a second: on a blank canvas it fills the whole canvas with your color, and inside a closed shape it fills just that shape. Undo reverses a fill in one step.' },
   { section: 'Image Editor', title: '⚙️ Draw Settings', body: 'The gear button next to the Edit Image title opens Draw Settings. Here you can adjust the Fill tolerance and contiguous settings and Pencil pressure, tip feel and stabilization settings.' },
+  { section: 'Image Editor', title: '🔍 Zoom', body: 'The first of two magnifying glass icons on the edit carousel. This button, below the Draw button, opens Zoom and Pan functions. Slide zoom in/out of the image and pan the canvas using the touch screen to make detailed edits. Draw mode is disabled when Zoom/Pan is activate. Click draw, when done zooming/panning for seemless transition.' },
   { section: 'Image Editor', title: '✂️ Crop Tool', body: 'Tap Crop to activate. Two orange corner markers appear. Drag them to frame your desired area. Tap Crop again to apply.' },
   { section: 'Image Editor', title: '🔄 Rotate Tool', body: 'Rotates your image 90 degrees clockwise each tap. Tap multiple times to reach 180, 270, or back to 0 degrees.' },
   { section: 'Image Editor', title: '🔍 Sharpen and Auto Correct', body: 'Sharpen makes edges crisper. Auto Correct automatically balances brightness, contrast, and color. Great as a first step before manual tweaks.' },
@@ -18250,6 +18261,17 @@ let _viewerHeaderBusy = false;
 let _viewerHeaderPendingFlash = null;
 let _gallerySubmitShowNames = false;
 
+// Works out what the gallery viewer header SHOULD say right now, from the
+// actual state — used whenever a temporary message finishes and we need to
+// put the real title back. Deriving beats restoring a saved snapshot,
+// because the snapshot can be stale (or empty) by the time it is used.
+function _deriveViewerHeaderText() {
+  if (isGalleryLayerActive && galleryLayerPresets.length > 0) return '📑 LAYER';
+  if (isGalleryMultiActive && galleryMultiPresets.length > 0) return `🎞️ MULTI (${galleryMultiPresets.length})`;
+  if (window.viewerLoadedPreset && window.viewerLoadedPreset.name) return window.viewerLoadedPreset.name;
+  return 'NO PRESET LOADED';
+}
+
 function _flashViewerHeader(message, duration, multiline, withSound) {
   if (_viewerHeaderBusy) {
     // The submitting spinner is up — save this flash (and its chime) and show
@@ -18275,7 +18297,13 @@ function _flashViewerHeader(message, duration, multiline, withSound) {
   if (withSound) playTaDaSound();
   header.textContent = message;
   _viewerHeaderRestoreTimer = setTimeout(() => {
-    header.textContent = _viewerHeaderTrueText;
+    // Only take the message down if it is STILL on screen — something newer
+    // may have legitimately replaced it. And put back the REAL title worked
+    // out from current state, falling back to the derived title if the saved
+    // one is missing (which used to leave the header blank).
+    if (header.textContent === message) {
+      header.textContent = _viewerHeaderTrueText || _deriveViewerHeaderText();
+    }
     header.style.whiteSpace = '';
     header.style.lineHeight = '';
     header.style.fontSize = '';
@@ -18348,7 +18376,8 @@ function hideGallerySubmittingIndicator() {
   _gallerySubmitShowNames = false;
   const header = document.getElementById('viewer-preset-header');
   if (header) {
-    header.textContent = _viewerHeaderTrueText;
+    // Fall back to the derived title so the header can never end up blank.
+    header.textContent = _viewerHeaderTrueText || _deriveViewerHeaderText();
   }
   _viewerHeaderTrueText = null;
   // If a credit popup (or any other flash) tried to appear while we were
