@@ -279,6 +279,10 @@ let savedViewerImageIndex = -1;
 
 // Track if we opened an editor from the gallery viewer prompt tap
 let returnToGalleryFromViewerEdit = false;
+// When a preset is saved from the gallery viewer's prompt/editor, this holds
+// the FINAL (possibly renamed) preset name so the viewer can reload the right
+// preset by name — independent of any editing-index that may already be reset.
+let _savedPresetNameForViewer = null;
 let returnToMainMenuFromBuilder = false;
 let isPresetInfoModalOpen = false;
 
@@ -5718,7 +5722,14 @@ function hidePresetBuilderSubmenu() {
     openImageViewer(currentViewerImageIndex);
     // Determine which preset to load into the viewer
     let presetToShow = null;
-    if (presetToRestore) {
+    // If a preset was just saved here, load it BY ITS FINAL NAME first — this
+    // survives renames (the old name no longer exists) and index resets.
+    if (_savedPresetNameForViewer) {
+      presetToShow = CAMERA_PRESETS.find(p => p.name === _savedPresetNameForViewer) || null;
+    }
+    if (presetToShow) {
+      // already resolved by saved name
+    } else if (presetToRestore) {
       // Editing existing — find by name first, fall back to saved index
       let updatedPreset = CAMERA_PRESETS.find(p => p.name === presetToRestore.name);
       if (!updatedPreset && savedBuilderIndex >= 0 && CAMERA_PRESETS[savedBuilderIndex]) {
@@ -5755,6 +5766,7 @@ function hidePresetBuilderSubmenu() {
       const presetHeader = document.getElementById('viewer-preset-header');
       if (presetHeader) presetHeader.textContent = presetToShow.name;
     }
+    _savedPresetNameForViewer = null;
     updatePresetDisplay();
     return;
   }
@@ -6477,6 +6489,9 @@ async function saveCustomPreset() {
         visiblePresets[visIndex] = name.toUpperCase();
       }
     }
+    // Remember the final name so the gallery viewer reloads THIS preset,
+    // even though the editing index gets cleared before we return there.
+    _savedPresetNameForViewer = name.toUpperCase();
   } else {
     // Creating new preset - check if name already exists
     const existingIndex = CAMERA_PRESETS.findIndex(p => p.name.toUpperCase() === name.toUpperCase());
@@ -6526,6 +6541,8 @@ async function saveCustomPreset() {
     if (!_visiblePresetsSet.has(newPreset.name)) {
       visiblePresets.push(newPreset.name);
     }
+    // Remember the final name so the gallery viewer can load this new preset.
+    _savedPresetNameForViewer = newPreset.name;
   }
   
   // Save visible presets first
@@ -13388,7 +13405,14 @@ function hideStyleEditor() {
     openImageViewer(currentViewerImageIndex);
     // Determine which preset to load into the viewer
     let presetToShow = null;
-    if (presetToRestore) {
+    // Prefer the just-saved preset BY ITS FINAL NAME — survives renames and
+    // index resets (same fix as the Preset Builder path).
+    if (_savedPresetNameForViewer) {
+      presetToShow = CAMERA_PRESETS.find(p => p.name === _savedPresetNameForViewer) || null;
+    }
+    if (presetToShow) {
+      // already resolved by saved name
+    } else if (presetToRestore) {
       // Editing existing — find by name first, fall back to saved index
       let updatedPreset = CAMERA_PRESETS.find(p => p.name === presetToRestore.name);
       if (!updatedPreset && savedEditingStyleIndex >= 0 && CAMERA_PRESETS[savedEditingStyleIndex]) {
@@ -13424,6 +13448,7 @@ function hideStyleEditor() {
       const presetHeader = document.getElementById('viewer-preset-header');
       if (presetHeader) presetHeader.textContent = presetToShow.name;
     }
+    _savedPresetNameForViewer = null;
     updatePresetDisplay();
     return;
   }
@@ -13551,6 +13576,9 @@ async function saveStyle() {
   
   alert(editingStyleIndex >= 0 ? `Preset "${name}" updated!` : `Preset "${name}" saved!`);
   
+  // Remember the final (possibly renamed) name so the gallery viewer reloads
+  // THIS preset by name, independent of the editing index.
+  _savedPresetNameForViewer = name;
   const cameFromViewer = returnToGalleryFromViewerEdit;
   hideStyleEditor();
   if (!cameFromViewer) {
