@@ -3107,6 +3107,20 @@
     "additionalInstructions": "FINAL RESULT:\nA fully reconstructed image formed from floating ash or dust particles."
   },
   {
+    "name": "ASL",
+    "category": [
+      "LANGUAGE",
+      "COMMUNICATION",
+      "EDUCATION",
+      "FINGERSPELLING",
+      "TRANSFORMATION"
+    ],
+    "message": "Take a picture and transform ONLY the subject into a professional educational fingerspelling illustration while preserving the subject's identity.\n\nTHIS IS NOT A PHOTO FILTER.\nTHIS IS NOT A CARTOON.\nTHIS IS NOT RANDOM HAND GESTURES.\nTHIS IS NOT CONVERSATIONAL SIGN LANGUAGE.\n\nThe goal is to accurately demonstrate the American Sign Language (ASL) manual alphabet through fingerspelling.\n\nIf a master prompt specifies any text, fingerspell that exact text.\n\nOtherwise, intelligently generate ONE short word or ONE proper name from the flavor text that best represents the subject or image, then fingerspell ONLY that word.\n\nDisplay one separate instance of the subject for EVERY letter, arranged from left-to-right in reading order.\n\nEach copy of the subject must perform exactly one ASL manual alphabet letter.\n\nThe finished image should resemble a professionally photographed educational ASL fingerspelling chart.",
+    "randomizeOptions": false,
+    "options": [],
+    "additionalInstructions": "• Transform ONLY the subject.\n• Preserve the original background unless overridden by the master prompt.\n• Preserve the subject's exact facial identity, hairstyle, age, ethnicity, clothing, body proportions, facial expression, and recognizable features.\n• NEVER attempt conversational ASL.\n• NEVER attempt complete ASL sentences.\n• ALWAYS use the ASL manual alphabet (fingerspelling) only.\n• If a master prompt exists, fingerspell that exact text.\n• Otherwise derive ONE concise representative word or proper name from the flavor text.\n• Never fingerspell more than 20 characters unless explicitly directed by the master prompt.\n• Create one separate copy of the subject for every individual letter.\n• Arrange all copies horizontally from left to right.\n• Keep consistent spacing between each copy.\n• Every copy must remain immediately recognizable as the same person.\n• Every handshape must exactly match the official ASL manual alphabet.\n• Finger positions must be anatomically correct.\n• Palm orientation must be correct for each letter.\n• Wrist orientation must be correct.\n• Thumb position must be correct.\n• Finger lengths and proportions must remain anatomically realistic.\n• Both hands should only be used when required by the official manual alphabet.\n• Keep every hand completely visible.\n• Never crop fingers.\n• Never hide fingers behind the body.\n• Never allow one copy to overlap another.\n• Maintain identical camera angle, lighting, scale, and body position for every copy unless the hand orientation requires a slight rotation.\n• The body should remain mostly unchanged between letters so the handshape becomes the primary visual difference.\n• Use a clean educational layout similar to professional ASL instructional posters.\n• Do not add printed letters, arrows, labels, captions, or instructional graphics.\n• Do not invent hand gestures.\n• Do not approximate letters.\n• Do not combine multiple letters into one pose.\n• Do not replace handshapes with symbolic gestures.\n• Master prompt instructions always override conflicting instructions.\n\nFINAL VALIDATION:\n\n✓ ONLY the subject has been transformed.\n✓ The background remains unchanged unless overridden.\n✓ Every copy of the subject is immediately recognizable.\n✓ Exactly one ASL manual alphabet letter is shown per subject instance.\n✓ Every required letter appears exactly once and in the proper left-to-right sequence.\n✓ Every handshape matches the official ASL manual alphabet.\n✓ Every finger remains completely visible.\n✓ No letters, captions, arrows, or instructional text appear.\n✓ The finished image resembles a professional ASL fingerspelling educational poster.\n✓ If ANY answer is NO, regenerate until every requirement is satisfied."
+  },
+  {
     "name": "ASSEMBLAGE ART",
     "category": [
       "ART",
@@ -5191,20 +5205,6 @@
     "randomizeOptions": false,
     "options": [],
     "additionalInstructions": "• Transform the ENTIRE image.\n• Completely discard the original photograph before reconstruction.\n• NEVER overlay Braille onto the original image.\n• NEVER blend photographic textures with Braille dots.\n• The finished artwork must consist ONLY of authentic Braille dots.\n• No letters, numbers, punctuation, words, icons, emojis, lines, outlines, or graphical elements may appear.\n• Every visible object must emerge entirely from carefully arranged Braille dots.\n• Preserve the original composition, perspective, camera angle, depth, and layout.\n• Preserve the subject's exact facial identity, hairstyle, expression, age, ethnicity, clothing, body proportions, pose, silhouette, and recognizable features.\n• Facial features must emerge naturally through changes in Braille dot density, spacing, grouping, height, and arrangement.\n• Hair, clothing, textures, shadows, lighting, and environmental details must also be recreated exclusively from Braille dots.\n• Every Braille dot must be perfectly round, smoothly embossed, and physically raised with realistic highlights and shadows.\n• Braille dots should follow authentic Braille dimensions, spacing, and proportions even though they are being used as artistic building blocks rather than readable text.\n• Never create continuous lines, brush strokes, pixels, circles, stippling, or decorative bumps.\n• Use variations in dot density and spacing to create highlights, midtones, shadows, texture, and depth.\n• Maintain generous negative space where appropriate.\n• The artwork should resemble a professionally handcrafted embossed tactile mosaic rather than random raised dots.\n• The subject should remain immediately recognizable despite being constructed entirely from Braille dots.\n• Preserve realistic embossed lighting so each raised dot clearly catches light and casts subtle shadows.\n• Master prompt instructions always override any conflicting instructions.\n\nFINAL VALIDATION:\n\n✓ The ENTIRE image has been transformed.\n✓ The original photograph has been completely discarded.\n✓ ONLY authentic Braille dots appear anywhere in the artwork.\n✓ No photographic textures remain.\n✓ No letters, numbers, punctuation, words, or graphical elements are visible.\n✓ Every visible object is constructed entirely from Braille dots.\n✓ Every Braille dot appears physically embossed and properly rounded.\n✓ The subject remains immediately recognizable.\n✓ The image resembles a museum-quality tactile artwork created exclusively from Braille dots.\n✓ If ANY answer is NO, regenerate until every requirement is satisfied."
-  },
-  {
-    "name": "BRAILLE TRANSLATION",
-    "category": [
-      "LANGUAGE",
-      "BRAILLE",
-      "ACCESSIBILITY",
-      "TRANSLATION",
-      "DOCUMENT"
-    ],
-    "message": "Take a picture and convert the ENTIRE image into a printable Braille document that accurately describes what the original image depicts.\n\nTHIS IS NOT A BRAILLE ART FILTER.\nTHIS IS NOT AN IMAGE MADE FROM BRAILLE DOTS.\nTHIS IS NOT BRAILLE OVERLAID ON THE PHOTOGRAPH.\n\nThe original photograph must be completely replaced by a professionally formatted embossed Braille document.\n\nFirst, intelligently analyze the original image.\n\nThen generate a concise but descriptive natural-language explanation of everything important shown in the image.\n\nFinally, accurately translate ONLY that description into authentic Grade 1 (uncontracted) English Braille (Unified English Braille whenever applicable).\n\nThe finished image should resemble a professionally embossed Braille page ready for tactile printing.\n\nMASTER PROMPT RULE:\n• If the master prompt specifies the exact description or text to convert, ALWAYS use that text instead of generating a description from the image.",
-    "randomizeOptions": false,
-    "options": [],
-    "additionalInstructions": "• Completely replace the original photograph.\n• The finished image should consist ONLY of a professionally formatted embossed Braille document.\n• Analyze the original image before creating the Braille document.\n• Generate one concise but descriptive paragraph accurately describing the important visual content.\n• If a master prompt supplies text, ALWAYS use the master prompt instead.\n• Translate the final text into authentic Grade 1 (uncontracted) English Braille.\n• Do NOT display the English translation anywhere.\n• The document should contain ONLY embossed Braille.\n• No printed letters.\n• No printed numbers.\n• No punctuation in print.\n• No captions.\n• No labels.\n• No decorative artwork.\n• No remnants of the original photograph.\n• The page should resemble heavy white Braille paper.\n• Every Braille cell must use authentic six-dot construction.\n• Dot spacing, line spacing, character spacing, and margins should follow standard Braille formatting.\n• Every Braille dot must appear physically embossed with realistic highlights and shadows.\n• The page should be photographed from directly overhead with minimal perspective distortion.\n• Maintain generous page margins.\n• Use multiple properly aligned Braille lines when necessary.\n• If the description exceeds one line, wrap naturally using proper Braille formatting.\n• The finished page should appear ready to be printed on a Braille embosser and subsequently read by touch.\n• Never invent Braille patterns.\n• Never substitute decorative raised dots.\n• Never use Braille as artistic texture.\n• Every Braille cell must encode actual readable text.\n• Master prompt instructions always override any conflicting instructions.\n\nFINAL VALIDATION:\n\n✓ The original photograph has been completely removed.\n✓ The finished image is a professional embossed Braille document.\n✓ The document accurately describes the original image.\n✓ ONLY authentic Grade 1 (uncontracted) English Braille appears.\n✓ No English print is visible.\n✓ Every Braille cell is correctly formatted.\n✓ Every embossed dot appears physically raised.\n✓ The page could realistically be printed on a Braille embosser and read tactilely.\n✓ If ANY answer is NO, regenerate until every requirement is satisfied."
   },
   {
     "name": "BREAD SCULPTURE",
@@ -7391,6 +7391,45 @@
     "options": [],
     "randomizeOptions": false,
     "additionalInstructions": ""
+  },
+  {
+    "name": "CHEMICAL REACTION",
+    "category": [
+      "OPTIONS",
+      "SCIENCE",
+      "CHEMISTRY",
+      "TRANSFORMATION",
+      "SPECIAL EFFECTS"
+    ],
+    "message": "Take a picture and transform ONLY the subject into the selected famous chemistry demonstration while preserving the subject's identity.\n\nTHIS IS NOT A PHOTO FILTER.\nTHIS IS NOT A COSTUME.\nTHIS IS NOT A PERSON STANDING NEXT TO A CHEMICAL REACTION.\n\nThe subject MUST become the chemical reaction itself while remaining clearly recognizable.\n\nThe selected reaction must originate from, surround, engulf, or physically replace the subject's body in a visually convincing way.\n\nThe original background, room, lighting direction, furniture, architecture, landscape, and environment must remain unchanged.\n\nIf a master prompt specifies additional scene details, incorporate them without changing the selected chemical reaction.",
+    "randomizeOptions": true,
+    "options": [
+    {
+      "id": "001",
+      "text": "Elephant Toothpaste — The subject erupts into an enormous column of thick colorful foaming Elephant Toothpaste blasting upward from laboratory glassware while the subject's face naturally emerges from the expanding foam."
+    },
+    {
+      "id": "002",
+      "text": "Traffic Light Reaction — The subject becomes the famous Traffic Light Reaction with swirling translucent liquids rapidly cycling between brilliant green, golden yellow, and deep red while the subject remains recognizable inside the solution."
+    },
+    {
+      "id": "003",
+      "text": "Dancing Gummy Bear — The subject becomes the Dancing Gummy Bear reaction engulfed in brilliant violet flames, incandescent sparks, glowing potassium chloride light, and intense combustion while preserving facial identity."
+    },
+    {
+      "id": "004",
+      "text": "Black Fire Snake — The subject transforms into the growing Black Fire Snake reaction with twisting black carbon coils spiraling upward while facial identity naturally forms within the expanding carbon structure."
+    },
+    {
+      "id": "005",
+      "text": "Pharaoh's Serpent — The subject becomes the enormous branching ash serpent growing from the reaction while the expanding ash coils subtly retain the subject's recognizable facial identity."
+    },
+    {
+      "id": "006",
+      "text": "Dry Ice Volcano — The subject erupts into a massive cascade of overflowing soap bubbles filled with rolling white fog as dense dry ice vapor pours outward while the subject's face emerges naturally from the bubble cloud."
+    }
+    ],
+    "additionalInstructions": "• Transform ONLY the subject.\n• Preserve the original background exactly.\n• Preserve the subject's recognizable facial identity.\n• The subject must physically become the selected chemical reaction.\n• Do not place the reaction beside the subject.\n• Do not depict laboratory observers.\n• Do not create a science classroom unless requested by the master prompt.\n• The reaction must appear physically integrated with the subject.\n• Foam, flames, ash, bubbles, vapor, liquids, smoke, and chemical effects should naturally replace portions of the body while preserving facial recognition.\n• Render realistic chemistry effects with accurate lighting, translucency, reflections, smoke, bubbles, foam, ash, glow, and volumetric effects.\n• Preserve perspective, camera angle, and composition.\n• Maintain photorealistic quality.\n• Master prompt instructions always override conflicting instructions.\n\nFINAL VALIDATION:\n\n✓ ONLY the subject has transformed.\n✓ Background remains unchanged.\n✓ Subject remains recognizable.\n✓ The selected chemical reaction is unmistakable.\n✓ The reaction originates from or replaces the subject.\n✓ The result appears physically integrated rather than composited.\n✓ If ANY answer is NO, regenerate until all requirements are satisfied."
   },
   {
     "name": "CHEMICAL STRUCTURE",
@@ -10183,10 +10222,10 @@
       "DRAWING",
       "TECHNIQUE"
     ],
-    "message": "Take a picture and transform the image into a Cont\u00e9 crayon drawing. Preserve subject identity. Rich, velvety blacks and warm sanguine tones on textured paper. Bold tonal masses with the characteristic square-stick marks of Cont\u00e9 crayon. Seurat-like atmospheric quality.",
+    "message": "Take a picture and transform the image into a Cont\u00e9 crayon drawing. Preserve subject identity. Rich, velvety blacks and warm sanguine tones on textured paper. Bold tonal masses with the characteristic square-stick marks of Cont\u00e9 crayon. Seurat-like atmospheric quality. The paper tone serves as the middle value. Show the characteristic waxy, slightly grainy texture of cont\u00e9 on textured paper. Build form through careful hatching and blending, with some areas left as pure paper tone. The drawing should feel like an academic figure study or portrait exercise.",
     "options": [],
     "randomizeOptions": false,
-    "additionalInstructions": ""
+    "additionalInstructions": "Cont\u00e9 marks should show their characteristic square-stick edge quality. Subject identity must be clearly preserved."
   },
   {
     "name": "COOKIE",
@@ -10703,6 +10742,20 @@
     "message": "Take a picture and transform the ENTIRE IMAGE into a cross-polarized light stress analysis photograph.\n\nTRANSFORMATION RULES (NON-NEGOTIABLE):\n• The entire scene (subject and environment) must look like it is constructed out of solid, clear injection-molded birefringent plastic\n• Recognition of the subject must be completely preserved, but defined entirely by internal rainbow interference patterns and stress lines\n• Preserve actual facial proportions and distinctive traits mapped through color gradients\n• No natural skin tones, hair colors, or textile textures allowed whatsoever\n• The image must contain zero realistic lighting; illumination is driven entirely by internal light polarization physics\n\nENVIRONMENT & STYLE RULES:\n• The entire composition must feature vibrant, glowing, psychedelic rainbow contours (fringes of magenta, cyan, yellow, and green) looping tightly around areas of structural tension\n• The areas of highest stress (such as the eyes, jawline, and geometric transitions in the background) must display the densest concentration of sharp, hyper-saturated color bands\n• Neutral, non-stressed areas of the plastic must appear as a smoky, translucent dark gray or deep violet-black\n• The background must be treated with the same mechanical laws, showing stress patterns radiating from environmental edges against a pitch-black studio void\n\nVERSION-SPECIFIC RULES:\n• The visual style must completely replace physical surfaces with translucent molded plastic properties\n• The final image must read as a high-contrast scientific or engineering test photograph",
     "randomizeOptions": false,
     "additionalInstructions": "The entire image must look like clear plastic under cross-polarized lens filters. Total commitment to the glowing, nested rainbow interference bands against a dark background is required."
+  },
+  {
+    "name": "CROSS-PROCESSED SLIDE FILM",
+    "category": [
+      "PHOTOGRAPHY",
+      "FILM",
+      "EXPERIMENTAL",
+      "COLORFUL",
+      "ANALOG"
+    ],
+    "message": "Take a picture and transform it to look like cross-processed slide film (E-6 film processed in C-41 chemistry). This creates the distinctive cross-processing look: extreme color shifts (typically strong cyan/blue shadows and yellow/green highlights), increased contrast with crushed shadows, color casts that shift across the tonal range, and unpredictable saturation boosts. The effect should feel authentically chemical \u2014 not a simple color filter but the complex, non-linear color response of actual cross-processing where different layers of the film respond differently to the wrong chemistry. Include slight film base color and sprocket hole edges for authenticity.",
+    "randomizeOptions": false,
+    "options": [],
+    "additionalInstructions": "The color shifts must feel chemical and non-linear \u2014 different in shadows vs. highlights. The effect should be strong but not so extreme that the subject is unrecognizable. Include analog film artifacts for authenticity."
   },
   {
     "name": "CROSS-SECTION",
@@ -13090,6 +13143,20 @@
     "additionalInstructions": "IDENTITY PRESERVATION:\n• Subject must remain clearly recognizable\n• Tonal detail should be preserved — the duotone effect maps values, it doesn't flatten them\n\nFINAL RESULT:\nThe image should look like a professional graphic design duotone treatment suitable for a magazine cover or concert poster."
   },
   {
+    "name": "DUTCH ANGLE TENSION",
+    "category": [
+      "PHOTOGRAPHY",
+      "COMPOSITION",
+      "CINEMATIC",
+      "DRAMATIC",
+      "ANGLE"
+    ],
+    "message": "Take a picture and transform it using a dramatic Dutch angle (tilted camera) composition to create visual tension and unease. The horizon line should be tilted 15-30 degrees, making the world feel off-kilter and unstable. Combine with noir-influenced lighting: strong side light creating deep shadows, slightly desaturated color palette, and high contrast. The subject should be positioned using the resulting diagonal lines to create dynamic visual flow. The Dutch angle should feel intentional and cinematic (like Carol Reed's The Third Man or a Batman film) rather than accidental. Include environmental elements that emphasize the tilt \u2014 vertical lines that are now diagonal, creating maximum visual instability.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "The tilt must be deliberate and dramatic \u2014 not subtle. Lighting should enhance the sense of unease. The composition should use the diagonal lines created by the tilt to guide the eye. Subject should remain the clear focal point."
+  },
+  {
     "name": "DUTCH GOLDEN AGE",
     "category": [
       "ART",
@@ -13278,6 +13345,20 @@
     "options": [],
     "randomizeOptions": false,
     "additionalInstructions": ""
+  },
+  {
+    "name": "EGGSHELL MOSAIC",
+    "category": [
+      "ART",
+      "MOSAIC",
+      "CRAFT",
+      "DELICATE",
+      "TEXTURE"
+    ],
+    "message": "Take a picture and transform it into an eggshell mosaic \u2014 the delicate art of creating images from carefully placed fragments of dyed eggshell on a dark background. Each tiny piece of shell should be visible as a distinct curved fragment, with the dark gaps between pieces creating a natural network of fine lines (similar to crackle glaze). The eggshell pieces should be dyed in various colors to create the image, with the natural curve and texture of shell visible in each fragment. The overall effect should be intricate and precious \u2014 like a Byzantine mosaic rendered in the most fragile of materials.",
+    "randomizeOptions": false,
+    "options": [],
+    "additionalInstructions": "Individual eggshell fragments must be visible with dark gaps between them. The natural curve of shell pieces should be apparent. The fragility of the medium should be evident. Subject must be clearly recognizable through the mosaic pattern."
   },
   {
     "name": "EGLOMISE GLASS",
@@ -13495,14 +13576,32 @@
     "name": "ENCAUSTIC",
     "category": [
       "ART",
+      "PAINTING",
       "TEXTURE",
-      "PAINTERLY",
-      "CLASSICAL"
+      "ANCIENT",
+      "TECHNIQUE"
     ],
-    "message": "Take a picture and transform the image into an encaustic wax painting. Render the subject using the ancient technique of heated beeswax mixed with pigments, showing the characteristic translucent layers, rich texture, and luminous depth of encaustic art. The surface should display visible wax buildup, scraping marks, and the unique semi-transparent quality of layered pigmented wax.",
-    "options": [],
-    "randomizeOptions": false,
-    "additionalInstructions": "STYLE ENFORCEMENT:\n\u2022 Preserve recognizable subject identity\n\u2022 Show translucent, layered wax texture throughout\n\u2022 Include visible tool marks from heated metal implements\n\u2022 Display the characteristic luminous, glowing quality of wax medium\n\u2022 Add areas of thick impasto wax buildup\n\u2022 Show scraped and fused layers revealing colors beneath\n\u2022 Include subtle embedded materials (paper, fabric fragments) if appropriate\n\u2022 Maintain warm, honey-toned undertones from beeswax base.\n\nFINAL RESULT:\nA richly layered wax painting with depth and translucency.\n\nCORE REQUIREMENTS:\n• WAX texture\n• LAYERING visible\n• SOFT diffusion"
+    "message": "Take a picture and transform it into an encaustic wax painting. The image should appear built up from multiple translucent layers of pigmented beeswax, each fused with heat. Show the characteristic luminous depth of encaustic \u2014 light penetrating through semi-transparent wax layers to create a rich, glowing quality impossible in other media. Include subtle evidence of the fusing process: slightly melted edges between layers, areas where the iron or heat gun has smoothed the surface, and places where texture has been built up or scraped back. Use the following surface treatment:",
+    "randomizeOptions": true,
+    "options": [
+      {
+        "id": "001",
+        "text": "Smooth and polished \u2014 multiple thin layers buffed to a satin sheen, emphasizing depth and translucency"
+      },
+      {
+        "id": "002",
+        "text": "Heavily textured \u2014 thick wax built up with embedded materials (paper, fabric, found objects) visible beneath layers"
+      },
+      {
+        "id": "003",
+        "text": "Incised and carved \u2014 lines scratched through cooled wax layers to reveal colors beneath"
+      },
+      {
+        "id": "004",
+        "text": "Mixed media collage \u2014 combining wax with oil stick, pigment powder, and gold leaf accents"
+      }
+    ],
+    "additionalInstructions": "The wax surface should appear physically present \u2014 slightly glossy in smooth areas, matte where textured. Preserve subject identity through careful layering of values."
   },
   {
     "name": "ENCYCLOPEDIA (HUMOR)",
@@ -15622,6 +15721,75 @@
     "additionalInstructions": "FINAL RESULT:\nThe image should be a black and white single-panel Far Side cartoon with the subject drawn in the distinctive style, placed in the selected absurdist scenario, with the scenario's caption at the bottom - capturing unique blend of dark humor, anthropomorphic animals, and deadpan absurdity."
   },
   {
+    "name": "FASHION EDITORIAL (DECADE)",
+    "category": [
+      "FASHION",
+      "PHOTOGRAPHY",
+      "EDITORIAL",
+      "HISTORICAL",
+      "STYLE"
+    ],
+    "message": "Take a picture and transform the subject into a high-fashion editorial photograph from a specific decade \u2014 capturing not just the clothing but the entire photographic style, makeup, hair, pose conventions, and cultural attitude of that era's fashion photography. The image should look like it was torn from the pages of Vogue, Harper's Bazaar, or a cutting-edge fashion magazine of the chosen decade. Every element should be period-authentic: the film stock/processing, the lighting style, the model's pose and expression, the set design, and the overall mood.",
+    "optionGroups": [
+      {
+        "id": "DECADE",
+        "label": "Fashion Decade",
+        "options": [
+          {
+            "id": "001",
+            "text": "1950s \u2014 Avedon elegance, New Look silhouettes, pearls, gloves, architectural poses, studio perfection"
+          },
+          {
+            "id": "002",
+            "text": "1960s \u2014 Mod revolution, Twiggy eyes, geometric cuts, pop art influence, youth quake energy"
+          },
+          {
+            "id": "003",
+            "text": "1970s \u2014 Helmut Newton drama, Studio 54 glamour, flowing fabrics, sexual liberation, warm film tones"
+          },
+          {
+            "id": "004",
+            "text": "1980s \u2014 power shoulders, excess, Patrick Demarchelier style, bold color, supermodel era begins"
+          },
+          {
+            "id": "005",
+            "text": "1990s \u2014 heroin chic minimalism, Kate Moss era, stripped back, raw, Corinne Day intimacy"
+          },
+          {
+            "id": "006",
+            "text": "2000s \u2014 digital perfection, Terry Richardson flash, Y2K futurism, glossy and provocative"
+          }
+        ],
+        "randomizeOptions": true
+      },
+      {
+        "id": "MOOD",
+        "label": "Editorial Mood",
+        "options": [
+          {
+            "id": "101",
+            "text": "High glamour \u2014 aspirational luxury, perfect lighting, untouchable beauty"
+          },
+          {
+            "id": "102",
+            "text": "Avant-garde \u2014 experimental, challenging, pushing boundaries of beauty and form"
+          },
+          {
+            "id": "103",
+            "text": "Intimate/candid \u2014 behind-the-scenes feel, natural moments, vulnerability"
+          },
+          {
+            "id": "104",
+            "text": "Narrative/cinematic \u2014 telling a story, character-driven, location-specific"
+          }
+        ],
+        "randomizeOptions": true
+      }
+    ],
+    "randomizeOptions": true,
+    "additionalInstructions": "The photographic style must be authentic to the decade \u2014 correct film stock look, lighting conventions, and post-processing. Fashion, hair, and makeup must be period-accurate. The subject must be recognizable while transformed into a fashion model of the era."
+  },
+  {
     "name": "FASHION SKETCH",
     "category": [
       "ART",
@@ -17218,6 +17386,20 @@
     "additionalInstructions": "FINAL RESULT:\nA wall-painted fresco with visible plaster texture and aged characteristics.\n\nCORE REQUIREMENTS:\n• WALL texture visible\n• AGING effects\n• MATTE finish"
   },
   {
+    "name": "FRESCO SECCO MURAL",
+    "category": [
+      "ART",
+      "MURAL",
+      "ANCIENT",
+      "PAINTING",
+      "ARCHITECTURAL"
+    ],
+    "message": "Take a picture and transform it into a fresco secco mural painting on a plastered wall. The image should appear painted directly onto dry lime plaster, showing the characteristic chalky, matte surface with visible plaster texture beneath the pigments. Include signs of age: hairline cracks following the plaster's natural stress patterns, areas where pigment has flaked away revealing the white plaster beneath, water staining at edges, and the slightly faded quality of mineral pigments exposed to centuries of light. The composition should feel monumental, as if painted on a chapel or palazzo wall.",
+    "randomizeOptions": false,
+    "options": [],
+    "additionalInstructions": "The aging effects should enhance rather than obscure the subject. The plaster wall texture must be consistently visible. Colors should feel mineral-based and slightly chalky."
+  },
+  {
     "name": "FRESNEL LENS DISTORTION",
     "category": [
       "OPTICAL",
@@ -17818,6 +18000,19 @@
     }
     ],
     "additionalInstructions": "• Transform ONLY the subject.\n• Keep the background completely unchanged.\n• The subject must display physical traits of real gelatin: a glistening wet surface sheen, wobbling internal air bubbles, soft rounded molded contours, and extreme translucency that distorts the light.\n• Hair must be translated into wavy, molded ridges of clear gelatin or clever lines of suspended parsley flakes.\n• Clothing must be entirely replaced by a tiered, fluted mold design or distinct colored bands of layered gelatin.\n• Identity must remain recognizable through the facial shape, nose ridge, and expression molded into the gelatin surface, aided by the internal suspended ingredients defining facial geometry.\n• Avoid a clean modern look; mimic the garish, saturated, bright-flash aesthetic of a 1950s recipe advertisement.\n\nFINAL VALIDATION — Before producing the final image, verify ALL of the following:\n\n✓ ONLY the subject has been transformed.\n✓ The background remains completely unchanged.\n✓ The subject is a full-body gelatin mold centerpiece.\n✓ Distinct, recognizable food items (olives, celery, shrimp, etc.) are realistically suspended inside the jelly structure.\n✓ The surface has a glistening, wet, authentic gelatin texture.\n✓ Identity is humorously maintained.\n✓ If ANY answer is NO, regenerate."
+  },
+  {
+    "name": "GELLI PLATE MONOPRINT",
+    "category": [
+      "ART",
+      "PRINTMAKING",
+      "MIXED MEDIA",
+      "TEXTURE"
+    ],
+    "message": "Take a picture and transform it into a gelli plate monoprint. The image should show the characteristic qualities of this technique: slightly imperfect ink transfer with areas of ghost printing, texture from found objects pressed into the plate (leaves, lace, bubble wrap), layered transparent colors, and the distinctive soft-yet-textured quality of gelatin printing. Some areas should show crisp stencil edges while others reveal organic texture patterns. The subject should be recognizable but filtered through multiple print layers.",
+    "randomizeOptions": false,
+    "options": [],
+    "additionalInstructions": "Show evidence of multiple printing passes with different colors and textures. The result should feel handmade and slightly unpredictable."
   },
   {
     "name": "GENDER INVERSION",
@@ -27600,20 +27795,6 @@
     "additionalInstructions": ""
   },
   {
-    "name": "MORSE CODE",
-    "category": [
-      "LANGUAGE",
-      "COMMUNICATION",
-      "TRANSLATION",
-      "TYPOGRAPHY",
-      "CAPTION"
-    ],
-    "message": "Take a picture and preserve the original image exactly as photographed while adding an accurate International Morse Code translation describing the image at the bottom.\n\nTHIS IS NOT A MORSE CODE FILTER.\nTHIS IS NOT A FULL IMAGE TRANSFORMATION.\nTHIS IS NOT AN IMAGE MADE FROM DOTS AND DASHES.\n\nThe original photograph must remain completely unchanged.\n\nAnalyze the image and generate a concise natural-language description of what the image depicts.\n\nTranslate ONLY that description into authentic International Morse Code.\n\nRender the Morse Code neatly along the bottom of the image as though professionally typeset.\n\nThe Morse Code should consist exclusively of authentic dots (•), dashes (—), standard intra-character spacing, inter-character spacing, and word spacing according to International Morse Code conventions.\n\nMASTER PROMPT RULE:\n• If a master prompt specifies the description to encode, ALWAYS use the master prompt instead of generating a description from the image.\n• If a master prompt is supplied, treat the Morse Code translation as already complete. Render the exact Morse Code sequence faithfully without inventing, omitting, or altering any dots or dashes.",
-    "randomizeOptions": false,
-    "options": [],
-    "additionalInstructions": "• Preserve the original photograph exactly.\n• Do NOT alter the subject.\n• Do NOT alter the background.\n• Do NOT crop, stylize, repaint, or transform the image.\n• Generate one concise descriptive sentence summarizing the image.\n• If a master prompt specifies the exact message to encode, use that instead.\n• Translate the final sentence into authentic International Morse Code.\n• Follow official International Morse Code spacing conventions.\n• Display ONLY Morse Code.\n• Never display the English sentence.\n• Never display letters, numbers, punctuation, translations, subtitles, captions, labels, or explanations.\n• Place the Morse Code in a clean horizontal strip along the bottom margin.\n• The Morse Code should be crisp, evenly spaced, centered, and highly legible.\n• Use only authentic Morse Code dots (•) and dashes (—).\n• Do not substitute decorative symbols.\n• The Morse Code strip should integrate cleanly with the image without covering important portions of the photograph.\n• Maintain professional typography with consistent spacing and alignment.\n• Master prompt instructions always override any conflicting instructions.\n\nFINAL VALIDATION:\n\n✓ The original photograph remains completely unchanged.\n✓ A concise description has been accurately translated into International Morse Code.\n✓ ONLY Morse Code appears in the caption area.\n✓ No English translation is visible.\n✓ No decorative symbols other than authentic Morse Code dots and dashes are present.\n✓ The Morse Code is neatly aligned and highly legible.\n✓ The caption does not obscure important image content.\n✓ If ANY answer is NO, regenerate until every requirement is satisfied."
-  },
-  {
     "name": "MORSE CODED",
     "category": [
       "LANGUAGE",
@@ -33938,6 +34119,20 @@
     "additionalInstructions": ""
   },
   {
+    "name": "POLAROID TRANSFER",
+    "category": [
+      "PHOTOGRAPHY",
+      "EXPERIMENTAL",
+      "VINTAGE",
+      "TEXTURE",
+      "ALTERNATIVE PROCESS"
+    ],
+    "message": "Take a picture and transform it into a Polaroid transfer print \u2014 the experimental technique of peeling apart a Polaroid and pressing the negative onto watercolor paper before development is complete. The image should show the characteristic transfer qualities: soft, slightly blurred edges where the emulsion didn't transfer cleanly, the beautiful imperfections of incomplete chemical development, areas where the image is strong and areas where it fades to nothing, and the texture of the watercolor paper visible through the thin emulsion layer. Colors should be slightly shifted and desaturated compared to a normal Polaroid, with the warm, organic quality unique to this process. The irregular edges of the transferred emulsion should be visible against the white paper.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "The transfer imperfections must look authentic \u2014 incomplete edges, variable density, paper texture showing through. The color shift should be subtle but present. The watercolor paper texture must be visible. Subject must be recognizable despite the soft, imperfect quality."
+  },
+  {
     "name": "POLICE LINEUP",
     "category": [
       "HUMOR",
@@ -34609,6 +34804,20 @@
     "options": [],
     "randomizeOptions": false,
     "additionalInstructions": "FINAL RESULT:\nA fully reconstructed image made entirely from refracted spectral light, with all shapes defined by prism dispersion rather than solid surfaces."
+  },
+  {
+    "name": "PRISMATIC LIGHT BEING",
+    "category": [
+      "TRANSFORMATION",
+      "LIGHT",
+      "ETHEREAL",
+      "COLORFUL",
+      "ENERGY"
+    ],
+    "message": "Take a picture and transform the subject into a being made entirely of refracted light \u2014 as if a prism has split white light into its component wavelengths and those wavelengths have taken human form. The subject should appear to be composed of pure spectral color: red at the extremities fading through orange, yellow, green, blue, and violet toward the center. Their form should have the quality of light itself \u2014 slightly transparent, casting rainbow caustics on surrounding surfaces, and appearing to glow from within. Edges should show chromatic aberration and light diffraction patterns. The background should be dark to make the light-form maximally visible.",
+    "randomizeOptions": false,
+    "options": [],
+    "additionalInstructions": "The spectral colors must follow the correct order of the visible spectrum. The light quality must feel genuine \u2014 not just colored but actually luminous. The subject's form and identity must be clearly readable through the light effects."
   },
   {
     "name": "PRO CAMERA SETTINGS",
@@ -36682,6 +36891,20 @@
     ],
     "randomizeOptions": true,
     "additionalInstructions": "SCENE CONSTRUCTION (MANDATORY):\n\n• Build ONE specific cinematic scene matching the selected option\n• The environment must dominate the composition\n• Use concrete visual objects instead of vague cinematic wording\n• Include recognizable props, architecture, vehicles, clothing, and atmosphere appropriate to the selected film\n\nCHARACTER INTEGRATION:\n\n• Subject must feel physically present inside the scene\n• Supporting characters from the selected movie may appear naturally nearby\n• Subject should wear clothing appropriate to the environment\n\nVISUAL STYLE:\n\n• Strong environmental depth\n• Atmospheric haze and volumetric lighting\n• Large-scale cinematic composition\n• Rich textured realism\n• Practical light sources\n• Film-still realism\n\nANTI-CHEAT:\n\n• Do not reuse generic battle compositions\n• Do not force warfare into peaceful options\n• Do not ignore the selected environment\n• Do not generate vague generic movie scenes\n\nQUALITY:\n\n• Highly recognizable movie-inspired environments\n• Strong visual storytelling\n• Authentic cinematic production design\n• Seamless integration of subject into scene"
+  },
+  {
+    "name": "RING FLASH FASHION",
+    "category": [
+      "PHOTOGRAPHY",
+      "FASHION",
+      "LIGHTING",
+      "EDITORIAL",
+      "BOLD"
+    ],
+    "message": "Take a picture and transform it using ring flash lighting \u2014 the distinctive on-axis flash that creates the signature fashion photography look. The lighting should show the telltale ring flash characteristics: nearly shadowless frontal illumination, the distinctive circular catchlight in the eyes (a ring rather than a point), a thin hard shadow outline visible just behind the subject on the background, and the slight falloff of light at the edges of frame. Colors should be punchy and saturated (ring flash tends to boost saturation). The overall aesthetic should be high-fashion editorial \u2014 bold, graphic, and slightly confrontational. The background should be simple to emphasize the distinctive lighting quality.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "The ring-shaped catchlight in the eyes is essential and must be visible. The shadow halo behind the subject must be present. The flat, frontal quality of ring flash must be authentic. The mood should be fashion-editorial."
   },
   {
     "name": "RINPA SCHOOL",
@@ -39242,20 +39465,6 @@
     "options": [],
     "randomizeOptions": false,
     "additionalInstructions": "FINAL RESULT:\nThe final image must look like a real photograph of a city sidewalk where a skilled street artist has created a large-scale 3D chalk illusion, with the subject physically present on the real pavement and playfully interacting with the artwork."
-  },
-  {
-    "name": "SIGN LANGUAGE",
-    "category": [
-      "LANGUAGE",
-      "COMMUNICATION",
-      "EDUCATION",
-      "FINGERSPELLING",
-      "TRANSFORMATION"
-    ],
-    "message": "Take a picture and transform ONLY the subject into a professional educational fingerspelling illustration while preserving the subject's identity.\n\nTHIS IS NOT A PHOTO FILTER.\nTHIS IS NOT A CARTOON.\nTHIS IS NOT RANDOM HAND GESTURES.\nTHIS IS NOT CONVERSATIONAL SIGN LANGUAGE.\n\nThe goal is to accurately demonstrate the American Sign Language (ASL) manual alphabet through fingerspelling.\n\nIf a master prompt specifies any text, fingerspell that exact text.\n\nOtherwise, intelligently generate ONE short word or ONE proper name from the flavor text that best represents the subject or image, then fingerspell ONLY that word.\n\nDisplay one separate instance of the subject for EVERY letter, arranged from left-to-right in reading order.\n\nEach copy of the subject must perform exactly one ASL manual alphabet letter.\n\nThe finished image should resemble a professionally photographed educational ASL fingerspelling chart.",
-    "randomizeOptions": false,
-    "options": [],
-    "additionalInstructions": "• Transform ONLY the subject.\n• Preserve the original background unless overridden by the master prompt.\n• Preserve the subject's exact facial identity, hairstyle, age, ethnicity, clothing, body proportions, facial expression, and recognizable features.\n• NEVER attempt conversational ASL.\n• NEVER attempt complete ASL sentences.\n• ALWAYS use the ASL manual alphabet (fingerspelling) only.\n• If a master prompt exists, fingerspell that exact text.\n• Otherwise derive ONE concise representative word or proper name from the flavor text.\n• Never fingerspell more than 20 characters unless explicitly directed by the master prompt.\n• Create one separate copy of the subject for every individual letter.\n• Arrange all copies horizontally from left to right.\n• Keep consistent spacing between each copy.\n• Every copy must remain immediately recognizable as the same person.\n• Every handshape must exactly match the official ASL manual alphabet.\n• Finger positions must be anatomically correct.\n• Palm orientation must be correct for each letter.\n• Wrist orientation must be correct.\n• Thumb position must be correct.\n• Finger lengths and proportions must remain anatomically realistic.\n• Both hands should only be used when required by the official manual alphabet.\n• Keep every hand completely visible.\n• Never crop fingers.\n• Never hide fingers behind the body.\n• Never allow one copy to overlap another.\n• Maintain identical camera angle, lighting, scale, and body position for every copy unless the hand orientation requires a slight rotation.\n• The body should remain mostly unchanged between letters so the handshape becomes the primary visual difference.\n• Use a clean educational layout similar to professional ASL instructional posters.\n• Do not add printed letters, arrows, labels, captions, or instructional graphics.\n• Do not invent hand gestures.\n• Do not approximate letters.\n• Do not combine multiple letters into one pose.\n• Do not replace handshapes with symbolic gestures.\n• Master prompt instructions always override conflicting instructions.\n\nFINAL VALIDATION:\n\n✓ ONLY the subject has been transformed.\n✓ The background remains unchanged unless overridden.\n✓ Every copy of the subject is immediately recognizable.\n✓ Exactly one ASL manual alphabet letter is shown per subject instance.\n✓ Every required letter appears exactly once and in the proper left-to-right sequence.\n✓ Every handshape matches the official ASL manual alphabet.\n✓ Every finger remains completely visible.\n✓ No letters, captions, arrows, or instructional text appear.\n✓ The finished image resembles a professional ASL fingerspelling educational poster.\n✓ If ANY answer is NO, regenerate until every requirement is satisfied."
   },
   {
     "name": "SIGNWRITING",
@@ -44115,6 +44324,18 @@
     "options": [],
     "randomizeOptions": false,
     "additionalInstructions": "Transform the subject into the visual style of The Maxx using scratchy ink rendering, painterly textures, expressive linework, symbolic environments, surreal visual storytelling, graphic-novel craftsmanship, and authentic hand-drawn comic-book aesthetics."
+  },
+  {
+    "name": "THE RING",
+    "category": [
+      "CINEMATIC",
+      "HORROR",
+      "TRANSFORMATION"
+    ],
+    "message": "Take a picture and transform the ENTIRE photograph into a high-fidelity cinematic scene from the iconic horror movie, portraying the eerie spectral girl crawling out of an analog television screen into a dark room.\n\nTHIS IS NOT A FLAT CUT-AND-PASTE OR PHOTOSHOP OVERLAY.\n\nThe entire environment, background, television set, carpet, and clothing must be fully reconstructed as a seamless, high-budget cinematic film scene. The spectral girl's body, wet dark hair framing her head without covering her face, distressed white gown, and the glow of the static television screen behind her must match the exact visual style of the film scene.\n\nThe facial identity, structure, and distinct expression of the original photographic subject must be seamlessly integrated onto the creepy girl's face, ensuring authentic skin texturing, ghostly lighting integration, and photographic realism.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "• Reconstruct the entire scene: set the environment, lighting, room, analog TV screen, and full character body to match the precise aesthetic of the movie frame.\n• FACIAL INTEGRATION MANDATE: Swap ONLY the facial identity. Map the subject's face onto the spectral character with perfect physical integration, match lighting, depth, and skin texture—avoiding any digital cut-out or photoshopped appearance.\n• HAIR CONSTRAINTS: The iconic long, wet, stringy dark hair must frame the subject's head authentic to the character, but must be styled far enough back from the forehead and cheeks so that the subject's facial features remain fully exposed and clearly recognizable.\n• Ensure the character appears physically emerging out of the glowing CRT television screen onto the floor, casting realistic long shadows based on the ambient room lighting and screen glow.\n• Maintain high visual quality: match the original film's muted color palette, cool shadow tones, and analog camera grain.\n• Master prompt instructions always override any downstream engine assumptions.\n\nFINAL VALIDATION — Before producing the final image, verify ALL of the following:\n\n✓ The entire scene (TV, background room, clothing, atmosphere) matches the film sequence.\n✓ The subject's facial identity is seamlessly mapped onto the creepy girl's head.\n✓ The facial features are fully visible and NOT hidden or obscured by the dark wet hair.\n✓ The integration looks entirely physical and photographic, with zero visible Photoshop artifacts.\n✓ If ANY answer is NO, reject and regenerate immediately."
   },
   {
     "name": "THEME PARK MAP",
