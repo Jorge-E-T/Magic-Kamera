@@ -7398,38 +7398,38 @@
       "OPTIONS",
       "SCIENCE",
       "CHEMISTRY",
-      "TRANSFORMATION",
+      "FULL TRANSFORMATION",
       "SPECIAL EFFECTS"
     ],
-    "message": "Take a picture and transform ONLY the subject into the selected famous chemistry demonstration while preserving the subject's identity.\n\nTHIS IS NOT A PHOTO FILTER.\nTHIS IS NOT A COSTUME.\nTHIS IS NOT A PERSON STANDING NEXT TO A CHEMICAL REACTION.\n\nThe subject MUST become the chemical reaction itself while remaining clearly recognizable.\n\nThe selected reaction must originate from, surround, engulf, or physically replace the subject's body in a visually convincing way.\n\nThe original background, room, lighting direction, furniture, architecture, landscape, and environment must remain unchanged.\n\nIf a master prompt specifies additional scene details, incorporate them without changing the selected chemical reaction.",
+    "message": "Take a picture and transform ONLY the subject into the selected famous chemical reaction while preserving the subject's identity.\n\nTHIS IS NOT A PERSON STANDING INSIDE A CHEMICAL REACTION.\nTHIS IS NOT A PERSON SURROUNDED BY CHEMICALS.\nTHIS IS NOT A COSTUME.\n\nThe ENTIRE SUBJECT must physically become the selected chemical reaction.\n\nEvery visible part of the subject—including the face, skin, hair, clothing, arms, hands, legs, and body—must be reconstructed entirely from the physical products of the selected reaction.\n\nThe subject should remain immediately recognizable despite being completely composed of the chosen chemical reaction.\n\nThe original background, environment, lighting direction, room, landscape, and architecture must remain unchanged.",
     "randomizeOptions": true,
     "options": [
     {
       "id": "001",
-      "text": "Elephant Toothpaste — The subject erupts into an enormous column of thick colorful foaming Elephant Toothpaste blasting upward from laboratory glassware while the subject's face naturally emerges from the expanding foam."
+      "text": "Elephant Toothpaste — Reconstruct the entire subject entirely from enormous expanding colorful Elephant Toothpaste foam. Every part of the body is made from dense cascading foam while preserving the subject's recognizable facial identity."
     },
     {
       "id": "002",
-      "text": "Traffic Light Reaction — The subject becomes the famous Traffic Light Reaction with swirling translucent liquids rapidly cycling between brilliant green, golden yellow, and deep red while the subject remains recognizable inside the solution."
+      "text": "Traffic Light Reaction — Reconstruct the entire subject entirely from transparent swirling liquids of the Traffic Light Reaction. The body, clothing, hair and face become layered translucent chemistry displaying vivid green, yellow and deep red solutions while preserving facial identity."
     },
     {
       "id": "003",
-      "text": "Dancing Gummy Bear — The subject becomes the Dancing Gummy Bear reaction engulfed in brilliant violet flames, incandescent sparks, glowing potassium chloride light, and intense combustion while preserving facial identity."
+      "text": "Dancing Gummy Bear — Reconstruct the entire subject entirely from the brilliant combustion of the Dancing Gummy Bear experiment. The body becomes incandescent glowing chemistry composed of violet flames, brilliant white heat, sparks, glowing gases and combustion products while preserving recognizable facial structure."
     },
     {
       "id": "004",
-      "text": "Black Fire Snake — The subject transforms into the growing Black Fire Snake reaction with twisting black carbon coils spiraling upward while facial identity naturally forms within the expanding carbon structure."
+      "text": "Black Fire Snake — Reconstruct the entire subject entirely from twisting porous black carbon produced by the Black Fire Snake reaction. Every visible feature is sculpted from expanding carbon ash while preserving facial identity."
     },
     {
       "id": "005",
-      "text": "Pharaoh's Serpent — The subject becomes the enormous branching ash serpent growing from the reaction while the expanding ash coils subtly retain the subject's recognizable facial identity."
+      "text": "Pharaoh's Serpent — Reconstruct the entire subject entirely from the branching expanding ash produced by Pharaoh's Serpent. The body consists solely of porous mineral ash structures while remaining recognizable."
     },
     {
       "id": "006",
-      "text": "Dry Ice Volcano — The subject erupts into a massive cascade of overflowing soap bubbles filled with rolling white fog as dense dry ice vapor pours outward while the subject's face emerges naturally from the bubble cloud."
+      "text": "Dry Ice Volcano — Reconstruct the entire subject entirely from dense rolling dry ice fog, overflowing soap bubbles, and turbulent carbon dioxide vapor. The complete body is formed from mist-filled bubbles and flowing vapor while preserving facial identity."
     }
     ],
-    "additionalInstructions": "• Transform ONLY the subject.\n• Preserve the original background exactly.\n• Preserve the subject's recognizable facial identity.\n• The subject must physically become the selected chemical reaction.\n• Do not place the reaction beside the subject.\n• Do not depict laboratory observers.\n• Do not create a science classroom unless requested by the master prompt.\n• The reaction must appear physically integrated with the subject.\n• Foam, flames, ash, bubbles, vapor, liquids, smoke, and chemical effects should naturally replace portions of the body while preserving facial recognition.\n• Render realistic chemistry effects with accurate lighting, translucency, reflections, smoke, bubbles, foam, ash, glow, and volumetric effects.\n• Preserve perspective, camera angle, and composition.\n• Maintain photorealistic quality.\n• Master prompt instructions always override conflicting instructions.\n\nFINAL VALIDATION:\n\n✓ ONLY the subject has transformed.\n✓ Background remains unchanged.\n✓ Subject remains recognizable.\n✓ The selected chemical reaction is unmistakable.\n✓ The reaction originates from or replaces the subject.\n✓ The result appears physically integrated rather than composited.\n✓ If ANY answer is NO, regenerate until all requirements are satisfied."
+    "additionalInstructions": "• Transform ONLY the subject.\n• Preserve the original background exactly.\n• The ENTIRE subject must physically become the selected chemical reaction.\n• Every visible body part must be reconstructed from the products of the selected reaction.\n• The face must remain recognizable despite being constructed entirely from the reaction.\n• Hair must also become part of the reaction.\n• Clothing must become part of the reaction.\n• Hands, fingers, eyes, nose, mouth, ears, and skin must all be reconstructed from the reaction.\n• Do NOT leave any normal human skin, clothing, or body visible.\n• Do NOT place a normal human inside the reaction.\n• Do NOT merely surround the subject with chemical effects.\n• Do NOT overlay chemical effects onto the subject.\n• The subject itself IS the chemical reaction.\n• Preserve body proportions, pose, perspective, composition, and camera angle.\n• Render scientifically recognizable physical characteristics for the selected demonstration while maintaining photorealism.\n• The chemistry should appear physically continuous across the entire body rather than isolated effects.\n• Master prompt instructions always override conflicting instructions.\n\nFINAL VALIDATION:\n\n✓ ONLY the subject has transformed.\n✓ The background remains unchanged.\n✓ No normal human body remains visible.\n✓ Every visible portion of the subject is composed entirely of the selected chemical reaction.\n✓ The subject remains immediately recognizable.\n✓ The transformation is complete rather than an overlay.\n✓ If ANY answer is NO, regenerate until every requirement is satisfied."
   },
   {
     "name": "CHEMICAL STRUCTURE",
@@ -17096,6 +17096,110 @@
     "additionalInstructions": "RESTRICTIONS:\n• No cartoon or heavily stylized animation\n• No text overlays or captions\n• No additional characters or faces blended onto the subject\n\nFINAL RESULT:\nThe image should depict the subject as one of the four Wizard of Oz characters, with full makeup, hair, costume, and accessories applied directly to their face and body, walking on the yellow brick road with the other three characters, all looking at the camera, creating a playful, cinematic, and visually coherent tribute to the original film, while keeping the subject’s face fully recognizable."
   },
   {
+    "name": "FOOD PHOTOGRAPHY STYLE",
+    "category": [
+      "PHOTOGRAPHY",
+      "FOOD",
+      "STYLING",
+      "COMMERCIAL",
+      "LIGHTING"
+    ],
+    "message": "Take a picture and transform it into a professional food photography shot \u2014 but with the subject reimagined AS a food item being photographed for a cookbook, menu, or food magazine. The subject should be 'plated' and styled with the obsessive attention to detail of professional food photography: perfect garnish placement, strategic sauce drizzles, steam or condensation added for freshness, and the specific lighting and composition conventions of food photography. The styling should make the subject appear genuinely appetizing through the visual language of food advertising.",
+    "options": [
+      {
+        "id": "001",
+        "text": "Overhead flat lay \u2014 shot directly from above, styled on a textured surface with scattered ingredients and props"
+      },
+      {
+        "id": "002",
+        "text": "Hero shot 45-degree \u2014 classic food angle, shallow depth of field, backlit steam, dramatic"
+      },
+      {
+        "id": "003",
+        "text": "Action pour/drizzle \u2014 frozen motion of sauce or liquid being poured, dynamic and appetizing"
+      },
+      {
+        "id": "004",
+        "text": "Rustic lifestyle \u2014 natural light, wooden surfaces, linen napkins, imperfect beauty, homestyle"
+      },
+      {
+        "id": "005",
+        "text": "Dark and moody \u2014 black background, dramatic side light, rich colors emerging from shadow, editorial"
+      },
+      {
+        "id": "006",
+        "text": "Bright and clean \u2014 white background, even lighting, minimal props, commercial product-shot style"
+      }
+    ],
+    "randomizeOptions": true,
+    "additionalInstructions": "The food photography conventions must be authentic \u2014 correct lighting angles, proper styling techniques, realistic food photography composition. The subject should be treated with the same reverence as a hero dish. The overall image should look like it belongs in a high-end food publication."
+  },
+  {
+    "name": "FOOD PLATING PORTRAIT",
+    "category": [
+      "FOOD",
+      "ART",
+      "CULINARY ART",
+      "CREATIVE",
+      "PORTRAIT"
+    ],
+    "message": "Take a picture and transform the subject into a work of culinary art \u2014 their portrait recreated as an elaborate food plating on a restaurant plate. The subject's likeness should be recognizable but constructed entirely from food elements, plated with the precision and artistry of a Michelin-starred chef. Every element should be an identifiable food item, arranged with tweezers-level precision on a pristine white plate or appropriate serving surface. The food should look genuinely delicious and professionally prepared, not just arranged into a face shape.",
+    "optionGroups": [
+      {
+        "id": "CUISINE",
+        "label": "Culinary Style",
+        "options": [
+          {
+            "id": "001",
+            "text": "French haute cuisine \u2014 classical sauces, precise cuts, edible flowers, gold leaf accents"
+          },
+          {
+            "id": "002",
+            "text": "Japanese kaiseki \u2014 seasonal ingredients, negative space, natural beauty, ceramic vessel"
+          },
+          {
+            "id": "003",
+            "text": "Molecular gastronomy \u2014 spherification, foams, gels, unexpected textures, scientific precision"
+          },
+          {
+            "id": "004",
+            "text": "Nordic/New Nordic \u2014 foraged ingredients, moss, bark, stones as serving elements, wild and refined"
+          },
+          {
+            "id": "005",
+            "text": "Pastry/dessert art \u2014 sugar work, chocolate painting, fruit coulis, architectural dessert construction"
+          }
+        ],
+        "randomizeOptions": true
+      },
+      {
+        "id": "PRESENTATION",
+        "label": "Plating Style",
+        "options": [
+          {
+            "id": "101",
+            "text": "Minimalist \u2014 few elements, maximum negative space, each component perfect and intentional"
+          },
+          {
+            "id": "102",
+            "text": "Abundant \u2014 overflowing with ingredients, rustic-luxe, generous and celebratory"
+          },
+          {
+            "id": "103",
+            "text": "Architectural \u2014 vertical construction, structural elements, height and drama"
+          },
+          {
+            "id": "104",
+            "text": "Painterly \u2014 sauces used as paint, plate as canvas, abstract expressionist food art"
+          }
+        ],
+        "randomizeOptions": true
+      }
+    ],
+    "randomizeOptions": true,
+    "additionalInstructions": "The food must look genuinely appetizing and professionally prepared. Each ingredient should be identifiable. The subject's likeness must be recognizable in the food arrangement. The plating style must be authentic to the chosen cuisine."
+  },
+  {
     "name": "FORCED PERSPECTIVE",
     "category": [
       "ILLUSION",
@@ -17531,7 +17635,7 @@
     "message": "Take a picture and completely reconstruct the image as if it is formed entirely from frost and ice crystal growth patterns.\n• The subject's features should emerge from the natural branching patterns of ice crystals forming on cold glass \u2014 fernlike dendrites, feathery plumes, and geometric ice flowers that together create the subject's likeness when viewed from the right angle.\n• The scene must be built from crystalline frost structures, not overlaid effects.\n\nCRITICAL OUTPUT RULES:\n• No original surfaces may remain\n• All forms must be constructed from frost-like crystalline patterns\n• Frost must define edges, shapes, and textures\n\nCORE CONCEPT:\n• Ice crystals grow outward to form the image\n• Fractal branching patterns define structure\n\nSTRUCTURE RULES:\n• Fine branching frost patterns\n• Sharp crystalline edges\n• Layered frost density for depth\n\nSUBJECT HANDLING:\n• Subject must be recognizable through frost structure alone\n\nSTYLE:\n• Cool tones (white, blue, pale cyan)\n• Subtle translucency and sparkle\n\nENFORCEMENT:\n• If frost appears as a surface overlay, the result is incorrect.",
     "options": [],
     "randomizeOptions": false,
-    "additionalInstructions": "FINAL RESULT:\nA fully reconstructed image made entirely of frost and crystalline ice formations, with no underlying original image visible."
+    "additionalInstructions": "FINAL RESULT:\nA fully reconstructed image made entirely of frost and crystalline ice formations, with no underlying original image visible. The frost crystal patterns must follow real ice crystallization geometry \u2014 hexagonal branching, dendritic growth patterns. The glass substrate must be visible. The subject should emerge from the natural frost patterns without looking forced. The delicacy of real frost must be preserved."
   },
   {
     "name": "FROSTING CAKE ART",
@@ -18827,10 +18931,10 @@
       "PAINTING",
       "ILLUSTRATION"
     ],
-    "message": "Take a picture and transform the image into a gouache illustration. Matte textures, bold shapes, opaque color layers, and crisp edges while preserving subject identity.",
+    "message": "Take a picture and transform the image into a gouache illustration. Matte textures, bold shapes, opaque color layers, and crisp edges while preserving subject identity. The image should have the characteristic matte, velvety finish of gouache \u2014 no glossy highlights or transparent washes. Colors should be mixed precisely and applied in confident, flat areas with clean edges between shapes. Simplify the subject into bold graphic shapes while maintaining recognizability. The palette should feel considered and harmonious, with each color deliberately chosen and mixed on the palette before application.",
     "options": [],
     "randomizeOptions": false,
-    "additionalInstructions": ""
+    "additionalInstructions": "No visible brushstrokes within color areas \u2014 each shape should be a single flat tone. The matte surface quality of gouache must be evident throughout."
   },
   {
     "name": "GRAFFITI",
@@ -34804,6 +34908,20 @@
     "options": [],
     "randomizeOptions": false,
     "additionalInstructions": "FINAL RESULT:\nA fully reconstructed image made entirely from refracted spectral light, with all shapes defined by prism dispersion rather than solid surfaces."
+  },
+  {
+    "name": "PRISMACOLOR MARKER RENDERING",
+    "category": [
+      "ART",
+      "ILLUSTRATION",
+      "DESIGN",
+      "MARKER",
+      "COMMERCIAL ART"
+    ],
+    "message": "Take a picture and transform it into a professional Prismacolor marker rendering in the style of industrial design or architectural illustration. Show the characteristic qualities of alcohol-based markers: smooth gradients achieved through rapid overlapping strokes, visible stroke edges where markers didn't fully blend, the slight bleeding at edges on marker paper, and the luminous quality of dye-based color. Use a limited but sophisticated color palette with careful attention to material rendering \u2014 showing how markers can simulate chrome, glass, fabric, and skin through specific stroke techniques.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "Marker strokes should be visible and confident, not airbrushed smooth. Include fine-liner pen outlines and white gel pen highlights typical of professional marker renderings."
   },
   {
     "name": "PRISMATIC LIGHT BEING",
