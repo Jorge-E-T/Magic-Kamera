@@ -15413,8 +15413,6 @@ function openImageEditor() {
     renderEditorImage();
     updateUndoButton();
 
-    // Compare always starts OFF for a freshly opened image
-    setCompareOverlay(false);
     // Always start with draw mode OFF for a freshly opened image
     if (isDrawMode) exitDrawMode();
     // ...and always start at fit (100%), not at the previous image's zoom
@@ -15807,44 +15805,6 @@ function closeImageEditor() {
   // Reset zoom mode and return the view to fit
   if (isZoomMode) exitZoomMode();
   resetEditorZoom();
-
-  // Turn compare off so it never persists to the next image.
-  setCompareOverlay(false);
-}
-
-// ===== COMPARE (before/after) =====
-// Purely visual: overlays the PRISTINE original image on top of the canvas.
-// Tap to toggle on/off. Never touches edit/undo/draw/zoom state.
-let isCompareShowing = false;
-
-function setCompareOverlay(show) {
-  const overlay = document.getElementById('editor-compare-overlay');
-  const badge = document.getElementById('editor-compare-badge');
-  const btn = document.getElementById('compare-button');
-  if (!overlay) return;
-  if (show && editorOriginalImage && editorOriginalImage.src) {
-    overlay.src = editorOriginalImage.src;
-    overlay.style.display = 'block';
-    // Match the canvas's current zoom/pan so the original is shown at the SAME
-    // view — a true before/after even when zoomed in.
-    if (editorCanvas) {
-      overlay.style.transformOrigin = 'center center';
-      overlay.style.transform = editorCanvas.style.transform || '';
-    }
-    if (badge) badge.style.display = 'block';
-    if (btn) btn.classList.add('active');
-    isCompareShowing = true;
-  } else {
-    overlay.style.display = 'none';
-    overlay.removeAttribute('src');
-    if (badge) badge.style.display = 'none';
-    if (btn) btn.classList.remove('active');
-    isCompareShowing = false;
-  }
-}
-
-function toggleCompare() {
-  setCompareOverlay(!isCompareShowing);
 }
 
 // ===== DRAW MODE =====
@@ -15923,11 +15883,6 @@ function applyEditorZoomTransform() {
   editorCanvas.style.transformOrigin = 'center center';
   editorCanvas.style.transform =
     'translate(' + editorPanX + 'px, ' + editorPanY + 'px) scale(' + editorZoom + ')';
-  // Keep the compare overlay aligned with the canvas if it is currently shown.
-  if (isCompareShowing) {
-    const ov = document.getElementById('editor-compare-overlay');
-    if (ov) { ov.style.transformOrigin = 'center center'; ov.style.transform = editorCanvas.style.transform; }
-  }
 }
 
 function syncZoomControls() {
@@ -16359,7 +16314,6 @@ document.getElementById('filter-fade-button')?.addEventListener('click', applyFi
 
 // ===== DRAW MODE WIRING =====
 document.getElementById('draw-button')?.addEventListener('click', toggleDrawMode);
-document.getElementById('compare-button')?.addEventListener('click', toggleCompare);
 
 // ===== ZOOM MODE WIRING =====
 document.getElementById('zoom-button')?.addEventListener('click', toggleZoomMode);

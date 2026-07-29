@@ -4735,34 +4735,6 @@ button:disabled {
     display: block;
 }
 
-/* Compare overlay: shows the ORIGINAL image on top of the canvas, sized
-   identically so it lands exactly where the canvas displays. Purely visual. */
-.editor-compare-overlay {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-    pointer-events: none;
-    z-index: 5;
-}
-.editor-compare-badge {
-    position: absolute;
-    top: 2vw;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(254, 95, 0, 0.92);
-    color: #000;
-    font-size: 3vw;
-    font-weight: bold;
-    padding: 1vw 3vw;
-    border-radius: 1.5vw;
-    z-index: 6;
-    pointer-events: none;
-}
-
 /* Crop Overlay */
 .crop-overlay {
     position: absolute;
