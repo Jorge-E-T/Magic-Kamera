@@ -15329,6 +15329,7 @@ let isDrawing = false;             // a stroke is currently in progress
 let drawColor = '#ffffff';         // current pencil color (default white)
 let drawTipSize = 6;               // current pencil tip size (canvas px baseline)
 let drawLastX = 0, drawLastY = 0;  // last point in CANVAS coordinates
+let _drawPrevMidX = 0, _drawPrevMidY = 0; // last curve midpoint (for smoothing)
 // Flood fill (paint bucket): triggered by a hard-press on the canvas while
 // draw mode is active. Fills the contiguous region of similar-colored pixels
 // under the finger with the current pencil color, bounded by edges — e.g.
@@ -15412,6 +15413,8 @@ function openImageEditor() {
     renderEditorImage();
     updateUndoButton();
 
+    // Compare always starts OFF for a freshly opened image
+    setCompareOverlay(false);
     // Always start with draw mode OFF for a freshly opened image
     if (isDrawMode) exitDrawMode();
     // ...and always start at fit (100%), not at the previous image's zoom
@@ -15804,6 +15807,44 @@ function closeImageEditor() {
   // Reset zoom mode and return the view to fit
   if (isZoomMode) exitZoomMode();
   resetEditorZoom();
+
+  // Turn compare off so it never persists to the next image.
+  setCompareOverlay(false);
+}
+
+// ===== COMPARE (before/after) =====
+// Purely visual: overlays the PRISTINE original image on top of the canvas.
+// Tap to toggle on/off. Never touches edit/undo/draw/zoom state.
+let isCompareShowing = false;
+
+function setCompareOverlay(show) {
+  const overlay = document.getElementById('editor-compare-overlay');
+  const badge = document.getElementById('editor-compare-badge');
+  const btn = document.getElementById('compare-button');
+  if (!overlay) return;
+  if (show && editorOriginalImage && editorOriginalImage.src) {
+    overlay.src = editorOriginalImage.src;
+    overlay.style.display = 'block';
+    // Match the canvas's current zoom/pan so the original is shown at the SAME
+    // view — a true before/after even when zoomed in.
+    if (editorCanvas) {
+      overlay.style.transformOrigin = 'center center';
+      overlay.style.transform = editorCanvas.style.transform || '';
+    }
+    if (badge) badge.style.display = 'block';
+    if (btn) btn.classList.add('active');
+    isCompareShowing = true;
+  } else {
+    overlay.style.display = 'none';
+    overlay.removeAttribute('src');
+    if (badge) badge.style.display = 'none';
+    if (btn) btn.classList.remove('active');
+    isCompareShowing = false;
+  }
+}
+
+function toggleCompare() {
+  setCompareOverlay(!isCompareShowing);
 }
 
 // ===== DRAW MODE =====
@@ -15882,6 +15923,11 @@ function applyEditorZoomTransform() {
   editorCanvas.style.transformOrigin = 'center center';
   editorCanvas.style.transform =
     'translate(' + editorPanX + 'px, ' + editorPanY + 'px) scale(' + editorZoom + ')';
+  // Keep the compare overlay aligned with the canvas if it is currently shown.
+  if (isCompareShowing) {
+    const ov = document.getElementById('editor-compare-overlay');
+    if (ov) { ov.style.transformOrigin = 'center center'; ov.style.transform = editorCanvas.style.transform; }
+  }
 }
 
 function syncZoomControls() {
@@ -16049,6 +16095,10 @@ function drawPointerDown(e) {
   drawLastY = p.y;
   _drawDownCanvasX = p.x;
   _drawDownCanvasY = p.y;
+  // Smoothing: remember where the last curve segment ended. At the start of a
+  // stroke that is simply the touch point itself.
+  _drawPrevMidX = p.x;
+  _drawPrevMidY = p.y;
   // Draw a dot so a single tap leaves a mark.
   editorCtx.beginPath();
   editorCtx.fillStyle = drawColor;
@@ -16072,14 +16122,24 @@ function drawPointerMove(e) {
   }
   const nx = drawLastX + dx;
   const ny = drawLastY + dy;
+  // Smooth the line: instead of a straight segment from the last point to the
+  // new one (which looks faceted on curves), draw a quadratic curve whose
+  // control point is the last point and whose end point is the MIDPOINT between
+  // the last and new points. Chaining these midpoint-to-midpoint curves threads
+  // one continuous smooth curve through the finger path — the standard
+  // technique drawing apps use for silky strokes.
+  const midX = (drawLastX + nx) / 2;
+  const midY = (drawLastY + ny) / 2;
   editorCtx.beginPath();
   editorCtx.strokeStyle = drawColor;
   editorCtx.lineWidth = drawTipSize;
   editorCtx.lineCap = 'round';
   editorCtx.lineJoin = 'round';
-  editorCtx.moveTo(drawLastX, drawLastY);
-  editorCtx.lineTo(nx, ny);
+  editorCtx.moveTo(_drawPrevMidX, _drawPrevMidY);
+  editorCtx.quadraticCurveTo(drawLastX, drawLastY, midX, midY);
   editorCtx.stroke();
+  _drawPrevMidX = midX;
+  _drawPrevMidY = midY;
   drawLastX = nx;
   drawLastY = ny;
 }
@@ -16299,6 +16359,7 @@ document.getElementById('filter-fade-button')?.addEventListener('click', applyFi
 
 // ===== DRAW MODE WIRING =====
 document.getElementById('draw-button')?.addEventListener('click', toggleDrawMode);
+document.getElementById('compare-button')?.addEventListener('click', toggleCompare);
 
 // ===== ZOOM MODE WIRING =====
 document.getElementById('zoom-button')?.addEventListener('click', toggleZoomMode);
