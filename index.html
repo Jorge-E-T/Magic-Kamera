@@ -1285,6 +1285,8 @@
                             • Use Blank Canvas for drawings from scratch; skip it to draw directly onto a photo.<br>
                             • Hold still for a fill; drag for a stroke — the two never happen at the same time.<br>
                             • Undo works one step at a time for strokes and fills, and Save creates a new image in your gallery, exactly like the other editing tools.<br><br>
+
+                            <strong>🔍 Zoom:</strong> Tap to activate Zoom/Pan mode. Activating Zoom/Pan deactivates the draw mode. Zoom in/out using the top slider. Zoom in/out levels range from 50%(half) to 1000%(10x) allowing detailed edits. Pan the canvas using the touchscreen.<br>
                             
                             <strong>✂️ Crop:</strong> Tap to activate crop mode. Two orange corner markers appear on your image. Tap and drag the top-left and bottom-right corners to select your desired crop area. Tap Crop again to apply the crop.<br>
                             
@@ -1757,6 +1759,8 @@ All of the presets are optimized to avoid "camera ran dry" or "content filter" i
                     <!-- Image Canvas Area -->
                     <div class="editor-image-container">
                         <canvas id="editor-canvas" class="editor-canvas"></canvas>
+                        <img id="editor-compare-overlay" class="editor-compare-overlay" alt="Original image" style="display: none;">
+                        <div id="editor-compare-badge" class="editor-compare-badge" style="display: none;">Original</div>
                         <div id="crop-overlay" class="crop-overlay" style="display: none;">
                             <div class="crop-corner crop-top-left"></div>
                             <div class="crop-corner crop-bottom-right"></div>
@@ -1767,6 +1771,7 @@ All of the presets are optimized to avoid "camera ran dry" or "content filter" i
                     <!-- Edit Buttons Carousel (right side) — always visible, touch-scrollable -->
                     <div class="editor-btn-carousel">
                         <div class="editor-btn-carousel-track">
+                            <button id="compare-button" class="editor-carousel-btn" title="Tap to compare with the original">👁️<br><span class="editor-carousel-label">Compare</span></button>
                             <button id="draw-button" class="editor-carousel-btn">✏️<br><span class="editor-carousel-label">Draw</span></button>
                             <button id="zoom-button" class="editor-carousel-btn">🔍<br><span class="editor-carousel-label">Zoom</span></button>
                             <button id="crop-button" class="editor-carousel-btn">✂️<br><span class="editor-carousel-label">Crop</span></button>
