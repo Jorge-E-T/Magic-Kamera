@@ -15330,6 +15330,7 @@ let drawColor = '#ffffff';         // current pencil color (default white)
 let drawTipSize = 6;               // current pencil tip size (canvas px baseline)
 let drawLastX = 0, drawLastY = 0;  // last point in CANVAS coordinates
 let _drawPrevMidX = 0, _drawPrevMidY = 0; // last curve midpoint (for smoothing)
+let _drawTrueLastX = 0, _drawTrueLastY = 0; // finger's true last point (for closing strokes)
 // Flood fill (paint bucket): triggered by a hard-press on the canvas while
 // draw mode is active. Fills the contiguous region of similar-colored pixels
 // under the finger with the current pencil color, bounded by edges — e.g.
@@ -15354,6 +15355,21 @@ function drawEffectiveSensitivity() {
   // that leave gaps in shapes — and a gap is exactly what lets the fill tool
   // escape and flood the whole canvas.
   return Math.min(1.9, drawPressure * drawFirmness);
+}
+
+// How much the pen eases toward the finger each move: 1 = snap exactly to the
+// finger (no smoothing), smaller = smoother but with a little lag. We map the
+// Stabilization setting (0 = off .. 0.9 = max) to an easing amount, and let
+// Pressure/Firmness nudge the baseline a touch so those settings still matter.
+// Result is always kept in a safe, faithful range (never overshoots).
+function drawSmoothingFactor() {
+  // Base ease with no stabilization: near 1 (snappy, faithful).
+  let ease = 1 - (drawStabilization || 0);       // stab 0 -> 1.0, stab 0.9 -> 0.1
+  // Firmer/higher pressure = a hair snappier; softer = a hair smoother.
+  const feel = 0.85 + 0.15 * Math.min(1, (drawPressure * drawFirmness) / 1.9);
+  ease *= feel;
+  // Clamp to a sensible, always-faithful window.
+  return Math.max(0.15, Math.min(1, ease));
 }
 
 const DRAW_SETTINGS_KEY = 'r1_draw_settings_v1';
@@ -16054,6 +16070,10 @@ function drawPointerDown(e) {
   // stroke that is simply the touch point itself.
   _drawPrevMidX = p.x;
   _drawPrevMidY = p.y;
+  // Track the TRUE finger position (separate from the eased pen position) so
+  // the stroke can be closed exactly on the finger when it lifts.
+  _drawTrueLastX = p.x;
+  _drawTrueLastY = p.y;
   // Draw a dot so a single tap leaves a mark.
   editorCtx.beginPath();
   editorCtx.fillStyle = drawColor;
@@ -16065,18 +16085,16 @@ function drawPointerMove(e) {
   if (!isDrawMode || !isDrawing || !editorCtx) return;
   e.preventDefault();
   const p = drawEventToCanvasXY(e);
-  // Amplify displacement from the last point, scaled by pressure/firmness.
-  const sens = drawEffectiveSensitivity();
-  let dx = (p.x - drawLastX) * sens;
-  let dy = (p.y - drawLastY) * sens;
-  // Stabilization damps each step to smooth out hand jitter.
-  if (drawStabilization > 0) {
-    const k = 1 - drawStabilization;
-    dx *= k;
-    dy *= k;
-  }
-  const nx = drawLastX + dx;
-  const ny = drawLastY + dy;
+  // Remember the finger's true position so the stroke can close on it exactly.
+  _drawTrueLastX = p.x;
+  _drawTrueLastY = p.y;
+  // Faithful tracking: the pen EASES toward the finger position (it does not
+  // overshoot past it, which is what used to make lines feel loose and left
+  // circles open). drawSmoothingFactor is how much to ease — higher means
+  // smoother but slightly more lag; it is derived from the draw settings.
+  const f = drawSmoothingFactor();
+  const nx = drawLastX + (p.x - drawLastX) * f;
+  const ny = drawLastY + (p.y - drawLastY) * f;
   // Smooth the line: instead of a straight segment from the last point to the
   // new one (which looks faceted on curves), draw a quadratic curve whose
   // control point is the last point and whose end point is the MIDPOINT between
@@ -16102,6 +16120,19 @@ function drawPointerMove(e) {
 function drawPointerUp() {
   if (!isDrawing) return;
   isDrawing = false;
+  // Close the stroke: draw a final smooth segment from the last curve midpoint
+  // all the way to the finger's TRUE last position. Without this the stroke
+  // stops at the last midpoint, leaving shapes (like circles) slightly open.
+  if (editorCtx && (_drawTrueLastX !== drawLastX || _drawTrueLastY !== drawLastY || _drawPrevMidX !== _drawTrueLastX)) {
+    editorCtx.beginPath();
+    editorCtx.strokeStyle = drawColor;
+    editorCtx.lineWidth = drawTipSize;
+    editorCtx.lineCap = 'round';
+    editorCtx.lineJoin = 'round';
+    editorCtx.moveTo(_drawPrevMidX, _drawPrevMidY);
+    editorCtx.quadraticCurveTo(drawLastX, drawLastY, _drawTrueLastX, _drawTrueLastY);
+    editorCtx.stroke();
+  }
   // Commit the finished stroke as the new working image so subsequent
   // filters/adjustments build on top of it and save captures it.
   refreshEditorImage();
