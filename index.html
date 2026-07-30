@@ -1626,6 +1626,7 @@ All of the presets are optimized to avoid "camera ran dry" or "content filter" i
                 <button id="edit-viewer-image" class="viewer-carousel-button">✏️<br><span class="viewer-carousel-label">EDIT</span></button>
                 <button id="upload-viewer-image" class="viewer-carousel-button">📤<br><span class="viewer-carousel-label">EXPORT</span></button>
                 <button id="layer-preset-viewer-button" class="viewer-carousel-button">📑<br><span class="viewer-carousel-label">LAYER</span></button>
+                <button id="game-viewer-button" class="viewer-carousel-button">🎲<br><span class="viewer-carousel-label">GAME</span></button>
             </div>
         </div>
         <!-- Image fills remaining space -->
@@ -1644,6 +1645,26 @@ All of the presets are optimized to avoid "camera ran dry" or "content filter" i
             </div>
         </div>
         
+        <!-- Game Modal -->
+        <div id="game-modal" class="game-modal" style="display: none;">
+            <div class="game-modal-content">
+                <div class="game-modal-header">
+                    <span id="game-modal-title">🎲 Pick a Game</span>
+                    <button id="game-modal-close" class="game-modal-close">×</button>
+                </div>
+                <div id="game-modal-body" class="game-modal-body">
+                    <!-- Step 1: game picker (list of game presets) -->
+                    <div id="game-picker" class="game-picker"></div>
+                    <!-- Step 2: option groups for the chosen game -->
+                    <div id="game-options" class="game-options" style="display:none;"></div>
+                </div>
+                <div id="game-modal-footer" class="game-modal-footer" style="display:none;">
+                    <button id="game-back-btn" class="game-footer-btn">Back</button>
+                    <button id="game-submit-btn" class="game-footer-btn game-submit">Take Photo &amp; Play</button>
+                </div>
+            </div>
+        </div>
+
         <!-- Image Editor Modal -->
         <div id="image-editor-modal" class="image-editor-modal" style="display: none;">
             <div class="image-editor-content">
