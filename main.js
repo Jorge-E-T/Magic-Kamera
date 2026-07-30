@@ -2789,6 +2789,219 @@ async function selectPreset(preset) {
   hidePresetSelector();
 }
 
+// ================= GAME FRAMEWORK =================
+// Self-contained guessing games that reuse existing option presets. The game
+// finds its presets BY NAME in the loaded presets (they are normal free presets
+// the user imports). It secretly picks the answer, lets the user guess via the
+// option groups, checks the guess, and injects a WINNER/LOSER + reveal into the
+// prompt. Normal preset behaviour is untouched — this logic only runs in-game.
+
+// The games this framework offers, by preset name.
+const GAME_PRESET_NAMES = ['GUESS WHO', 'CLUE'];
+
+let _gameActivePreset = null;      // the preset chosen for this game round
+let _gameSelections = {};          // groupIndex -> chosen option index
+
+// Look up a game preset by name in the loaded presets.
+function _findGamePreset(name) {
+  if (typeof CAMERA_PRESETS === 'undefined') return null;
+  return CAMERA_PRESETS.find(p => p.name === name) || null;
+}
+
+// Is a preset actually imported into the user's library?
+function _isGamePresetImported(name) {
+  try {
+    const imported = presetImporter.getImportedPresets();
+    return imported.some(p => p.name === name);
+  } catch (e) { return false; }
+}
+
+// Open the game modal (Step 1: pick a game).
+function openGameModal() {
+  const modal = document.getElementById('game-modal');
+  if (!modal) return;
+  _gameActivePreset = null;
+  _gameSelections = {};
+  document.getElementById('game-options').style.display = 'none';
+  document.getElementById('game-modal-footer').style.display = 'none';
+  document.getElementById('game-picker').style.display = 'block';
+  document.getElementById('game-modal-title').textContent = '🎲 Pick a Game';
+  _renderGamePicker();
+  modal.style.display = 'flex';
+}
+
+function closeGameModal() {
+  const modal = document.getElementById('game-modal');
+  if (modal) modal.style.display = 'none';
+  _gameActivePreset = null;
+  _gameSelections = {};
+}
+
+// Step 1 UI: list the games; lock any whose preset is not imported.
+function _renderGamePicker() {
+  const picker = document.getElementById('game-picker');
+  if (!picker) return;
+  picker.innerHTML = '';
+  GAME_PRESET_NAMES.forEach(name => {
+    const preset = _findGamePreset(name);
+    const imported = preset && _isGamePresetImported(name);
+    const btn = document.createElement('button');
+    btn.className = 'game-picker-item' + (imported ? '' : ' locked');
+    if (imported) {
+      btn.innerHTML = name + '<span class="game-sub">Tap to play</span>';
+      btn.addEventListener('click', () => _startGame(preset));
+    } else {
+      btn.innerHTML = name + '<span class="game-sub">\u26a0\ufe0f Not imported yet \u2014 import "' + name + '" from Import Presets to play</span>';
+      btn.addEventListener('click', () => {
+        alert('To play ' + name + ', first import the "' + name + '" preset from the Import Presets section.');
+      });
+    }
+    picker.appendChild(btn);
+  });
+}
+
+// Step 2: show the option groups for the chosen game.
+function _startGame(preset) {
+  if (!preset || !preset.optionGroups || preset.optionGroups.length === 0) {
+    alert('This game preset has no options to guess.');
+    return;
+  }
+  _gameActivePreset = preset;
+  _gameSelections = {};
+  document.getElementById('game-picker').style.display = 'none';
+  document.getElementById('game-options').style.display = 'block';
+  document.getElementById('game-modal-footer').style.display = 'flex';
+  document.getElementById('game-modal-title').textContent = '🎲 ' + preset.name;
+  _renderGameOptions(preset);
+  _updateGameSubmitEnabled();
+}
+
+function _renderGameOptions(preset) {
+  const container = document.getElementById('game-options');
+  container.innerHTML = '';
+  preset.optionGroups.forEach((group, gi) => {
+    const groupDiv = document.createElement('div');
+    groupDiv.className = 'game-group';
+    const label = document.createElement('div');
+    label.className = 'game-group-label';
+    label.textContent = group.title;
+    groupDiv.appendChild(label);
+    group.options.forEach((opt, oi) => {
+      const btn = document.createElement('button');
+      btn.className = 'game-opt-btn';
+      btn.textContent = opt.text;
+      btn.addEventListener('click', () => {
+        _gameSelections[gi] = oi;
+        groupDiv.querySelectorAll('.game-opt-btn').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        _updateGameSubmitEnabled();
+      });
+      groupDiv.appendChild(btn);
+    });
+    container.appendChild(groupDiv);
+  });
+}
+
+// Enable submit only once every group has a selection.
+function _updateGameSubmitEnabled() {
+  const btn = document.getElementById('game-submit-btn');
+  if (!btn || !_gameActivePreset) return;
+  const allChosen = _gameActivePreset.optionGroups.every((g, gi) => _gameSelections[gi] !== undefined);
+  btn.disabled = !allChosen;
+}
+
+// The heart of the game: pick the secret, check the guess, build the result.
+function _buildGameResult(preset) {
+  const groups = preset.optionGroups;
+
+  // 1. Program secretly selects the answer.
+  const secret = {};           // groupIndex -> option index
+  let characterName = null;
+  if (preset.gameRoster && preset.gameRoster.length > 0) {
+    // Roster style (GUESS WHO): pick an entry; its per-group traits are secret.
+    const entry = preset.gameRoster[Math.floor(Math.random() * preset.gameRoster.length)];
+    characterName = entry.name;
+    groups.forEach((g, gi) => {
+      const idx = g.options.findIndex(o => o.text === entry[g.title]);
+      secret[gi] = idx >= 0 ? idx : 0;
+    });
+  } else {
+    // Per-group style (CLUE): independent random pick per group.
+    groups.forEach((g, gi) => {
+      secret[gi] = Math.floor(Math.random() * g.options.length);
+    });
+  }
+
+  // 2. Check the player's guess against the secret (all groups must match).
+  let win = true;
+  groups.forEach((g, gi) => {
+    if (_gameSelections[gi] !== secret[gi]) win = false;
+  });
+
+  // 3. Build the reveal text from the SECRET answer.
+  const answerLines = groups.map((g, gi) => '  ' + g.title + ': ' + g.options[secret[gi]].text).join('\n');
+  const nameLine = characterName ? ('\nThe character was: ' + characterName) : '';
+  const verdict = win ? 'WINNER' : 'LOSER';
+
+  // 4. Instructions appended to the prompt: show verdict + reveal, keep face.
+  const gameCaption =
+    '\n\n=== GAME RESULT (must be clearly shown in the final image) ===\n' +
+    'Prominently display the word "' + verdict + '" in the image.\n' +
+    'Also clearly display the revealed answer:' + nameLine + '\n' + answerLines + '\n' +
+    'Render the subject styled as this answer while keeping the subject\'s real, recognizable face.';
+
+  // 5. manualSelection locks the image to the SECRET answer (so it reveals it).
+  const secretSelection = {};
+  groups.forEach((g, gi) => { secretSelection[gi] = secret[gi]; });
+
+  return { win, verdict, characterName, gameCaption, secretSelection };
+}
+
+// Submit: build the result, bake it into a preset copy, hand off to the normal
+// generation flow (which handles queueing, credits and sending).
+async function submitGameRound() {
+  if (!_gameActivePreset) return;
+  const preset = _gameActivePreset;
+  const result = _buildGameResult(preset);
+
+  // A shallow copy of the preset with the game verdict/reveal appended, and
+  // randomize turned OFF so our locked secret selection is what renders.
+  const gamePreset = Object.assign({}, preset, {
+    randomizeOptions: true,   // keep true so manualSelection is honoured downstream
+    additionalInstructions: (preset.additionalInstructions || '') + result.gameCaption
+  });
+
+  // Route through the existing generation pipeline.
+  window.viewerLoadedPreset = gamePreset;
+  _gamePendingSelection = result.secretSelection;
+  closeGameModal();
+  await submitMagicTransform();
+  _gamePendingSelection = null;
+}
+
+// Holds the secret selection so submitMagicTransform can pick it up.
+let _gamePendingSelection = null;
+
+// Wire the game UI once the DOM is ready.
+(function wireGameModal() {
+  const btn = document.getElementById('game-viewer-button');
+  if (btn) btn.addEventListener('click', openGameModal);
+  const closeBtn = document.getElementById('game-modal-close');
+  if (closeBtn) closeBtn.addEventListener('click', closeGameModal);
+  const backBtn = document.getElementById('game-back-btn');
+  if (backBtn) backBtn.addEventListener('click', () => {
+    // Back to the game picker.
+    _gameActivePreset = null;
+    _gameSelections = {};
+    document.getElementById('game-options').style.display = 'none';
+    document.getElementById('game-modal-footer').style.display = 'none';
+    document.getElementById('game-picker').style.display = 'block';
+    document.getElementById('game-modal-title').textContent = '🎲 Pick a Game';
+  });
+  const submitBtn = document.getElementById('game-submit-btn');
+  if (submitBtn) submitBtn.addEventListener('click', submitGameRound);
+})();
+
 async function submitMagicTransform() {
   if (currentViewerImageIndex < 0 || currentViewerImageIndex >= galleryImages.length) {
     alert('No image selected');
@@ -3030,6 +3243,13 @@ async function submitMagicTransform() {
     if (inlineSelection !== null) {
       manualSelection = inlineSelection;
     }
+  }
+
+  // GAME OVERRIDE: if a game round is active, the program's SECRET selection is
+  // what renders (revealing the answer), regardless of the user's guess. This
+  // only affects the in-game flow; normal preset use is untouched.
+  if (typeof _gamePendingSelection !== 'undefined' && _gamePendingSelection) {
+    manualSelection = _gamePendingSelection;
   }
   
   const item = galleryImages[currentViewerImageIndex];
