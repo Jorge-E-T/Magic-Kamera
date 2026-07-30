@@ -15363,13 +15363,15 @@ function drawEffectiveSensitivity() {
 // Pressure/Firmness nudge the baseline a touch so those settings still matter.
 // Result is always kept in a safe, faithful range (never overshoots).
 function drawSmoothingFactor() {
-  // Base ease with no stabilization: near 1 (snappy, faithful).
-  let ease = 1 - (drawStabilization || 0);       // stab 0 -> 1.0, stab 0.9 -> 0.1
-  // Firmer/higher pressure = a hair snappier; softer = a hair smoother.
-  const feel = 0.85 + 0.15 * Math.min(1, (drawPressure * drawFirmness) / 1.9);
-  ease *= feel;
-  // Clamp to a sensible, always-faithful window.
-  return Math.max(0.15, Math.min(1, ease));
+  // How tightly the pen follows the finger. 1 = exact (no lag). Stabilization
+  // adds smoothing, but only GENTLY so it never feels laggy: even at max the
+  // pen still moves 55% of the way to the finger each event (was as low as
+  // 10%, which caused the sluggish, hard-to-aim feel). With stabilization Off
+  // the pen tracks the finger exactly.
+  const stab = drawStabilization || 0;           // 0 .. 0.9
+  // Map stab 0 -> 1.0 (exact), stab 0.9 -> ~0.55 (lightly smoothed).
+  const ease = 1 - (stab * 0.5);
+  return Math.max(0.5, Math.min(1, ease));
 }
 
 const DRAW_SETTINGS_KEY = 'r1_draw_settings_v1';
@@ -16500,10 +16502,14 @@ document.addEventListener('pointerdown', (e) => {
   const canvas = document.getElementById('editor-canvas');
   if (!canvas) return;
   let _pressStartX = 0, _pressStartY = 0;
+  let _strokeConfirmed = false;   // has this press become a real stroke yet?
+  let _bufferedMoves = [];        // moves seen before the stroke was confirmed
   canvas.addEventListener('pointerdown', (e) => {
     if (!isDrawMode) return;
     canvas.setPointerCapture(e.pointerId);
     _drawPressFired = false;
+    _strokeConfirmed = false;
+    _bufferedMoves = [];
     _pressStartX = e.clientX; _pressStartY = e.clientY;
     // Start the hard-press timer: if the finger stays down (and mostly still)
     // long enough, do a flood fill instead of a stroke.
@@ -16517,13 +16523,24 @@ document.addEventListener('pointerdown', (e) => {
   canvas.addEventListener('pointermove', (e) => {
     if (!isDrawMode) return;
     if (_drawPressFired) return; // a fill already happened for this press
+    if (!isDrawing) return;
+    if (_strokeConfirmed) {
+      // Normal drawing once the stroke is confirmed.
+      drawPointerMove(e);
+      return;
+    }
+    // Not yet confirmed: a small movement threshold decides stroke vs. fill.
+    // We keep the threshold tiny (4px) AND replay the movement from the true
+    // press point, so the line begins exactly where the finger touched down —
+    // no dropped start, so shapes close without having to overshoot.
+    _bufferedMoves.push(e);
     const moved = Math.abs(e.clientX - _pressStartX) + Math.abs(e.clientY - _pressStartY);
-    // Only a clear, deliberate drag (> 16px total) counts as a stroke. Until
-    // then we hold off — small resting jitter neither cancels the fill nor
-    // leaves stray marks. Once it IS a stroke, cancel the pending fill.
-    if (moved > 16) {
+    if (moved > 4) {
+      _strokeConfirmed = true;
       if (_drawPressTimer) { clearTimeout(_drawPressTimer); _drawPressTimer = null; }
-      if (isDrawing) drawPointerMove(e);
+      // Replay the buffered moves so the stroke includes the initial travel.
+      for (const bm of _bufferedMoves) drawPointerMove(bm);
+      _bufferedMoves = [];
     }
   });
   canvas.addEventListener('pointerup', () => {
