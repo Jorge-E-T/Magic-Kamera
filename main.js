@@ -2951,8 +2951,9 @@ function _buildGameResult(preset) {
     'Render the subject styled as this answer while keeping the subject\'s real, recognizable face.';
 
   // 5. manualSelection locks the image to the SECRET answer (so it reveals it).
-  const secretSelection = {};
-  groups.forEach((g, gi) => { secretSelection[gi] = secret[gi]; });
+  //    MUST be an ARRAY indexed by group (that is the format the prompt builder
+  //    expects for multi-group presets — an object would crash the send).
+  const secretSelection = groups.map((g, gi) => secret[gi]);
 
   return { win, verdict, characterName, gameCaption, secretSelection };
 }
