@@ -2938,17 +2938,24 @@ function _buildGameResult(preset) {
     if (_gameSelections[gi] !== secret[gi]) win = false;
   });
 
-  // 3. Build the reveal text from the SECRET answer.
+  // 3. Build the reveal text from the SECRET answer AND the player's guess.
   const answerLines = groups.map((g, gi) => '  ' + g.title + ': ' + g.options[secret[gi]].text).join('\n');
+  const guessLines = groups.map((g, gi) => {
+    const pickIdx = _gameSelections[gi];
+    const pickText = (pickIdx !== undefined && g.options[pickIdx]) ? g.options[pickIdx].text : '(no pick)';
+    return '  ' + g.title + ': ' + pickText;
+  }).join('\n');
   const nameLine = characterName ? ('\nThe character was: ' + characterName) : '';
   const verdict = win ? 'WINNER' : 'LOSER';
 
-  // 4. Instructions appended to the prompt: show verdict + reveal, keep face.
+  // 4. Instructions appended to the prompt: show verdict, the player's guess,
+  //    and the correct answer — so a loss makes it clear what was missed.
   const gameCaption =
     '\n\n=== GAME RESULT (must be clearly shown in the final image) ===\n' +
     'Prominently display the word "' + verdict + '" in the image.\n' +
-    'Also clearly display the revealed answer:' + nameLine + '\n' + answerLines + '\n' +
-    'Render the subject styled as this answer while keeping the subject\'s real, recognizable face.';
+    'Show a small caption titled "YOUR GUESS" listing the player\'s picks:\n' + guessLines + '\n' +
+    'Show a small caption titled "CORRECT ANSWER" listing the real answer:' + nameLine + '\n' + answerLines + '\n' +
+    'Render the subject styled as the CORRECT ANSWER while keeping the subject\'s real, recognizable face.';
 
   // 5. manualSelection locks the image to the SECRET answer (so it reveals it).
   //    MUST be an ARRAY indexed by group (that is the format the prompt builder
