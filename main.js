@@ -15369,9 +15369,11 @@ function drawSmoothingFactor() {
   // 10%, which caused the sluggish, hard-to-aim feel). With stabilization Off
   // the pen tracks the finger exactly.
   const stab = drawStabilization || 0;           // 0 .. 0.9
-  // Map stab 0 -> 1.0 (exact), stab 0.9 -> ~0.55 (lightly smoothed).
-  const ease = 1 - (stab * 0.5);
-  return Math.max(0.5, Math.min(1, ease));
+  // Map stab 0 -> 1.0 (exact, zero lag), stab 0.9 -> ~0.70 (lightly smoothed).
+  // Kept snappy on purpose: smoothing inherently trades against lag, so even
+  // the max setting stays responsive.
+  const ease = 1 - (stab * 0.33);
+  return Math.max(0.6, Math.min(1, ease));
 }
 
 const DRAW_SETTINGS_KEY = 'r1_draw_settings_v1';
@@ -16097,24 +16099,21 @@ function drawPointerMove(e) {
   const f = drawSmoothingFactor();
   const nx = drawLastX + (p.x - drawLastX) * f;
   const ny = drawLastY + (p.y - drawLastY) * f;
-  // Smooth the line: instead of a straight segment from the last point to the
-  // new one (which looks faceted on curves), draw a quadratic curve whose
-  // control point is the last point and whose end point is the MIDPOINT between
-  // the last and new points. Chaining these midpoint-to-midpoint curves threads
-  // one continuous smooth curve through the finger path — the standard
-  // technique drawing apps use for silky strokes.
-  const midX = (drawLastX + nx) / 2;
-  const midY = (drawLastY + ny) / 2;
+  // Draw a smooth curve that ENDS AT the new pen point (which, with no
+  // stabilization, is the finger itself) rather than stopping at the midpoint.
+  // Using the previous point as the control keeps the line smooth, while the
+  // ink now reaches the fingertip instead of trailing half a segment behind —
+  // that half-segment trail was the remaining "lag".
   editorCtx.beginPath();
   editorCtx.strokeStyle = drawColor;
   editorCtx.lineWidth = drawTipSize;
   editorCtx.lineCap = 'round';
   editorCtx.lineJoin = 'round';
   editorCtx.moveTo(_drawPrevMidX, _drawPrevMidY);
-  editorCtx.quadraticCurveTo(drawLastX, drawLastY, midX, midY);
+  editorCtx.quadraticCurveTo(drawLastX, drawLastY, nx, ny);
   editorCtx.stroke();
-  _drawPrevMidX = midX;
-  _drawPrevMidY = midY;
+  _drawPrevMidX = nx;
+  _drawPrevMidY = ny;
   drawLastX = nx;
   drawLastY = ny;
 }
