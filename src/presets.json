@@ -38037,6 +38037,33 @@
     "additionalInstructions": "FINAL RESULT:\nThe image must convincingly depict an authentic Rock 'Em Sock 'Em Robots toy match. The subject must be transformed entirely into a molded plastic robot whose robotic facial sculpt retains recognizable elements of the subject. If a second person is present, both subjects should become opposing robots. Otherwise the opposing robot should be the classic generic opponent from the toy."
   },
   {
+    "name": "ROCK PAPER SCISSORS LIZARD SPOCK",
+    "category": ["OPTIONS", "GAME", "TRANSFORMATION"],
+    "message": "Take a picture and transform ONLY the subject into the selected option. Do not add opponents, hands, or extra figures for the normal transformation — just the subject, fully transformed.\nTRANSFORMATION RULES (NON-NEGOTIABLE):\n• Keep the subject's face and identity recognizable in all cases\n• Rock: the subject appears to be made entirely of rough grey stone and rock\n• Paper: the subject appears to be made entirely of paper (folded, sheets, papercraft)\n• Scissors: the subject appears to be made of metal scissor blades and shears\n• Lizard: the subject is transformed into a lizard/reptilian version while clearly keeping the subject's own facial features\n• Spock: the subject becomes a Star Trek Vulcan (pointed ears, arched eyebrows, Starfleet look) holding up the Vulcan salute hand sign\n\nSTYLE:\n• Clean, striking portrait of the transformed subject\n• The chosen material or form must be obvious and well-rendered",
+    "randomizeOptions": true,
+    "gameType": "beats",
+    "beats": {
+    "Rock": ["Scissors", "Lizard"],
+    "Paper": ["Rock", "Spock"],
+    "Scissors": ["Paper", "Lizard"],
+    "Lizard": ["Paper", "Spock"],
+    "Spock": ["Scissors", "Rock"]
+    },
+    "optionGroups": [
+    {
+      "title": "CHOOSE",
+      "options": [
+        { "id": "001", "text": "Rock" },
+        { "id": "002", "text": "Paper" },
+        { "id": "003", "text": "Scissors" },
+        { "id": "004", "text": "Lizard" },
+        { "id": "005", "text": "Spock" }
+      ]
+    }
+    ],
+    "additionalInstructions": "FINAL RESULT:\nFor normal use, show only the transformed subject with no game text. (In game mode, the app adds the win/lose/tie result and both choices automatically.)"
+  },
+  {
     "name": "ROCKETPUNK",
     "category": [
       "SCI-FI",
