@@ -2797,7 +2797,7 @@ async function selectPreset(preset) {
 // prompt. Normal preset behaviour is untouched — this logic only runs in-game.
 
 // The games this framework offers, by preset name.
-const GAME_PRESET_NAMES = ['GUESS WHO', 'CLUE'];
+const GAME_PRESET_NAMES = ['GUESS WHO', 'CLUE', 'ROCK PAPER SCISSORS LIZARD SPOCK'];
 
 let _gameActivePreset = null;      // the preset chosen for this game round
 let _gameSelections = {};          // groupIndex -> chosen option index
@@ -2914,6 +2914,40 @@ function _updateGameSubmitEnabled() {
 function _buildGameResult(preset) {
   const groups = preset.optionGroups;
 
+  // ===== BEATS-STYLE GAME (e.g. Rock Paper Scissors Lizard Spock) =====
+  // The preset carries gameType:"beats" and a `beats` map of what each option
+  // DEFEATS. Here the subject transforms into the PLAYER's pick (not the
+  // program's), and the outcome is WIN / LOSE / TIE based on the beats map.
+  if (preset.gameType === 'beats' && preset.beats && groups.length === 1) {
+    const g = groups[0];
+    const playerIdx = _gameSelections[0];
+    const programIdx = Math.floor(Math.random() * g.options.length);
+    const playerPick = (playerIdx !== undefined && g.options[playerIdx]) ? g.options[playerIdx].text : g.options[0].text;
+    const programPick = g.options[programIdx].text;
+
+    let verdict;
+    if (playerPick === programPick) {
+      verdict = 'TIE';
+    } else if (preset.beats[playerPick] && preset.beats[playerPick].indexOf(programPick) !== -1) {
+      verdict = 'WINNER';
+    } else {
+      verdict = 'LOSER';
+    }
+    const win = (verdict === 'WINNER');
+
+    const gameCaption =
+      '\n\n=== GAME RESULT (must be clearly shown in the final image) ===\n' +
+      'Prominently display the word "' + verdict + '" in the image.\n' +
+      'Show a small caption titled "YOU CHOSE": ' + playerPick + '\n' +
+      'Show a small caption titled "OPPONENT CHOSE": ' + programPick + '\n' +
+      'The subject is transformed into the player\'s choice (' + playerPick + ') as described above.';
+
+    // Transform the image into the PLAYER's pick (they become their choice).
+    const secretSelection = [playerIdx !== undefined ? playerIdx : 0];
+    return { win, verdict, characterName: null, gameCaption, secretSelection };
+  }
+
+  // ===== MATCH-STYLE GAME (CLUE / GUESS WHO) =====
   // 1. Program secretly selects the answer.
   const secret = {};           // groupIndex -> option index
   let characterName = null;
