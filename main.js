@@ -13292,7 +13292,7 @@ function parsePresetOptions(preset) {
         title: _groupTitle(group, groupIndex),
         options: pool.map(({ opt, index }) => ({
           value: index,
-          label: `${index}: ${opt.text}`
+          label: `${opt.text}`
         }))
       });
     });
@@ -13309,7 +13309,7 @@ function parsePresetOptions(preset) {
       title: 'SELECT',
       options: pool.map(({ opt, index }) => ({
         value: index,
-        label: `${index}: ${opt.text}`
+        label: `${opt.text}`
       }))
     });
     return sections;
