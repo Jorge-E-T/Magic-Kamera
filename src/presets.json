@@ -51332,6 +51332,99 @@
     "additionalInstructions": "• Transform the subject into the actual Wooly Willy toy—not a person holding it.\n• The printed cartoon face MUST be a custom Wooly Willy illustration specifically designed from the subject.\n• NEVER use the generic Wooly Willy face.\n• NEVER substitute another cartoon face.\n• The printed cartoon should immediately be recognizable as the subject.\n• Preserve the subject's exact facial proportions.\n• Preserve the subject's eye shape and spacing.\n• Preserve the subject's eyebrow shape.\n• Preserve the subject's nose shape.\n• Preserve the subject's smile.\n• Preserve the subject's lip shape.\n• Preserve the subject's cheeks.\n• Preserve the subject's jawline.\n• Preserve the subject's chin.\n• Preserve the subject's forehead.\n• Preserve the subject's ears.\n• Preserve the subject's head shape.\n• Preserve the subject's age.\n• Preserve the subject's ethnicity.\n• Preserve the subject's facial expression.\n• Simplify these features into authentic vintage Wooly Willy cartoon artwork without losing recognizability.\n• The result should look exactly like an official Wooly Willy game manufactured for this person.\n• Do NOT paste the original face onto the game.\n• Do NOT use photographic textures.\n• Do NOT make the face realistic.\n• Re-illustrate the face entirely in the authentic Wooly Willy drawing style.\n• The cardboard printing should have authentic vintage colors and printing quality.\n• Include the clear molded plastic dome over the face.\n• Hair and facial hair must consist ONLY of loose magnetic iron filings.\n• Iron filings should naturally clump exactly as they behave inside a real Wooly Willy toy.\n• Include a few stray filings for realism.\n• Include the magnetic stylus resting naturally beside the game board.\n• The game should be photographed directly from above.\n• Maintain realistic reflections on the plastic bubble.\n• The completed image should be visually indistinguishable from a genuine vintage Wooly Willy toy except that the printed face has been custom illustrated to resemble the subject.\n• Master prompt instructions always override the selected option whenever conflicts occur.\n\nFINAL VALIDATION — Before producing the final image, verify ALL of the following:\n\n✓ The face is NOT the generic Wooly Willy face.\n✓ The cartoon face clearly resembles the subject.\n✓ The face was completely re-illustrated rather than copied from the original toy.\n✓ The facial proportions match the subject.\n✓ The eyes match the subject.\n✓ The nose matches the subject.\n✓ The smile matches the subject.\n✓ The jawline matches the subject.\n✓ The overall head shape matches the subject.\n✓ The artwork looks like an authentic Wooly Willy illustration.\n✓ Hair and facial hair consist only of magnetic iron filings.\n✓ The clear plastic bubble is present.\n✓ The cardboard game board is present.\n✓ The magnetic stylus is visible.\n✓ The selected styling option has been followed exactly.\n✓ If 'Completely Bald' is selected, all filings remain naturally collected at the bottom of the game board.\n✓ If ANY answer is NO, regenerate the image until every requirement is satisfied."
   },
   {
+    "name": "WORDLE",
+    "category": ["OPTIONS", "GAME", "TRANSFORMATION"],
+    "message": "Take a picture and transform ONLY the subject into the word spelled by the three selected letters. Do not add other people, opponents or extra figures — just the subject.\n\nHOW TO READ THE SELECTION:\n• Join LETTER 1 + LETTER 2 + LETTER 3 in order to form a single three-letter word\n• If the three letters do not form a real English word, use the closest real three-letter word\n\nTRANSFORMATION RULES (NON-NEGOTIABLE):\n• Keep the subject's face and identity clearly recognizable in every case\n• If the word is a NOUN (FOX, KEY, PIE, SUN), the subject is transformed INTO that thing\n• If the word is a VERB (RUN, HUG, CRY, DIG), the subject is shown DOING that action\n• The word must be obvious from the picture alone, without any text\n\nSTYLE:\n• Clean, striking portrait of the transformed subject\n• Bold and literal — the word should be instantly readable from the image",
+    "randomizeOptions": true,
+    "gameType": "wordle",
+    "optionGroups": [
+    {
+      "title": "LETTER 1",
+      "options": [
+        { "id": "101", "text": "A" }, { "id": "102", "text": "B" }, { "id": "103", "text": "C" },
+        { "id": "104", "text": "D" }, { "id": "105", "text": "E" }, { "id": "106", "text": "F" },
+        { "id": "107", "text": "G" }, { "id": "108", "text": "H" }, { "id": "109", "text": "I" },
+        { "id": "110", "text": "J" }, { "id": "111", "text": "K" }, { "id": "112", "text": "L" },
+        { "id": "113", "text": "M" }, { "id": "114", "text": "N" }, { "id": "115", "text": "O" },
+        { "id": "116", "text": "P" }, { "id": "117", "text": "R" }, { "id": "118", "text": "S" },
+        { "id": "119", "text": "W" }, { "id": "120", "text": "Y" }, { "id": "121", "text": "Z" }
+      ]
+    },
+    {
+      "title": "LETTER 2",
+      "options": [
+        { "id": "201", "text": "A" }, { "id": "202", "text": "C" }, { "id": "203", "text": "E" },
+        { "id": "204", "text": "G" }, { "id": "205", "text": "I" }, { "id": "206", "text": "K" },
+        { "id": "207", "text": "L" }, { "id": "208", "text": "N" }, { "id": "209", "text": "O" },
+        { "id": "210", "text": "P" }, { "id": "211", "text": "R" }, { "id": "212", "text": "U" },
+        { "id": "213", "text": "W" }
+      ]
+    },
+    {
+      "title": "LETTER 3",
+      "options": [
+        { "id": "301", "text": "B" }, { "id": "302", "text": "E" }, { "id": "303", "text": "F" },
+        { "id": "304", "text": "G" }, { "id": "305", "text": "I" }, { "id": "306", "text": "K" },
+        { "id": "307", "text": "L" }, { "id": "308", "text": "M" }, { "id": "309", "text": "N" },
+        { "id": "310", "text": "P" }, { "id": "311", "text": "R" }, { "id": "312", "text": "S" },
+        { "id": "313", "text": "T" }, { "id": "314", "text": "W" }, { "id": "315", "text": "X" },
+        { "id": "316", "text": "Y" }
+      ]
+    }
+  ],
+  "gameRoster": [
+    { "name": "FOX", "LETTER 1": "F", "LETTER 2": "O", "LETTER 3": "X" },
+    { "name": "OWL", "LETTER 1": "O", "LETTER 2": "W", "LETTER 3": "L" },
+    { "name": "BAT", "LETTER 1": "B", "LETTER 2": "A", "LETTER 3": "T" },
+    { "name": "CAT", "LETTER 1": "C", "LETTER 2": "A", "LETTER 3": "T" },
+    { "name": "DOG", "LETTER 1": "D", "LETTER 2": "O", "LETTER 3": "G" },
+    { "name": "PIG", "LETTER 1": "P", "LETTER 2": "I", "LETTER 3": "G" },
+    { "name": "COW", "LETTER 1": "C", "LETTER 2": "O", "LETTER 3": "W" },
+    { "name": "BEE", "LETTER 1": "B", "LETTER 2": "E", "LETTER 3": "E" },
+    { "name": "ANT", "LETTER 1": "A", "LETTER 2": "N", "LETTER 3": "T" },
+    { "name": "ELF", "LETTER 1": "E", "LETTER 2": "L", "LETTER 3": "F" },
+    { "name": "JET", "LETTER 1": "J", "LETTER 2": "E", "LETTER 3": "T" },
+    { "name": "CAP", "LETTER 1": "C", "LETTER 2": "A", "LETTER 3": "P" },
+    { "name": "HAT", "LETTER 1": "H", "LETTER 2": "A", "LETTER 3": "T" },
+    { "name": "KEY", "LETTER 1": "K", "LETTER 2": "E", "LETTER 3": "Y" },
+    { "name": "MAP", "LETTER 1": "M", "LETTER 2": "A", "LETTER 3": "P" },
+    { "name": "WEB", "LETTER 1": "W", "LETTER 2": "E", "LETTER 3": "B" },
+    { "name": "EGG", "LETTER 1": "E", "LETTER 2": "G", "LETTER 3": "G" },
+    { "name": "ICE", "LETTER 1": "I", "LETTER 2": "C", "LETTER 3": "E" },
+    { "name": "SUN", "LETTER 1": "S", "LETTER 2": "U", "LETTER 3": "N" },
+    { "name": "LOG", "LETTER 1": "L", "LETTER 2": "O", "LETTER 3": "G" },
+    { "name": "BOW", "LETTER 1": "B", "LETTER 2": "O", "LETTER 3": "W" },
+    { "name": "GEM", "LETTER 1": "G", "LETTER 2": "E", "LETTER 3": "M" },
+    { "name": "JAM", "LETTER 1": "J", "LETTER 2": "A", "LETTER 3": "M" },
+    { "name": "PIE", "LETTER 1": "P", "LETTER 2": "I", "LETTER 3": "E" },
+    { "name": "CAR", "LETTER 1": "C", "LETTER 2": "A", "LETTER 3": "R" },
+    { "name": "BUS", "LETTER 1": "B", "LETTER 2": "U", "LETTER 3": "S" },
+    { "name": "RAT", "LETTER 1": "R", "LETTER 2": "A", "LETTER 3": "T" },
+    { "name": "HEN", "LETTER 1": "H", "LETTER 2": "E", "LETTER 3": "N" },
+    { "name": "APE", "LETTER 1": "A", "LETTER 2": "P", "LETTER 3": "E" },
+    { "name": "EEL", "LETTER 1": "E", "LETTER 2": "E", "LETTER 3": "L" },
+    { "name": "RAM", "LETTER 1": "R", "LETTER 2": "A", "LETTER 3": "M" },
+    { "name": "YAK", "LETTER 1": "Y", "LETTER 2": "A", "LETTER 3": "K" },
+    { "name": "RUN", "LETTER 1": "R", "LETTER 2": "U", "LETTER 3": "N" },
+    { "name": "FLY", "LETTER 1": "F", "LETTER 2": "L", "LETTER 3": "Y" },
+    { "name": "EAT", "LETTER 1": "E", "LETTER 2": "A", "LETTER 3": "T" },
+    { "name": "SIT", "LETTER 1": "S", "LETTER 2": "I", "LETTER 3": "T" },
+    { "name": "HUG", "LETTER 1": "H", "LETTER 2": "U", "LETTER 3": "G" },
+    { "name": "ROW", "LETTER 1": "R", "LETTER 2": "O", "LETTER 3": "W" },
+    { "name": "DIG", "LETTER 1": "D", "LETTER 2": "I", "LETTER 3": "G" },
+    { "name": "NAP", "LETTER 1": "N", "LETTER 2": "A", "LETTER 3": "P" },
+    { "name": "SKI", "LETTER 1": "S", "LETTER 2": "K", "LETTER 3": "I" },
+    { "name": "CRY", "LETTER 1": "C", "LETTER 2": "R", "LETTER 3": "Y" },
+    { "name": "WIN", "LETTER 1": "W", "LETTER 2": "I", "LETTER 3": "N" },
+    { "name": "JOG", "LETTER 1": "J", "LETTER 2": "O", "LETTER 3": "G" },
+    { "name": "MIX", "LETTER 1": "M", "LETTER 2": "I", "LETTER 3": "X" },
+    { "name": "ZIP", "LETTER 1": "Z", "LETTER 2": "I", "LETTER 3": "P" },
+    { "name": "HOP", "LETTER 1": "H", "LETTER 2": "O", "LETTER 3": "P" },
+    { "name": "SPY", "LETTER 1": "S", "LETTER 2": "P", "LETTER 3": "Y" }
+    ],
+    "additionalInstructions": "FINAL RESULT:\nFor normal use, show only the transformed subject with no letters, tiles or game text. (In game mode the app adds the WORDLE tile row and the result automatically.)"
+  },
+  {
     "name": "WORLD PARK ICON",
     "category": [
       "TRAVEL",
