@@ -2797,7 +2797,7 @@ async function selectPreset(preset) {
 // prompt. Normal preset behaviour is untouched — this logic only runs in-game.
 
 // The games this framework offers, by preset name.
-const GAME_PRESET_NAMES = ['GUESS WHO', 'CLUE', 'ROCK PAPER SCISSORS LIZARD SPOCK'];
+const GAME_PRESET_NAMES = ['GUESS WHO', 'CLUE', 'ROCK PAPER SCISSORS LIZARD SPOCK', 'WORDLE'];
 
 let _gameActivePreset = null;      // the preset chosen for this game round
 let _gameSelections = {};          // groupIndex -> chosen option index
@@ -2945,6 +2945,64 @@ function _buildGameResult(preset) {
     // Transform the image into the PLAYER's pick (they become their choice).
     const secretSelection = [playerIdx !== undefined ? playerIdx : 0];
     return { win, verdict, characterName: null, gameCaption, secretSelection };
+  }
+
+  // ===== WORDLE-STYLE GAME =====
+  // The preset carries gameType:"wordle" and a gameRoster of real words, one
+  // roster entry per word, with each letter stored under its group title.
+  // The program picks a word, the player's three letters are scored Wordle-style
+  // (GREEN / YELLOW / GRAY) and the subject transforms into the SECRET word.
+  if (preset.gameType === 'wordle' && preset.gameRoster && preset.gameRoster.length > 0) {
+    // 1. Program secretly picks a REAL word from the roster.
+    const entry = preset.gameRoster[Math.floor(Math.random() * preset.gameRoster.length)];
+    const secretWord = String(entry.name || '').toUpperCase();
+
+    const secret = groups.map((g) => {
+      const want = String(entry[g.title] || '').toUpperCase();
+      const idx = g.options.findIndex(o => String(o.text).toUpperCase() === want);
+      return idx >= 0 ? idx : 0;
+    });
+    const secretLetters = groups.map((g, gi) => String(g.options[secret[gi]].text).toUpperCase());
+
+    // 2. The player's guess, letter by letter.
+    const guessLetters = groups.map((g, gi) => {
+      const pick = _gameSelections[gi];
+      return (pick !== undefined && g.options[pick]) ? String(g.options[pick].text).toUpperCase() : '?';
+    });
+
+    // 3. Wordle scoring. TWO passes: greens claim their letter first, then
+    //    yellows may only claim letters the greens did NOT already consume.
+    //    A single pass would mis-colour repeated letters (BEE vs EEL etc).
+    const marks = new Array(groups.length).fill('GRAY');
+    const pool = secretLetters.slice();
+    for (let i = 0; i < groups.length; i++) {
+      if (guessLetters[i] === secretLetters[i]) { marks[i] = 'GREEN'; pool[i] = null; }
+    }
+    for (let i = 0; i < groups.length; i++) {
+      if (marks[i] === 'GREEN') continue;
+      const j = pool.indexOf(guessLetters[i]);
+      if (j !== -1) { marks[i] = 'YELLOW'; pool[j] = null; }
+    }
+
+    const win = marks.every(m => m === 'GREEN');
+    const verdict = win ? 'WINNER' : 'LOSER';
+
+    const tileLines = guessLetters.map((L, i) => {
+      const colour = marks[i] === 'GREEN' ? 'GREEN' : (marks[i] === 'YELLOW' ? 'YELLOW' : 'DARK GRAY');
+      return '  Tile ' + (i + 1) + ': the letter "' + L + '" on a ' + colour + ' square';
+    }).join('\n');
+
+    const gameCaption =
+      '\n\n=== GAME RESULT (must be clearly shown in the final image) ===\n' +
+      'Draw a single horizontal WORDLE row of ' + groups.length + ' large square tiles across the image.\n' +
+      'Each tile holds one bold white capital letter, in this exact order:\n' + tileLines + '\n' +
+      'Tile colours mean: GREEN = right letter, right place. YELLOW = right letter, wrong place. DARK GRAY = letter not in the word.\n' +
+      'Prominently display the word "' + verdict + '" in the image.\n' +
+      'Show a small caption reading "THE WORD WAS: ' + secretWord + '".\n' +
+      'The subject is transformed into the SECRET word (' + secretWord + ') as described above, NOT into the guess.';
+
+    // Transform locks to the SECRET word, so the picture reveals the answer.
+    return { win, verdict, characterName: secretWord, gameCaption, secretSelection: secret };
   }
 
   // ===== MATCH-STYLE GAME (CLUE / GUESS WHO) =====
