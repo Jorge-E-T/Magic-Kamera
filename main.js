@@ -2756,8 +2756,8 @@ async function selectPreset(preset) {
 
   if (preset.randomizeOptions) {
     if (preset.optionGroups && preset.optionGroups.length > 0) {
-      preset.optionGroups.forEach(group => {
-        fullText += '\n\n' + group.title + ':\n';
+      preset.optionGroups.forEach((group, gi) => {
+        fullText += '\n\n' + _groupTitle(group, gi) + ':\n';
         group.options.forEach((opt, i) => {
           fullText += '  ' + i + ': ' + opt.text + '\n';
         });
@@ -2876,6 +2876,19 @@ function _startGame(preset) {
   _updateGameSubmitEnabled();
 }
 
+// Returns a group's display name. Presets are not consistent: most use
+// "title", some use "label" (with "id" as a code), older ones only "id".
+// Every place that shows or prints a group name goes through here so a
+// label-format preset never renders blank or prints "undefined" into the prompt.
+function _groupTitle(group, index) {
+  if (!group) return 'OPTIONS';
+  const raw = group.title || group.label || group.name || group.groupTitle || group.id;
+  const txt = (raw === undefined || raw === null) ? '' : String(raw).trim();
+  if (txt !== '') return txt;
+  const n = (typeof index === 'number' && index >= 0) ? index + 1 : 1;
+  return 'OPTION GROUP ' + n;
+}
+
 function _renderGameOptions(preset) {
   const container = document.getElementById('game-options');
   container.innerHTML = '';
@@ -2884,7 +2897,7 @@ function _renderGameOptions(preset) {
     groupDiv.className = 'game-group';
     const label = document.createElement('div');
     label.className = 'game-group-label';
-    label.textContent = group.title;
+    label.textContent = _groupTitle(group, gi);
     groupDiv.appendChild(label);
     group.options.forEach((opt, oi) => {
       const btn = document.createElement('button');
@@ -2957,8 +2970,8 @@ function _buildGameResult(preset) {
     const entry = preset.gameRoster[Math.floor(Math.random() * preset.gameRoster.length)];
     const secretWord = String(entry.name || '').toUpperCase();
 
-    const secret = groups.map((g) => {
-      const want = String(entry[g.title] || '').toUpperCase();
+    const secret = groups.map((g, gi) => {
+      const want = String(entry[_groupTitle(g, gi)] || '').toUpperCase();
       const idx = g.options.findIndex(o => String(o.text).toUpperCase() === want);
       return idx >= 0 ? idx : 0;
     });
@@ -3014,7 +3027,7 @@ function _buildGameResult(preset) {
     const entry = preset.gameRoster[Math.floor(Math.random() * preset.gameRoster.length)];
     characterName = entry.name;
     groups.forEach((g, gi) => {
-      const idx = g.options.findIndex(o => o.text === entry[g.title]);
+      const idx = g.options.findIndex(o => o.text === entry[_groupTitle(g, gi)]);
       secret[gi] = idx >= 0 ? idx : 0;
     });
   } else {
@@ -3031,11 +3044,11 @@ function _buildGameResult(preset) {
   });
 
   // 3. Build the reveal text from the SECRET answer AND the player's guess.
-  const answerLines = groups.map((g, gi) => '  ' + g.title + ': ' + g.options[secret[gi]].text).join('\n');
+  const answerLines = groups.map((g, gi) => '  ' + _groupTitle(g, gi) + ': ' + g.options[secret[gi]].text).join('\n');
   const guessLines = groups.map((g, gi) => {
     const pickIdx = _gameSelections[gi];
     const pickText = (pickIdx !== undefined && g.options[pickIdx]) ? g.options[pickIdx].text : '(no pick)';
-    return '  ' + g.title + ': ' + pickText;
+    return '  ' + _groupTitle(g, gi) + ': ' + pickText;
   }).join('\n');
   const nameLine = characterName ? ('\nThe character was: ' + characterName) : '';
   const verdict = win ? 'WINNER' : 'LOSER';
@@ -6084,8 +6097,8 @@ function hidePresetBuilderSubmenu() {
       let fullText = presetToShow.message || '';
       if (presetToShow.randomizeOptions) {
         if (presetToShow.optionGroups && presetToShow.optionGroups.length > 0) {
-          presetToShow.optionGroups.forEach(group => {
-            fullText += '\n\n' + group.title + ':\n';
+          presetToShow.optionGroups.forEach((group, gi) => {
+            fullText += '\n\n' + _groupTitle(group, gi) + ':\n';
             group.options.forEach((opt, i) => { fullText += '  ' + i + ': ' + opt.text + '\n'; });
           });
         } else if (presetToShow.options && presetToShow.options.length > 0) {
@@ -6151,7 +6164,7 @@ function showViewerPresetOptions(preset) {
       
       const label = document.createElement('div');
       label.style.cssText = 'font-size: 11px; color: #aaa; margin-bottom: 6px;';
-      label.textContent = group.title + ':';
+      label.textContent = _groupTitle(group, groupIndex) + ':';
       groupDiv.appendChild(label);
       
       group.options.forEach((opt, optIndex) => {
@@ -13270,13 +13283,13 @@ function parsePresetOptions(preset) {
   
   // NEW FORMAT: Check if preset has optionGroups (multi-selection like FRIENDS)
   if (preset.optionGroups && preset.optionGroups.length > 0) {
-    preset.optionGroups.forEach(group => {
+    preset.optionGroups.forEach((group, groupIndex) => {
       const activeOptions = group.options
         .map((opt, index) => ({ opt, index }))
         .filter(({ opt }) => opt.enabled !== false);
       const pool = activeOptions.length > 0 ? activeOptions : group.options.map((opt, index) => ({ opt, index }));
       sections.push({
-        title: group.title,
+        title: _groupTitle(group, groupIndex),
         options: pool.map(({ opt, index }) => ({
           value: index,
           label: `${index}: ${opt.text}`
@@ -13377,7 +13390,7 @@ function buildSelectedOptionsText(preset, selection) {
       if (opts.length === 0) return;
       let idx = parseInt(picks[index], 10);
       if (isNaN(idx) || idx < 0 || idx >= opts.length) idx = 0;   // fall back to first
-      text += `• ${group.title}: ${opts[idx].text}\n`;
+      text += `• ${_groupTitle(group, index)}: ${opts[idx].text}\n`;
     });
     return text;
   }
@@ -13405,7 +13418,7 @@ function buildRandomOptionsText(preset) {
       const pool = activeOptions.length > 0 ? activeOptions : group.options;
       const selectedIndex = (seed + index * 13) % pool.length;
       const selectedOption = pool[selectedIndex];
-      text += `• ${group.title}: ${selectedOption.text}\n`;
+      text += `• ${_groupTitle(group, index)}: ${selectedOption.text}\n`;
     });
   }
   // Single selection preset
@@ -13803,8 +13816,8 @@ function hideStyleEditor() {
       let fullText = presetToShow.message || '';
       if (presetToShow.randomizeOptions) {
         if (presetToShow.optionGroups && presetToShow.optionGroups.length > 0) {
-          presetToShow.optionGroups.forEach(group => {
-            fullText += '\n\n' + group.title + ':\n';
+          presetToShow.optionGroups.forEach((group, gi) => {
+            fullText += '\n\n' + _groupTitle(group, gi) + ':\n';
             group.options.forEach((opt, i) => { fullText += '  ' + i + ': ' + opt.text + '\n'; });
           });
         } else if (presetToShow.options && presetToShow.options.length > 0) {
