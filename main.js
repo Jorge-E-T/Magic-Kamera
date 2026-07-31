@@ -3013,12 +3013,21 @@ async function submitGameRound() {
     additionalInstructions: (preset.additionalInstructions || '') + result.gameCaption
   });
 
-  // Route through the existing generation pipeline.
+  // Tag this copy so the override below can only ever apply to a real game round.
+  gamePreset.__isGameRound = true;
+
+  // Route through the existing generation pipeline, then ALWAYS put the viewer
+  // back how we found it — even if the submit bails out early or throws.
+  const _previousLoadedPreset = window.viewerLoadedPreset || null;
   window.viewerLoadedPreset = gamePreset;
   _gamePendingSelection = result.secretSelection;
   closeGameModal();
-  await submitMagicTransform();
-  _gamePendingSelection = null;
+  try {
+    await submitMagicTransform();
+  } finally {
+    _gamePendingSelection = null;
+    window.viewerLoadedPreset = _previousLoadedPreset;
+  }
 }
 
 // Holds the secret selection so submitMagicTransform can pick it up.
@@ -3050,10 +3059,16 @@ async function submitMagicTransform() {
     return;
   }
 
+  // A game round carries its OWN preset and its OWN locked selection. It must
+  // bypass Layer mode, Multi mode and the manual-options modal — the game modal
+  // has already collected the player's picks, so anything else here is either a
+  // pointless second prompt or the wrong preset entirely.
+  const _isGameRound = !!(window.viewerLoadedPreset && window.viewerLoadedPreset.__isGameRound === true);
+
   // GALLERY LAYER MODE
   // This prevents the random preset picker and wrong manual options modal from firing.
 
-  if (isGalleryLayerActive && galleryLayerPresets.length > 0) {
+  if (!_isGameRound && isGalleryLayerActive && galleryLayerPresets.length > 0) {
     const item = galleryImages[currentViewerImageIndex];
     const resizedImageBase64 = await resizeImageForSubmission(item.imageBase64);
 
@@ -3140,7 +3155,7 @@ async function submitMagicTransform() {
   // GALLERY MULTI MODE
   // Re-applies the previously saved multi presets without re-opening the selector.
 
-  if (isGalleryMultiActive && galleryMultiPresets.length > 0) {
+  if (!_isGameRound && isGalleryMultiActive && galleryMultiPresets.length > 0) {
     const item = galleryImages[currentViewerImageIndex];
     const resizedImageBase64 = await resizeImageForSubmission(item.imageBase64);
 
@@ -3253,7 +3268,7 @@ async function submitMagicTransform() {
   
  // Handle manual options for gallery
   // Manual Options does NOT work with No Magic Mode
-  if (manualOptionsMode && !noMagicMode && matchedPreset) {
+  if (manualOptionsMode && !noMagicMode && matchedPreset && !_isGameRound) {
     const options = parsePresetOptions(matchedPreset);
     
     if (options.length > 0) {
@@ -3280,7 +3295,7 @@ async function submitMagicTransform() {
   }
   
   // If manual options mode is OFF, check if user made inline selections in the viewer
-  if (!manualOptionsMode && matchedPreset && matchedPreset.randomizeOptions) {
+  if (!manualOptionsMode && matchedPreset && matchedPreset.randomizeOptions && !_isGameRound) {
     const inlineSelection = collectViewerSelectedOptions(matchedPreset);
     if (inlineSelection !== null) {
       manualSelection = inlineSelection;
@@ -3290,7 +3305,7 @@ async function submitMagicTransform() {
   // GAME OVERRIDE: if a game round is active, the program's SECRET selection is
   // what renders (revealing the answer), regardless of the user's guess. This
   // only affects the in-game flow; normal preset use is untouched.
-  if (typeof _gamePendingSelection !== 'undefined' && _gamePendingSelection) {
+  if (_isGameRound && typeof _gamePendingSelection !== 'undefined' && _gamePendingSelection) {
     manualSelection = _gamePendingSelection;
   }
   
@@ -8046,8 +8061,12 @@ async function showManualOptionsModal(preset, sections) {
         selections.push(selected ? parseInt(selected.value) : 0);
       });
       cleanup();
-      // If only one section, return single value for backwards compat; else return array
-      resolve(sections.length === 1 ? selections[0] : selections);
+      // Shape must match what the preset actually uses, NOT how many sections
+      // were rendered. A preset built from optionGroups always reads its
+      // selection as an array — even when it has only ONE group (e.g. RPSLS).
+      // Returning a bare number there crashes the prompt builder.
+      const usesGroups = !!(preset && preset.optionGroups && preset.optionGroups.length > 0);
+      resolve((sections.length === 1 && !usesGroups) ? selections[0] : selections);
     };
     
     if (closeBtn) closeBtn.onclick = handleClose;
@@ -10461,7 +10480,20 @@ async function syncQueuedPhotos(fromAutoRetry) {
       
       if (typeof PluginMessageHandler !== 'undefined' && !noMagicMode) {
         if (item.isCombined) window.isCombinedMode = true;
-        const syncedPrompt = getFinalPrompt(item.preset, item.manualSelection ?? null);
+        // NEVER let a bad prompt build block the queue head. Degrade instead:
+        // manual selection -> random selection -> bare message. The photo goes out.
+        let syncedPrompt;
+        try {
+          syncedPrompt = getFinalPrompt(item.preset, item.manualSelection ?? null);
+        } catch (promptErr) {
+          console.error('Prompt build failed — retrying without the manual selection:', promptErr);
+          try {
+            syncedPrompt = getFinalPrompt(item.preset, null);
+          } catch (promptErr2) {
+            console.error('Prompt build failed again — sending message only:', promptErr2);
+            syncedPrompt = (item.preset && item.preset.message) || null;
+          }
+        }
         if (item.isCombined) window.isCombinedMode = false;
         const syncPayload = {
           pluginId: 'com.r1.pixelart',
@@ -13276,21 +13308,33 @@ function getFinalPrompt(preset, manualSelection = null) {
 // Helper: Build text for manually selected options
 function buildSelectedOptionsText(preset, selection) {
   let text = 'SELECTED OPTIONS:\n';
-  
-  // Multi-selection (array of selections)
-  if (Array.isArray(selection)) {
-    preset.optionGroups.forEach((group, index) => {
-      const selectedOption = group.options[selection[index]];
-      text += `• ${group.title}: ${selectedOption.text}\n`;
+
+  // Decide by what the PRESET has, not by the shape of the selection — then
+  // coerce the selection to fit. A mismatched selection can never throw now.
+  const groups = (preset && preset.optionGroups && preset.optionGroups.length > 0) ? preset.optionGroups : null;
+  const flat   = (preset && preset.options && preset.options.length > 0) ? preset.options : null;
+
+  if (groups) {
+    const picks = Array.isArray(selection) ? selection : [selection];
+    groups.forEach((group, index) => {
+      const opts = (group && group.options) || [];
+      if (opts.length === 0) return;
+      let idx = parseInt(picks[index], 10);
+      if (isNaN(idx) || idx < 0 || idx >= opts.length) idx = 0;   // fall back to first
+      text += `• ${group.title}: ${opts[idx].text}\n`;
     });
+    return text;
   }
-  // Single selection (single number)
-  else {
-    const selectedOption = preset.options[selection];
-    text += `• ${selectedOption.text}`;
+
+  if (flat) {
+    let idx = Array.isArray(selection) ? parseInt(selection[0], 10) : parseInt(selection, 10);
+    if (isNaN(idx) || idx < 0 || idx >= flat.length) idx = 0;
+    text += `• ${flat[idx].text}`;
+    return text;
   }
-  
-  return text;
+
+  // Preset claims randomizeOptions but carries no options at all.
+  return '';
 }
 
 // Helper: Build text for random selections
