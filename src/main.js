@@ -7939,49 +7939,46 @@ async function showManualOptionsModal(preset, sections) {
     list.innerHTML = '';
        
     sections.forEach((section, sectionIndex) => {
-      // Section header
+      // Section header — styled like the game modal's group label.
       const header = document.createElement('div');
-      header.style.padding = '10px 12px 4px';
-      header.style.fontWeight = '700';
-      header.style.fontSize = '11px';
-      header.style.letterSpacing = '0.05em';
-      header.style.color = '#aaa';
-      header.style.textTransform = 'uppercase';
-      header.style.borderTop = sectionIndex > 0 ? '1px solid #333' : 'none';
-      header.style.marginTop = sectionIndex > 0 ? '8px' : '0';
+      header.className = 'mo-group-label';
       header.textContent = section.title;
       list.appendChild(header);
 
+      // Wrapper lets the option buttons flow into columns and wrap.
+      const groupWrap = document.createElement('div');
+      groupWrap.className = 'mo-group';
+
       section.options.forEach((option, optIndex) => {
         const globalIndex = `s${sectionIndex}_o${optIndex}`;
+        // NOTE: the 'style-item' class MUST stay — the up/down arrow
+        // navigation finds each option with closest('.style-item').
         const item = document.createElement('div');
-        item.className = 'style-item';
-        item.style.padding = '10px 12px';
-        item.style.cursor = 'pointer';
-        item.style.display = 'flex';
-        item.style.alignItems = 'center';
-        
+        item.className = 'style-item mo-opt';
+
         const radio = document.createElement('input');
         radio.type = 'radio';
         radio.name = `manual-option-section-${sectionIndex}`;
         radio.id = `manual-option-${globalIndex}`;
         radio.value = option.value;
-        radio.style.marginRight = '10px';
-        
+        radio.className = 'mo-radio';
+
+        // The label IS the visible button; CSS highlights it via
+        // .mo-radio:checked + .mo-opt-label, so no JS state to keep in sync.
         const label = document.createElement('label');
         label.htmlFor = `manual-option-${globalIndex}`;
+        label.className = 'mo-opt-label';
         label.textContent = option.label;
-        label.style.cursor = 'pointer';
-        label.style.flex = '1';
-        label.style.fontSize = '12px';
-        
+
         item.appendChild(radio);
         item.appendChild(label);
-        
+
         item.onclick = () => { radio.checked = true; };
-        
-        list.appendChild(item);
+
+        groupWrap.appendChild(item);
       });
+
+      list.appendChild(groupWrap);
 
       // Auto-select first option in each section
       const firstRadio = list.querySelector(`input[name="manual-option-section-${sectionIndex}"]`);
@@ -8492,7 +8489,8 @@ const TOUR_STEPS = [
   { section: 'Gallery', title: '🏷️ Preset Header', body: 'At the very top of the image viewer a header shows the name of the currently loaded preset. Tap the header to hear the preset name and description.' },
   { section: 'Gallery', title: '🗑️ Delete Button', body: 'The delete button is on the top-left corner of the single image viewer.' },
   { section: 'Gallery', title: '🎠 Left Carousel', body: 'MASTER and OPTIONS buttons are located below the delete button and are visible by default (Single click (default) screen to hide-this may be adjusted in settings). The MASTER button toggles Master Prompt and OPTIONS button toggles Manually Select Options mode.' },
-  { section: 'Gallery', title: '🎠 Right Carousel', body: 'The right side carousel has three buttons — ✏️ EDIT which opens the image editor, 📤 EXPORT which uploads to gofile.io, and 📑 LAYER which combines presets to single image. Single click (default) screen to hide the buttons. This may be adjusted in settings' },
+  { section: 'Gallery', title: '🎠 Right Carousel', body: 'The right side carousel has four buttons — ✏️ EDIT which opens the image editor, 📤 EXPORT which uploads to gofile.io, 📑 LAYER which combines presets to single image, and 🎲 GAME which lets you play a preset as a game against the program. Single click (default) screen to hide the buttons. This may be adjusted in settings' },
+  { section: 'Gallery', title: '🎲 Game Mode', body: 'The last button in the right carousel is GAME. Tap it to open Pick a Game, choose a game, pick your options, then tap Play. The program makes its own secret pick, your photo is transformed, and the finished image shows whether you are a winner or a loser along with your picks and the correct answer.' },
   { section: 'Gallery', title: '⬇️ Bottom Bar Buttons', body: 'Four buttons on the bottom of image viewer. PROMPT opens editor. LOAD opens preset selector. MULTI opens multi-preset selector. MAGIC transforms image using the loaded preset, or randomly if nothing is loaded.' },
   { section: 'Gallery', title: '📤 Export to gofile.io', body: 'Tapping EXPORT in the right carousel. You get a QR code with a link that expires after 24 hours. Most useful in No Magic Mode.' },
   { section: 'Image Editor', title: '✏️ Opening the Editor', body: 'While viewing any photo, the image viewer contains the EDIT button. Tap it. The editor opens the image with a right-side carousel containing the crop, rotate, sharpen, auto-correct, color filters (vivid, warm, cool, Black and White (B&W) and Fade), and brightness and contrast control sliders.' },
