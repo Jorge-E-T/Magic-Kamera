@@ -6906,6 +6906,7 @@ button, .touchable {
     --mk-btn-pad-y: 1.4vw;
     --mk-btn-pad-x: 3vw;
     --mk-btn-min-h: 22px;
+    --mk-btn-min-w: 44px;
     --mk-btn-line:  1.3;
 }
 
@@ -6989,6 +6990,12 @@ button, .touchable {
 #manual-options-modal .mo-opt-label {
     box-sizing: border-box;
     display: block;
+    /* The game modal's options are <button> elements, so they inherit the
+       global `button, .touchable { min-width:44px }` tap-target rule and the
+       browser's default centred button text. A <label> gets neither, which is
+       why single-letter options rendered tiny here. Match them explicitly. */
+    min-width: var(--mk-btn-min-w);
+    text-align: center;
     min-height: var(--mk-btn-min-h);
     padding: var(--mk-btn-pad-y) var(--mk-btn-pad-x);
     font-size: var(--mk-btn-font);
