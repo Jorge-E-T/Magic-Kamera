@@ -2797,7 +2797,7 @@ async function selectPreset(preset) {
 // prompt. Normal preset behaviour is untouched — this logic only runs in-game.
 
 // The games this framework offers, by preset name.
-const GAME_PRESET_NAMES = ['GUESS WHO', 'CLUE', 'ROCK PAPER SCISSORS LIZARD SPOCK', 'WORDLE'];
+const GAME_PRESET_NAMES = ['BATTLESHIP', 'CLUE', 'GUESS WHO', 'HIDE AND SEEK', 'ROCK PAPER SCISSORS LIZARD SPOCK', 'SLOT MACHINE', 'WORDLE'];
 
 let _gameActivePreset = null;      // the preset chosen for this game round
 let _gameSelections = {};          // groupIndex -> chosen option index
@@ -3051,7 +3051,12 @@ function _buildGameResult(preset) {
     return '  ' + _groupTitle(g, gi) + ': ' + pickText;
   }).join('\n');
   const nameLine = characterName ? ('\nThe character was: ' + characterName) : '';
-  const verdict = win ? 'WINNER' : 'LOSER';
+  // A game may name its own verdicts in JSON, e.g.
+  //   "verdicts": { "win": "JACKPOT!", "lose": "BUST!" }
+  // Missing or partial -> falls back to WINNER / LOSER, so CLUE and
+  // GUESS WHO are completely unaffected.
+  const _v = preset.verdicts || {};
+  const verdict = win ? (_v.win || 'WINNER') : (_v.lose || 'LOSER');
 
   // 4. Instructions appended to the prompt: show verdict, the player's guess,
   //    and the correct answer — so a loss makes it clear what was missed.
