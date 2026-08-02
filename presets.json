@@ -1029,6 +1029,19 @@
     "additionalInstructions": "FINAL RESULT:\nThe final image should depict a vibrant, culturally rooted, technologically advanced future vision."
   },
   {
+    "name": "AI-ASSISTED PAINTOVER",
+    "category": [
+      "DIGITAL",
+      "CONTEMPORARY",
+      "TECHNIQUE",
+      "HYBRID"
+    ],
+    "message": "Take a picture and transform it into an AI-assisted paintover — a digital painting that begins with photographic reference but is extensively painted over with visible digital brushwork, creating a hybrid between photography and digital painting. The result should show areas of photorealistic detail transitioning into loose, expressive digital paint strokes, with visible brush texture and artistic interpretation.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "VISUAL REQUIREMENTS:\n• Hybrid of photographic detail and expressive digital painting\n• Visible transitions between rendered areas and loose painterly passages\n• Digital brush textures clearly visible: round brushes, texture brushes, palette knife strokes\n• Some areas highly rendered, others left as gestural color blocks\n• Artistic color choices departing from photographic reality\n• Visible canvas or paper texture beneath digital paint\n• Subject recognizable but artistically interpreted\n• Reference: concept art paintover techniques, Craig Mullins, Jaime Jones style digital painting"
+  },
+  {
     "name": "AIRBRUSH",
     "category": [
       "ART",
@@ -1719,6 +1732,19 @@
     "options": [],
     "randomizeOptions": false,
     "additionalInstructions": "ABSOLUTE PROHIBITIONS:\n• NO more than three frames\n• NO modern digital film simulations\n• NO clean or perfect edges\n• NO single-photo presentation\n\nFINAL VALIDATION RULE:\nIf it looks like one photo with a film texture on top, IT IS WRONG.\n\nThe final image must look like a real, physical strip of exposed and developed photographic film containing up to three frames.\n\nFILM MATERIAL REQUIREMENTS:"
+  },
+  {
+    "name": "ANALYTICAL ART",
+    "category": [
+      "ART",
+      "CONCEPTUAL",
+      "SYSTEMATIC",
+      "CONTEMPORARY"
+    ],
+    "message": "Take a picture and transform the image into an Analytical Art composition in the tradition of systematic, rule-based art making. The image should appear as a methodical visual analysis of the subject — broken down into component parts, measured, diagrammed, and reassembled according to a visible logical system. Include grid overlays, measurement annotations, color swatches extracted from the subject, geometric construction lines, and systematic notation. The overall effect should resemble a scientific or mathematical analysis of visual form — cold, precise, and intellectually rigorous, treating the image as data to be processed rather than a scene to be depicted.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n• Preserve subject identity while subjecting it to systematic analysis\n• Include visible grid systems, measurement lines, and annotations\n• Extract and display color data as organized swatches\n• Use clean, precise linework and typography\n• The aesthetic should be cold, intellectual, and systematic\n• Reference conceptual art practices of the 1960s-70s\n• Combine the subject image with diagrammatic overlays\n• The overall feeling should be scientific rather than emotional\n• Use a restrained palette with clinical precision"
   },
   {
     "name": "ANALYTICAL CUBISM",
@@ -3232,6 +3258,19 @@
     "options": [],
     "randomizeOptions": false,
     "additionalInstructions": ""
+  },
+  {
+    "name": "AUTOCHROME LUMIÈRE",
+    "category": [
+      "PHOTOGRAPHY",
+      "VINTAGE",
+      "COLOR",
+      "POINTILLIST"
+    ],
+    "message": "Take a picture and transform the image into an Autochrome Lumière photograph — the first commercially successful color photography process from 1907 using microscopic dyed potato starch grains as color filters. The image should show the characteristic Autochrome qualities: a soft, pointillist color rendering created by the visible starch grain mosaic, slightly muted and pastel colors with a distinctive warm cast, the dreamy soft-focus quality of early color photography, and the characteristic random mosaic pattern visible at close inspection. Colors should lean toward soft blues, warm ambers, and muted greens with the overall romantic, painterly quality that made Autochromes resemble Impressionist paintings.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n• Preserve subject identity with soft Autochrome rendering\n• Visible starch grain mosaic pattern (pointillist texture)\n• Slightly muted, pastel colors with warm cast\n• Dreamy soft-focus quality\n• Reference the Lumière brothers' Autochrome process from 1907\n• Colors lean toward soft blues, warm ambers, muted greens\n• Romantic, painterly quality resembling Impressionism\n• The grain mosaic should be visible at close inspection\n• Overall warm color temperature\n• The overall effect should be dreamy, romantic, and early-color-photography"
   },
   {
     "name": "AUTUMN LEAVES MOSAIC",
@@ -8391,7 +8430,7 @@
     "message": "Take a picture and transform the image into a Cloisonnist painting in the style of Émile Bernard and Paul Gauguin. Preserve subject identity. The entire image must be composed of flat areas of bold, vivid, unmixed color separated by strong dark outlines, resembling a stained glass window or cloisonné enamelwork. No gradients or shading within color areas — each zone of color should be flat and uniform. Outlines should be thick, confident, and dark (black or very dark brown). The color palette should be rich and saturated: deep reds, vibrant blues, emerald greens, golden yellows, and warm oranges. Simplify forms into their essential shapes. The composition should feel decorative and rhythmic, with a strong sense of pattern. Painterly texture on canvas with visible but controlled brushwork within each color zone.",
     "options": [],
     "randomizeOptions": false,
-    "additionalInstructions": ""
+    "additionalInstructions": "STYLE ENFORCEMENT:\n• Preserve subject identity\n• All forms must be outlined with bold, dark contour lines\n• Colors must be flat and unblended within each outlined area\n• No gradients or smooth transitions between colors\n• Use saturated, vivid colors — avoid muddy or muted tones\n• Simplify forms into decorative, flattened shapes\n• Reference the Pont-Aven School aesthetic of 1888-1891\n• The effect should resemble stained glass or cloisonné enamel\n• Background should also be treated with the same outlined, flat-color approach."
   },
   {
     "name": "CLONE",
@@ -13081,10 +13120,10 @@
       "ARTISTIC",
       "LAYERED"
     ],
-    "message": "Take a picture and create a double-exposure composition.    Blend the subject with a secondary scene using transparent overlays. Clear silhouette, balanced negative space. Moody, artistic tone.",
+    "message": "Take a picture and create a double-exposure composition. Blend the subject with a secondary scene using transparent overlays. Clear silhouette, balanced negative space. Moody, artistic tone.",
     "options": [],
     "randomizeOptions": false,
-    "additionalInstructions": ""
+    "additionalInstructions": "The double exposure must follow real photographic physics \u2014 light areas of one image dominate dark areas of the other. The blend should feel natural, not digitally composited. Both elements (portrait and nature) should be clearly readable. The combination should create visual poetry."
   },
   {
     "name": "DOUBLE MOON",
@@ -23342,6 +23381,19 @@
     "additionalInstructions": "FINAL RESULT:\nThe image should feel like a dynamic kinetic artwork, where movement—real or implied—is central, and the subject is seamlessly integrated into a motion-driven artistic structure."
   },
   {
+    "name": "KINETIC POINTILLISM",
+    "category": [
+      "ART",
+      "OPTICAL",
+      "KINETIC",
+      "EXPERIMENTAL"
+    ],
+    "message": "Take a picture and transform the image into a kinetic pointillist composition that combines Neo-Impressionist dot technique with Op Art movement effects. The entire image should be constructed from precisely placed colored dots that create optical vibration and the illusion of movement. Dots should vary in size and density to create form, but their arrangement should also produce moiré-like interference patterns that make the image appear to shimmer and pulse. Use complementary color pairs placed adjacent to each other to maximize optical mixing and visual energy. The overall effect should be a portrait or scene that appears to vibrate with kinetic energy.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n• Preserve subject identity through dot arrangement\n• Every element must be constructed from individual colored dots\n• Use complementary color pairs for maximum optical vibration\n• Vary dot size and density to create form and depth\n• Include moiré-like interference patterns for kinetic effect\n• The image should appear to shimmer and move when viewed\n• Reference both Seurat's pointillism and Bridget Riley's Op Art\n• No solid fills or continuous lines — dots only\n• The overall effect must be both recognizable and optically active"
+  },
+  {
     "name": "KINETIC SAND SCULPTURE",
     "category": [
       "ART",
@@ -30925,6 +30977,19 @@
     "additionalInstructions": ""
   },
   {
+    "name": "NEUE SLOWENISCHE KUNST",
+    "category": [
+      "ART",
+      "POLITICAL",
+      "AVANT-GARDE",
+      "EUROPEAN"
+    ],
+    "message": "Take a picture and transform the image into the aesthetic of Neue Slowenische Kunst (NSK) — the Slovenian art collective known for their provocative appropriation of totalitarian imagery. The image should combine elements of Soviet constructivism, fascist monumentalism, and corporate branding into an ambiguous, unsettling visual statement. Use bold graphic design with heavy black, red, and gold. Include monumental typography, crossed symbols, gear motifs, and heroic industrial imagery. The subject should appear within this framework as both elevated and subsumed by the totalitarian aesthetic — simultaneously heroic and oppressed.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n• Preserve subject identity\n• Bold graphic design combining totalitarian visual languages\n• Heavy use of black, red, and gold\n• Monumental typography and symbolic imagery\n• Reference the visual language of IRWIN and Laibach\n• The image should be deliberately ambiguous — neither celebrating nor condemning\n• Industrial and militaristic motifs: gears, crosses, eagles, stars\n• The subject should appear both heroic and trapped within the system\n• Clean, precise graphic execution\n• The overall effect should be provocative and intellectually challenging"
+  },
+  {
     "name": "NEUE WILDE",
     "category": [
       "GERMAN",
@@ -34323,7 +34388,7 @@
     "message": "Take a picture and transform the image into a Pittura Metafisica (Metaphysical Painting). Preserve subject identity. Use dreamlike architectural spaces, elongated shadows, classical statues, and enigmatic still-life objects inspired by Giorgio de Chirico. Emphasize eerie silence, deep perspective, warm Mediterranean light, and an unsettling sense of mystery.",
     "options": [],
     "randomizeOptions": false,
-    "additionalInstructions": ""
+    "additionalInstructions": "STYLE ENFORCEMENT:\n• Preserve subject identity\n• Dramatic exaggerated perspective with vanishing points\n• Long, angular shadows suggesting late afternoon sun\n• Empty, silent architectural spaces\n• Warm Mediterranean palette: ochre, terracotta, deep green, shadow\n• Enigmatic, dreamlike atmosphere of philosophical unease\n• Reference Giorgio de Chirico's works from 1911-1919\n• Include at least one inexplicable or displaced object\n• The scene must feel frozen in time — no movement, no wind\n• Mannequin-like stillness in any figures present"
   },  
   {
     "name": "PIXAR",
@@ -36376,6 +36441,20 @@
     "additionalInstructions": "• Transform the entire image into an authentic NES-era boxing-game screenshot\n• Preserve recognizable identity while converting the subject into the featured challenger\n• Generate a unique arcade-style boxing nickname based on the subject\n• Generate humorous retro boxing-game flavor text\n• Maintain authentic 8-bit pixel-art construction throughout the image\n• Use visible but not excessive pixelation matching original NES screenshots\n• Preserve the classic behind-the-boxer gameplay perspective\n• Keep Little Mac as the authentic player character in the foreground\n• Include only Little Mac, the referee when appropriate, and the subject as the opponent\n• Use authentic opponent sprite scale faithful to original gameplay screens\n• Apply vibrant NES color palettes and visible pixel structure\n• Create a packed boxing arena environment with championship atmosphere\n• Include authentic retro HUD elements, score displays, energy meters, and opponent information\n• Ensure the final image resembles a genuine gameplay screenshot rather than promotional artwork\n• Maintain arcade-style exaggeration, expressive animation, and colorful character design\n• Prioritize actual gameplay proportions over modern reinterpretations\n• The final image should instantly read as a classic Punch-Out-style boxing match featuring the subject as the challenger"
   },
   {
+    "name": "PUPPET THEATER",
+    "category": [
+      "THEATRICAL",
+      "PUPPET",
+      "STAGE",
+      "WHIMSICAL",
+      "NARRATIVE"
+    ],
+    "message": "Take a picture and transform the subject into a character in a traditional puppet theater performance \u2014 viewed from the audience's perspective looking at a small stage. The subject should appear as a hand-carved wooden puppet (marionette, rod puppet, or hand puppet) performing on a miniature stage with painted backdrop scenery, tiny footlights, and a red velvet curtain frame. The puppet should capture the subject's likeness in carved and painted wood \u2014 slightly stylized but clearly recognizable. Other puppet characters should be visible in the scene, and the puppet stage should show the charming handmade quality of traditional puppet theater: slightly wobbly scenery, visible strings or rods, and the intimate scale of a booth stage.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "The puppet must be clearly carved wood \u2014 visible wood grain, painted features, jointed limbs. The puppet theater must be traditional and charming. The stage should be viewed from audience perspective. Subject identity must be preserved in the carved puppet face."
+  },
+  {
     "name": "PURISM",
     "category": [
       "FRENCH",
@@ -37529,6 +37608,41 @@
     "options": [],
     "randomizeOptions": false,
     "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Hammered metal relief depth\n• Visible tool marks and hand-worked quality\n• Copper, bronze, or silver metal appearance\n• Dimensional sculptural form\n• Aged patina on metal surface"
+  },
+  {
+    "name": "RETRO COMPUTER INTERFACE",
+    "category": [
+      "TECHNOLOGY",
+      "RETRO",
+      "DIGITAL",
+      "INTERFACE",
+      "NOSTALGIA"
+    ],
+    "message": "Take a picture and transform it into a retro computer interface displaying the subject \u2014 as if viewed on an old CRT monitor through vintage software. The image should be rendered within the constraints of early computer graphics: limited color palette, visible pixels, the characteristic glow and curvature of a CRT screen, and scan lines. The interface around the image should be authentic to a specific era of computing \u2014 complete with menu bars, dialog boxes, and the distinctive UI design of the period. Apply the following computing era:",
+    "options": [
+      {
+        "id": "001",
+        "text": "Apple Macintosh 1984 \u2014 1-bit black and white, MacPaint style, 512x342 resolution, Chicago font"
+      },
+      {
+        "id": "002",
+        "text": "Windows 3.1 (1992) \u2014 16-color VGA, Program Manager, hot dog stand color scheme option"
+      },
+      {
+        "id": "003",
+        "text": "Commodore 64 (1982) \u2014 PETSCII characters, 16 colors, blue border, 320x200 pixels"
+      },
+      {
+        "id": "004",
+        "text": "Windows 95 \u2014 256 colors, Paint application, Start menu visible, that teal desktop"
+      },
+      {
+        "id": "005",
+        "text": "MS-DOS terminal \u2014 green phosphor text on black, ASCII art rendering, command prompt"
+      }
+    ],
+    "randomizeOptions": true,
+    "additionalInstructions": "The computer interface must be authentic to the chosen era \u2014 correct UI conventions, color limitations, and resolution constraints. The CRT screen effects (curvature, glow, scan lines) must be present. The subject must be recognizable despite the technical limitations."
   },
   {
     "name": "RETRO FUTURISM",
@@ -41054,6 +41168,19 @@
     "additionalInstructions": ""
   },
   {
+    "name": "SPATIALISM",
+    "category": [
+      "ART",
+      "SCULPTURE",
+      "ITALIAN",
+      "CONCEPTUAL"
+    ],
+    "message": "Take a picture and transform the image into a Spatialist artwork inspired by Lucio Fontana's concept of art that transcends the flat canvas. The image should appear as a monochrome painted canvas that has been physically slashed, punctured, or pierced — with the cuts and holes revealing darkness or depth behind the surface. The subject's form should be suggested by the pattern of cuts and punctures in the canvas surface. The monochrome surface should show subtle texture and the cuts should appear clean and deliberate, with their edges curling slightly to reveal the void behind. The overall effect should be elegant, minimal, and conceptually powerful.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n• Preserve subject identity through the pattern of cuts and punctures\n• Monochrome canvas surface — white, red, or gold\n• Cuts must appear clean, deliberate, and physical\n• Edges of cuts should curl slightly revealing depth behind\n• The void behind the canvas should be visible through the slashes\n• Reference Lucio Fontana's Concetto Spaziale works\n• Minimal, elegant composition\n• The canvas texture should be visible and tactile\n• No painted imagery — form is created only through physical intervention\n• The overall effect should transcend two-dimensional painting"
+  },
+  {
     "name": "SPEED PAINTING",
     "category": [
       "DIGITAL",
@@ -42475,7 +42602,7 @@
     "message": "Take a picture and transform the image into a Stuckist painting. Preserve subject identity. Use expressive, figurative painting with raw emotional intensity. Emphasize authentic personal expression through bold brushwork, vivid colors, and unpolished figurative representation that rejects conceptual art in favor of direct painterly communication.",
     "options": [],
     "randomizeOptions": false,
-    "additionalInstructions": ""
+    "additionalInstructions": "STYLE ENFORCEMENT:\n• Preserve subject identity with honest, direct rendering\n• Visible, energetic brushwork — not polished or refined\n• Bold color choices that may clash intentionally\n• Emotional authenticity over technical perfection\n• Figurative and recognizable — not abstract\n• Anti-conceptual, pro-painting aesthetic\n• Reference the Stuckism movement founded by Billy Childish and Charles Thomson\n• The painting should feel urgent, human, and defiantly handmade\n• Avoid slickness, digital perfection, or ironic detachment."
   },
   {
     "name": "STUDENT ID",
@@ -49726,6 +49853,19 @@
     "additionalInstructions": "The game UI must be authentic to the chosen genre \u2014 correct fonts, layout conventions, and interface elements. The art style must be consistent throughout the entire frame. The subject must be recognizable as a character within the game world."
   },
   {
+    "name": "VIENNA ACTIONISM",
+    "category": [
+      "ART",
+      "EXPERIMENTAL",
+      "AVANT-GARDE",
+      "PERFORMANCE"
+    ],
+    "message": "Take a picture and transform the image into a documentation photograph of a Vienna Actionist performance piece. The image should have the raw, confrontational aesthetic of 1960s Austrian radical art — grainy black and white or desaturated color photography capturing an intense, visceral moment. The subject should appear engaged in a ritualistic or transgressive artistic action. The photographic quality should suggest documentary urgency — slightly blurred motion, harsh flash lighting, high contrast, and the feeling of capturing something forbidden or extreme. The overall aesthetic should be raw, uncompromising, and deliberately provocative.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n• Preserve subject identity\n• Raw documentary photography aesthetic\n• High contrast black and white or heavily desaturated color\n• Harsh, unflattering flash lighting\n• Grainy film texture suggesting urgency\n• Reference the aesthetic of Hermann Nitsch, Günter Brus, and Otto Muehl documentation\n• The image should feel confrontational and intense\n• Avoid prettification or commercial polish\n• The subject should appear engaged in ritualistic artistic action\n• Keep content suggestive rather than explicit — imply intensity through composition and lighting"
+  },
+  {
     "name": "VIENNA SECESSION",
     "category": [
       "AUSTRIAN",
@@ -50572,6 +50712,20 @@
     "options": [],
     "randomizeOptions": false,
     "additionalInstructions": "FINAL RESULT:\nA watercolor image with organic bleeding edges and fluid color blending."
+  },
+  {
+    "name": "WATER DROPLET",
+    "category": [
+      "PHOTOGRAPHY",
+      "MACRO",
+      "WATER",
+      "REFRACTION",
+      "MINIATURE"
+    ],
+    "message": "Take a picture and transform it so the subject appears within a water droplet \u2014 their image refracted and inverted inside a perfectly spherical drop of water sitting on a leaf or petal. The macro photography should be extreme: the water droplet filling most of the frame, with the subject visible inside it (inverted, as light refracts through a sphere). The droplet should show realistic optical properties: the inverted refracted image, surface tension creating a perfect sphere, tiny reflections of the surrounding environment on the droplet's surface, and the shallow depth of field typical of macro photography (the droplet sharp, background dissolved into bokeh). The leaf or petal surface should show cellular detail at this magnification.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "The water droplet optics must be physically accurate \u2014 inverted image from refraction through a sphere. The macro photography depth of field must be extremely shallow. The surface the droplet sits on must show macro-level detail. The subject must be recognizable despite being inverted and miniaturized within the droplet."
   },
   {
     "name": "WATER SPLASH SCULPTURE",
