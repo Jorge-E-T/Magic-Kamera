@@ -6996,7 +6996,7 @@ button, .touchable {
        browser's default centred button text. A <label> gets neither, which is
        why single-letter options rendered tiny here. Match them explicitly. */
     min-width: var(--mk-btn-min-w);
-    text-align: center;
+    text-align: left;
     min-height: var(--mk-btn-min-h);
     padding: var(--mk-btn-pad-y) var(--mk-btn-pad-x);
     font-size: var(--mk-btn-font);
