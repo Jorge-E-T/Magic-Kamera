@@ -2874,6 +2874,19 @@ function _startGame(preset) {
   document.getElementById('game-modal-title').textContent = '🎲 ' + preset.name;
   _renderGameOptions(preset);
   _updateGameSubmitEnabled();
+
+  // Same scroll-restore problem as the regular options modal: .game-modal-body
+  // keeps its offset between openings, so the second game you play would start
+  // part-way down the list. Reset after the options are in the DOM.
+  const _gameBody = document.getElementById('game-modal-body');
+  const _resetGameScroll = () => { if (_gameBody) _gameBody.scrollTop = 0; };
+  if (_gameBody) void _gameBody.offsetHeight;
+  _resetGameScroll();
+  requestAnimationFrame(() => {
+    _resetGameScroll();
+    requestAnimationFrame(_resetGameScroll);
+  });
+  setTimeout(_resetGameScroll, 60);
 }
 
 // Returns a group's display name. Presets are not consistent: most use
@@ -8101,16 +8114,35 @@ async function showManualOptionsModal(preset, sections) {
     
     modal.style.display = 'flex';
     manualOptionsModalVisible = true;
+
+    // ALWAYS open at the top. The browser remembers this container's scroll
+    // offset while the modal is display:none and restores it on reopen, so the
+    // user lands mid-list with the (correctly selected) first option off-screen
+    // above. A single reset inside one requestAnimationFrame runs before layout
+    // of the just-shown modal and loses that race on a slow device.
+    // Force layout first, then reset now, on the next two frames, and once more
+    // on a timer. Belt and braces, and all of them are cheap no-ops if already 0.
+    const _optScroll = document.querySelector('#manual-options-modal .styles-menu-scroll-container');
+    const _resetOptScroll = () => {
+      if (_optScroll) _optScroll.scrollTop = 0;
+      if (list) list.scrollTop = 0;
+    };
+    if (_optScroll) void _optScroll.offsetHeight;   // force layout so scrollTop sticks
+    _resetOptScroll();
     requestAnimationFrame(() => {
-        const _optScrollContainer = document.querySelector('#manual-options-modal .styles-menu-scroll-container');
-        if (_optScrollContainer) _optScrollContainer.scrollTop = 0;
+      _resetOptScroll();
+      requestAnimationFrame(_resetOptScroll);
     });
+    setTimeout(_resetOptScroll, 60);
 
     const closeBtn = document.getElementById('close-manual-options');
     const cancelBtn = document.getElementById('cancel-manual-options');
     const confirmBtn = document.getElementById('confirm-manual-options');
     
     const cleanup = () => {
+        // Scroll back to the top BEFORE hiding, so there is no remembered
+        // offset for the browser to restore the next time this modal opens.
+        _resetOptScroll();
         modal.style.display = 'none';
         manualOptionsModalVisible = false;
       if (closeBtn) closeBtn.onclick = null;
