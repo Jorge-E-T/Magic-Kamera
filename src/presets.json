@@ -3683,6 +3683,23 @@
     "additionalInstructions": "FINAL RESULT:\nThe image should resemble a handcrafted batik textile, with the subject integrated into intricate patterns, visible dye textures, and traditional decorative motifs."
   },
   {
+    "name": "BATTLESHIP",
+    "category": ["OPTIONS", "GAME", "TRANSFORMATION"],
+    "message": "Take a picture and place ONLY the subject aboard the selected warship, in a world that is half real ocean and half giant board game. Keep the subject's real face clearly recognizable.\n\nTHE LOOK (NON-NEGOTIABLE):\n• The subject is aboard the ship — on deck, at the rail, in the conning tower or at the helm, clearly the crew member of that vessel\n• The ship is a real, weathered, full-scale warship sitting in real water\n• BUT the ocean around it is a giant board-game grid of flat blue-grey squares, and the pegs are enormous — as tall as the ship's superstructure, glossy plastic, unmistakably game pieces\n• This collision of real and toy is the whole point of the image\n\nSHIPS:\n• Carrier — vast flat flight deck, aircraft, island tower\n• Battleship — huge gun turrets, armoured superstructure\n• Destroyer — lean, fast, bristling with radar\n• Submarine — black hull surfaced, conning tower, subject in the hatch\n• Cruiser — mid-size, sleek, multiple gun mounts\n• PT Boat — small, low, wooden, spray flying\n\nSTYLE:\n• Cinematic naval photography lighting, dramatic sky",
+    "randomizeOptions": true,
+    "verdicts": { "win": "HIT!", "lose": "MISS!" },
+    "optionGroups": [
+    {
+      "title": "TARGET",
+      "options": [
+        { "id": "001", "text": "Carrier" }, { "id": "002", "text": "Battleship" }, { "id": "003", "text": "Destroyer" },
+        { "id": "004", "text": "Submarine" }, { "id": "005", "text": "Cruiser" }, { "id": "006", "text": "PT Boat" }
+      ]
+    }
+    ],
+    "additionalInstructions": "FINAL RESULT — THE PEGS ARE DECIDED BY THE OUTCOME:\n\nNORMAL USE (no game result below): the ship is intact and afloat, with two or three giant WHITE pegs standing up out of the water in the grid squares beside the hull — near misses. No fire, no damage, no text.\n\nGAME MODE: if a section headed \"=== GAME RESULT ===\" appears below, read its verdict and draw the pegs to match:\n• Verdict HIT! — one enormous glossy RED peg driven straight down through the ship's deck, with fire, black smoke and explosions blooming around its base. The subject is on the burning deck.\n• Verdict MISS! — the ship is untouched and clean, with giant WHITE pegs standing in the water alongside it. The subject looks out over the rail at them.\nAlso show the verdict word and the captions that section specifies."
+  },
+  {
     "name": "BAUHAUS",
     "category": [
       "ART",
@@ -20525,6 +20542,28 @@
     "options": [],
     "randomizeOptions": false,
     "additionalInstructions": ""
+  },
+  {
+    "name": "HIDE AND SEEK",
+    "category": ["OPTIONS", "GAME", "TRANSFORMATION"],
+    "message": "Take a picture and show ONLY the subject hiding in the selected place. Do not add other people or a seeker — just the subject, badly hidden.\n\nTHE JOKE (NON-NEGOTIABLE): the subject is hiding TERRIBLY. They believe they are completely concealed. They obviously are not. The subject's real face must stay clearly recognizable and visible in every option.\n\nHIDING PLACES:\n• Under a rug — lying flat beneath a rug on the floor with the whole head sticking out from under the edge\n• Behind a sheer curtain — standing behind a thin see-through curtain, the face plainly visible through the fabric, both shoes fully sticking out below the hem\n• Behind a skinny lamp post — standing bolt upright behind a narrow lamp post far too thin to hide anyone, body visible on both sides\n• Under a glass-top coffee table — curled up beneath a coffee table with a clear glass top, the whole body plainly visible through the glass\n• Holding a small houseplant — holding a tiny potted plant directly in front of the face, the leaves covering only half the face, the rest wide open\n• Behind a clear glass door — pressed against the back of a completely transparent glass door, fully visible through it\n• Head inside a laundry basket — head pushed into a plastic laundry basket with clothes draped over the top, the face clearly visible through the ventilation holes in the basket side\n\nSTYLE:\n• Bright, comic, deadpan — played completely straight, as if this were an excellent hiding place\n• The hiding place must be instantly readable",
+    "randomizeOptions": true,
+    "verdicts": { "win": "FOUND YOU!", "lose": "NOT FOUND!" },
+    "optionGroups": [
+    {
+      "title": "HIDING PLACE",
+      "options": [
+        { "id": "001", "text": "Under a rug, head sticking out" },
+        { "id": "002", "text": "Behind a sheer curtain, shoes showing" },
+        { "id": "003", "text": "Behind a skinny lamp post" },
+        { "id": "004", "text": "Under a glass-top coffee table" },
+        { "id": "005", "text": "Holding a small houseplant over half the face" },
+        { "id": "006", "text": "Behind a clear glass door" },
+        { "id": "007", "text": "Head inside a laundry basket" }
+      ]
+    }
+    ],
+    "additionalInstructions": "FINAL RESULT — APPLIES TO BOTH NORMAL USE AND GAME MODE:\nShow only the subject in the chosen hiding place, badly hidden, face clearly visible. No seeker, no other people, no game text.\n\nOVERRIDE: if a section headed \"=== GAME RESULT ===\" appears below, also show everything it specifies — the verdict, the player's guess and the correct hiding place — as captions over the image."
   },
   {
     "name": "HIEROGLYPHICS",
@@ -40756,6 +40795,37 @@
     }
     ],
     "additionalInstructions": "• Transform ONLY the subject.\n• Keep the background completely unchanged.\n• Preserve the original environment, lighting, perspective, colors, shadows, and every background object exactly as photographed.\n• Completely discard the original photographic subject before reconstruction.\n• NEVER place Slinkys over the original subject.\n• NEVER blend photographic textures with Slinky coils.\n• The original subject must not remain visible anywhere.\n• Every visible part of the subject must be reconstructed entirely from authentic Slinky springs.\n• Preserve the subject's exact identity, facial structure, hairstyle, hair color (through spring coloration when appropriate), expression, age, ethnicity, body proportions, pose, silhouette, and recognizable features.\n• Facial features must emerge solely through the arrangement, spacing, compression, and curvature of the coils.\n• Hair must be recreated entirely from layered Slinky coils.\n• Clothing must also be reconstructed entirely from coils using changes in coil spacing and direction.\n• Every individual Slinky must remain immediately recognizable as a genuine Slinky toy.\n• Preserve authentic Slinky characteristics including continuous helical coils, spring steel, realistic thickness, metallic reflections, natural compression, stretching, gravity, and elasticity.\n• Never flatten coils into simple wire loops.\n• Never convert the coils into generic spirals.\n• Use realistic overlapping, nesting, and interwoven Slinkys to create depth.\n• Maintain believable mechanical behavior of every spring.\n• Preserve realistic shadows cast by the coils.\n• The sculpture should appear physically possible and professionally handcrafted.\n• The finished artwork should resemble a real museum sculpture photographed after completion.\n• Master prompt instructions always override the selected option whenever conflicts occur.\n\nFINAL VALIDATION — Before producing the final image, verify ALL of the following:\n\n✓ ONLY the subject has been transformed.\n✓ The background remains completely unchanged.\n✓ The original photographic subject has been completely removed.\n✓ Every visible part of the subject has been reconstructed entirely from real Slinky springs.\n✓ Slinkys have NOT been placed over the original subject.\n✓ Every coil remains recognizable as an authentic Slinky.\n✓ Coils exhibit realistic compression, stretching, thickness, and metallic reflections.\n✓ Facial features have been sculpted entirely from Slinky coils.\n✓ The subject remains immediately recognizable.\n✓ The artwork resembles a genuine handcrafted Slinky sculpture.\n✓ If ANY answer is NO, regenerate the image until every requirement is satisfied."
+  },
+  {
+    "name": "SLOT MACHINE",
+    "category": ["OPTIONS", "GAME", "TRANSFORMATION"],
+    "message": "Take a picture and draw a single classic SLOT MACHINE seen head on, filling the frame. Its window has THREE REELS side by side. Every symbol on every reel is a portrait of the SUBJECT, transformed a different way. Keep the subject's real face clearly recognizable in every one.\n\nREEL WINDOW LAYOUT (NON-NEGOTIABLE):\n• Three reels: REEL 1 left, REEL 2 centre, REEL 3 right\n• Each reel window shows THREE stacked images of the subject — one above, one dead centre, one below\n• The CENTRE image of each reel is the symbol selected for that reel and must be fully sharp, complete and centred on the payline\n• The images above and below are other symbols from the list, cropped off by the top and bottom edges of the window and slightly motion-blurred, as if the reel just stopped\n• Draw a bright horizontal PAYLINE across the three centre images\n\nTHE SIX SYMBOLS — each one is the subject:\n• Cherries — mouth overflowing with bright red cherries, cheeks packed full, mid-bite, stems and juice everywhere\n• Diamonds — wearing a towering crown of cut diamonds and grinning wide to show a full set of diamond grillz on the teeth\n• Gold — the entire subject cast in solid polished gold, skin and hair and clothing all gold, with engraved gold markings across the surface\n• Jewels — both eyes replaced by huge round faceted gemstones filling the eye sockets, cartoonishly oversized, catching the light\n• Lemon — wearing a padded full-body lemon costume, a giant round yellow lemon with the subject's head sticking out of the hole in the top\n• Bell — wild-eyed and manic with hair blown out in all directions, both hands clutching a large brass hand bell, ringing it\n\nSTYLE:\n• Chrome and neon casino cabinet, glowing bulbs around the window, a big red lever on the right\n• Rich, saturated, glossy",
+    "randomizeOptions": true,
+    "verdicts": { "win": "JACKPOT!", "lose": "BUST!" },
+    "optionGroups": [
+    {
+      "title": "REEL 1",
+      "options": [
+        { "id": "101", "text": "Cherries" }, { "id": "102", "text": "Diamonds" }, { "id": "103", "text": "Gold" },
+        { "id": "104", "text": "Jewels" }, { "id": "105", "text": "Lemon" }, { "id": "106", "text": "Bell" }
+      ]
+    },
+    {
+      "title": "REEL 2",
+      "options": [
+        { "id": "201", "text": "Cherries" }, { "id": "202", "text": "Diamonds" }, { "id": "203", "text": "Gold" },
+        { "id": "204", "text": "Jewels" }, { "id": "205", "text": "Lemon" }, { "id": "206", "text": "Bell" }
+      ]
+    },
+    {
+      "title": "REEL 3",
+      "options": [
+        { "id": "301", "text": "Cherries" }, { "id": "302", "text": "Diamonds" }, { "id": "303", "text": "Gold" },
+        { "id": "304", "text": "Jewels" }, { "id": "305", "text": "Lemon" }, { "id": "306", "text": "Bell" }
+      ]
+    }
+    ],
+    "additionalInstructions": "FINAL RESULT — APPLIES TO BOTH NORMAL USE AND GAME MODE:\nShow only the slot machine and its three reels. No other people, no extra figures, no text beyond what is described here.\n\nNORMAL USE: the three centre images are exactly the three selected symbols. No verdict word.\n\nOVERRIDE: if a section headed \"=== GAME RESULT ===\" appears below, that section wins. Set the three centre images to the symbols it names as the correct answer, and print its verdict word large across the bottom of the machine — JACKPOT! in glowing gold with coins pouring from the tray, or BUST! in cold grey with the tray empty. Also show the captions it specifies."
   },
   {
     "name": "SMOKE ART PHOTOGRAPHY",
