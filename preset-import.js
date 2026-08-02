@@ -774,12 +774,11 @@ export class PresetImporter {
       }, { passive: true });
       previewOverlay.addEventListener('touchcancel', () => { _pvValid = false; }, { passive: true });
 
-      // R1 scroll wheel does the same thing. Delete this block if unwanted.
-      previewOverlay.addEventListener('wheel', (e) => {
-        e.preventDefault();
-        if (Math.abs(e.deltaY) < 1) return;
-        stepPreview(e.deltaY > 0 ? 1 : -1);
-      }, { passive: false });
+      // NOTE: no 'wheel' listener. The R1 hardware wheel does NOT emit native
+      // wheel events — it dispatches custom scrollUp / scrollDown on window.
+      // main.js's global handlers call the two hooks exposed below.
+      this._previewImageOpen  = () => previewOverlay.style.display === 'flex';
+      this._stepPreviewImage  = (direction) => stepPreview(direction);
 
       document.body.appendChild(previewOverlay);
 
@@ -791,6 +790,17 @@ export class PresetImporter {
           _previewIndex = _previewSiblings.findIndex(p => p && p.name === preset.name);
         }
         previewLabel.textContent = preset.name;
+        // Move the import list's highlight to match, so closing the preview
+        // leaves the user on the preset they swiped to. Located by name so it
+        // stays correct no matter which rows are currently filtered out.
+        const _rows = presetsList.querySelectorAll('.menu-item:not(.import-row-hidden)');
+        for (let i = 0; i < _rows.length; i++) {
+          if (_rows[i].dataset.presetName === preset.name) {
+            this.currentImportScrollIndex = i;
+            updateImportSelection();
+            break;
+          }
+        }
         previewImg.style.display = 'none';
         previewNoImg.style.display = 'none';
 

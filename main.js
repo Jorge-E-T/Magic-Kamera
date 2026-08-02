@@ -659,6 +659,9 @@ let _styleListLongPressTimer = null;
 // user sees them on screen, plus where in that list we currently are.
 let _previewSiblings = [];
 let _previewIndex = -1;
+// Called every time the preview changes preset, so the list underneath can
+// move its own highlight to match. Set per call site.
+let _previewOnNavigate = null;
 
 // ── Custom preview image edit state ──
 let _previewEditMode = false;
@@ -753,12 +756,9 @@ function _ensurePresetPreviewOverlay() {
   }, { passive: true });
   _presetPreviewOverlay.addEventListener('touchcancel', () => { _pvValid = false; }, { passive: true });
 
-  // R1 scroll wheel does the same thing. Remove this block if unwanted.
-  _presetPreviewOverlay.addEventListener('wheel', (e) => {
-    e.preventDefault();
-    if (Math.abs(e.deltaY) < 1) return;
-    _previewStepSibling(e.deltaY > 0 ? 1 : -1);
-  }, { passive: false });
+  // NOTE: no 'wheel' listener here. The R1 hardware wheel does NOT emit native
+  // wheel events — it dispatches custom scrollUp / scrollDown events on window.
+  // Those are handled in the global scroll handlers further down this file.
 
   document.body.appendChild(_presetPreviewOverlay);
 }
@@ -766,6 +766,31 @@ function _ensurePresetPreviewOverlay() {
 // Paints one preset into the already-open overlay. Kept separate from
 // showPresetImagePreview so swiping can change the picture WITHOUT
 // resetting the sibling list we are swiping through.
+// True while the shared preview overlay is on screen.
+function _previewOverlayIsOpen() {
+  return !!(_presetPreviewOverlay && _presetPreviewOverlay.style.display === 'flex');
+}
+
+// Moves a list's own highlight to whatever the preview is showing.
+// idx is the position in the sibling list, which mirrors DOM order; the name
+// check guards against the two ever drifting apart (hidden rows, odd builds).
+function _syncListHighlight(items, preset, idx, apply) {
+  if (!items || items.length === 0 || !preset) return;
+  const nameOf = (el) => {
+    if (el.dataset && el.dataset.presetName) return el.dataset.presetName;
+    const n = el.querySelector('.preset-name, .style-name');
+    return n ? n.textContent : '';
+  };
+  let i = (idx >= 0 && idx < items.length) ? idx : -1;
+  if (i === -1 || nameOf(items[i]) !== preset.name) {
+    i = -1;
+    for (let k = 0; k < items.length; k++) {
+      if (nameOf(items[k]) === preset.name) { i = k; break; }
+    }
+  }
+  if (i >= 0) apply(i);
+}
+
 function _renderPresetPreview(preset) {
   if (!preset) return;
   _previewEditPreset = preset;   // keeps the + edit button pointed at what is shown
@@ -775,6 +800,11 @@ function _renderPresetPreview(preset) {
     _previewIndex = _previewSiblings.findIndex(p => p && p.name === preset.name);
   }
   _presetPreviewLabel.textContent = preset.name;
+  // Keep the list underneath in step, so closing the preview leaves the user
+  // on the preset they swiped to rather than the one they long-pressed.
+  if (typeof _previewOnNavigate === 'function') {
+    try { _previewOnNavigate(preset, _previewIndex); } catch (e) { console.error('preview sync failed:', e); }
+  }
   _presetPreviewImg.style.display = 'none';
   _presetPreviewNoImg.style.display = 'none';
 
@@ -805,8 +835,9 @@ function _previewStepSibling(direction) {
 // siblings: an array of presets, or a function returning one, in on-screen
 // order. Omit it entirely (e.g. when returning from the preview-image editor)
 // to keep whatever list was already loaded.
-function showPresetImagePreview(preset, siblings) {
+function showPresetImagePreview(preset, siblings, onNavigate) {
   _ensurePresetPreviewOverlay();
+  if (onNavigate !== undefined) _previewOnNavigate = onNavigate || null;
   if (siblings !== undefined && siblings !== null) {
     let list;
     try { list = (typeof siblings === 'function') ? siblings() : siblings; }
@@ -827,10 +858,10 @@ function hidePresetImagePreview() {
 
 // getSiblings: optional function returning the full on-screen list this item
 // belongs to, so the preview can swipe through it. Left out -> no swiping.
-function attachPresetLongPress(item, preset, getSiblings) {
+function attachPresetLongPress(item, preset, getSiblings, onNavigate) {
   const LONG_PRESS_MS = 600;
   let _timer = null;
-  const _fire = () => showPresetImagePreview(preset, getSiblings || [preset]);
+  const _fire = () => showPresetImagePreview(preset, getSiblings || [preset], onNavigate || null);
 
   item.addEventListener('touchstart', () => {
     _timer = setTimeout(_fire, LONG_PRESS_MS);
@@ -865,7 +896,10 @@ function _handleStyleListLongPressStart(e) {
       .filter(Boolean);
     return out.length ? out : [preset];
   };
-  _styleListLongPressTimer = setTimeout(() => showPresetImagePreview(preset, getSiblings), 600);
+  const onNavigate = (p, i) => _syncListHighlight(
+    document.querySelectorAll('#menu-styles-list .style-item'), p, i,
+    (k) => { currentMenuIndex = k; updateMenuSelection(); });
+  _styleListLongPressTimer = setTimeout(() => showPresetImagePreview(preset, getSiblings, onNavigate), 600);
 }
 
 function _handleStyleListLongPressEnd() {
@@ -2783,7 +2817,9 @@ function populatePresetList() {
       }
     };
     
-    attachPresetLongPress(item, preset, () => sorted);
+    attachPresetLongPress(item, preset, () => sorted, (p, i) => _syncListHighlight(
+      document.querySelectorAll('#preset-list .preset-item'), p, i,
+      (k) => { currentPresetIndex_Gallery = k; updatePresetSelection(); }));
     list.appendChild(item);
   });
 // Update preset count
@@ -7199,7 +7235,9 @@ const allPresets = CAMERA_PRESETS.filter(p => {
       toggleVisiblePreset(preset.name, checkbox.checked);
     };
     
-    attachPresetLongPress(item, preset, () => sorted);
+    attachPresetLongPress(item, preset, () => sorted, (p, i) => _syncListHighlight(
+      document.querySelectorAll('#visible-presets-list .style-item'), p, i,
+      (k) => { currentVisiblePresetsIndex = k; updateVisiblePresetsSelection(); }));
     fragment.appendChild(item);
   });
   
@@ -11135,6 +11173,12 @@ window.addEventListener('sideClick', () => {
 window.addEventListener('scrollUp', () => {
   console.log('Scroll wheel: up');
 
+  // Preset preview image — highest priority, it covers the whole screen.
+  // Wheel up = previous preset, matching every other list in the program.
+  if (_previewOverlayIsOpen()) { _previewStepSibling(-1); return; }
+  if (window.presetImporter && typeof presetImporter._previewImageOpen === 'function'
+      && presetImporter._previewImageOpen()) { presetImporter._stepPreviewImage(-1); return; }
+
   // Manual options modal
     if (document.getElementById('manual-options-modal')?.style.display === 'flex') {
         const scrollContainer = document.querySelector('#manual-options-modal .styles-menu-scroll-container');
@@ -11307,6 +11351,12 @@ window.addEventListener('scrollUp', () => {
 
 window.addEventListener('scrollDown', () => {
   console.log('Scroll wheel: down');
+
+  // Preset preview image — highest priority, it covers the whole screen.
+  // Wheel down = next preset, matching every other list in the program.
+  if (_previewOverlayIsOpen()) { _previewStepSibling(1); return; }
+  if (window.presetImporter && typeof presetImporter._previewImageOpen === 'function'
+      && presetImporter._previewImageOpen()) { presetImporter._stepPreviewImage(1); return; }
 
 // Manual options modal
     if (document.getElementById('manual-options-modal')?.style.display === 'flex') {
