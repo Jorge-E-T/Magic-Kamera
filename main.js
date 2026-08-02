@@ -654,6 +654,12 @@ let _presetPreviewLabel = null;
 let _presetPreviewNoImg = null;
 let _styleListLongPressTimer = null;
 
+// ── Swipe-through state for the preview overlay ──
+// The list of presets the open preview can cycle through, in the order the
+// user sees them on screen, plus where in that list we currently are.
+let _previewSiblings = [];
+let _previewIndex = -1;
+
 // ── Custom preview image edit state ──
 let _previewEditMode = false;
 let _previewEditPreset = null;
@@ -713,12 +719,61 @@ function _ensurePresetPreviewOverlay() {
   _presetPreviewOverlay.appendChild(_presetPreviewImgWrapper);
   _presetPreviewOverlay.appendChild(_presetPreviewLabel);
   _presetPreviewOverlay.appendChild(_presetPreviewNoImg);
+
+  // ── Swipe up/down to move through the list, same feel as the gallery
+  // image viewer. The × and + buttons stopPropagation on their own touch
+  // events, so a press on them never reaches this handler.
+  let _pvX = 0, _pvY = 0, _pvValid = false;
+  _presetPreviewOverlay.addEventListener('touchstart', (e) => {
+    if (e.touches.length === 1) {
+      _pvX = e.touches[0].clientX;
+      _pvY = e.touches[0].clientY;
+      _pvValid = true;
+    } else {
+      _pvValid = false;
+    }
+  }, { passive: true });
+  _presetPreviewOverlay.addEventListener('touchmove', (e) => {
+    if (e.touches.length > 1) _pvValid = false;
+  }, { passive: true });
+  _presetPreviewOverlay.addEventListener('touchend', (e) => {
+    if (e.touches.length > 0) return;   // wait for the last finger
+    if (!_pvValid) return;
+    _pvValid = false;
+    const t = e.changedTouches && e.changedTouches[0];
+    if (!t) return;
+    const dx = t.clientX - _pvX;
+    const dy = t.clientY - _pvY;
+    // Deliberate, mostly-vertical: >=50px and clearly more vertical than
+    // horizontal. Taps stay far below this, so nothing else is affected.
+    if (Math.abs(dy) >= 50 && Math.abs(dy) > Math.abs(dx) * 1.5) {
+      e.stopPropagation();
+      _previewStepSibling(dy < 0 ? 1 : -1);
+    }
+  }, { passive: true });
+  _presetPreviewOverlay.addEventListener('touchcancel', () => { _pvValid = false; }, { passive: true });
+
+  // R1 scroll wheel does the same thing. Remove this block if unwanted.
+  _presetPreviewOverlay.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    if (Math.abs(e.deltaY) < 1) return;
+    _previewStepSibling(e.deltaY > 0 ? 1 : -1);
+  }, { passive: false });
+
   document.body.appendChild(_presetPreviewOverlay);
 }
 
-function showPresetImagePreview(preset) {
-  _ensurePresetPreviewOverlay();
-  _previewEditPreset = preset;
+// Paints one preset into the already-open overlay. Kept separate from
+// showPresetImagePreview so swiping can change the picture WITHOUT
+// resetting the sibling list we are swiping through.
+function _renderPresetPreview(preset) {
+  if (!preset) return;
+  _previewEditPreset = preset;   // keeps the + edit button pointed at what is shown
+  // Re-find our position: identity first, then by name as a fallback.
+  _previewIndex = _previewSiblings.indexOf(preset);
+  if (_previewIndex === -1) {
+    _previewIndex = _previewSiblings.findIndex(p => p && p.name === preset.name);
+  }
   _presetPreviewLabel.textContent = preset.name;
   _presetPreviewImg.style.display = 'none';
   _presetPreviewNoImg.style.display = 'none';
@@ -736,6 +791,31 @@ function showPresetImagePreview(preset) {
   _presetPreviewImg.onload = () => { _presetPreviewImg.style.display = 'block'; _presetPreviewNoImg.style.display = 'none'; };
   _presetPreviewImg.onerror = () => { _presetPreviewImg.style.display = 'none'; _presetPreviewNoImg.style.display = 'block'; };
   _presetPreviewImg.src = imageUrl;
+}
+
+// Swipe UP = next preset, swipe DOWN = previous. Wraps at both ends.
+function _previewStepSibling(direction) {
+  if (!_previewSiblings || _previewSiblings.length < 2) return;
+  if (_previewIndex < 0) return;
+  const len = _previewSiblings.length;
+  const next = (_previewIndex + direction + len) % len;
+  _renderPresetPreview(_previewSiblings[next]);
+}
+
+// siblings: an array of presets, or a function returning one, in on-screen
+// order. Omit it entirely (e.g. when returning from the preview-image editor)
+// to keep whatever list was already loaded.
+function showPresetImagePreview(preset, siblings) {
+  _ensurePresetPreviewOverlay();
+  if (siblings !== undefined && siblings !== null) {
+    let list;
+    try { list = (typeof siblings === 'function') ? siblings() : siblings; }
+    catch (e) { list = null; }
+    _previewSiblings = Array.isArray(list) && list.length ? list.filter(Boolean) : [preset];
+  } else if (!_previewSiblings || _previewSiblings.length === 0) {
+    _previewSiblings = [preset];
+  }
+  _renderPresetPreview(preset);
   _presetPreviewOverlay.style.display = 'flex';
 }
 
@@ -745,12 +825,15 @@ function hidePresetImagePreview() {
   _presetPreviewImg.src = '';
 }
 
-function attachPresetLongPress(item, preset) {
+// getSiblings: optional function returning the full on-screen list this item
+// belongs to, so the preview can swipe through it. Left out -> no swiping.
+function attachPresetLongPress(item, preset, getSiblings) {
   const LONG_PRESS_MS = 600;
   let _timer = null;
+  const _fire = () => showPresetImagePreview(preset, getSiblings || [preset]);
 
   item.addEventListener('touchstart', () => {
-    _timer = setTimeout(() => showPresetImagePreview(preset), LONG_PRESS_MS);
+    _timer = setTimeout(_fire, LONG_PRESS_MS);
   }, { passive: true });
 
   item.addEventListener('touchend',   () => { clearTimeout(_timer); _timer = null; }, { passive: true });
@@ -758,7 +841,7 @@ function attachPresetLongPress(item, preset) {
   item.addEventListener('touchcancel',() => { clearTimeout(_timer); _timer = null; }, { passive: true });
 
   item.addEventListener('mousedown', () => {
-    _timer = setTimeout(() => showPresetImagePreview(preset), LONG_PRESS_MS);
+    _timer = setTimeout(_fire, LONG_PRESS_MS);
   });
   item.addEventListener('mouseup', () => { clearTimeout(_timer); _timer = null; });
   item.addEventListener('mouseleave', () => { clearTimeout(_timer); _timer = null; });
@@ -771,7 +854,18 @@ function _handleStyleListLongPressStart(e) {
   if (isNaN(index)) return;
   const preset = CAMERA_PRESETS[index];
   if (!preset) return;
-  _styleListLongPressTimer = setTimeout(() => showPresetImagePreview(preset), 600);
+  // Siblings = every style currently rendered in this list, read straight from
+  // the DOM so the order always matches what is on screen (favourites first,
+  // search/category filter applied).
+  const getSiblings = () => {
+    const listEl = item.closest('.menu-list') || item.parentElement;
+    if (!listEl) return [preset];
+    const out = Array.from(listEl.querySelectorAll('.style-item[data-index]'))
+      .map(el => CAMERA_PRESETS[parseInt(el.dataset.index, 10)])
+      .filter(Boolean);
+    return out.length ? out : [preset];
+  };
+  _styleListLongPressTimer = setTimeout(() => showPresetImagePreview(preset, getSiblings), 600);
 }
 
 function _handleStyleListLongPressEnd() {
@@ -2689,7 +2783,7 @@ function populatePresetList() {
       }
     };
     
-    attachPresetLongPress(item, preset);
+    attachPresetLongPress(item, preset, () => sorted);
     list.appendChild(item);
   });
 // Update preset count
@@ -7105,7 +7199,7 @@ const allPresets = CAMERA_PRESETS.filter(p => {
       toggleVisiblePreset(preset.name, checkbox.checked);
     };
     
-    attachPresetLongPress(item, preset);
+    attachPresetLongPress(item, preset, () => sorted);
     fragment.appendChild(item);
   });
   

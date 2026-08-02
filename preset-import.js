@@ -735,9 +735,61 @@ export class PresetImporter {
       previewOverlay.appendChild(previewImgWrapper);
       previewOverlay.appendChild(previewLabel);
       previewOverlay.appendChild(previewNoImg);
+
+      // ── Swipe-through state ──
+      // _lastRenderedPresets mirrors whatever renderPresetsList last put on
+      // screen, so the preview cycles through the same presets in the same
+      // order. Declared HERE, before anything can read it.
+      let _lastRenderedPresets = [];
+      let _previewSiblings = [];
+      let _previewIndex = -1;
+
+      // Swipe UP = next preset, DOWN = previous. Wraps at both ends.
+      // The × close button stops its own touch events, so it is unaffected.
+      let _pvX = 0, _pvY = 0, _pvValid = false;
+      previewOverlay.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 1) {
+          _pvX = e.touches[0].clientX;
+          _pvY = e.touches[0].clientY;
+          _pvValid = true;
+        } else {
+          _pvValid = false;
+        }
+      }, { passive: true });
+      previewOverlay.addEventListener('touchmove', (e) => {
+        if (e.touches.length > 1) _pvValid = false;
+      }, { passive: true });
+      previewOverlay.addEventListener('touchend', (e) => {
+        if (e.touches.length > 0) return;
+        if (!_pvValid) return;
+        _pvValid = false;
+        const t = e.changedTouches && e.changedTouches[0];
+        if (!t) return;
+        const dx = t.clientX - _pvX;
+        const dy = t.clientY - _pvY;
+        if (Math.abs(dy) >= 50 && Math.abs(dy) > Math.abs(dx) * 1.5) {
+          e.stopPropagation();
+          stepPreview(dy < 0 ? 1 : -1);
+        }
+      }, { passive: true });
+      previewOverlay.addEventListener('touchcancel', () => { _pvValid = false; }, { passive: true });
+
+      // R1 scroll wheel does the same thing. Delete this block if unwanted.
+      previewOverlay.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        if (Math.abs(e.deltaY) < 1) return;
+        stepPreview(e.deltaY > 0 ? 1 : -1);
+      }, { passive: false });
+
       document.body.appendChild(previewOverlay);
 
-      const showPreview = (preset) => {
+      // Paints one preset WITHOUT touching the sibling list.
+      const renderPreview = (preset) => {
+        if (!preset) return;
+        _previewIndex = _previewSiblings.indexOf(preset);
+        if (_previewIndex === -1) {
+          _previewIndex = _previewSiblings.findIndex(p => p && p.name === preset.name);
+        }
         previewLabel.textContent = preset.name;
         previewImg.style.display = 'none';
         previewNoImg.style.display = 'none';
@@ -759,6 +811,19 @@ export class PresetImporter {
           previewNoImg.style.display = 'block';
         };
         previewImg.src = imageUrl;
+      };
+
+      const stepPreview = (direction) => {
+        if (!_previewSiblings || _previewSiblings.length < 2) return;
+        if (_previewIndex < 0) return;
+        const len = _previewSiblings.length;
+        renderPreview(_previewSiblings[(_previewIndex + direction + len) % len]);
+      };
+
+      const showPreview = (preset) => {
+        _previewSiblings = (_lastRenderedPresets && _lastRenderedPresets.length)
+          ? _lastRenderedPresets : [preset];
+        renderPreview(preset);
         previewOverlay.style.display = 'flex';
       };
 
@@ -876,6 +941,7 @@ export class PresetImporter {
 
       const renderPresetsList = () => {
         const filteredPresets = this.getFilteredPresets(availablePresets);
+        _lastRenderedPresets = filteredPresets;   // keep the preview's swipe list in sync
         const countElement = document.getElementById('import-preset-count');
         if (countElement) countElement.textContent = filteredPresets.length;
 
