@@ -1734,19 +1734,6 @@
     "additionalInstructions": "ABSOLUTE PROHIBITIONS:\n• NO more than three frames\n• NO modern digital film simulations\n• NO clean or perfect edges\n• NO single-photo presentation\n\nFINAL VALIDATION RULE:\nIf it looks like one photo with a film texture on top, IT IS WRONG.\n\nThe final image must look like a real, physical strip of exposed and developed photographic film containing up to three frames.\n\nFILM MATERIAL REQUIREMENTS:"
   },
   {
-    "name": "ANALYTICAL ART",
-    "category": [
-      "ART",
-      "CONCEPTUAL",
-      "SYSTEMATIC",
-      "CONTEMPORARY"
-    ],
-    "message": "Take a picture and transform the image into an Analytical Art composition in the tradition of systematic, rule-based art making. The image should appear as a methodical visual analysis of the subject — broken down into component parts, measured, diagrammed, and reassembled according to a visible logical system. Include grid overlays, measurement annotations, color swatches extracted from the subject, geometric construction lines, and systematic notation. The overall effect should resemble a scientific or mathematical analysis of visual form — cold, precise, and intellectually rigorous, treating the image as data to be processed rather than a scene to be depicted.",
-    "options": [],
-    "randomizeOptions": false,
-    "additionalInstructions": "STYLE ENFORCEMENT:\n• Preserve subject identity while subjecting it to systematic analysis\n• Include visible grid systems, measurement lines, and annotations\n• Extract and display color data as organized swatches\n• Use clean, precise linework and typography\n• The aesthetic should be cold, intellectual, and systematic\n• Reference conceptual art practices of the 1960s-70s\n• Combine the subject image with diagrammatic overlays\n• The overall feeling should be scientific rather than emotional\n• Use a restrained palette with clinical precision"
-  },
-  {
     "name": "ANALYTICAL CUBISM",
     "category": [
       "FRENCH",
@@ -51064,6 +51051,24 @@
     "options": [],
     "randomizeOptions": false,
     "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Shallow depth of field\n• Luminous ethereal skin tones\n• Chemical drips and uneven coating at edges\n• Dark vignetting\n• Glass or metal plate surface quality"
+  },
+  {
+    "name": "WHACK-A-MOLE",
+    "category": ["OPTIONS", "GAME", "TRANSFORMATION"],
+    "message": "Take a picture and draw an ARCADE WHACK-A-MOLE CABINET seen head on, filling the frame. Set into the front of the cabinet is a 3 x 3 grid of nine round holes. ONE mole is popping up, out of the selected hole, and that mole IS the subject.\n\nTHE MOLE IS THE SUBJECT (NON-NEGOTIABLE):\n• Keep the subject's real face clearly recognizable — it must obviously be them\n• Give them soft brown mole fur, small round mole ears and a little pink mole snout, but the face underneath stays theirs\n• EYES: enormously exaggerated, bulging right out of the head, huge round whites with tiny pupils, comically startled and wide awake\n• GRIN: an absurdly oversized grin stretching ear to ear, far wider than any real mouth, curving up past the cheeks, packed with a full row of big square white teeth. Gleeful, mischievous and completely unbothered\n• Only the head, shoulders and two little paws are above the rim of the hole — the rest is down inside\n• EXACTLY ONE mole in the whole image. The other eight holes are empty and dark\n\nHOLE POSITIONS — the nine holes are a 3 x 3 grid, read like a page:\n   Top Left      Top Center      Top Right\n   Middle Left   Middle Center   Middle Right\n   Bottom Left   Bottom Center   Bottom Right\nPut the mole in the selected hole and NO other.\n\nTHE CABINET:\n• Chunky moulded plastic arcade cabinet in bright primary colours, scuffed and well used\n• A lit MARQUEE SCREEN across the top of the cabinet, above the holes\n• Chrome rails, glowing bulbs, a coin slot, and a big soft-headed mallet\n\nSTYLE:\n• Bright, punchy, saturated arcade lighting\n• Cartoon energy, but photographically rendered",
+    "randomizeOptions": true,
+    "verdicts": { "win": "WHACK!", "lose": "MISSED!" },
+    "optionGroups": [
+    {
+      "title": "HOLE",
+      "options": [
+        { "id": "001", "text": "Top Left" }, { "id": "002", "text": "Top Center" }, { "id": "003", "text": "Top Right" },
+        { "id": "004", "text": "Middle Left" }, { "id": "005", "text": "Middle Center" }, { "id": "006", "text": "Middle Right" },
+        { "id": "007", "text": "Bottom Left" }, { "id": "008", "text": "Bottom Center" }, { "id": "009", "text": "Bottom Right" }
+      ]
+    }
+    ],
+    "additionalInstructions": "FINAL RESULT — APPLIES TO BOTH NORMAL USE AND GAME MODE:\nShow only the cabinet and the single subject-mole. No other people, no second mole, no text except what is described here.\n\nNORMAL USE (no game result below): the marquee screen reads WHACK-A-MOLE. The mole is popping up grinning in the selected hole and the mallet rests idle at the side of the cabinet, not swinging. No verdict word.\n\nOVERRIDE — GAME MODE: if a section headed \"=== GAME RESULT ===\" appears below, it names two holes. Read them carefully:\n• CORRECT ANSWER = the hole the mole pops out of. Always put the mole there.\n• YOUR GUESS = the hole the mallet is coming down on. Always put the mallet there.\n• If the two holes are THE SAME, the mallet is squashing down onto the mole, impact stars and dust flying, the mole's eyes bulging even further — still grinning. Print WHACK! in huge glowing letters on the marquee screen.\n• If the two holes are DIFFERENT, the mallet thumps down into an empty hole and misses completely, while the mole pops up unharmed in its own hole, grinning straight out at the viewer. Print MISSED! in huge letters on the marquee screen.\nAlso show the small captions that section specifies."
   },
   {
     "name": "WHAT / HOW (FROM TEXT)",
