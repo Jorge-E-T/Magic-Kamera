@@ -863,12 +863,12 @@ function hidePresetImagePreview() {
 
 // getSiblings: optional function returning the full on-screen list this item
 // belongs to, so the preview can swipe through it. Left out -> no swiping.
-function attachPresetLongPress(item, preset, getSiblings, onNavigate) {
+function attachPresetLongPress(item, preset, getSiblings, onNavigate, onSideSelect) {
   const LONG_PRESS_MS = 600;
   let _timer = null;
-  // 4th arg null: these lists are never the main menu, so the side button
-  // must stay dead here even if a main-menu preview ran earlier.
-  const _fire = () => showPresetImagePreview(preset, getSiblings || [preset], onNavigate || null, null);
+  // Always pass the 4th arg explicitly (null when this list does not want the
+  // side button), so a callback from an earlier preview can never leak in.
+  const _fire = () => showPresetImagePreview(preset, getSiblings || [preset], onNavigate || null, onSideSelect || null);
 
   item.addEventListener('touchstart', () => {
     _timer = setTimeout(_fire, LONG_PRESS_MS);
@@ -909,9 +909,10 @@ function _handleStyleListLongPressStart(e) {
   // The ONLY place the side button stays live during a preview. It selects
   // whatever preset is currently shown (so it follows swipes), then the
   // handler closes the preview before this runs.
-  const onSideSelect = (shownPreset) => {
+  const onSideSelect = (shownPreset, closePreview) => {
     const originalIndex = CAMERA_PRESETS.findIndex(x => x === shownPreset);
     if (originalIndex === -1) return;
+    closePreview();                 // close first, then leave the menu
     currentPresetIndex = originalIndex;
     updatePresetDisplay();
     hideUnifiedMenu();
@@ -2837,7 +2838,17 @@ function populatePresetList() {
     
     attachPresetLongPress(item, preset, () => sorted, (p, i) => _syncListHighlight(
       document.querySelectorAll('#preset-list .preset-item'), p, i,
-      (k) => { currentPresetIndex_Gallery = k; updatePresetSelection(); }));
+      (k) => { currentPresetIndex_Gallery = k; updatePresetSelection(); }),
+      // Side button, LOAD mode only. LOAD simply assigns the preset and closes
+      // the selector, so acting on it is safe. MULTI / LAYER / BATCH instead
+      // toggle a selection and keep the selector open, so the side button must
+      // stay completely dead there — checked live, at press time.
+      (shownPreset, closePreview) => {
+        if (isMultiPresetMode || isLayerPresetMode ||
+            isBatchPresetSelectionActive || window.batchProcessingActive) return;
+        closePreview();
+        selectPreset(shownPreset);
+      });
     list.appendChild(item);
   });
 // Update preset count
@@ -10984,11 +10995,13 @@ window.addEventListener('sideClick', () => {
   // The single exception is the main-menu style list, which supplies
   // _previewOnSideSelect below.
   if (_previewOverlayIsOpen()) {
-    if (typeof _previewOnSideSelect === 'function') {
-      const shownPreset = _previewEditPreset;   // follows whatever was swiped to
-      const act = _previewOnSideSelect;
-      hidePresetImagePreview();                 // close first, then act
-      if (shownPreset) act(shownPreset);
+    const act = _previewOnSideSelect;
+    const shownPreset = _previewEditPreset;     // follows whatever was swiped to
+    if (typeof act === 'function' && shownPreset) {
+      // The callback is handed a closer and decides for itself. One that
+      // declines (wrong mode) simply never calls it, so nothing happens at
+      // all and the preview is left exactly as it was.
+      act(shownPreset, hidePresetImagePreview);
     }
     return;   // everywhere else: do nothing at all
   }
