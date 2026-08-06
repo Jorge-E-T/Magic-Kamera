@@ -3057,6 +3057,19 @@
     "additionalInstructions": ""
   },
   {
+    "name": "ARTE NUCLEARE",
+    "category": [
+      "ART",
+      "PAINTING",
+      "ITALIAN",
+      "EXPERIMENTAL"
+    ],
+    "message": "Take a picture and transform the image into an Arte Nucleare painting in the style of Enrico Baj and Sergio Dangelo. The image should evoke the atomic age anxiety of 1950s Italy — depicting the subject as if caught in nuclear transformation. Forms should appear to dissolve, mutate, and radiate energy. Use explosive, radiating compositions with forms breaking apart into particles and energy waves. The palette should feature intense, radioactive-looking colors — toxic greens, hot oranges, electric blues — against dark, charred backgrounds. The overall effect should be simultaneously playful and terrifying, combining childlike spontaneity with atomic-age dread.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n• Preserve subject identity while showing nuclear transformation\n• Forms should appear to dissolve and radiate outward\n• Explosive, centrifugal compositions\n• Intense, radioactive color palette: toxic greens, hot oranges, electric blues\n• Dark, charred backgrounds suggesting aftermath\n• Reference Enrico Baj and the Nuclear Art Movement of 1951\n• Combine playful spontaneity with atomic-age anxiety\n• Include radiating lines, particle effects, and dissolution\n• The subject should appear caught mid-transformation\n• Visible, energetic brushwork with drips and splatters"
+  },
+  {
     "name": "ARTE POVERA",
     "category": [
       "ART",
@@ -19202,6 +19215,19 @@
     "options": [],
     "randomizeOptions": false,
     "additionalInstructions": ""
+  },
+  {
+    "name": "GOLDEN AGE TECHNICOLOR",
+    "category": [
+      "CINEMATIC",
+      "VINTAGE",
+      "COLOR",
+      "CLASSIC"
+    ],
+    "message": "Take a picture and transform it into a Golden Age Technicolor film still from the 1950s. The subject should be rendered with the hyper-saturated, slightly artificial color palette of three-strip Technicolor — impossibly vivid reds, deep sapphire blues, and emerald greens that glow with an intensity beyond natural color, combined with the glamorous studio lighting of Hollywood's golden era.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "VISUAL REQUIREMENTS:\n• Hyper-saturated Technicolor palette: vivid reds, deep blues, emerald greens\n• Colors slightly beyond natural — the heightened reality of Technicolor\n• Glamorous three-point studio lighting with soft fill\n• Soft, flattering key light with minimal harsh shadows\n• Slightly warm overall tone with golden skin rendering."
   },
   {
     "name": "GOND ART",
