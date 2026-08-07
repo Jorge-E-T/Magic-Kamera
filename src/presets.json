@@ -5547,6 +5547,20 @@
     "additionalInstructions": "STYLE ENFORCEMENT:\n• Preserve subject identity with soft, painterly rendering\n• Visible brush marks from hand-applied ink\n• Slightly uneven tonal coverage — handmade quality\n• Warm, rich tones of oil-based pigment\n• Paper texture visible in highlights\n• Reference the bromoil process popular 1907-1940s\n• Soft focus quality inherent to the process\n• The image should clearly be handmade — no two prints identical\n• Warm brown or sepia tones from oil-based inks\n• The overall effect should bridge photography and painting"
   },
   {
+    "name": "BRUCE GILDEN PHOTOJOURNALIST",
+    "category": [
+      "PHOTOGRAPHY",
+      "PHOTOJOURNALISM",
+      "STREET PHOTOGRAPHY",
+      "DOCUMENTARY",
+      "FLASH PHOTOGRAPHY"
+    ],
+    "message": "Take a picture and transform the entire image into a raw, confrontational documentary street photograph characterized by direct on-camera flash, close proximity, dramatic illumination, spontaneous human presence, strong facial detail, gritty urban atmosphere, and the immediacy of candid photojournalism.\n\nThe subject remains the central human subject and must remain immediately recognizable.\n\nCreate the visual feeling of an uncompromising street-photography encounter: direct flash freezes the subject against the surrounding environment, producing hard highlights, deep shadows, stark tonal separation, visible texture, and an unmistakably candid documentary quality.\n\nThe result must look like an authentic photograph captured in the moment—not a staged portrait, digital filter, or cinematic recreation.\n\nDo not add text, captions, magazine layouts, borders, watermarks, or graphic elements.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "• Transform the entire photograph into a cohesive documentary street photograph.\n• Preserve the subject's exact facial identity.\n• Preserve realistic anatomy and proportions.\n• Use direct, hard on-camera flash as a dominant lighting characteristic.\n• Maintain realistic flash falloff and exposure behavior.\n• Produce strong foreground-background separation created naturally by flash illumination.\n• Preserve environmental context and authentic street-level detail.\n• Emphasize gritty textures, imperfect surfaces, weathered architecture, pavement, signage, clothing texture, and natural environmental details without adding readable invented text.\n• The subject should appear encountered rather than formally posed.\n• Preserve natural imperfections and candid photographic qualities.\n• Avoid glamour lighting, beauty retouching, excessive cinematic color grading, artificial bokeh, or fantasy effects.\n• Favor stark black-and-white or restrained documentary color depending on what best suits the original scene.\n• Do not reproduce any specific existing photograph.\n• Do not add magazine typography.\n• Do not add captions.\n• Do not add watermarks.\n• Master prompt instructions always override conflicting instructions.\n\nFINAL VALIDATION:\n\n✓ The result looks like authentic street photojournalism.\n✓ The subject remains immediately recognizable.\n✓ Direct flash is visually apparent.\n✓ The photograph feels candid and immediate.\n✓ Environmental detail remains believable.\n✓ The image does not look like a conventional studio portrait.\n✓ No text, watermarks, captions, or graphic overlays are added.\n✓ If ANY answer is NO, regenerate until every requirement is satisfied."
+  },
+  {
     "name": "BRUTALISM",
     "category": [
       "ART", 
@@ -20687,6 +20701,20 @@
     "additionalInstructions": "FINAL RESULT:\nThe image should look like the subject IS Henry Danger in costume, not a face overlay."
   },
   {
+    "name": "HERB RITTS EDITORIAL PHOTOGRAPH",
+    "category": [
+      "PHOTOGRAPHY",
+      "EDITORIAL",
+      "FASHION",
+      "BLACK AND WHITE",
+      "FINE ART"
+    ],
+    "message": "Take a picture and transform the entire image into a sophisticated high-fashion editorial photograph inspired by the visual characteristics of classic late-20th-century studio and location fashion photography: sculptural human forms, dramatic directional lighting, strong geometric composition, elegant simplicity, controlled shadows, polished skin rendering, and a refined monochromatic or restrained tonal palette.\n\nThe subject remains the central photographic subject and must remain immediately recognizable. The result must look like an intentional professional editorial photograph rather than a digital filter or a recreation of a specific existing photograph.\n\nEmphasize sculptural lighting, strong silhouettes, carefully controlled highlights and shadows, confident composition, minimalist environments, sophisticated fashion photography aesthetics, and timeless photographic elegance.\n\nDo not add text, logos, captions, magazine layouts, borders, or graphic design elements.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "• Transform the entire photograph into a cohesive editorial photograph.\n• Preserve the subject's exact facial identity and recognizable characteristics.\n• Preserve realistic human anatomy and natural proportions.\n• Use dramatic but controlled studio-quality lighting.\n• Emphasize sculptural highlights and deep, deliberate shadows.\n• Favor strong geometric composition and clean negative space.\n• Use elegant, restrained backgrounds that support the subject without distracting from them.\n• Black-and-white rendering may be used when it strengthens the editorial aesthetic, but do not force monochrome when a sophisticated color photograph produces a stronger result.\n• Avoid excessive retouching or plastic-looking skin.\n• The image must look like a professionally photographed editorial campaign.\n• Do not reproduce any specific existing photograph.\n• Do not add magazine typography or layouts.\n• Do not add watermarks.\n• Do not add borders or frames.\n• Master prompt instructions always override conflicting instructions.\n\nFINAL VALIDATION:\n\n✓ The result is a finished editorial photograph.\n✓ The subject remains immediately recognizable.\n✓ Lighting is sculptural and intentional.\n✓ Composition is elegant and controlled.\n✓ The photograph has a sophisticated fashion-editorial aesthetic.\n✓ No text, logos, captions, or graphic overlays appear.\n✓ The image does not look like a simple photographic filter.\n✓ If ANY answer is NO, regenerate until every requirement is satisfied."
+  },
+  {
     "name": "HERMANAS SCULL ART",
     "category": [
       "ART",
@@ -28418,6 +28446,20 @@
     }
     ],
     "additionalInstructions": "FINAL RESULT:\nThe image must convincingly depict a genuine Moai statue carved from volcanic stone. The subject should be transformed into a monumental Rapa Nui sculpture whose recognizable facial characteristics have been translated into authentic Moai forms. No living skin, hair, eyes, clothing, or photographic textures should remain visible anywhere in the image."
+  },
+  {
+    "name": "MODERNISM",
+    "category": [
+      "ART",
+      "MODERNIST",
+      "FINE ART",
+      "PAINTING",
+      "TRANSFORMATION"
+    ],
+    "message": "Take a picture and transform the entire image into a sophisticated Modernist work of art while preserving the subject's identity and the essential visual structure of the original image.\n\nTHIS IS A COMPLETE VISUAL TRANSFORMATION.\n\nReconstruct the subject, environment, forms, lighting, and composition through the principles of Modernist art: simplification, abstraction of natural forms, geometric structure, bold planes, expressive shapes, controlled distortion, selective reduction of detail, strong compositional balance, and deliberate relationships between form and color.\n\nThe result should look like a finished museum-quality Modernist artwork rather than a photographic filter.\n\nPreserve enough of the subject's facial structure, proportions, silhouette, and distinctive characteristics that the original subject remains immediately recognizable within the Modernist transformation.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "• Transform the ENTIRE image, including subject and background.\n• Preserve the subject's identity while translating the subject into Modernist visual language.\n• Simplify complex forms into deliberate geometric and organic shapes.\n• Use planes, blocks, lines, curves, simplified volumes, and controlled abstraction.\n• Flatten or selectively compress perspective when appropriate to Modernist composition.\n• Use intentional color relationships rather than random color distortion.\n• Strong colors may be used, but color must serve the composition.\n• Preserve recognizable facial structure instead of replacing the face with an unrelated abstract design.\n• Simplify textures and details into purposeful visual forms.\n• Maintain strong compositional balance and visual hierarchy.\n• The background must participate in the same Modernist visual language as the subject.\n• Do not leave the original photograph visible underneath the transformation.\n• Do not add text, captions, labels, frames, watermarks, or graphic-design elements.\n• Do not make the result look like a generic digital glitch or psychedelic filter.\n• The final image should resemble a deliberate, finished Modernist artwork.\n• Master prompt instructions always override conflicting instructions.\n\nFINAL VALIDATION:\n\n✓ The entire image has been transformed.\n✓ The subject remains recognizable.\n✓ Subject and background share one coherent Modernist visual language.\n✓ Forms are deliberately simplified or abstracted.\n✓ Color and geometry are intentional.\n✓ The result looks like finished fine art rather than a filter.\n✓ No unrelated text or graphic elements appear.\n✓ If ANY answer is NO, regenerate until every requirement is satisfied."
   },
   {
     "name": "MOIRÉ ILLUSION",
