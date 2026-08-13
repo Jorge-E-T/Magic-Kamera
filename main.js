@@ -8745,7 +8745,7 @@ const TOUR_STEPS = [
   { section: 'Special Modes', title: '⏱️ Timer Mode', body: 'Set a countdown of 3, 5, or 10 seconds before each shot. Enable repeat mode so it automatically keeps taking photos at a set interval.' },
   { section: 'Special Modes', title: '📸⚡ Burst Mode', body: 'Captures 3 to 10 photos rapidly in one press. Choose slow, medium, or fast burst speed in Settings. Great for action shots or getting multiple variations.' },
   { section: 'Special Modes', title: '👁️ Motion Detection', body: 'Automatically captures when movement is detected in frame. Set sensitivity, start delay, and cooldown interval. The eye icon pulses when motion detection is triggered.' },
-  { section: 'Special Modes', title: '🎞️ Multi Preset', body: 'Select up to 20 presets to apply to a single photo. Tap the film strip button in the carousel, choose presets, and tap Apply Selected. When you take a photo, each preset is sent in order with a 3 second gap between them.' },
+  { section: 'Special Modes', title: '🎞️ Multi Preset', body: 'Select up to 20 presets to apply to a single photo. Tap the film strip button in the carousel, choose presets, and tap Apply Selected. When you take a photo, each preset is sent in order with a 3 second gap between them. Triple click the x next to the text field to clear picks.' },
   { section: 'Special Modes', title: '🖼️🖼️ Combine images:', body: 'Located near the bottom of the right carousel. Click to take two images and apply a combined image preset instruction with your selected preset or speak the preset with long press of the side button.' },
   { section: 'Special Modes', title: '📑 Layer presets:', body: 'Located at the bottom of the right carousel. Click to combine and apply multiple presets to a single image. Select primary preset and then add up to 4 more layers (5 in all). Does not work with spoken presets.' },
   { section: 'Special Modes', title: '📝 Master and 🎛️ Options', body: 'Located below the Menu button on the left side within a carousel. The MASTER button accesses Master Prompt settings. The OPTIONS button toggles Manually Select Options mode. Both Glow green when enabled.' },
@@ -17837,27 +17837,48 @@ const result = await presetImporter.import();
   if (mpRemoveCancelBtn) mpRemoveCancelBtn.addEventListener('click', exitMpRemoveMode);
 
  // Filter blur buttons — first click dismisses keyboard, second click clears text
-  function makeFilterBlurBtn(btnId, filterId, onClear) {
+  // 1 click  = dismiss keyboard
+  // 2 clicks = clear the text field (onClear also drops the category filter)
+  // 3 clicks = onExtraClear, if this field supplies one. Used by MULTI preset
+  //            mode to clear the presets the user has ticked.
+  // The counter keeps running after the 2nd click instead of resetting, so a
+  // 3rd click can be detected. Each click restarts the 1 second window, so the
+  // user gets a full second between taps rather than a second for all three.
+  function makeFilterBlurBtn(btnId, filterId, onClear, onExtraClear) {
     const btn = document.getElementById(btnId);
     if (!btn) return;
     let blurClickCount = 0;
     let blurClickTimer = null;
+    const resetSoon = () => {
+      clearTimeout(blurClickTimer);
+      blurClickTimer = setTimeout(() => { blurClickCount = 0; }, 1000);
+    };
     btn.addEventListener('click', () => {
       const f = document.getElementById(filterId);
       if (!f) return;
       blurClickCount++;
+
       if (blurClickCount === 1) {
         // First click: just dismiss keyboard
         f.blur();
-        blurClickTimer = setTimeout(() => { blurClickCount = 0; }, 1000);
-      } else {
-        // Second click within 1 second: clear the field
-        clearTimeout(blurClickTimer);
-        blurClickCount = 0;
+        resetSoon();
+        return;
+      }
+
+      if (blurClickCount === 2) {
+        // Second click: clear the field and the category filter
         f.value = '';
         f.dispatchEvent(new Event('input', { bubbles: true }));
         if (onClear) onClear();
+        // Keep counting — a 3rd click may follow.
+        resetSoon();
+        return;
       }
+
+      // Third click: the extra action for this field, if it has one.
+      clearTimeout(blurClickTimer);
+      blurClickCount = 0;
+      if (onExtraClear) onExtraClear();
     });
   }
 
@@ -17877,6 +17898,22 @@ const result = await presetImporter.import();
     presetFilterText = '';
     galleryPresetFilterByCategory = '';
     populatePresetList();
+  }, () => {
+    // 3 clicks: clear the MULTI preset selections. This selector is shared by
+    // gallery multi, camera multi, layer and single load — but only multi mode
+    // keeps a running tick list the user cannot otherwise undo in bulk.
+    // Layer has its own clear, and single load is replaced by the next pick.
+    if (!isMultiPresetMode) return;
+    if (selectedPresets.length === 0) return;   // nothing to clear
+    selectedPresets = [];
+    updateMultiPresetList();          // repaints the ticks and the count
+    const countSpan = document.getElementById('multi-preset-count');
+    if (countSpan) {
+      countSpan.textContent = '(cleared)';
+      setTimeout(() => {
+        if (countSpan.textContent === '(cleared)') countSpan.textContent = '(0 selected)';
+      }, 1200);
+    }
   });
 
  const styleFilter = document.getElementById('style-filter');
