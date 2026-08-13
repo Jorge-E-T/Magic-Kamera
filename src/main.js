@@ -334,7 +334,7 @@ let currentTutorialGlossaryIndex = 0;
 
 // Gallery variables - IndexedDB
 const DB_NAME = 'R1CameraGallery';
-const DB_VERSION = 3;
+const DB_VERSION = 4;
 const STORE_NAME = 'images';
 let db = null;
 let galleryImages = [];
@@ -1245,6 +1245,14 @@ function initDB() {
       if (!db.objectStoreNames.contains('deleted_images')) {
         const delStore = db.createObjectStore('deleted_images', { keyPath: 'id' });
         delStore.createIndex('deletedAt', 'deletedAt', { unique: false });
+      }
+
+      // Games the user has added to the Pick a Game list themselves.
+      // Key is the preset NAME; we deliberately store nothing but the name and
+      // when it was added, so the preset itself stays the single source of
+      // truth and removing a game can never delete preset data.
+      if (!db.objectStoreNames.contains('custom_games')) {
+        db.createObjectStore('custom_games', { keyPath: 'name' });
       }
     };
   });
@@ -2983,7 +2991,89 @@ async function selectPreset(preset) {
 // prompt. Normal preset behaviour is untouched — this logic only runs in-game.
 
 // The games this framework offers, by preset name.
-const GAME_PRESET_NAMES = ['BATTLESHIP', 'CLUE', 'GUESS WHO', 'HIDE AND SEEK', 'ROCK PAPER SCISSORS LIZARD SPOCK', 'SLOT MACHINE', 'WHACK-A-MOLE', 'WORDLE'];
+// Built-in games. These always appear and can never be removed by the user.
+const DEFAULT_GAME_PRESET_NAMES = ['BATTLESHIP', 'CLUE', 'GUESS WHO', 'HIDE AND SEEK', 'ROCK PAPER SCISSORS LIZARD SPOCK', 'SLOT MACHINE', 'WHACK-A-MOLE', 'WORDLE'];
+
+// Games the user added themselves, loaded from IndexedDB at startup.
+let _customGameNames = [];
+
+// Kept for backwards compatibility with any code still reading this name.
+const GAME_PRESET_NAMES = DEFAULT_GAME_PRESET_NAMES;
+
+// Is this one of the built-ins? Built-ins cannot be removed.
+function _isDefaultGame(name) {
+  return DEFAULT_GAME_PRESET_NAMES.indexOf(name) !== -1;
+}
+
+// The full list shown in the picker: defaults + custom, alphabetical, no dupes.
+function _allGameNames() {
+  const seen = new Set();
+  const all = [];
+  DEFAULT_GAME_PRESET_NAMES.concat(_customGameNames).forEach(n => {
+    const key = String(n).toUpperCase();
+    if (!seen.has(key)) { seen.add(key); all.push(n); }
+  });
+  return all.sort((a, b) => a.localeCompare(b));
+}
+
+// Every preset the user could add as a game: category contains GAME, and it is
+// not already on the list. Built-ins are excluded because adding them would be
+// redundant. Alphabetical, so the add list matches the picker.
+function _addableGamePresets() {
+  if (typeof CAMERA_PRESETS === 'undefined') return [];
+  const already = new Set(_allGameNames().map(n => String(n).toUpperCase()));
+  return CAMERA_PRESETS
+    .filter(p => p && p.name && Array.isArray(p.category) &&
+                 p.category.some(c => String(c).toUpperCase() === 'GAME') &&
+                 !already.has(String(p.name).toUpperCase()))
+    .sort((a, b) => a.name.localeCompare(b.name));
+}
+
+// ── IndexedDB persistence for custom games ──
+async function loadCustomGames() {
+  try {
+    if (!db) await initDB();
+    if (!db.objectStoreNames.contains('custom_games')) { _customGameNames = []; return; }
+    _customGameNames = await new Promise((resolve) => {
+      const tx = db.transaction(['custom_games'], 'readonly');
+      const req = tx.objectStore('custom_games').getAll();
+      req.onsuccess = () => resolve((req.result || []).map(r => r.name).filter(Boolean));
+      req.onerror = () => resolve([]);
+    });
+  } catch (e) {
+    console.error('Could not load custom games:', e);
+    _customGameNames = [];
+  }
+}
+
+async function saveCustomGame(name) {
+  if (!name || _isDefaultGame(name)) return;
+  if (_customGameNames.some(n => String(n).toUpperCase() === String(name).toUpperCase())) return;
+  _customGameNames.push(name);
+  try {
+    if (!db) await initDB();
+    await new Promise((resolve, reject) => {
+      const tx = db.transaction(['custom_games'], 'readwrite');
+      tx.objectStore('custom_games').put({ name: name, addedAt: Date.now() });
+      tx.oncomplete = resolve;
+      tx.onerror = () => reject(tx.error);
+    });
+  } catch (e) { console.error('Could not save custom game:', e); }
+}
+
+async function deleteCustomGame(name) {
+  // Removes the NAME from the game list only. The preset itself is untouched.
+  _customGameNames = _customGameNames.filter(n => String(n).toUpperCase() !== String(name).toUpperCase());
+  try {
+    if (!db) await initDB();
+    await new Promise((resolve, reject) => {
+      const tx = db.transaction(['custom_games'], 'readwrite');
+      tx.objectStore('custom_games').delete(name);
+      tx.oncomplete = resolve;
+      tx.onerror = () => reject(tx.error);
+    });
+  } catch (e) { console.error('Could not remove custom game:', e); }
+}
 
 let _gameActivePreset = null;      // the preset chosen for this game round
 let _gameSelections = {};          // groupIndex -> chosen option index
@@ -3010,7 +3100,8 @@ function _isGameModalOpen() {
 // True while step 1 (the game list) is showing, false once options are up.
 function _isGamePickerVisible() {
   return _isGameModalOpen() &&
-         document.getElementById('game-picker')?.style.display !== 'none';
+         document.getElementById('game-picker')?.style.display !== 'none' &&
+         document.getElementById('game-manage')?.style.display !== 'block';
 }
 function _getGamePickerItems() {
   return Array.from(document.querySelectorAll('#game-picker .game-picker-item'));
@@ -3041,6 +3132,10 @@ function openGameModal() {
   _gameSelections = {};
   document.getElementById('game-options').style.display = 'none';
   document.getElementById('game-modal-footer').style.display = 'none';
+  const _managePane = document.getElementById('game-manage');
+  if (_managePane) _managePane.style.display = 'none';
+  const _manageFooter = document.getElementById('game-picker-footer');
+  if (_manageFooter) _manageFooter.style.display = 'flex';
   document.getElementById('game-picker').style.display = 'block';
   document.getElementById('game-modal-title').textContent = '🎲 Pick a Game';
   // ALWAYS start on the first game, never where the user left off last time.
@@ -3062,9 +3157,13 @@ function _renderGamePicker() {
   const picker = document.getElementById('game-picker');
   if (!picker) return;
   picker.innerHTML = '';
-  GAME_PRESET_NAMES.forEach((name, gameIndex) => {
+  _allGameNames().forEach((name, gameIndex) => {
     const preset = _findGamePreset(name);
-    const imported = preset && _isGamePresetImported(name);
+    // Built-ins must be imported from Import Presets. Custom games were added
+    // from the user's own preset list, so simply existing is enough.
+    const imported = _isDefaultGame(name)
+      ? (preset && _isGamePresetImported(name))
+      : !!preset;
     const btn = document.createElement('button');
     btn.className = 'game-picker-item' + (imported ? '' : ' locked');
     if (imported) {
@@ -3083,6 +3182,111 @@ function _renderGamePicker() {
   });
 }
 
+// ── ADD / REMOVE games ──────────────────────────────────────────────
+// Both use a third pane inside the SAME modal rather than a separate overlay,
+// so the existing scroll-wheel and side-button handling keeps working and
+// there is no second layer to stack on a very small screen.
+let _gameManageMode = null;      // 'add' | 'remove' | null
+let _gameManagePick = null;      // name currently ticked in the manage list
+
+function _isGameManageVisible() {
+  return _isGameModalOpen() &&
+         document.getElementById('game-manage')?.style.display === 'block';
+}
+
+function _showGameManage(mode) {
+  _gameManageMode = mode;
+  _gameManagePick = null;
+  document.getElementById('game-picker').style.display = 'none';
+  document.getElementById('game-picker-footer').style.display = 'none';
+  document.getElementById('game-options').style.display = 'none';
+  document.getElementById('game-modal-footer').style.display = 'none';
+  const pane = document.getElementById('game-manage');
+  pane.style.display = 'block';
+  document.getElementById('game-manage-footer').style.display = 'flex';
+  document.getElementById('game-modal-title').textContent =
+    mode === 'add' ? '\u2795 Add a Game' : '\u2796 Remove a Game';
+  _renderGameManageList();
+  const body = document.getElementById('game-modal-body');
+  if (body) body.scrollTop = 0;
+}
+
+function _closeGameManage() {
+  _gameManageMode = null;
+  _gameManagePick = null;
+  document.getElementById('game-manage').style.display = 'none';
+  document.getElementById('game-manage-footer').style.display = 'none';
+  document.getElementById('game-picker').style.display = 'block';
+  document.getElementById('game-picker-footer').style.display = 'flex';
+  document.getElementById('game-modal-title').textContent = '\ud83c\udfb2 Pick a Game';
+  _gamePickerIndex = 0;
+  _renderGamePicker();
+  _updateGamePickerSelection();
+  const body = document.getElementById('game-modal-body');
+  if (body) body.scrollTop = 0;
+}
+
+function _renderGameManageList() {
+  const pane = document.getElementById('game-manage');
+  if (!pane) return;
+  pane.innerHTML = '';
+
+  const names = _gameManageMode === 'add'
+    ? _addableGamePresets().map(p => p.name)
+    : _customGameNames.slice().sort((a, b) => a.localeCompare(b));
+
+  if (names.length === 0) {
+    const empty = document.createElement('div');
+    empty.className = 'game-manage-empty';
+    empty.textContent = _gameManageMode === 'add'
+      ? 'No presets available to add. A preset must have GAME in its category list, and must not already be on the game list.'
+      : 'No added games to remove. The built-in games cannot be removed.';
+    pane.appendChild(empty);
+    _updateGameManageApply();
+    return;
+  }
+
+  names.forEach(name => {
+    const btn = document.createElement('button');
+    btn.className = 'game-picker-item';
+    btn.dataset.gameName = name;
+    const sub = _gameManageMode === 'add' ? 'Tap to select, then Apply' : 'Tap to select, then Apply to remove';
+    btn.innerHTML = name + '<span class="game-sub">' + sub + '</span>';
+    btn.addEventListener('click', () => {
+      _gameManagePick = (_gameManagePick === name) ? null : name;   // tap again to deselect
+      _renderGameManageHighlight();
+      _updateGameManageApply();
+    });
+    pane.appendChild(btn);
+  });
+  _renderGameManageHighlight();
+  _updateGameManageApply();
+}
+
+function _renderGameManageHighlight() {
+  document.querySelectorAll('#game-manage .game-picker-item').forEach(el => {
+    el.classList.toggle('game-picker-selected', el.dataset.gameName === _gameManagePick);
+  });
+}
+
+function _updateGameManageApply() {
+  const btn = document.getElementById('game-manage-apply');
+  if (btn) btn.disabled = !_gameManagePick;
+}
+
+async function _applyGameManage() {
+  if (!_gameManagePick) return;
+  const name = _gameManagePick;
+  if (_gameManageMode === 'add') {
+    await saveCustomGame(name);
+  } else {
+    // Removes the name from the list and from IndexedDB. The preset itself is
+    // never touched, so the game can be added again later.
+    await deleteCustomGame(name);
+  }
+  _closeGameManage();
+}
+
 // Step 2: show the option groups for the chosen game.
 function _startGame(preset) {
   if (!preset || !preset.optionGroups || preset.optionGroups.length === 0) {
@@ -3092,6 +3296,8 @@ function _startGame(preset) {
   _gameActivePreset = preset;
   _gameSelections = {};
   document.getElementById('game-picker').style.display = 'none';
+  const _mf = document.getElementById('game-picker-footer');
+  if (_mf) _mf.style.display = 'none';
   document.getElementById('game-options').style.display = 'block';
   document.getElementById('game-modal-footer').style.display = 'flex';
   document.getElementById('game-modal-title').textContent = '🎲 ' + preset.name;
@@ -3363,6 +3569,15 @@ let _gamePendingSelection = null;
   });
   const submitBtn = document.getElementById('game-submit-btn');
   if (submitBtn) submitBtn.addEventListener('click', submitGameRound);
+
+  const addBtn = document.getElementById('game-add-btn');
+  const removeBtn = document.getElementById('game-remove-btn');
+  const manageApply = document.getElementById('game-manage-apply');
+  const manageCancel = document.getElementById('game-manage-cancel');
+  if (addBtn) addBtn.addEventListener('click', () => _showGameManage('add'));
+  if (removeBtn) removeBtn.addEventListener('click', () => _showGameManage('remove'));
+  if (manageApply) manageApply.addEventListener('click', _applyGameManage);
+  if (manageCancel) manageCancel.addEventListener('click', _closeGameManage);
 })();
 
 async function submitMagicTransform() {
@@ -5178,6 +5393,10 @@ function selectCurrentMenuItem() {
 async function loadStyles() {
     // Initialize IndexedDB storage — run both at the same time instead of one after the other
     await Promise.all([presetStorage.init(), presetImporter.init()]);
+
+    // Restore the games the user added to the Pick a Game list. Loaded here,
+    // alongside the presets, so the picker is correct the first time it opens.
+    await loadCustomGames();
     
     // Load imported presets and modifications at the same time instead of one after the other
     const [importedPresets, modifications] = await Promise.all([
