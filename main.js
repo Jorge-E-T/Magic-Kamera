@@ -17898,6 +17898,11 @@ const result = await presetImporter.import();
     presetFilterText = '';
     galleryPresetFilterByCategory = '';
     populatePresetList();
+    // populatePresetList() rebuilds the LIST but not the category footer, so
+    // the underline on the old category survives. updatePresetSelection() is
+    // what redraws that hint — the menu and visible-presets lists get this for
+    // free because their own repopulate calls their selection updater.
+    updatePresetSelection();
   }, () => {
     // 3 clicks: clear the MULTI preset selections. This selector is shared by
     // gallery multi, camera multi, layer and single load — but only multi mode
