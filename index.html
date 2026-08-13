@@ -1659,8 +1659,18 @@ All of the presets are optimized to avoid "camera ran dry" or "content filter" i
                 <div id="game-modal-body" class="game-modal-body">
                     <!-- Step 1: game picker (list of game presets) -->
                     <div id="game-picker" class="game-picker"></div>
+                    <!-- Step 1b: add / remove a custom game -->
+                    <div id="game-manage" class="game-picker" style="display:none;"></div>
                     <!-- Step 2: option groups for the chosen game -->
                     <div id="game-options" class="game-options" style="display:none;"></div>
+                </div>
+                <div id="game-picker-footer" class="game-modal-footer" style="display:none;">
+                    <button id="game-add-btn" class="game-footer-btn">Add</button>
+                    <button id="game-remove-btn" class="game-footer-btn">Remove</button>
+                </div>
+                <div id="game-manage-footer" class="game-modal-footer" style="display:none;">
+                    <button id="game-manage-cancel" class="game-footer-btn">Cancel</button>
+                    <button id="game-manage-apply" class="game-footer-btn game-submit" disabled>Apply</button>
                 </div>
                 <div id="game-modal-footer" class="game-modal-footer" style="display:none;">
                     <button id="game-back-btn" class="game-footer-btn">Back</button>

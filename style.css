@@ -7050,3 +7050,12 @@ button, .touchable {
     border-left: 3px solid #FE5F00;
     color: #fff;
 }
+
+/* Add / Remove game panes — message shown when there is nothing to list */
+.game-manage-empty {
+    padding: 4vw 3vw;
+    color: #aaa;
+    font-size: var(--mk-label-font, 3.2vw);
+    line-height: 1.5;
+    text-align: center;
+}
