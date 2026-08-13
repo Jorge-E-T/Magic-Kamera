@@ -3124,19 +3124,36 @@ function _moveGamePicker(direction) {
   _updateGamePickerSelection();
 }
 
+// The game modal has THREE panes and THREE footers. Setting them one at a
+// time from five different places is what made the buttons appear and vanish
+// unpredictably, so every screen change now goes through this one function,
+// which always sets all six explicitly.
+//   'picker'  = the game list          + Add / Remove
+//   'manage'  = the add/remove list    + Cancel / Apply
+//   'options' = the chosen game's opts + Back / Play
+function _showGamePane(which) {
+  const set = (id, visible, mode) => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = visible ? (mode || 'block') : 'none';
+  };
+  set('game-picker',        which === 'picker');
+  set('game-manage',        which === 'manage');
+  set('game-options',       which === 'options');
+  set('game-picker-footer', which === 'picker',  'flex');
+  set('game-manage-footer', which === 'manage',  'flex');
+  set('game-modal-footer',  which === 'options', 'flex');
+}
+
 // Open the game modal (Step 1: pick a game).
 function openGameModal() {
   const modal = document.getElementById('game-modal');
   if (!modal) return;
   _gameActivePreset = null;
   _gameSelections = {};
-  document.getElementById('game-options').style.display = 'none';
-  document.getElementById('game-modal-footer').style.display = 'none';
-  const _managePane = document.getElementById('game-manage');
-  if (_managePane) _managePane.style.display = 'none';
-  const _manageFooter = document.getElementById('game-picker-footer');
-  if (_manageFooter) _manageFooter.style.display = 'flex';
-  document.getElementById('game-picker').style.display = 'block';
+  // Clear any half-finished add/remove from last time, then show the picker.
+  _gameManageMode = null;
+  _gameManagePick = null;
+  _showGamePane('picker');
   document.getElementById('game-modal-title').textContent = '🎲 Pick a Game';
   // ALWAYS start on the first game, never where the user left off last time.
   _gamePickerIndex = 0;
@@ -3150,6 +3167,8 @@ function closeGameModal() {
   if (modal) modal.style.display = 'none';
   _gameActivePreset = null;
   _gameSelections = {};
+  _gameManageMode = null;
+  _gameManagePick = null;
 }
 
 // Step 1 UI: list the games; lock any whose preset is not imported.
@@ -3197,13 +3216,7 @@ function _isGameManageVisible() {
 function _showGameManage(mode) {
   _gameManageMode = mode;
   _gameManagePick = null;
-  document.getElementById('game-picker').style.display = 'none';
-  document.getElementById('game-picker-footer').style.display = 'none';
-  document.getElementById('game-options').style.display = 'none';
-  document.getElementById('game-modal-footer').style.display = 'none';
-  const pane = document.getElementById('game-manage');
-  pane.style.display = 'block';
-  document.getElementById('game-manage-footer').style.display = 'flex';
+  _showGamePane('manage');
   document.getElementById('game-modal-title').textContent =
     mode === 'add' ? '\u2795 Add a Game' : '\u2796 Remove a Game';
   _renderGameManageList();
@@ -3214,10 +3227,7 @@ function _showGameManage(mode) {
 function _closeGameManage() {
   _gameManageMode = null;
   _gameManagePick = null;
-  document.getElementById('game-manage').style.display = 'none';
-  document.getElementById('game-manage-footer').style.display = 'none';
-  document.getElementById('game-picker').style.display = 'block';
-  document.getElementById('game-picker-footer').style.display = 'flex';
+  _showGamePane('picker');
   document.getElementById('game-modal-title').textContent = '\ud83c\udfb2 Pick a Game';
   _gamePickerIndex = 0;
   _renderGamePicker();
@@ -3295,11 +3305,7 @@ function _startGame(preset) {
   }
   _gameActivePreset = preset;
   _gameSelections = {};
-  document.getElementById('game-picker').style.display = 'none';
-  const _mf = document.getElementById('game-picker-footer');
-  if (_mf) _mf.style.display = 'none';
-  document.getElementById('game-options').style.display = 'block';
-  document.getElementById('game-modal-footer').style.display = 'flex';
+  _showGamePane('options');
   document.getElementById('game-modal-title').textContent = '🎲 ' + preset.name;
   _renderGameOptions(preset);
   _updateGameSubmitEnabled();
@@ -3559,13 +3565,15 @@ let _gamePendingSelection = null;
   if (closeBtn) closeBtn.addEventListener('click', closeGameModal);
   const backBtn = document.getElementById('game-back-btn');
   if (backBtn) backBtn.addEventListener('click', () => {
-    // Back to the game picker.
+    // Back to the game picker. Goes through _showGamePane so the Add / Remove
+    // buttons come back and any add/remove footer is cleared.
     _gameActivePreset = null;
     _gameSelections = {};
-    document.getElementById('game-options').style.display = 'none';
-    document.getElementById('game-modal-footer').style.display = 'none';
-    document.getElementById('game-picker').style.display = 'block';
+    _gameManageMode = null;
+    _gameManagePick = null;
+    _showGamePane('picker');
     document.getElementById('game-modal-title').textContent = '🎲 Pick a Game';
+    _updateGamePickerSelection();
   });
   const submitBtn = document.getElementById('game-submit-btn');
   if (submitBtn) submitBtn.addEventListener('click', submitGameRound);
