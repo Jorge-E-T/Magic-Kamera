@@ -1207,6 +1207,30 @@
 
                             Every game preset also works as an ordinary preset. Used normally from LOAD or MULTI it simply performs its transformation with no game text at all — the game only runs when you go in through the 🎲 GAME button.<br><br>
 
+                            <strong>Build Your Own Game List:</strong> At the bottom of the Pick a Game screen are two buttons.<br>
+                            • <strong>ADD:</strong> Shows every preset in your library that carries the GAME category and is not already on the list. Tap the preset you want, then tap Apply.<br>
+                            • <strong>REMOVE:</strong> Shows only the games you added yourself. Tap one, then tap Apply, and it leaves the list. This removes the name from the game list only — <strong>the preset itself is never deleted</strong>, so you can still use it normally or add it back later.<br>
+
+                            <strong>🛠️ Turning Your Own Preset Into a Game:</strong> Two things are required in the preset.<br>
+                            <strong>1. Add GAME to the categories</strong> so the preset appears in the ADD list:<br>
+                            &nbsp;&nbsp;&nbsp;<code>"category": ["ART", "GAME"]</code><br>
+                            <strong>2. Choose a game engine.</strong> The program works out which engine to use from the keys you include — there is no separate setting to change. Pick one of the four:<br><br>
+
+                            • <strong>Matching game (like CLUE)</strong> — the program secretly picks one option from every group and you have to match them all. Requires only <code>optionGroups</code>. Do not include <code>gameType</code> or <code>gameRoster</code>.<br><br>
+
+                            • <strong>Named answer game (like GUESS WHO or BATTLESHIP)</strong> — the program secretly picks a named character or item from a list, and the final image names it. Requires <code>optionGroups</code> plus a <code>gameRoster</code>. Each roster entry needs a <code>name</code>, plus one key for every option group. <strong>The key must match the group title exactly, letter for letter</strong>, and the value must match one of that group's option texts exactly — otherwise the trait quietly falls back to the first option.<br>
+                            &nbsp;&nbsp;&nbsp;<code>"gameRoster": [ { "name": "OLIVER", "GENDER": "Male", "HAT": "No Hat" } ]</code><br><br>
+
+                            • <strong>Word game (like WORDLE)</strong> — the program picks a real word and colours your letters green, yellow or grey. Requires <code>"gameType": "wordle"</code>, one option group per letter, and a <code>gameRoster</code> where each entry's <code>name</code> is the whole word.<br><br>
+
+                            • <strong>Beats game (like ROCK PAPER SCISSORS LIZARD SPOCK)</strong> — you win by <em>beating</em> the program, not by matching it, and there are three outcomes: win, lose or tie. Requires <code>"gameType": "beats"</code>, a <code>beats</code> map listing what each option defeats, and <strong>exactly one option group</strong>. With two or more groups it silently reverts to a matching game.<br>
+                            &nbsp;&nbsp;&nbsp;<code>"beats": { "Rock": ["Scissors", "Lizard"], "Paper": ["Rock", "Spock"] }</code><br><br>
+
+                            <strong>Optional — your own win and lose words:</strong> Add a <code>verdicts</code> key to replace WINNER and LOSER with anything you like. Beats games always use WINNER, LOSER and TIE.<br>
+                            &nbsp;&nbsp;&nbsp;<code>"verdicts": { "win": "JACKPOT!", "lose": "BUST!" }</code><br><br>
+
+                            <strong>Write the result into the image:</strong> In game mode the program appends a section headed <code>=== GAME RESULT ===</code> to your prompt, containing the verdict, the player's guess and the correct answer. Add a line to your preset's <code>additionalInstructions</code> telling the AI to display that section, so the finished picture actually shows whether you won.<br><br>
+
                             <strong>Upload to gofile.io:</strong> Use the Export button in the carousel inside the image viewer. Link expires after 24 hours. Mainly useful in No Magic Mode (because in No Magic Mode, images are not sent to the rabbit hole).<br><br>
 
                             <strong>Bottom Bar — Four Buttons:</strong><br>
