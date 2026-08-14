@@ -7096,13 +7096,19 @@ button, .touchable {
 
 /* ── TUTORIAL "SHOW ME" ── */
 .tutorial-showme-btn {
+    /* The global `button` rule forces min-height:44px — that is what made
+       these so tall. Override it and size them like an inline chip. */
     display: inline-block;
+    min-width: 0;
+    min-height: 0;
+    height: 5.2vw;
+    line-height: 1;
     margin: 0 0 0 2vw;
-    padding: 0.8vw 2.4vw;
+    padding: 0 2.6vw;
     background: #2a2a2a;
     color: #FE5F00;
     border: 1px solid #FE5F00;
-    border-radius: 3vw;
+    border-radius: 2.6vw;
     font-size: 2.9vw;
     font-weight: 700;
     white-space: nowrap;
@@ -7132,18 +7138,32 @@ button, .touchable {
 
 /* Small chip that takes the reader back to the tutorial */
 #tutorial-return-chip {
+    /* Same vertical size as the × close button, but wider with bigger text. */
     position: fixed;
     left: 2vw;
     top: 2vw;
     z-index: 99999;
-    padding: 1.2vw 3vw;
+    height: 8vw;
+    min-height: 32px;
+    min-width: 0;
+    line-height: 1;
+    padding: 0 4.5vw;
     background: #FE5F00;
     color: #000;
     border: none;
-    border-radius: 4vw;
-    font-size: 3vw;
+    border-radius: 1.5vw;
+    font-size: 4.2vw;
     font-weight: 700;
+    white-space: nowrap;
     box-shadow: 0 0.5vw 2vw rgba(0,0,0,0.6);
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
+}
+
+/* Accordion headings — a little smaller and tighter */
+.tutorial-acc-head {
+    font-size: 15px !important;
+    padding-top: 1.8vw !important;
+    padding-bottom: 1.8vw !important;
+    margin: 0 0 0.6vw !important;
 }
