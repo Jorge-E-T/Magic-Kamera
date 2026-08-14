@@ -8710,28 +8710,70 @@ function hideTutorialSubmenu() {
 //   target – id of the real button to pulse
 //   go     – what to run to get there
 const TUTORIAL_SHOW_ME = [
-  { label: 'Visible Presets',   target: 'visible-presets-settings-button', go: () => { hideTutorialSubmenu(); showSettingsSubmenu(); } },
-  { label: 'Preset Builder',    target: 'preset-builder-button',           go: () => { hideTutorialSubmenu(); showSettingsSubmenu(); } },
-  { label: 'Import Presets',    target: 'import-presets-button',           go: () => { hideTutorialSubmenu(); showSettingsSubmenu(); } },
-  { label: 'Preset File Settings', target: 'preset-file-settings-button',  go: () => { hideTutorialSubmenu(); showSettingsSubmenu(); } },
-  { label: 'Master Prompt',     target: 'master-prompt-settings-button',   go: () => { hideTutorialSubmenu(); showSettingsSubmenu(); } },
-  { label: 'Motion Detection',  target: 'motion-settings-button',          go: () => { hideTutorialSubmenu(); showSettingsSubmenu(); } },
-  { label: 'Resolution',        target: 'resolution-settings-button',      go: () => { hideTutorialSubmenu(); showSettingsSubmenu(); } },
-  { label: 'Aspect Ratio',      target: 'aspect-ratio-settings-button',    go: () => { hideTutorialSubmenu(); showSettingsSubmenu(); } },
-  { label: 'Burst',             target: 'burst-settings-button',           go: () => { hideTutorialSubmenu(); showSettingsSubmenu(); } },
-  { label: 'Timer',             target: 'timer-settings-button',           go: () => { hideTutorialSubmenu(); showSettingsSubmenu(); } },
-  { label: 'Reset Database',    target: 'factory-reset-button',            go: () => { hideTutorialSubmenu(); showSettingsSubmenu(); } },
-  { label: 'Restore Deleted Items', target: 'restore-deleted-button',      go: () => { hideTutorialSubmenu(); showSettingsSubmenu(); } },
-  { label: 'Import Resolution', target: 'import-resolution-settings-button', go: () => { hideTutorialSubmenu(); showSettingsSubmenu(); } },
-  { label: 'Button Settings',   target: 'button-settings-button',           go: () => { hideTutorialSubmenu(); showSettingsSubmenu(); } },
+  // ---- MAIN CAMERA SCREEN (carousels) ----
+  { label: 'Menu Button',       target: 'menu-button',                    go: _goCamera },
+  { label: 'Gallery Button',    target: 'gallery-button',                 go: _goCamera },
+  { label: 'New Photo Button',  target: 'reset-button',                   go: _goCamera },
+  { label: '🎲 Random Mode',    target: 'random-toggle',                  go: _goCamera },
+  { label: 'Random Mode',       target: 'random-toggle',                  go: _goCamera },
+  { label: 'Timer Mode',        target: 'timer-toggle',                   go: _goCamera },
+  { label: 'Burst Mode',        target: 'burst-toggle',                   go: _goCamera },
+  { label: 'Motion Detection',  target: 'motion-toggle',                  go: _goCamera },
+  { label: 'Multi Preset',      target: 'camera-multi-preset-toggle',     go: _goCamera },
+  { label: 'Combine images',    target: 'camera-combine-toggle',          go: _goCamera },
+  { label: 'Layer presets',     target: 'camera-layer-toggle',            go: _goCamera },
+  { label: 'Hear Preset Info',  target: 'cam-master-prompt-btn',          go: _goCamera },
+
+  // ---- GALLERY ---- (viewer buttons only exist once an image is open, so the
+  // pulse waits for them — see _pulseElement)
+  { label: 'Import Photos',     target: 'gallery-import-button',          go: _goGallery },
+  { label: 'Batch Operations',  target: 'batch-select-all',               go: _goGallery },
+  { label: 'Sort',              target: 'gallery-sort-btn',               go: _goGallery },
+  { label: 'New Folder',        target: 'batch-new-folder',               go: _goGallery },
+  { label: 'View Photos',       target: 'gallery-grid',                   go: _goGallery },
+  { label: 'Edit and Export Images', target: 'edit-viewer-image',         go: _goGallery },
+  { label: 'GAME',              target: 'game-viewer-button',             go: _goGallery },
+  { label: 'Build Your Own Game List', target: 'game-add-btn',            go: _goGallery },
+  { label: 'Master and Options Buttons', target: 'mp-viewer-button',      go: _goGallery },
+
+  // ---- SETTINGS ----
+  { label: 'Visible Presets',   target: 'visible-presets-settings-button', go: _goSettings },
+  { label: 'Preset Builder',    target: 'preset-builder-button',           go: _goSettings },
+  { label: 'Import Presets',    target: 'import-presets-button',           go: _goSettings },
+  { label: 'Preset File Settings', target: 'preset-file-settings-button',  go: _goSettings },
+  { label: 'Master Prompt',     target: 'master-prompt-settings-button',   go: _goSettings },
+  { label: 'Resolution',        target: 'resolution-settings-button',      go: _goSettings },
+  { label: 'Aspect Ratio',      target: 'aspect-ratio-settings-button',    go: _goSettings },
+  { label: 'Burst',             target: 'burst-settings-button',           go: _goSettings },
+  { label: 'Timer',             target: 'timer-settings-button',           go: _goSettings },
+  { label: 'Reset Database',    target: 'factory-reset-button',            go: _goSettings },
+  { label: 'Restore Deleted Items', target: 'restore-deleted-button',      go: _goSettings },
+  { label: 'Import Resolution', target: 'import-resolution-settings-button', go: _goSettings },
+  { label: 'Button Settings',   target: 'button-settings-button',          go: _goSettings },
+  { label: 'No Magic Mode',     target: 'no-magic-toggle-button',          go: _goSettings },
+  { label: 'Manually Select Options', target: 'manual-options-toggle-button', go: _goSettings },
 ];
 
 let _showMeReturnSection = null;
+let _showMeReturnScroll = 0;
+
+// Where each Show me goes. Kept as named helpers so the table above stays readable.
+function _goCamera()   { hideTutorialSubmenu(); if (typeof hideUnifiedMenu === 'function') hideUnifiedMenu(); }
+function _goSettings() { hideTutorialSubmenu(); showSettingsSubmenu(); }
+function _goGallery()  { hideTutorialSubmenu(); if (typeof hideUnifiedMenu === 'function') hideUnifiedMenu();
+                         if (typeof showGallery === 'function') showGallery(); }
 
 // Pulse a button for a few seconds so the reader can spot it.
-function _pulseElement(id) {
+function _pulseElement(id, _tries) {
   const el = document.getElementById(id);
-  if (!el) return;
+  const visible = el && el.offsetParent !== null;
+  if (!visible) {
+    // Some targets only appear after the reader does something — the image
+    // viewer buttons need a photo opened first. Wait for it, up to 20s.
+    const n = (_tries || 0) + 1;
+    if (n < 40) setTimeout(() => _pulseElement(id, n), 500);
+    return;
+  }
   el.classList.add('tutorial-pulse');
   try { el.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (e) {}
   setTimeout(() => el.classList.remove('tutorial-pulse'), 6000);
@@ -8749,12 +8791,22 @@ function _returnToTutorial() {
   const settings = document.getElementById('settings-submenu');
   if (settings) settings.style.display = 'none';
   isSettingsSubmenuOpen = false;
+  const gallery = document.getElementById('gallery-modal');
+  if (gallery) gallery.style.display = 'none';
   showTutorialSubmenu();
   if (_showMeReturnSection) showTutorialSection(_showMeReturnSection);
+  // showTutorialSection scrolls the section to the top; put the reader back
+  // exactly where they were reading instead. Runs after that scroll lands.
+  setTimeout(() => {
+    const sc = document.querySelector('#tutorial-content-area .tutorial-content');
+    if (sc) sc.scrollTop = _showMeReturnScroll;
+  }, 220);
 }
 
 function _tutorialShowMe(entry, fromSectionId) {
   _showMeReturnSection = fromSectionId || null;
+  const _sc = document.querySelector('#tutorial-content-area .tutorial-content');
+  _showMeReturnScroll = _sc ? _sc.scrollTop : 0;
   try { entry.go(); } catch (e) { console.error('Show me failed:', e); return; }
   // Let the destination screen finish rendering before pulsing.
   setTimeout(() => {
@@ -8769,29 +8821,27 @@ function _tutorialShowMe(entry, fromSectionId) {
 function _injectShowMeButtons() {
   const area = document.getElementById('tutorial-content-area');
   if (!area) return;
-  TUTORIAL_SHOW_ME.forEach((entry, idx) => {
-    if (!document.getElementById(entry.target)) return;      // button not in this build
-    const strongs = area.querySelectorAll('strong');
-    for (const st of strongs) {
-      // Labels in the tutorial carry emoji and extra notes, e.g.
-      // "📥 Import Presets:" and "📂 Preset File Settings (*Advanced Feature*):".
-      // Strip anything that is not a letter, digit or space from the front,
-      // then match on the START of the label so those still line up.
-      const txt = st.textContent
-        .replace(/[:：]/g, ' ')
-        .replace(/^[^A-Za-z0-9]+/, '')
-        .trim()
-        .toLowerCase();
-      if (!txt.startsWith(entry.label.toLowerCase())) continue;
-      if (st.dataset.showme === '1') break;                  // already has one
-      st.dataset.showme = '1';
-      const btn = document.createElement('button');
-      btn.className = 'tutorial-showme-btn';
-      btn.textContent = '\u25B8 Show me';
-      btn.dataset.showmeIndex = String(idx);
-      st.parentNode.insertBefore(btn, st.nextSibling);
-      break;
-    }
+  // Walk every bold label ONCE and give it a button if any entry matches.
+  // The old version stopped at the first match per entry, so a label that
+  // appeared in two sections only got a button in the earlier one.
+  area.querySelectorAll('strong').forEach(st => {
+    if (st.dataset.showme === '1') return;
+    const txt = st.textContent
+      .replace(/[:：]/g, ' ')
+      .replace(/^[^A-Za-z0-9]+/, '')
+      .trim()
+      .toLowerCase();
+    if (!txt) return;
+    const idx = TUTORIAL_SHOW_ME.findIndex(e =>
+      txt.startsWith(e.label.replace(/^[^A-Za-z0-9]+/, '').toLowerCase()) &&
+      document.getElementById(e.target));
+    if (idx === -1) return;
+    st.dataset.showme = '1';
+    const btn = document.createElement('button');
+    btn.className = 'tutorial-showme-btn';
+    btn.textContent = '\u25B8 Show me';
+    btn.dataset.showmeIndex = String(idx);
+    st.parentNode.insertBefore(btn, st.nextSibling);
   });
 }
 
