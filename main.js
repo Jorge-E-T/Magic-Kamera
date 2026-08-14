@@ -7842,10 +7842,16 @@ function toggleNoMagicMode() {
   // Update the camera footer immediately
   updateNoMagicFooter();
   
-  if (noMagicMode) {
-    showStatus('No Magic Mode ON - Camera only', 2000);
-  } else {
-    showStatus('No Magic Mode OFF - AI prompts enabled', 2000);
+  // showStatus() was never defined anywhere — these calls were throwing and
+  // killing the rest of the function. Write to the camera footer instead,
+  // which is how the rest of the app shows a temporary message.
+  if (statusElement) {
+    const _msg = noMagicMode ? '⚡ No Magic Mode ON - Camera only'
+                             : 'No Magic Mode OFF - AI prompts enabled';
+    statusElement.textContent = _msg;
+    setTimeout(() => {
+      if (statusElement && statusElement.textContent === _msg) updatePresetDisplay();
+    }, 2000);
   }
 }
 
@@ -9283,7 +9289,7 @@ function startMotionDetection() {
           const btn = document.getElementById('motion-toggle');
           btn.classList.remove('active');
           btn.title = 'Motion Detection: OFF';
-          showStatus('Motion capture complete - Press eye button to reactivate', 3000);
+          if (statusElement) statusElement.textContent = 'Motion capture complete - Press eye button to reactivate';
           // Show current preset when motion detection auto-stops
           if (CAMERA_PRESETS && CAMERA_PRESETS[currentPresetIndex]) {
             showStyleReveal(CAMERA_PRESETS[currentPresetIndex].name);
@@ -11504,7 +11510,7 @@ window.addEventListener('sideClick', () => {
               // Start motion detection
               if (isMotionDetectionMode && video && video.readyState >= 2) {
                 startMotionDetection();
-                showStatus('Motion Detection active - Move in front of camera', 3000);
+                if (statusElement) statusElement.textContent = 'Motion Detection active - Move in front of camera';
               }
             }, 500);
           }
@@ -11512,7 +11518,7 @@ window.addEventListener('sideClick', () => {
       } else {
         // No delay - start immediately
         startMotionDetection();
-        showStatus('Motion Detection ON - Move in front of camera', 3000);
+        if (statusElement) statusElement.textContent = 'Motion Detection ON - Move in front of camera';
       }
       return;
     }
@@ -17755,7 +17761,10 @@ document.addEventListener('touchend', () => {
   if (resetDbSuccessOk) resetDbSuccessOk.addEventListener('click', () => {
     document.getElementById('reset-db-success-overlay').style.display = 'none';
     hideResetDatabaseSubmenu();
-    renderMenuStyles();
+    // renderMenuStyles() was never defined — this threw and left the styles
+    // list showing stale presets after a reset. populateStylesList() is the
+    // real function that rebuilds it.
+    populateStylesList();
   });
 
   // "Back to Default" auto-checks all; all checked auto-checks default
