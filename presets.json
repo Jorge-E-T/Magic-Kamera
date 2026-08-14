@@ -13837,6 +13837,23 @@
     "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Preserve recognizable subject identity\n• Characteristic burr creating soft, fuzzy line edges\n• Rich ink accumulation along scratched lines\n• Plate tone visible in background\n• Hand-pulled print appearance on dampened paper"
   },
   {
+    "name": "DUCK SEASON OR WABBIT SEASON",
+    "category": ["OPTIONS", "GAME", "CARTOON", "TRANSFORMATION", "HUMOR"],
+    "message": "Take a picture and draw a single wide side-scrolling scene in the style of a 1940s golden-age theatrical cartoon short. THREE characters stand in a woodland clearing, all facing across the frame the way an old animation cel is staged.\n\nTHE HUNTER IS THE SUBJECT (NON-NEGOTIABLE):\n• Keep the subject's real face clearly recognizable — it must obviously be them\n• Redraw that face in classic rubber-hose cartoon style: round and chubby with plump cheeks, a small chin and simple ink outlines. The likeness stays; the rendering becomes a drawing\n• EXPRESSION: enormous wide eyes and a broad determined grin, utterly convinced they are about to win\n• COSTUME: a red and black checked hunting jacket, brown trousers tucked into boots, and a soft hunting cap with the earflaps sticking out sideways\n• The hunter carries a comically oversized double-barrelled shotgun with a bell-shaped muzzle\n• The hunter is POINTING with one outstretched arm at whichever animal the sign names\n\nTHE OTHER TWO CHARACTERS:\n• A tall grey cartoon hare, lanky and relaxed, leaning on one elbow with heavy-lidded eyes and a knowing smirk, entirely unbothered\n• A short black cartoon duck, round-bodied with a bright orange bill, furious and mid-splutter with both wings flung up\n• Both are original cartoon designs, not any existing character\n\nTHE GAG — ONE of them holds a hand-painted wooden SIGN on a stake, and the sign always points the hunter at the OTHER one:\n• If DUCK SEASON is chosen: the HARE holds the sign, it reads DUCK SEASON — FIRE! in bold hand-painted capitals, and the hunter points at the DUCK. The duck is outraged.\n• If RABBIT SEASON is chosen: the DUCK holds the sign, it reads RABBIT SEASON — FIRE! in bold hand-painted capitals, and the hunter points at the HARE. The hare is unimpressed.\n• The sign text must be spelled exactly as written and be clearly readable\n\nSTYLE:\n• Flat painted woodland background with simple stylised trees and a bright blue sky\n• Bold black ink outlines, flat cel colour, visible paint texture\n• Wide horizontal composition, all three characters in profile or three-quarter view",
+    "randomizeOptions": true,
+    "verdicts": { "win": "WHAT'S UP DOC?", "lose": "YOU'RE DESPICABLE!" },
+    "optionGroups": [
+    {
+      "title": "WHICH SEASON IS IT",
+      "options": [
+        { "id": "001", "text": "Duck Season" },
+        { "id": "002", "text": "Rabbit Season" }
+      ]
+    }
+    ],
+    "additionalInstructions": "FINAL RESULT — APPLIES TO BOTH NORMAL USE AND GAME MODE:\nShow only the three characters in the clearing. No other figures. The sign must always be present and readable, and the hunter must always be pointing at the animal the sign names.\n\nNORMAL USE (no game result below): draw the scene exactly as the chosen option describes, with no verdict word and no captions.\n\nOVERRIDE — GAME MODE: if a section headed \"=== GAME RESULT ===\" appears below, draw the scene for the CORRECT ANSWER it names, then add its verdict word in large hand-lettered cartoon type across the top of the frame, and show the small captions it specifies. A win should read as triumphant; a loss should show the hunter looking bewildered while both animals smirk."
+  },
+  {
     "name": "DUKE NUKEM 3D NPC",
     "category": [
       "VIDEO GAME",
