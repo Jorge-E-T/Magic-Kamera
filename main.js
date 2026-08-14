@@ -8699,6 +8699,143 @@ function hideTutorialSubmenu() {
   showSettingsSubmenu();
 }
 
+// ── TUTORIAL "SHOW ME" ──────────────────────────────────────────────
+// A Show me button closes the tutorial, navigates to the screen being
+// described, and pulses the real button so the reader can see exactly which
+// one it is. A small chip in the corner takes them back to where they were.
+//
+// To add another one, put a row in this list. 'label' is matched against the
+// bold text already in the tutorial, so no tutorial HTML has to be edited.
+//   label  – the <strong> label in the tutorial to attach the button to
+//   target – id of the real button to pulse
+//   go     – what to run to get there
+const TUTORIAL_SHOW_ME = [
+  { label: 'Visible Presets',   target: 'visible-presets-settings-button', go: () => { hideTutorialSubmenu(); showSettingsSubmenu(); } },
+  { label: 'Preset Builder',    target: 'preset-builder-button',           go: () => { hideTutorialSubmenu(); showSettingsSubmenu(); } },
+  { label: 'Import Presets',    target: 'import-presets-button',           go: () => { hideTutorialSubmenu(); showSettingsSubmenu(); } },
+  { label: 'Preset File Settings', target: 'preset-file-settings-button',  go: () => { hideTutorialSubmenu(); showSettingsSubmenu(); } },
+  { label: 'Master Prompt',     target: 'master-prompt-settings-button',   go: () => { hideTutorialSubmenu(); showSettingsSubmenu(); } },
+  { label: 'Motion Detection',  target: 'motion-settings-button',          go: () => { hideTutorialSubmenu(); showSettingsSubmenu(); } },
+  { label: 'Resolution',        target: 'resolution-settings-button',      go: () => { hideTutorialSubmenu(); showSettingsSubmenu(); } },
+  { label: 'Aspect Ratio',      target: 'aspect-ratio-settings-button',    go: () => { hideTutorialSubmenu(); showSettingsSubmenu(); } },
+  { label: 'Burst',             target: 'burst-settings-button',           go: () => { hideTutorialSubmenu(); showSettingsSubmenu(); } },
+  { label: 'Timer',             target: 'timer-settings-button',           go: () => { hideTutorialSubmenu(); showSettingsSubmenu(); } },
+  { label: 'Reset Database',    target: 'factory-reset-button',            go: () => { hideTutorialSubmenu(); showSettingsSubmenu(); } },
+  { label: 'Restore Deleted Items', target: 'restore-deleted-button',      go: () => { hideTutorialSubmenu(); showSettingsSubmenu(); } },
+  { label: 'Import Resolution', target: 'import-resolution-settings-button', go: () => { hideTutorialSubmenu(); showSettingsSubmenu(); } },
+  { label: 'Button Settings',   target: 'button-settings-button',           go: () => { hideTutorialSubmenu(); showSettingsSubmenu(); } },
+];
+
+let _showMeReturnSection = null;
+
+// Pulse a button for a few seconds so the reader can spot it.
+function _pulseElement(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.classList.add('tutorial-pulse');
+  try { el.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (e) {}
+  setTimeout(() => el.classList.remove('tutorial-pulse'), 6000);
+}
+
+function _hideShowMeChip() {
+  const chip = document.getElementById('tutorial-return-chip');
+  if (chip) chip.style.display = 'none';
+}
+
+// Put the reader back in the tutorial, on the section they came from.
+function _returnToTutorial() {
+  _hideShowMeChip();
+  document.querySelectorAll('.tutorial-pulse').forEach(el => el.classList.remove('tutorial-pulse'));
+  const settings = document.getElementById('settings-submenu');
+  if (settings) settings.style.display = 'none';
+  isSettingsSubmenuOpen = false;
+  showTutorialSubmenu();
+  if (_showMeReturnSection) showTutorialSection(_showMeReturnSection);
+}
+
+function _tutorialShowMe(entry, fromSectionId) {
+  _showMeReturnSection = fromSectionId || null;
+  try { entry.go(); } catch (e) { console.error('Show me failed:', e); return; }
+  // Let the destination screen finish rendering before pulsing.
+  setTimeout(() => {
+    _pulseElement(entry.target);
+    const chip = document.getElementById('tutorial-return-chip');
+    if (chip) chip.style.display = 'block';
+  }, 260);
+}
+
+// Drops a Show me button next to each label listed above. Runs after the
+// accordion is built, and skips anything already done.
+function _injectShowMeButtons() {
+  const area = document.getElementById('tutorial-content-area');
+  if (!area) return;
+  TUTORIAL_SHOW_ME.forEach((entry, idx) => {
+    if (!document.getElementById(entry.target)) return;      // button not in this build
+    const strongs = area.querySelectorAll('strong');
+    for (const st of strongs) {
+      // Labels in the tutorial carry emoji and extra notes, e.g.
+      // "📥 Import Presets:" and "📂 Preset File Settings (*Advanced Feature*):".
+      // Strip anything that is not a letter, digit or space from the front,
+      // then match on the START of the label so those still line up.
+      const txt = st.textContent
+        .replace(/[:：]/g, ' ')
+        .replace(/^[^A-Za-z0-9]+/, '')
+        .trim()
+        .toLowerCase();
+      if (!txt.startsWith(entry.label.toLowerCase())) continue;
+      if (st.dataset.showme === '1') break;                  // already has one
+      st.dataset.showme = '1';
+      const btn = document.createElement('button');
+      btn.className = 'tutorial-showme-btn';
+      btn.textContent = '\u25B8 Show me';
+      btn.dataset.showmeIndex = String(idx);
+      st.parentNode.insertBefore(btn, st.nextSibling);
+      break;
+    }
+  });
+}
+
+// ── TUTORIAL ACCORDION ──────────────────────────────────────────────
+// Wraps every .tutorial-section at RUNTIME so the tutorial HTML itself never
+// has to be restructured. Each section's heading becomes a tappable bar and
+// everything below it collapses. Safe to call repeatedly — already-wrapped
+// sections are skipped.
+function _buildTutorialAccordion() {
+  const sections = document.querySelectorAll('#tutorial-content-area .tutorial-section');
+  sections.forEach(sec => {
+    if (sec.dataset.accordion === '1') return;      // already done
+    const heading = sec.querySelector('h4');
+    if (!heading) return;
+
+    heading.classList.add('tutorial-acc-head');
+    const body = document.createElement('div');
+    body.className = 'tutorial-acc-body';
+
+    // Move everything after the heading into the collapsible body.
+    let node = heading.nextSibling;
+    while (node) {
+      const next = node.nextSibling;
+      body.appendChild(node);
+      node = next;
+    }
+    sec.appendChild(body);
+    sec.dataset.accordion = '1';
+    sec.classList.remove('tutorial-acc-open');       // start collapsed
+  });
+  _injectShowMeButtons();
+}
+
+function _setTutorialSectionOpen(sec, open) {
+  if (!sec) return;
+  sec.classList.toggle('tutorial-acc-open', !!open);
+}
+
+// Open one section and close the rest.
+function _openOnlyTutorialSection(sec) {
+  document.querySelectorAll('#tutorial-content-area .tutorial-section')
+    .forEach(s => _setTutorialSectionOpen(s, s === sec));
+}
+
 function showTutorialSection(sectionId) {
   const glossary = document.getElementById('tutorial-glossary');
   const contentArea = document.getElementById('tutorial-content-area');
@@ -8715,7 +8852,13 @@ function showTutorialSection(sectionId) {
     }
     
     tutorialScrollEnabled = true; // Enable scrolling when viewing content
-    
+
+    // Build the accordion, then open ONLY the section that was asked for.
+    // Previously this just scrolled, so every other section stayed expanded
+    // below it and the reader could keep scrolling forever.
+    _buildTutorialAccordion();
+    _openOnlyTutorialSection(targetSection);
+
     // Scroll to the target section
     setTimeout(() => {
       targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -8751,6 +8894,10 @@ function tutorialSearchRun() {
     tutorialSearchOriginalHTML = null;
     return;
   }
+
+  // Make sure the accordion exists BEFORE the snapshot, so restoring the
+  // snapshot later brings the accordion markup back with it.
+  _buildTutorialAccordion();
 
   // Save clean HTML before highlighting
   tutorialSearchOriginalHTML = tutorialContent.innerHTML;
@@ -8810,6 +8957,11 @@ function tutorialSearchRun() {
       : 'No results found';
   }
 
+  // A collapsed section would hide its own matches, so open every section
+  // that contains one. Sections with no match stay shut.
+  document.querySelectorAll('#tutorial-content-area .tutorial-section')
+    .forEach(sec => _setTutorialSectionOpen(sec, !!sec.querySelector('.tutorial-search-match')));
+
   if (tutorialSearchResults.length > 0) {
     tutorialSearchIndex = 0;
     tutorialSearchScrollTo(0);
@@ -8818,6 +8970,9 @@ function tutorialSearchRun() {
 
 function tutorialSearchScrollTo(index) {
   const status = document.getElementById('tutorial-search-status');
+  // Make sure the result we are about to jump to is inside an OPEN section.
+  const owner = tutorialSearchResults[index] && tutorialSearchResults[index].closest('.tutorial-section');
+  if (owner) _setTutorialSectionOpen(owner, true);
   tutorialSearchResults.forEach((el, i) => {
     el.style.background = i === index ? '#fff200' : '#FE5F00';
     el.style.color = '#000';
@@ -17965,6 +18120,34 @@ const result = await presetImporter.import();
   }
 
   // Glossary navigation
+  // Tapping a section heading opens or closes it. Delegated from the content
+  // area so it keeps working after the search rewrites the inner HTML.
+  const _tutArea = document.getElementById('tutorial-content-area');
+  if (_tutArea) {
+    _tutArea.addEventListener('click', (e) => {
+      // Show me button — checked first, it sits inside a section body.
+      const showMe = e.target.closest('.tutorial-showme-btn');
+      if (showMe) {
+        e.stopPropagation();
+        const entry = TUTORIAL_SHOW_ME[parseInt(showMe.dataset.showmeIndex, 10)];
+        const owner = showMe.closest('.tutorial-section');
+        if (entry) _tutorialShowMe(entry, owner ? owner.id.replace('section-', '') : null);
+        return;
+      }
+      const head = e.target.closest('.tutorial-acc-head');
+      if (!head) return;
+      const sec = head.closest('.tutorial-section');
+      if (sec) _setTutorialSectionOpen(sec, !sec.classList.contains('tutorial-acc-open'));
+    });
+
+    // The return chip, and hiding it once the reader engages with the screen.
+    const _chip = document.getElementById('tutorial-return-chip');
+    if (_chip) _chip.addEventListener('click', _returnToTutorial);
+    document.addEventListener('click', (e) => {
+      if (e.target.closest('.tutorial-pulse')) _hideShowMeChip();
+    }, true);
+  }
+
   const glossaryItems = document.querySelectorAll('.glossary-item');
   glossaryItems.forEach(item => {
     item.addEventListener('click', () => {

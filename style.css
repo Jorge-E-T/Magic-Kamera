@@ -7059,3 +7059,91 @@ button, .touchable {
     line-height: 1.5;
     text-align: center;
 }
+
+/* ── TUTORIAL ACCORDION ── */
+.tutorial-acc-head {
+    position: relative;
+    cursor: pointer;
+    padding-right: 8vw;
+    margin: 0 0 1vw;
+    padding-top: 2.5vw;
+    padding-bottom: 2.5vw;
+    border-bottom: 1px solid #333;
+    -webkit-tap-highlight-color: transparent;
+}
+.tutorial-acc-head::after {
+    content: '\25BC';
+    position: absolute;
+    right: 1vw;
+    top: 50%;
+    transform: translateY(-50%) rotate(-90deg);
+    font-size: 3vw;
+    color: #FE5F00;
+    transition: transform 0.18s ease;
+}
+.tutorial-section.tutorial-acc-open .tutorial-acc-head::after {
+    transform: translateY(-50%) rotate(0deg);
+}
+.tutorial-section.tutorial-acc-open .tutorial-acc-head {
+    border-bottom-color: #FE5F00;
+}
+.tutorial-acc-body {
+    display: none;
+}
+.tutorial-section.tutorial-acc-open .tutorial-acc-body {
+    display: block;
+}
+
+/* ── TUTORIAL "SHOW ME" ── */
+.tutorial-showme-btn {
+    display: inline-block;
+    margin: 0 0 0 2vw;
+    padding: 0.8vw 2.4vw;
+    background: #2a2a2a;
+    color: #FE5F00;
+    border: 1px solid #FE5F00;
+    border-radius: 3vw;
+    font-size: 2.9vw;
+    font-weight: 700;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+.tutorial-showme-btn:active {
+    background: #FE5F00;
+    color: #000;
+}
+
+/* The pulse on the real button once we arrive */
+@keyframes tutorialPulse {
+    0%   { box-shadow: 0 0 0 0 rgba(254,95,0,0.85); }
+    70%  { box-shadow: 0 0 0 3.5vw rgba(254,95,0,0); }
+    100% { box-shadow: 0 0 0 0 rgba(254,95,0,0); }
+}
+.tutorial-pulse {
+    animation: tutorialPulse 1.1s ease-out infinite;
+    outline: 2px solid #FE5F00 !important;
+    outline-offset: 1px;
+    border-radius: 2vw;
+    position: relative;
+    z-index: 5;
+}
+
+/* Small chip that takes the reader back to the tutorial */
+#tutorial-return-chip {
+    position: fixed;
+    left: 2vw;
+    top: 2vw;
+    z-index: 99999;
+    padding: 1.2vw 3vw;
+    background: #FE5F00;
+    color: #000;
+    border: none;
+    border-radius: 4vw;
+    font-size: 3vw;
+    font-weight: 700;
+    box-shadow: 0 0.5vw 2vw rgba(0,0,0,0.6);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
