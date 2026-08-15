@@ -8757,7 +8757,6 @@ const TUTORIAL_SHOW_ME = [
   { label: 'Button Settings',   section: 'settings', target: 'button-settings-button',          go: _goSettings },
   { label: 'No Magic Mode',     section: 'settings', target: 'no-magic-toggle-button',          go: _goSettings },
   { label: 'Manually Select Options', section: 'settings', target: 'manual-options-toggle-button', go: _goSettings },
-  { label: 'Hear Preset Info',  section: 'settings', target: 'master-prompt-settings-button',   go: _goSettings },
 ];
 
 let _showMeReturnSection = null;
@@ -8767,6 +8766,7 @@ let _showMeAwaitPhoto = false;      // the one interaction we allow
 let _showMePhotoOpenedAt = 0;       // grace window after a photo is tapped
 let _showMeAnchorBtn = null;        // the Show me button that was pressed
 let _showMeAnchorTop = 0;           // where it sat inside the scroller
+let _showMeTurnedOnBatch = false;   // did WE switch Select mode on?
 let _showMeCameraWasOff = true;     // so we can put the camera back as we found it
 let _showMeRestoring = false;       // tells showTutorialSection not to scroll
 
@@ -8785,13 +8785,22 @@ function _closeAllMenuLayers() {
 function _goCamera() {
   _closeAllMenuLayers();
   _showMeCameraWasOff = true;                       // remember to switch it back off
-  // The carousels can be left hidden by an earlier action (the Master Prompt
-  // button hides them, and a tap on the preview toggles them). Force them back
-  // or the reader arrives at a screen with nothing to look at.
-  ['left-cam-carousel', 'right-cam-carousel'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.style.display = '';
-  });
+  // The carousels are hidden by a CLASS on the left one and a TRANSFORM on the
+  // right one — clearing style.display did nothing. Undo both, and reset the
+  // module's own visibility flags through the guard below.
+  const _left = document.getElementById('left-cam-carousel');
+  if (_left) { _left.classList.remove('hidden'); _left.style.display = ''; }
+  const _right = document.querySelector('.mode-carousel');
+  if (_right) {
+    _right.style.transform = 'translateX(0)';
+    _right.style.pointerEvents = 'auto';
+    _right.style.display = '';
+  }
+  // The camera screen toggles its carousels on touchend. It already honours
+  // this guard window, so hold it open for the whole Show me — otherwise the
+  // tap used to return to the tutorial also hides the carousels, and they are
+  // still hidden the next time a Show me arrives here.
+  window._carouselGuardUntil = Date.now() + 600000;
   if (typeof resumeCamera === 'function') { try { resumeCamera(); } catch (e) {} }
 }
 function _goSettings() {
@@ -8806,8 +8815,13 @@ function _goGallery() {
 function _goGalleryBatch() {
   _goGallery();
   setTimeout(() => {
+    // isBatchMode is the app's own flag — far more reliable than guessing
+    // from whether the action bar happens to be laid out yet.
     const t = document.getElementById('batch-mode-toggle');
-    if (t && !document.getElementById('batch-action-bar')?.offsetParent) t.click();
+    if (t && typeof isBatchMode !== 'undefined' && !isBatchMode) {
+      t.click();
+      _showMeTurnedOnBatch = true;      // remember to undo this on the way back
+    }
   }, 320);
 }
 
@@ -8915,6 +8929,10 @@ function _tutorialShowMe(entry, fromSectionId, sourceBtn) {
   // followed a moment later was then treated as a stray tap and bounced the
   // reader back before the viewer could open.
   document.addEventListener('click', _showMeGuard, true);
+  // touchend as well: the camera carousel toggle listens on touchend, so a
+  // click-only guard let it through. Safe now that the photo-await flag is
+  // cleared by _pulseTargets rather than by the guard itself.
+  document.addEventListener('touchend', _showMeGuard, true);
 
   if (entry.needsPhoto) _showMeNotice('Tap a photo to open it', 60000);
 
@@ -8924,7 +8942,20 @@ function _tutorialShowMe(entry, fromSectionId, sourceBtn) {
 function _returnToTutorial() {
   _showMeActive = false;
   _showMeAwaitPhoto = false;
+  window._carouselGuardUntil = 0;      // camera tap-to-toggle works normally again
+
+  // If we switched Select mode on to reveal a batch button, switch it back off.
+  // Leaving it on put the gallery in checkbox mode, so tapping a photo ticked
+  // it instead of opening it.
+  if (_showMeTurnedOnBatch || (typeof isBatchMode !== 'undefined' && isBatchMode)) {
+    _showMeTurnedOnBatch = false;
+    // batch-cancel is the button that leaves Select mode.
+    const done = document.getElementById('batch-cancel') ||
+                 document.getElementById('batch-mode-toggle');
+    if (done) { try { done.click(); } catch (e) {} }
+  }
   document.removeEventListener('click', _showMeGuard, true);
+  document.removeEventListener('touchend', _showMeGuard, true);
 
   _hideShowMeChip();
   const _n = document.getElementById('tutorial-showme-notice');
