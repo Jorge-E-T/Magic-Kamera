@@ -8723,8 +8723,9 @@ const TUTORIAL_SHOW_ME = [
   { label: 'Multi Preset',      section: 'special-modes',  target: 'camera-multi-preset-toggle', go: _goCamera },
   { label: 'Combine images',    section: 'special-modes',  target: 'camera-combine-toggle', go: _goCamera },
   { label: 'Layer presets',     section: 'special-modes',  target: 'camera-layer-toggle',  go: _goCamera },
-  { label: 'Hear Preset Info',  section: 'ai-presets',     target: 'cam-master-prompt-btn', go: _goCamera },
-  { label: 'Master and Options Buttons', section: 'basic-controls',
+  // The tutorial label is "📝 MASTER and 🎛️ OPTIONS Buttons (Left Carousel):".
+  // Leading emoji are stripped before matching, so the label starts at MASTER.
+  { label: 'MASTER and',        section: 'special-modes',
     target: ['cam-master-prompt-btn', 'cam-options-btn'], go: _goCamera },
 
   // ---- GALLERY ----
@@ -8763,6 +8764,7 @@ let _showMeReturnSection = null;
 let _showMeReturnScroll = 0;
 let _showMeActive = false;          // app is locked while true
 let _showMeAwaitPhoto = false;      // the one interaction we allow
+let _showMePhotoOpenedAt = 0;       // grace window after a photo is tapped
 let _showMeCameraWasOff = true;     // so we can put the camera back as we found it
 let _showMeRestoring = false;       // tells showTutorialSection not to scroll
 
@@ -8805,11 +8807,17 @@ function _goGalleryBatch() {
 // we are waiting for one) is swallowed and sends the reader back.
 function _showMeGuard(e) {
   if (!_showMeActive) return;
-  if (e.target.closest('#tutorial-return-chip')) return;         // the way back
-  if (_showMeAwaitPhoto && e.target.closest('#gallery-grid')) {  // pick a photo
-    _showMeAwaitPhoto = false;
-    return;
+  if (_showMeAwaitPhoto) {
+    // While waiting for a photo, allow taps on the grid AND on the viewer that
+    // opens from it. Anything else still bounces back.
+    if (e.target.closest('#gallery-grid') || e.target.closest('#image-viewer')) {
+      _showMePhotoOpenedAt = Date.now();
+      return;
+    }
   }
+  // Brief grace window right after a photo is opened, so the follow-up events
+  // the viewer fires while it animates in are not mistaken for a stray tap.
+  if (_showMePhotoOpenedAt && Date.now() - _showMePhotoOpenedAt < 900) return;
   e.preventDefault();
   e.stopPropagation();
   _returnToTutorial();
@@ -8848,16 +8856,6 @@ function _pulseTargets(ids, _tries) {
     setTimeout(() => el.classList.remove('tutorial-pulse'), 6000);
   });
   try { els[0].scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (e) {}
-  _placeChipAwayFrom(els[0]);
-}
-
-// Keep the chip off the thing it is pointing at.
-function _placeChipAwayFrom(el) {
-  const chip = document.getElementById('tutorial-return-chip');
-  if (!chip || !el) return;
-  let topHalf = true;
-  try { topHalf = el.getBoundingClientRect().top < window.innerHeight / 2; } catch (e) {}
-  chip.classList.toggle('chip-bottom', topHalf);   // target up top -> chip down low
 }
 
 function _tutorialShowMe(entry, fromSectionId) {
@@ -8875,15 +8873,17 @@ function _tutorialShowMe(entry, fromSectionId) {
 
   _showMeActive = true;
   _showMeAwaitPhoto = !!entry.needsPhoto;
+  // ONLY click. Listening to touchend as well meant a tap on a photo was
+  // consumed by touchend (clearing the await flag), and the click that
+  // followed a moment later was then treated as a stray tap and bounced the
+  // reader back before the viewer could open.
   document.addEventListener('click', _showMeGuard, true);
-  document.addEventListener('touchend', _showMeGuard, true);
 
   if (entry.needsPhoto) _showMeNotice('Tap any photo to open it — then the button will pulse.', 5000);
 
   setTimeout(() => {
     _pulseTargets(entry.target);
-    const chip = document.getElementById('tutorial-return-chip');
-    if (chip) chip.style.display = 'block';
+    _showMeNotice('Tap anywhere to go back to the tutorial.', 3500);
   }, 300);
 }
 
@@ -8891,7 +8891,6 @@ function _returnToTutorial() {
   _showMeActive = false;
   _showMeAwaitPhoto = false;
   document.removeEventListener('click', _showMeGuard, true);
-  document.removeEventListener('touchend', _showMeGuard, true);
 
   _hideShowMeChip();
   const _n = document.getElementById('tutorial-showme-notice');
@@ -8912,14 +8911,33 @@ function _returnToTutorial() {
 
   showTutorialSubmenu();
   _showMeRestoring = true;
+  _showMePhotoOpenedAt = 0;
   if (_showMeReturnSection) showTutorialSection(_showMeReturnSection);
-  // Put the reader back on the exact line they were reading. Reapplied a few
-  // times because a smooth scroll already in flight would otherwise win.
-  [0, 60, 160, 320].forEach(ms => setTimeout(() => {
+  _restoreTutorialScroll(_showMeReturnScroll);
+}
+
+// Setting scrollTop on an element that is still display:none does nothing, and
+// a smooth scroll already in flight will overwrite a single assignment. So keep
+// re-applying it every animation frame until it actually sticks.
+function _restoreTutorialScroll(target) {
+  let frames = 0;
+  const step = () => {
     const sc = document.querySelector('#tutorial-content-area .tutorial-content');
-    if (sc) sc.scrollTop = _showMeReturnScroll;
-    if (ms === 320) _showMeRestoring = false;
-  }, ms));
+    // offsetParent is null while the panel is hidden — nothing would stick yet.
+    if (sc && sc.offsetParent !== null) sc.scrollTop = target;
+    frames++;
+    if (frames < 45) {                       // ~750ms of insisting
+      requestAnimationFrame(step);
+    } else {
+      _showMeRestoring = false;
+      // One last correction after everything has settled.
+      setTimeout(() => {
+        const el = document.querySelector('#tutorial-content-area .tutorial-content');
+        if (el && Math.abs(el.scrollTop - target) > 2) el.scrollTop = target;
+      }, 120);
+    }
+  };
+  requestAnimationFrame(step);
 }
 
 // Attaches a Show me next to every matching label, honouring the section rule.
