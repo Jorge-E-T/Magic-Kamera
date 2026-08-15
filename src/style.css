@@ -7180,43 +7180,52 @@ button, .touchable {
 }
 
 /* ── TUTORIAL READABILITY ──────────────────────────────────────────
-   Change these four numbers to taste. --tut-gap is the space BETWEEN
-   paragraphs; --tut-line is the space between lines inside one.
+   --tut-gap is the space BETWEEN paragraphs;
+   --tut-line is the space between lines inside one paragraph.
    ------------------------------------------------------------------ */
 :root {
-    --tut-font:  15px;   /* body text size            */
-    --tut-line:  1.2;   /* line spacing (was 1.7)    */
-    --tut-gap:   2.0vw;  /* gap between paragraphs    */
-    --tut-align: justify;/* justify | left            */
+    --tut-font:  15px;   /* body text size          */
+    --tut-line:  1.2;   /* line spacing            */
+    --tut-gap:   2.0vw;  /* gap between paragraphs  */
 }
 
 #tutorial-content-area .tutorial-text {
     font-size: var(--tut-font);
     line-height: var(--tut-line);
-    text-align: var(--tut-align);
-    /* keeps justified text from opening ugly rivers on a narrow screen */
-    text-justify: inter-word;
-    hyphens: auto;
-    -webkit-hyphens: auto;
+
+    /* LEFT, not justified. On a 240px column justification has to stretch the
+       word gaps to reach both edges, and a single long word leaves a line with
+       huge holes in it. A clean ragged right edge reads better at this width. */
+    text-align: left;
+
+    /* No hyphens. */
+    hyphens: none;
+    -webkit-hyphens: none;
+
+    /* Do not break long words mid-word; wrap them whole instead. */
+    overflow-wrap: break-word;
+    word-break: normal;
+
     margin: 0 0 var(--tut-gap);
 }
 
-/* Every bold sub-heading gets the SAME spacing above and below, so the
-   sections all read the same regardless of how they were written. */
+/* Sub-headings.
+   MUST stay display:inline. Making these inline-block turned each one into an
+   unbreakable box, which let the line break immediately before it (leaving a
+   bullet stranded on the line above) and immediately after it (dropping a
+   comma onto its own line). Inline keeps them part of the normal text flow. */
 #tutorial-content-area .tutorial-text strong {
-    display: inline-block;
-    margin-top: var(--tut-gap);
-    margin-bottom: 0.4vw;
+    display: inline;
     color: #FE5F00;
+    font-weight: 700;
     font-size: calc(var(--tut-font) + 1px);
-    line-height: 1.3;
-    text-align: left;
 }
-/* the first sub-heading in a section should not push the top down */
-#tutorial-content-area .tutorial-text > strong:first-child {
-    margin-top: 0;
+
+/* Keeps a bullet glued to the bold word that follows it. */
+#tutorial-content-area .tutorial-text {
+    /* nothing needed here — see the HTML note below */
 }
-/* bullet-style lines inside a paragraph stay flush left, never justified */
+
 #tutorial-content-area .tutorial-text em {
     font-style: italic;
     color: #ddd;
