@@ -7099,9 +7099,9 @@ button, .touchable {
    SIZE CONTROLS — change these four numbers to taste.
    ============================================================ */
 :root {
-    --showme-height:   7vw;    /* button height        */
+    --showme-height:   8vw;    /* button height        */
     --showme-padding:  4vw;    /* left/right padding   */
-    --showme-font:     3.4vw;  /* "Show me" text size  */
+    --showme-font:     3.6vw;  /* "Show me" text size  */
     --showme-radius:   3.5vw;  /* corner rounding      */
 }
 .tutorial-showme-btn {
@@ -7142,34 +7142,6 @@ button, .touchable {
     border-radius: 2vw;
     position: relative;
     z-index: 999;
-}
-
-/* Return chip — flips to the bottom when the pulsing target is up top */
-#tutorial-return-chip {
-    position: fixed;
-    left: 2vw;
-    top: 2vw;
-    bottom: auto;
-    z-index: 100001;
-    height: 8vw;
-    min-height: 32px;
-    min-width: 0;
-    line-height: 1;
-    padding: 0 4.5vw;
-    background: #FE5F00;
-    color: #000;
-    border: none;
-    border-radius: 1.5vw;
-    font-size: 4.2vw;
-    font-weight: 700;
-    white-space: nowrap;
-    box-shadow: 0 0.5vw 2vw rgba(0,0,0,0.6);
-    cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
-}
-#tutorial-return-chip.chip-bottom {
-    top: auto;
-    bottom: 2vw;
 }
 
 /* Accordion headings */
