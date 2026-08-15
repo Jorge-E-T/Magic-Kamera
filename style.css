@@ -7136,12 +7136,14 @@ button, .touchable {
            filter: brightness(1.9); }
 }
 .tutorial-pulse {
+    /* NO position or z-index here. Setting position:relative overrode
+       .viewer-carousel { position:absolute; right:-2vw } and dropped the right
+       carousel into normal flow on the LEFT side of the screen. The outline
+       and glow show up fine without changing positioning at all. */
     animation: tutorialPulse 0.85s ease-in-out infinite;
     outline: 4px solid #FE5F00 !important;
     outline-offset: 2px;
     border-radius: 2vw;
-    position: relative;
-    z-index: 999;
 }
 
 /* Accordion headings */
@@ -7158,6 +7160,7 @@ button, .touchable {
     left: 3vw;
     right: 3vw;
     top: 12vw;
+    bottom: auto;
     z-index: 100000;
     display: none;
     padding: 2.4vw 3vw;
@@ -7169,4 +7172,9 @@ button, .touchable {
     line-height: 1.35;
     text-align: center;
     box-shadow: 0 0.5vw 2vw rgba(0,0,0,0.7);
+}
+
+#tutorial-showme-notice.notice-bottom {
+    top: auto;
+    bottom: 4vw;
 }
