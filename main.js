@@ -8730,6 +8730,12 @@ const TUTORIAL_SHOW_ME = [
 
   // ---- GALLERY ----
   { label: 'Import Photos',     section: 'gallery-features', target: 'gallery-import-button', go: _goGallery },
+  { label: 'Press the Import button', section: 'uploading-images', target: 'gallery-import-button', go: _goGallery },
+  { label: 'Preset Header',     section: 'gallery-features', target: 'viewer-preset-header', go: _goGallery, needsPhoto: true },
+  { label: 'Upload to gofile.io', section: 'gallery-features', target: 'upload-viewer-image', go: _goGallery, needsPhoto: true },
+  { label: 'Bottom Bar',        section: 'gallery-features', target: 'viewer-bottom-bar',   go: _goGallery, needsPhoto: true },
+  { label: 'MAGIC',             section: 'gallery-features', target: 'magic-button',        go: _goGallery, needsPhoto: true },
+  { label: 'How to Access',     section: 'edit-image',       target: 'edit-viewer-image',   go: _goGallery, needsPhoto: true },
   { label: 'Sort',              section: 'gallery-features', target: 'gallery-sort-btn',      go: _goGallery },
   { label: 'Batch Operations-Combine', section: 'gallery-features', target: 'batch-combine',  go: _goGalleryBatch },
   { label: 'Batch Operations',  section: 'gallery-features', target: 'batch-mode-toggle',     go: _goGallery },
@@ -9451,6 +9457,7 @@ const TOUR_STEPS = [
   { section: 'Settings', title: '📂 Preset File Settings (Managing Preview Images)', body: 'Hard press preset in a preset list to preview. Tap orange plus button to pick replacement image from your preview gallery. To revert to the original or remove a custom image, tap the top left undo arrow button.' },
   { section: 'Settings', title: '⚙️ Button Settings', body: 'Includes the settings for the main camera screen carousel and the Gallery Image Viewer screen carousel buttons. You may select different colors for buttons and text in the main camera and gallery image viewer screens. You may also select opacity (default solid) and set how many taps to hide/reveal the buttons.' },
   { section: 'Settings', title: '📖 Tutorial', body: 'Last section in the settings. This area includes this audio tour. It also includes an indexed tutorial with a search engine. Type to search or click on the search field and press the side button to speak the query.' },
+  { section: 'Settings', title: '📖 Navigating the Tutorial', body: 'The tutorial is split into sections. Tap a heading to open a section, and tap it again to close. If you are deep inside a long section and want to close it, hard press anywhere on the text.  Throughout the tutorial you will see small Show me buttons. Tap one  to take you straight to the button being described, it pulses so you can see exactly where it is. Tap anywhere to return to the tutorial.' },
   { section: 'Tips and Advanced', title: '🏷️ Category Searching', body: 'Every preset has categories. When a preset is highlighted in the Visible Presets menu, its categories appear at the bottom. Tap a category to filter all presets in that group.' },
   { section: 'Tips and Advanced', title: '🖼️ Preview Preset', body: 'When you long press on a preset, you are provided a sample image preview of what the style will look like. Once the preview image is visible, you can scroll presets using preview images by either touch scrolling up/down or using the scroll wheel. Within two areas of the program, pressing the r1 device\'s side button selects the preview image being viewed: the Main Menu AI preset list and the gallery load preset list.' },
   { section: 'Tips and Advanced', title: '🧠 Master Prompt Power Tip', body: 'Search for master or master prompt in the Visible Presets menu to find presets designed to work with Master Prompt. These respond to names, occasions, and custom context you provide. All presets may be affected by the Master Prompt. Add several master prompts to your preset by activating them.' },
@@ -18399,6 +18406,37 @@ const result = await presetImporter.import();
       const sec = head.closest('.tutorial-section');
       if (sec) _setTutorialSectionOpen(sec, !sec.classList.contains('tutorial-acc-open'));
     });
+
+    // Long press anywhere inside an open section collapses it, so the reader
+    // does not have to scroll back up to its heading.
+    let _lpTimer = null, _lpSec = null, _lpX = 0, _lpY = 0;
+    const _lpCancel = () => { clearTimeout(_lpTimer); _lpTimer = null; _lpSec = null; };
+    const _lpStart = (x, y, target) => {
+      const sec = target.closest && target.closest('.tutorial-section.tutorial-acc-open');
+      if (!sec) return;
+      if (target.closest('.tutorial-showme-btn, .tutorial-acc-head, button, a, input')) return;
+      _lpSec = sec; _lpX = x; _lpY = y;
+      _lpTimer = setTimeout(() => {
+        if (!_lpSec) return;
+        _setTutorialSectionOpen(_lpSec, false);
+        try { _lpSec.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (e) {}
+        _lpCancel();
+      }, 600);
+    };
+    _tutArea.addEventListener('touchstart', (e) => {
+      if (e.touches.length !== 1) return _lpCancel();
+      _lpStart(e.touches[0].clientX, e.touches[0].clientY, e.target);
+    }, { passive: true });
+    _tutArea.addEventListener('touchmove', (e) => {
+      if (!_lpTimer) return;
+      const t = e.touches[0];
+      if (Math.abs(t.clientX - _lpX) > 10 || Math.abs(t.clientY - _lpY) > 10) _lpCancel();
+    }, { passive: true });
+    _tutArea.addEventListener('touchend', _lpCancel, { passive: true });
+    _tutArea.addEventListener('touchcancel', _lpCancel, { passive: true });
+    _tutArea.addEventListener('mousedown', (e) => _lpStart(e.clientX, e.clientY, e.target));
+    _tutArea.addEventListener('mouseup', _lpCancel);
+    _tutArea.addEventListener('mouseleave', _lpCancel);
 
     // The return chip, and hiding it once the reader engages with the screen.
     const _chip = document.getElementById('tutorial-return-chip');

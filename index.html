@@ -1104,6 +1104,7 @@
                     <h4 class="glossary-title">Quick Navigation</h4>
                     <button id="start-guided-tour" style="display:block;width:100%;margin-bottom:2vw;padding:2vw;background:#FE5F00;color:#000;border:none;border-radius:2vw;font-size:4vw;font-weight:700;cursor:pointer;">▶ Start Audio Guided Tour</button>
                     <div class="glossary-items">
+                        <button class="glossary-item" data-section="navigating">📖 Navigating the Tutorial</button>
                         <button class="glossary-item" data-section="getting-started">🚀 Getting Started</button>
                         <button class="glossary-item" data-section="basic-controls">📸 Basic Controls</button>
                         <button class="glossary-item" data-section="ai-presets">✨ AI Presets</button>
@@ -1132,6 +1133,23 @@
                 <div class="submenu-list tutorial-content">
                     
                     <!-- Getting Started -->
+                    <div id="section-navigating" class="tutorial-section">
+                        <h4 class="tutorial-heading">📖 Navigating the Tutorial</h4>
+                        <p class="tutorial-text">
+                            <strong>Opening a section:</strong> Tap any section heading to open it. Tap the same heading again to close it. Only the section you choose from the list above stays open, so you never have to scroll past chapters you did not ask for.<br><br>
+
+                            <strong>Closing without scrolling back:</strong> Some sections are long. Rather than scrolling all the way up to the heading, hard press anywhere on the text and the section closes for you.<br><br>
+
+                            <strong>▸ Show me buttons:</strong> Throughout the tutorial you will see small orange <em>Show me</em> buttons beside a feature's name. Tap one and the program leaves the tutorial, opens the screen that feature lives on, and makes the button pulse bright orange for a few seconds so you can see exactly which one it is.<br><br>
+
+                            <strong>Coming back:</strong> While a Show me is running the rest of the program is paused — tap anywhere at all and you are returned to the tutorial, on the exact line you were reading.<br><br>
+
+                            <strong>Buttons that need a photo:</strong> A few features live on the image viewer, which only exists once a photo is open. For those, the Show me takes you to the gallery and a small banner says <em>Tap a photo to open it</em>. Open any photo and the button starts pulsing. If your gallery is still empty, the tutorial tells you to take a photo first.<br><br>
+
+                            <strong>Searching:</strong> Use the search bar at the top to find any word in the tutorial. Sections containing a match open automatically, and the arrows step you through the results.
+                        </p>
+                    </div>
+
                     <div id="section-getting-started" class="tutorial-section">
                         <h4 class="tutorial-heading">🚀 Getting Started</h4>
                         <p class="tutorial-text">
@@ -1255,7 +1273,7 @@
                             6. Select the resolution of the image under Import Settings<br>
                             7. Exit settings and menu<br>  
                             8. Go to gallery (🖼️)<br>
-                            9. Press the Import button<br>
+                            9. <strong>Press the Import button</strong><br>
                             10. Press the Scan QR Code button<br>
                             11. Point your R1 camera at the QR code<br>
                             12. Wait a few...the modal will close and the image will be optimized and saved to your gallery!<br><br>
@@ -1664,7 +1682,7 @@ All of the presets are optimized to avoid "camera ran dry" or "content filter" i
         <!-- Hidden textarea kept for compatibility with existing JS logic -->
         <textarea id="viewer-prompt" class="viewer-prompt-hidden" readonly></textarea>
         <!-- Bottom row: PROMPT | LOAD | MULTI | ✨ MAGIC -->
-        <div class="viewer-bottom-bar">
+        <div id="viewer-bottom-bar" class="viewer-bottom-bar">
             <button id="viewer-editor-button" class="viewer-bottom-btn">PROMPT</button>
             <button id="load-preset-button" class="viewer-bottom-btn">LOAD</button>
             <button id="multi-preset-button" class="viewer-bottom-btn">MULTI</button>

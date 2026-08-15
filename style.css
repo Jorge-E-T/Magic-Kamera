@@ -7178,3 +7178,46 @@ button, .touchable {
     top: auto;
     bottom: 4vw;
 }
+
+/* ── TUTORIAL READABILITY ──────────────────────────────────────────
+   Change these four numbers to taste. --tut-gap is the space BETWEEN
+   paragraphs; --tut-line is the space between lines inside one.
+   ------------------------------------------------------------------ */
+:root {
+    --tut-font:  15px;   /* body text size            */
+    --tut-line:  1.45;   /* line spacing (was 1.7)    */
+    --tut-gap:   2.4vw;  /* gap between paragraphs    */
+    --tut-align: justify;/* justify | left            */
+}
+
+#tutorial-content-area .tutorial-text {
+    font-size: var(--tut-font);
+    line-height: var(--tut-line);
+    text-align: var(--tut-align);
+    /* keeps justified text from opening ugly rivers on a narrow screen */
+    text-justify: inter-word;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    margin: 0 0 var(--tut-gap);
+}
+
+/* Every bold sub-heading gets the SAME spacing above and below, so the
+   sections all read the same regardless of how they were written. */
+#tutorial-content-area .tutorial-text strong {
+    display: inline-block;
+    margin-top: var(--tut-gap);
+    margin-bottom: 0.4vw;
+    color: #FE5F00;
+    font-size: calc(var(--tut-font) + 1px);
+    line-height: 1.3;
+    text-align: left;
+}
+/* the first sub-heading in a section should not push the top down */
+#tutorial-content-area .tutorial-text > strong:first-child {
+    margin-top: 0;
+}
+/* bullet-style lines inside a paragraph stay flush left, never justified */
+#tutorial-content-area .tutorial-text em {
+    font-style: italic;
+    color: #ddd;
+}
