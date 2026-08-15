@@ -7185,8 +7185,8 @@ button, .touchable {
    ------------------------------------------------------------------ */
 :root {
     --tut-font:  15px;   /* body text size            */
-    --tut-line:  1.45;   /* line spacing (was 1.7)    */
-    --tut-gap:   2.4vw;  /* gap between paragraphs    */
+    --tut-line:  1.2;   /* line spacing (was 1.7)    */
+    --tut-gap:   2.0vw;  /* gap between paragraphs    */
     --tut-align: justify;/* justify | left            */
 }
 
