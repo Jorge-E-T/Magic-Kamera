@@ -8700,66 +8700,72 @@ function hideTutorialSubmenu() {
 }
 
 // ── TUTORIAL "SHOW ME" ──────────────────────────────────────────────
-// A Show me button closes the tutorial, navigates to the screen being
-// described, and pulses the real button so the reader can see exactly which
-// one it is. A small chip in the corner takes them back to where they were.
+// Takes the reader to the exact button being described and pulses it.
+// While a Show me is running the app is LOCKED: the only taps that do
+// anything are the return chip, and (where needed) picking a photo.
+// Any other tap simply returns the reader to the tutorial.
 //
-// To add another one, put a row in this list. 'label' is matched against the
-// bold text already in the tutorial, so no tutorial HTML has to be edited.
-//   label  – the <strong> label in the tutorial to attach the button to
-//   target – id of the real button to pulse
-//   go     – what to run to get there
+// Each row:
+//   label   – the bold label in the tutorial to attach the button to
+//   section – optional; only attach inside this tutorial section. This is how
+//             "Motion Detection" gets a camera button in Special Modes and a
+//             settings button in Settings.
+//   target  – id of the button to pulse, or an ARRAY of ids to pulse together
+//   go      – how to get there
+//   needsPhoto – true if the target only exists once a photo is open
 const TUTORIAL_SHOW_ME = [
-  // ---- MAIN CAMERA SCREEN (carousels) ----
-  { label: 'Menu Button',       target: 'menu-button',                    go: _goCamera },
-  { label: 'Gallery Button',    target: 'gallery-button',                 go: _goCamera },
-  { label: '🎲 Random Mode',    target: 'random-toggle',                  go: _goCamera },
-  { label: 'Random Mode',       target: 'random-toggle',                  go: _goCamera },
-  { label: 'Timer Mode',        target: 'timer-toggle',                   go: _goCamera },
-  { label: 'Burst Mode',        target: 'burst-toggle',                   go: _goCamera },
-  { label: 'Motion Detection',  target: 'motion-toggle',                  go: _goCamera },
-  { label: 'Multi Preset',      target: 'camera-multi-preset-toggle',     go: _goCamera },
-  { label: 'Combine images',    target: 'camera-combine-toggle',          go: _goCamera },
-  { label: 'Layer presets',     target: 'camera-layer-toggle',            go: _goCamera },
-  { label: 'Hear Preset Info',  target: 'cam-master-prompt-btn',          go: _goCamera },
+  // ---- MAIN CAMERA SCREEN ----
+  { label: 'Gallery Button',    section: 'basic-controls', target: 'gallery-button',       go: _goCamera },
+  { label: 'Random Mode',       section: 'special-modes',  target: 'random-toggle',        go: _goCamera },
+  { label: 'Timer Mode',        section: 'special-modes',  target: 'timer-toggle',         go: _goCamera },
+  { label: 'Burst Mode',        section: 'special-modes',  target: 'burst-toggle',         go: _goCamera },
+  { label: 'Motion Detection',  section: 'special-modes',  target: 'motion-toggle',        go: _goCamera },
+  { label: 'Multi Preset',      section: 'special-modes',  target: 'camera-multi-preset-toggle', go: _goCamera },
+  { label: 'Combine images',    section: 'special-modes',  target: 'camera-combine-toggle', go: _goCamera },
+  { label: 'Layer presets',     section: 'special-modes',  target: 'camera-layer-toggle',  go: _goCamera },
+  { label: 'Hear Preset Info',  section: 'ai-presets',     target: 'cam-master-prompt-btn', go: _goCamera },
+  { label: 'Master and Options Buttons', section: 'basic-controls',
+    target: ['cam-master-prompt-btn', 'cam-options-btn'], go: _goCamera },
 
-  // ---- GALLERY ---- (viewer buttons only exist once an image is open, so the
-  // pulse waits for them — see _pulseElement)
-  { label: 'Import Photos',     target: 'gallery-import-button',          go: _goGallery },
-  { label: 'Batch Operations',  target: 'batch-select-all',               go: _goGallery },
-  { label: 'Sort',              target: 'gallery-sort-btn',               go: _goGallery },
-  { label: 'New Folder',        target: 'batch-new-folder',               go: _goGallery },
-  { label: 'View Photos',       target: 'gallery-grid',                   go: _goGallery },
-  { label: 'Edit and Export Images', target: 'edit-viewer-image',         go: _goGallery },
-  { label: 'GAME',              target: 'game-viewer-button',             go: _goGallery },
-  { label: 'Build Your Own Game List', target: 'game-add-btn',            go: _goGallery },
-  { label: 'Master and Options Buttons', target: 'mp-viewer-button',      go: _goGallery },
+  // ---- GALLERY ----
+  { label: 'Import Photos',     section: 'gallery-features', target: 'gallery-import-button', go: _goGallery },
+  { label: 'Sort',              section: 'gallery-features', target: 'gallery-sort-btn',      go: _goGallery },
+  { label: 'Batch Operations-Combine', section: 'gallery-features', target: 'batch-combine',  go: _goGalleryBatch },
+  { label: 'Batch Operations',  section: 'gallery-features', target: 'batch-mode-toggle',     go: _goGallery },
+  { label: 'New Folder',        section: 'gallery-features', target: 'batch-new-folder',      go: _goGalleryBatch },
+  { label: 'Edit and Export Images', section: 'gallery-features',
+    target: ['viewer-carousel'], go: _goGallery, needsPhoto: true },
+  { label: 'GAME',              section: 'gallery-features', target: 'game-viewer-button',    go: _goGallery, needsPhoto: true },
+  { label: 'Master and Options Buttons', section: 'gallery-features',
+    target: ['mp-viewer-button', 'options-viewer-button'], go: _goGallery, needsPhoto: true },
 
   // ---- SETTINGS ----
-  { label: 'Visible Presets',   target: 'visible-presets-settings-button', go: _goSettings },
-  { label: 'Preset Builder',    target: 'preset-builder-button',           go: _goSettings },
-  { label: 'Import Presets',    target: 'import-presets-button',           go: _goSettings },
-  { label: 'Preset File Settings', target: 'preset-file-settings-button',  go: _goSettings },
-  { label: 'Master Prompt',     target: 'master-prompt-settings-button',   go: _goSettings },
-  { label: 'Resolution',        target: 'resolution-settings-button',      go: _goSettings },
-  { label: 'Aspect Ratio',      target: 'aspect-ratio-settings-button',    go: _goSettings },
-  { label: 'Burst',             target: 'burst-settings-button',           go: _goSettings },
-  { label: 'Timer',             target: 'timer-settings-button',           go: _goSettings },
-  { label: 'Reset Database',    target: 'factory-reset-button',            go: _goSettings },
-  { label: 'Restore Deleted Items', target: 'restore-deleted-button',      go: _goSettings },
-  { label: 'Import Resolution', target: 'import-resolution-settings-button', go: _goSettings },
-  { label: 'Button Settings',   target: 'button-settings-button',          go: _goSettings },
-  { label: 'No Magic Mode',     target: 'no-magic-toggle-button',          go: _goSettings },
-  { label: 'Manually Select Options', target: 'manual-options-toggle-button', go: _goSettings },
+  { label: 'Visible Presets',   section: 'settings', target: 'visible-presets-settings-button', go: _goSettings },
+  { label: 'Preset Builder',    section: 'settings', target: 'preset-builder-button',           go: _goSettings },
+  { label: 'Import Presets',    section: 'settings', target: 'import-presets-button',           go: _goSettings },
+  { label: 'Preset File Settings', section: 'settings', target: 'preset-file-settings-button',  go: _goSettings },
+  { label: 'Master Prompt',     section: 'settings', target: 'master-prompt-settings-button',   go: _goSettings },
+  { label: 'Motion Detection',  section: 'settings', target: 'motion-settings-button',          go: _goSettings },
+  { label: 'Resolution',        section: 'settings', target: 'resolution-settings-button',      go: _goSettings },
+  { label: 'Aspect Ratio',      section: 'settings', target: 'aspect-ratio-settings-button',    go: _goSettings },
+  { label: 'Burst',             section: 'settings', target: 'burst-settings-button',           go: _goSettings },
+  { label: 'Timer',             section: 'settings', target: 'timer-settings-button',           go: _goSettings },
+  { label: 'Reset Database',    section: 'settings', target: 'factory-reset-button',            go: _goSettings },
+  { label: 'Restore Deleted Items', section: 'settings', target: 'restore-deleted-button',      go: _goSettings },
+  { label: 'Import Resolution', section: 'settings', target: 'import-resolution-settings-button', go: _goSettings },
+  { label: 'Button Settings',   section: 'settings', target: 'button-settings-button',          go: _goSettings },
+  { label: 'No Magic Mode',     section: 'settings', target: 'no-magic-toggle-button',          go: _goSettings },
+  { label: 'Manually Select Options', section: 'settings', target: 'manual-options-toggle-button', go: _goSettings },
+  { label: 'Hear Preset Info',  section: 'settings', target: 'master-prompt-settings-button',   go: _goSettings },
 ];
 
 let _showMeReturnSection = null;
 let _showMeReturnScroll = 0;
+let _showMeActive = false;          // app is locked while true
+let _showMeAwaitPhoto = false;      // the one interaction we allow
+let _showMeCameraWasOff = true;     // so we can put the camera back as we found it
+let _showMeRestoring = false;       // tells showTutorialSection not to scroll
 
-// Closes every menu layer and lands on the camera screen.
-// hideTutorialSubmenu() ends by calling showSettingsSubmenu(), so leaving it
-// to do the work always dropped the reader back in Settings — and any screen
-// we opened was then hidden underneath it. Everything is closed by hand here.
 function _closeAllMenuLayers() {
   ['tutorial-submenu', 'settings-submenu', 'unified-menu'].forEach(id => {
     const el = document.getElementById(id);
@@ -8770,12 +8776,12 @@ function _closeAllMenuLayers() {
   isSettingsSubmenuOpen = false;
   isMenuOpen = false;
   menuScrollEnabled = false;
-  if (typeof resumeCamera === 'function') { try { resumeCamera(); } catch (e) {} }
 }
 
-// Where each Show me goes. Kept as named helpers so the table above stays readable.
 function _goCamera() {
   _closeAllMenuLayers();
+  _showMeCameraWasOff = true;                       // remember to switch it back off
+  if (typeof resumeCamera === 'function') { try { resumeCamera(); } catch (e) {} }
 }
 function _goSettings() {
   hideTutorialSubmenu();          // this one genuinely wants Settings
@@ -8784,24 +8790,31 @@ function _goGallery() {
   _closeAllMenuLayers();
   if (typeof showGallery === 'function') showGallery();
 }
-
-// Pulse a button for a few seconds so the reader can spot it.
-function _pulseElement(id, _tries) {
-  const el = document.getElementById(id);
-  const visible = el && el.offsetParent !== null;
-  if (!visible) {
-    // Some targets only appear after the reader does something — the image
-    // viewer buttons need a photo opened first. Wait for it, up to 20s.
-    const n = (_tries || 0) + 1;
-    if (n < 40) setTimeout(() => _pulseElement(id, n), 500);
-    return;
-  }
-  el.classList.add('tutorial-pulse');
-  try { el.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (e) {}
-  setTimeout(() => el.classList.remove('tutorial-pulse'), 6000);
+// Combine and New Folder only exist once Select mode is on, so turn it on for
+// them — the reader should land on the button itself, not one step short.
+function _goGalleryBatch() {
+  _goGallery();
+  setTimeout(() => {
+    const t = document.getElementById('batch-mode-toggle');
+    if (t && !document.getElementById('batch-action-bar')?.offsetParent) t.click();
+  }, 320);
 }
 
-// A small banner used to tell the reader something before or during a jump.
+// ── the lock ──
+// One capture-phase listener. Anything that is not the chip (or a photo when
+// we are waiting for one) is swallowed and sends the reader back.
+function _showMeGuard(e) {
+  if (!_showMeActive) return;
+  if (e.target.closest('#tutorial-return-chip')) return;         // the way back
+  if (_showMeAwaitPhoto && e.target.closest('#gallery-grid')) {  // pick a photo
+    _showMeAwaitPhoto = false;
+    return;
+  }
+  e.preventDefault();
+  e.stopPropagation();
+  _returnToTutorial();
+}
+
 function _showMeNotice(text, ms) {
   let el = document.getElementById('tutorial-showme-notice');
   if (!el) {
@@ -8820,83 +8833,123 @@ function _hideShowMeChip() {
   if (chip) chip.style.display = 'none';
 }
 
-// Put the reader back in the tutorial, on the section they came from.
-function _returnToTutorial() {
-  _hideShowMeChip();
-  const _n = document.getElementById('tutorial-showme-notice');
-  if (_n) _n.style.display = 'none';
-  document.querySelectorAll('.tutorial-pulse').forEach(el => el.classList.remove('tutorial-pulse'));
-  const settings = document.getElementById('settings-submenu');
-  if (settings) settings.style.display = 'none';
-  isSettingsSubmenuOpen = false;
-  const gallery = document.getElementById('gallery-modal');
-  if (gallery) gallery.style.display = 'none';
-  showTutorialSubmenu();
-  if (_showMeReturnSection) showTutorialSection(_showMeReturnSection);
-  // showTutorialSection scrolls the section to the top; put the reader back
-  // exactly where they were reading instead. Runs after that scroll lands.
-  setTimeout(() => {
-    const sc = document.querySelector('#tutorial-content-area .tutorial-content');
-    if (sc) sc.scrollTop = _showMeReturnScroll;
-  }, 220);
+// Pulse one id or several. Waits for hidden targets (the viewer buttons only
+// exist once a photo is open) for up to 20 seconds.
+function _pulseTargets(ids, _tries) {
+  const list = Array.isArray(ids) ? ids : [ids];
+  const els = list.map(id => document.getElementById(id)).filter(el => el && el.offsetParent !== null);
+  if (els.length === 0) {
+    const n = (_tries || 0) + 1;
+    if (n < 40) setTimeout(() => _pulseTargets(ids, n), 500);
+    return;
+  }
+  els.forEach(el => {
+    el.classList.add('tutorial-pulse');
+    setTimeout(() => el.classList.remove('tutorial-pulse'), 6000);
+  });
+  try { els[0].scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (e) {}
+  _placeChipAwayFrom(els[0]);
 }
 
-// Buttons that only exist once a photo is OPEN in the image viewer. With an
-// empty gallery there is nothing to open, so we say so instead of waiting
-// silently for a button that can never appear.
-const _VIEWER_ONLY_TARGETS = ['edit-viewer-image', 'game-viewer-button', 'game-add-btn',
-                              'mp-viewer-button', 'options-viewer-button',
-                              'upload-viewer-image', 'layer-preset-viewer-button'];
+// Keep the chip off the thing it is pointing at.
+function _placeChipAwayFrom(el) {
+  const chip = document.getElementById('tutorial-return-chip');
+  if (!chip || !el) return;
+  let topHalf = true;
+  try { topHalf = el.getBoundingClientRect().top < window.innerHeight / 2; } catch (e) {}
+  chip.classList.toggle('chip-bottom', topHalf);   // target up top -> chip down low
+}
 
 function _tutorialShowMe(entry, fromSectionId) {
   _showMeReturnSection = fromSectionId || null;
   const _sc = document.querySelector('#tutorial-content-area .tutorial-content');
   _showMeReturnScroll = _sc ? _sc.scrollTop : 0;
 
-  const needsPhoto = _VIEWER_ONLY_TARGETS.indexOf(entry.target) !== -1;
   const noPhotos = (typeof galleryImages === 'undefined') || galleryImages.length === 0;
-  if (needsPhoto && noPhotos) {
-    _showMeNotice('This button lives on the image viewer screen. Take a photo first, then come back and tap Show me again.');
+  if (entry.needsPhoto && noPhotos) {
+    _showMeNotice('This button is on the image viewer screen. Take a photo first, then come back and tap Show me again.');
     return;
   }
 
   try { entry.go(); } catch (e) { console.error('Show me failed:', e); return; }
-  if (needsPhoto) {
-    _showMeNotice('Tap any photo to open it — the button will start pulsing.', 5000);
-  }
-  // Let the destination screen finish rendering before pulsing.
+
+  _showMeActive = true;
+  _showMeAwaitPhoto = !!entry.needsPhoto;
+  document.addEventListener('click', _showMeGuard, true);
+  document.addEventListener('touchend', _showMeGuard, true);
+
+  if (entry.needsPhoto) _showMeNotice('Tap any photo to open it — then the button will pulse.', 5000);
+
   setTimeout(() => {
-    _pulseElement(entry.target);
+    _pulseTargets(entry.target);
     const chip = document.getElementById('tutorial-return-chip');
     if (chip) chip.style.display = 'block';
-  }, 260);
+  }, 300);
 }
 
-// Drops a Show me button next to each label listed above. Runs after the
-// accordion is built, and skips anything already done.
+function _returnToTutorial() {
+  _showMeActive = false;
+  _showMeAwaitPhoto = false;
+  document.removeEventListener('click', _showMeGuard, true);
+  document.removeEventListener('touchend', _showMeGuard, true);
+
+  _hideShowMeChip();
+  const _n = document.getElementById('tutorial-showme-notice');
+  if (_n) _n.style.display = 'none';
+  document.querySelectorAll('.tutorial-pulse').forEach(el => el.classList.remove('tutorial-pulse'));
+
+  // Shut every screen a Show me could have opened, including the image viewer.
+  if (typeof closeImageViewer === 'function') { try { closeImageViewer(); } catch (e) {} }
+  ['gallery-modal', 'settings-submenu'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = 'none';
+  });
+  isSettingsSubmenuOpen = false;
+
+  // The tutorial had the camera off, so put it back off.
+  if (_showMeCameraWasOff && typeof pauseCamera === 'function') { try { pauseCamera(); } catch (e) {} }
+  _showMeCameraWasOff = true;
+
+  showTutorialSubmenu();
+  _showMeRestoring = true;
+  if (_showMeReturnSection) showTutorialSection(_showMeReturnSection);
+  // Put the reader back on the exact line they were reading. Reapplied a few
+  // times because a smooth scroll already in flight would otherwise win.
+  [0, 60, 160, 320].forEach(ms => setTimeout(() => {
+    const sc = document.querySelector('#tutorial-content-area .tutorial-content');
+    if (sc) sc.scrollTop = _showMeReturnScroll;
+    if (ms === 320) _showMeRestoring = false;
+  }, ms));
+}
+
+// Attaches a Show me next to every matching label, honouring the section rule.
 function _injectShowMeButtons() {
   const area = document.getElementById('tutorial-content-area');
   if (!area) return;
-  // Walk every bold label ONCE and give it a button if any entry matches.
-  // The old version stopped at the first match per entry, so a label that
-  // appeared in two sections only got a button in the earlier one.
   area.querySelectorAll('strong').forEach(st => {
     if (st.dataset.showme === '1') return;
+    const sec = st.closest('.tutorial-section');
+    const secId = sec ? sec.id.replace('section-', '') : '';
     const txt = st.textContent
       .replace(/[:：]/g, ' ')
       .replace(/^[^A-Za-z0-9]+/, '')
       .trim()
       .toLowerCase();
     if (!txt) return;
-    const idx = TUTORIAL_SHOW_ME.findIndex(e =>
+    // Longest label first, so "Batch Operations-Combine" wins over "Batch Operations".
+    const order = TUTORIAL_SHOW_ME
+      .map((e, i) => ({ e, i }))
+      .sort((x, y) => y.e.label.length - x.e.label.length);
+    const hit = order.find(({ e }) =>
+      (!e.section || e.section === secId) &&
       txt.startsWith(e.label.replace(/^[^A-Za-z0-9]+/, '').toLowerCase()) &&
-      document.getElementById(e.target));
-    if (idx === -1) return;
+      (Array.isArray(e.target) ? e.target : [e.target]).some(t => document.getElementById(t)));
+    if (!hit) return;
     st.dataset.showme = '1';
     const btn = document.createElement('button');
     btn.className = 'tutorial-showme-btn';
     btn.textContent = '\u25B8 Show me';
-    btn.dataset.showmeIndex = String(idx);
+    btn.dataset.showmeIndex = String(hit.i);
     st.parentNode.insertBefore(btn, st.nextSibling);
   });
 }
@@ -8965,10 +9018,13 @@ function showTutorialSection(sectionId) {
     _buildTutorialAccordion();
     _openOnlyTutorialSection(targetSection);
 
-    // Scroll to the target section
-    setTimeout(() => {
-      targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 100);
+    // Scroll to the target section — skipped when we are restoring the
+    // reader's exact position after a Show me, or this would fight it.
+    if (!_showMeRestoring) {
+      setTimeout(() => {
+        targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    }
   }
 }
 
