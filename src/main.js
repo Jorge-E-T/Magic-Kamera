@@ -8765,6 +8765,8 @@ let _showMeReturnScroll = 0;
 let _showMeActive = false;          // app is locked while true
 let _showMeAwaitPhoto = false;      // the one interaction we allow
 let _showMePhotoOpenedAt = 0;       // grace window after a photo is tapped
+let _showMeAnchorBtn = null;        // the Show me button that was pressed
+let _showMeAnchorTop = 0;           // where it sat inside the scroller
 let _showMeCameraWasOff = true;     // so we can put the camera back as we found it
 let _showMeRestoring = false;       // tells showTutorialSection not to scroll
 
@@ -8783,6 +8785,13 @@ function _closeAllMenuLayers() {
 function _goCamera() {
   _closeAllMenuLayers();
   _showMeCameraWasOff = true;                       // remember to switch it back off
+  // The carousels can be left hidden by an earlier action (the Master Prompt
+  // button hides them, and a tap on the preview toggles them). Force them back
+  // or the reader arrives at a screen with nothing to look at.
+  ['left-cam-carousel', 'right-cam-carousel'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = '';
+  });
   if (typeof resumeCamera === 'function') { try { resumeCamera(); } catch (e) {} }
 }
 function _goSettings() {
@@ -8807,6 +8816,10 @@ function _goGalleryBatch() {
 // we are waiting for one) is swallowed and sends the reader back.
 function _showMeGuard(e) {
   if (!_showMeActive) return;
+  // Clicks WE fire (e.g. turning on Select mode so New Folder exists) are not
+  // trusted events. Without this they were treated as a stray tap and threw
+  // the reader straight back to the tutorial.
+  if (e.isTrusted === false) return;
   if (_showMeAwaitPhoto) {
     // While waiting for a photo, allow taps on the grid AND on the viewer that
     // opens from it. Anything else still bounces back.
@@ -8823,7 +8836,7 @@ function _showMeGuard(e) {
   _returnToTutorial();
 }
 
-function _showMeNotice(text, ms) {
+function _showMeNotice(text, ms, awayFrom) {
   let el = document.getElementById('tutorial-showme-notice');
   if (!el) {
     el = document.createElement('div');
@@ -8831,6 +8844,12 @@ function _showMeNotice(text, ms) {
     document.body.appendChild(el);
   }
   el.textContent = text;
+  // Sit opposite whatever is being pointed at, so it never covers it.
+  let targetInTopHalf = false;
+  if (awayFrom) {
+    try { targetInTopHalf = awayFrom.getBoundingClientRect().top < window.innerHeight / 2; } catch (e) {}
+  }
+  el.classList.toggle('notice-bottom', targetInTopHalf);
   el.style.display = 'block';
   clearTimeout(_showMeNotice._t);
   _showMeNotice._t = setTimeout(() => { el.style.display = 'none'; }, ms || 4200);
@@ -8856,12 +8875,30 @@ function _pulseTargets(ids, _tries) {
     setTimeout(() => el.classList.remove('tutorial-pulse'), 6000);
   });
   try { els[0].scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (e) {}
+
+  // The target is now on screen, so the photo-picking phase is over. Clearing
+  // this is what makes the NEXT tap return to the tutorial — without it every
+  // tap inside the viewer was allowed through and just hid the carousel.
+  _showMeAwaitPhoto = false;
+  _showMePhotoOpenedAt = 0;
+  _showMeNotice('Tap to go back to tutorial', 3500, els[0]);
 }
 
-function _tutorialShowMe(entry, fromSectionId) {
+function _tutorialShowMe(entry, fromSectionId, sourceBtn) {
   _showMeReturnSection = fromSectionId || null;
   const _sc = document.querySelector('#tutorial-content-area .tutorial-content');
   _showMeReturnScroll = _sc ? _sc.scrollTop : 0;
+  // Remember WHICH button was pressed and where on screen it sat. Restoring by
+  // pixel alone kept failing because reopening a section changes the content
+  // height, so the same number lands somewhere else. Re-anchoring to the button
+  // is immune to that.
+  _showMeAnchorBtn = sourceBtn || null;
+  _showMeAnchorTop = 0;
+  if (sourceBtn && _sc) {
+    try {
+      _showMeAnchorTop = sourceBtn.getBoundingClientRect().top - _sc.getBoundingClientRect().top;
+    } catch (e) {}
+  }
 
   const noPhotos = (typeof galleryImages === 'undefined') || galleryImages.length === 0;
   if (entry.needsPhoto && noPhotos) {
@@ -8879,12 +8916,9 @@ function _tutorialShowMe(entry, fromSectionId) {
   // reader back before the viewer could open.
   document.addEventListener('click', _showMeGuard, true);
 
-  if (entry.needsPhoto) _showMeNotice('Tap any photo to open it — then the button will pulse.', 5000);
+  if (entry.needsPhoto) _showMeNotice('Tap a photo to open it', 60000);
 
-  setTimeout(() => {
-    _pulseTargets(entry.target);
-    _showMeNotice('Tap anywhere to go back to the tutorial.', 3500);
-  }, 300);
+  setTimeout(() => { _pulseTargets(entry.target); }, 300);
 }
 
 function _returnToTutorial() {
@@ -8924,17 +8958,32 @@ function _restoreTutorialScroll(target) {
   const step = () => {
     const sc = document.querySelector('#tutorial-content-area .tutorial-content');
     // offsetParent is null while the panel is hidden — nothing would stick yet.
-    if (sc && sc.offsetParent !== null) sc.scrollTop = target;
+    if (sc && sc.offsetParent !== null) {
+      if (_showMeAnchorBtn && _showMeAnchorBtn.offsetParent !== null) {
+        // Put the button that was pressed back exactly where it was on screen.
+        const delta = (_showMeAnchorBtn.getBoundingClientRect().top -
+                       sc.getBoundingClientRect().top) - _showMeAnchorTop;
+        if (Math.abs(delta) > 0.5) sc.scrollTop += delta;
+      } else {
+        sc.scrollTop = target;               // fallback if the button is gone
+      }
+    }
     frames++;
     if (frames < 45) {                       // ~750ms of insisting
       requestAnimationFrame(step);
     } else {
       _showMeRestoring = false;
-      // One last correction after everything has settled.
       setTimeout(() => {
-        const el = document.querySelector('#tutorial-content-area .tutorial-content');
-        if (el && Math.abs(el.scrollTop - target) > 2) el.scrollTop = target;
-      }, 120);
+        const sc2 = document.querySelector('#tutorial-content-area .tutorial-content');
+        if (!sc2) return;
+        if (_showMeAnchorBtn && _showMeAnchorBtn.offsetParent !== null) {
+          const d = (_showMeAnchorBtn.getBoundingClientRect().top -
+                     sc2.getBoundingClientRect().top) - _showMeAnchorTop;
+          if (Math.abs(d) > 1) sc2.scrollTop += d;
+        } else if (Math.abs(sc2.scrollTop - target) > 2) {
+          sc2.scrollTop = target;
+        }
+      }, 140);
     }
   };
   requestAnimationFrame(step);
@@ -18311,7 +18360,7 @@ const result = await presetImporter.import();
         e.stopPropagation();
         const entry = TUTORIAL_SHOW_ME[parseInt(showMe.dataset.showmeIndex, 10)];
         const owner = showMe.closest('.tutorial-section');
-        if (entry) _tutorialShowMe(entry, owner ? owner.id.replace('section-', '') : null);
+        if (entry) _tutorialShowMe(entry, owner ? owner.id.replace('section-', '') : null, showMe);
         return;
       }
       const head = e.target.closest('.tutorial-acc-head');
