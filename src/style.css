@@ -7095,54 +7095,62 @@ button, .touchable {
 }
 
 /* ── TUTORIAL "SHOW ME" ── */
+/* ============================================================
+   SIZE CONTROLS — change these four numbers to taste.
+   ============================================================ */
+:root {
+    --showme-height:   7vw;    /* button height        */
+    --showme-padding:  4vw;    /* left/right padding   */
+    --showme-font:     3.4vw;  /* "Show me" text size  */
+    --showme-radius:   3.5vw;  /* corner rounding      */
+}
 .tutorial-showme-btn {
-    /* The global `button` rule forces min-height:44px — that is what made
-       these so tall. Override it and size them like an inline chip. */
+    /* min-height:0 is required — the global button rule forces 44px */
     display: inline-block;
     min-width: 0;
     min-height: 0;
-    height: 5.2vw;
+    height: var(--showme-height);
     line-height: 1;
     margin: 0 0 0 2vw;
-    padding: 0 2.6vw;
+    padding: 0 var(--showme-padding);
     background: #2a2a2a;
     color: #FE5F00;
     border: 1px solid #FE5F00;
-    border-radius: 2.6vw;
-    font-size: 2.9vw;
+    border-radius: var(--showme-radius);
+    font-size: var(--showme-font);
     font-weight: 700;
     white-space: nowrap;
     vertical-align: middle;
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
 }
-.tutorial-showme-btn:active {
-    background: #FE5F00;
-    color: #000;
-}
+.tutorial-showme-btn:active { background: #FE5F00; color: #000; }
 
-/* The pulse on the real button once we arrive */
+/* Strong, unmistakable pulse on the button being shown */
 @keyframes tutorialPulse {
-    0%   { box-shadow: 0 0 0 0 rgba(254,95,0,0.85); }
-    70%  { box-shadow: 0 0 0 3.5vw rgba(254,95,0,0); }
-    100% { box-shadow: 0 0 0 0 rgba(254,95,0,0); }
+    0%   { box-shadow: 0 0 0 0 rgba(254,95,0,0.95), 0 0 2vw 1vw rgba(254,95,0,0.55);
+           filter: brightness(1.9); }
+    60%  { box-shadow: 0 0 0 6vw rgba(254,95,0,0), 0 0 3vw 1.5vw rgba(254,95,0,0.25);
+           filter: brightness(1.15); }
+    100% { box-shadow: 0 0 0 0 rgba(254,95,0,0), 0 0 2vw 1vw rgba(254,95,0,0.55);
+           filter: brightness(1.9); }
 }
 .tutorial-pulse {
-    animation: tutorialPulse 1.1s ease-out infinite;
-    outline: 2px solid #FE5F00 !important;
-    outline-offset: 1px;
+    animation: tutorialPulse 0.85s ease-in-out infinite;
+    outline: 4px solid #FE5F00 !important;
+    outline-offset: 2px;
     border-radius: 2vw;
     position: relative;
-    z-index: 5;
+    z-index: 999;
 }
 
-/* Small chip that takes the reader back to the tutorial */
+/* Return chip — flips to the bottom when the pulsing target is up top */
 #tutorial-return-chip {
-    /* Same vertical size as the × close button, but wider with bigger text. */
     position: fixed;
     left: 2vw;
     top: 2vw;
-    z-index: 99999;
+    bottom: auto;
+    z-index: 100001;
     height: 8vw;
     min-height: 32px;
     min-width: 0;
@@ -7159,8 +7167,12 @@ button, .touchable {
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
 }
+#tutorial-return-chip.chip-bottom {
+    top: auto;
+    bottom: 2vw;
+}
 
-/* Accordion headings — a little smaller and tighter */
+/* Accordion headings */
 .tutorial-acc-head {
     font-size: 15px !important;
     padding-top: 1.8vw !important;
@@ -7173,7 +7185,7 @@ button, .touchable {
     position: fixed;
     left: 3vw;
     right: 3vw;
-    bottom: 3vw;
+    top: 12vw;
     z-index: 100000;
     display: none;
     padding: 2.4vw 3vw;
