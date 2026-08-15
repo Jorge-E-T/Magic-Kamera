@@ -1917,6 +1917,10 @@ async function showGallery(renderOnly = false) {
             const t = e.touches[0];
             imgPressTimer = setTimeout(() => {
               imgPressTimer = null;
+              // Not during a tutorial Show me. The guard swallows touchend, so
+              // the timer that normally clears this tooltip never runs and it
+              // would be stranded on screen with no way to dismiss it.
+              if (typeof _showMeActive !== 'undefined' && _showMeActive) return;
               _longPressFired = true;
               showImageMetadata(item, t.clientX, t.clientY);
             }, 600);
@@ -8966,6 +8970,8 @@ function _returnToTutorial() {
   _hideShowMeChip();
   const _n = document.getElementById('tutorial-showme-notice');
   if (_n) _n.style.display = 'none';
+  // Clear the gallery long-press tooltip if one slipped through.
+  if (typeof hideImageMetadata === 'function') { try { hideImageMetadata(); } catch (e) {} }
   document.querySelectorAll('.tutorial-pulse').forEach(el => el.classList.remove('tutorial-pulse'));
 
   // Shut every screen a Show me could have opened, including the image viewer.
