@@ -7099,9 +7099,9 @@ button, .touchable {
    SIZE CONTROLS — change these four numbers to taste.
    ============================================================ */
 :root {
-    --showme-height:   8vw;    /* button height        */
+    --showme-height:   9vw;    /* button height        */
     --showme-padding:  4vw;    /* left/right padding   */
-    --showme-font:     3.6vw;  /* "Show me" text size  */
+    --showme-font:     3.8vw;  /* "Show me" text size  */
     --showme-radius:   3.5vw;  /* corner rounding      */
 }
 .tutorial-showme-btn {
