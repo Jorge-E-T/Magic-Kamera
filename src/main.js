@@ -8713,7 +8713,6 @@ const TUTORIAL_SHOW_ME = [
   // ---- MAIN CAMERA SCREEN (carousels) ----
   { label: 'Menu Button',       target: 'menu-button',                    go: _goCamera },
   { label: 'Gallery Button',    target: 'gallery-button',                 go: _goCamera },
-  { label: 'New Photo Button',  target: 'reset-button',                   go: _goCamera },
   { label: '🎲 Random Mode',    target: 'random-toggle',                  go: _goCamera },
   { label: 'Random Mode',       target: 'random-toggle',                  go: _goCamera },
   { label: 'Timer Mode',        target: 'timer-toggle',                   go: _goCamera },
@@ -8757,11 +8756,34 @@ const TUTORIAL_SHOW_ME = [
 let _showMeReturnSection = null;
 let _showMeReturnScroll = 0;
 
+// Closes every menu layer and lands on the camera screen.
+// hideTutorialSubmenu() ends by calling showSettingsSubmenu(), so leaving it
+// to do the work always dropped the reader back in Settings — and any screen
+// we opened was then hidden underneath it. Everything is closed by hand here.
+function _closeAllMenuLayers() {
+  ['tutorial-submenu', 'settings-submenu', 'unified-menu'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = 'none';
+  });
+  isTutorialOpen = false;
+  isTutorialSubmenuOpen = false;
+  isSettingsSubmenuOpen = false;
+  isMenuOpen = false;
+  menuScrollEnabled = false;
+  if (typeof resumeCamera === 'function') { try { resumeCamera(); } catch (e) {} }
+}
+
 // Where each Show me goes. Kept as named helpers so the table above stays readable.
-function _goCamera()   { hideTutorialSubmenu(); if (typeof hideUnifiedMenu === 'function') hideUnifiedMenu(); }
-function _goSettings() { hideTutorialSubmenu(); showSettingsSubmenu(); }
-function _goGallery()  { hideTutorialSubmenu(); if (typeof hideUnifiedMenu === 'function') hideUnifiedMenu();
-                         if (typeof showGallery === 'function') showGallery(); }
+function _goCamera() {
+  _closeAllMenuLayers();
+}
+function _goSettings() {
+  hideTutorialSubmenu();          // this one genuinely wants Settings
+}
+function _goGallery() {
+  _closeAllMenuLayers();
+  if (typeof showGallery === 'function') showGallery();
+}
 
 // Pulse a button for a few seconds so the reader can spot it.
 function _pulseElement(id, _tries) {
@@ -8779,6 +8801,20 @@ function _pulseElement(id, _tries) {
   setTimeout(() => el.classList.remove('tutorial-pulse'), 6000);
 }
 
+// A small banner used to tell the reader something before or during a jump.
+function _showMeNotice(text, ms) {
+  let el = document.getElementById('tutorial-showme-notice');
+  if (!el) {
+    el = document.createElement('div');
+    el.id = 'tutorial-showme-notice';
+    document.body.appendChild(el);
+  }
+  el.textContent = text;
+  el.style.display = 'block';
+  clearTimeout(_showMeNotice._t);
+  _showMeNotice._t = setTimeout(() => { el.style.display = 'none'; }, ms || 4200);
+}
+
 function _hideShowMeChip() {
   const chip = document.getElementById('tutorial-return-chip');
   if (chip) chip.style.display = 'none';
@@ -8787,6 +8823,8 @@ function _hideShowMeChip() {
 // Put the reader back in the tutorial, on the section they came from.
 function _returnToTutorial() {
   _hideShowMeChip();
+  const _n = document.getElementById('tutorial-showme-notice');
+  if (_n) _n.style.display = 'none';
   document.querySelectorAll('.tutorial-pulse').forEach(el => el.classList.remove('tutorial-pulse'));
   const settings = document.getElementById('settings-submenu');
   if (settings) settings.style.display = 'none';
@@ -8803,11 +8841,29 @@ function _returnToTutorial() {
   }, 220);
 }
 
+// Buttons that only exist once a photo is OPEN in the image viewer. With an
+// empty gallery there is nothing to open, so we say so instead of waiting
+// silently for a button that can never appear.
+const _VIEWER_ONLY_TARGETS = ['edit-viewer-image', 'game-viewer-button', 'game-add-btn',
+                              'mp-viewer-button', 'options-viewer-button',
+                              'upload-viewer-image', 'layer-preset-viewer-button'];
+
 function _tutorialShowMe(entry, fromSectionId) {
   _showMeReturnSection = fromSectionId || null;
   const _sc = document.querySelector('#tutorial-content-area .tutorial-content');
   _showMeReturnScroll = _sc ? _sc.scrollTop : 0;
+
+  const needsPhoto = _VIEWER_ONLY_TARGETS.indexOf(entry.target) !== -1;
+  const noPhotos = (typeof galleryImages === 'undefined') || galleryImages.length === 0;
+  if (needsPhoto && noPhotos) {
+    _showMeNotice('This button lives on the image viewer screen. Take a photo first, then come back and tap Show me again.');
+    return;
+  }
+
   try { entry.go(); } catch (e) { console.error('Show me failed:', e); return; }
+  if (needsPhoto) {
+    _showMeNotice('Tap any photo to open it — the button will start pulsing.', 5000);
+  }
   // Let the destination screen finish rendering before pulsing.
   setTimeout(() => {
     _pulseElement(entry.target);

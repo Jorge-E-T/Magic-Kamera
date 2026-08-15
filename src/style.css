@@ -7167,3 +7167,22 @@ button, .touchable {
     padding-bottom: 1.8vw !important;
     margin: 0 0 0.6vw !important;
 }
+
+/* Notice shown when a Show me target needs a photo first */
+#tutorial-showme-notice {
+    position: fixed;
+    left: 3vw;
+    right: 3vw;
+    bottom: 3vw;
+    z-index: 100000;
+    display: none;
+    padding: 2.4vw 3vw;
+    background: #1a1a1a;
+    color: #fff;
+    border: 2px solid #FE5F00;
+    border-radius: 2vw;
+    font-size: 3.2vw;
+    line-height: 1.35;
+    text-align: center;
+    box-shadow: 0 0.5vw 2vw rgba(0,0,0,0.7);
+}
