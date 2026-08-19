@@ -1211,6 +1211,8 @@
 
                             <strong>📁+ New Folder:</strong> Create a new folder to organize your saved images. Name the folder and save. Once the folder is created, long press on the folder to edit the name. Images may be moved by clicking select, selecting all the images you want to move, then long pressing the last image. A modal will appear allowing you to choose the folder where to move the image (or select gallery to move the image back to the gallery).<br><br>
 
+                            <strong>Turning Pages:</strong> When you have more images than fit on one screen, the gallery splits them into pages. <strong>Swipe left</strong> anywhere on the grid to go to the next page, and <strong>swipe right</strong> to go back to the previous one. You may also use th Prev and Next buttons at the bottom.<br><br>
+
                             <strong>View Photos:</strong> Tap any image to view it full-screen. The viewer is redesigned to give your photo maximum screen space. Touch swipe up or down to cycle through other images within the gallery root directory or user folder.<br><br>
 
                             <strong>Preset Header:</strong> At the very top of the image viewer, a header shows the name of the currently loaded preset. If no preset is loaded it reads NO PRESET LOADED. If a preset is loaded, tap the header to read and hear the preset name and the first sentence of its description. <br><br>
@@ -2055,12 +2057,31 @@ All of the presets are optimized to avoid "camera ran dry" or "content filter" i
                 <div class="gallery-custom-modal-header">
                     <h3>SORT ORDER</h3>
                 </div>
-                <div class="gallery-custom-modal-list">
-                    <button class="gallery-custom-modal-option" id="sort-option-newest" data-value="newest">
+                <div class="gallery-custom-modal-list" id="gallery-sort-modal-list">
+                    <div class="gallery-sort-section-label">📁 FOLDERS</div>
+                    <button class="gallery-custom-modal-option folder-sort-option" id="folder-sort-option-oldest" data-value="oldest">
+                        <span>🕰️ Oldest First</span>
+                        <span class="gallery-custom-modal-check">✓</span>
+                    </button>
+                    <button class="gallery-custom-modal-option folder-sort-option" id="folder-sort-option-newest" data-value="newest">
+                        <span>📅 Newest First</span>
+                        <span class="gallery-custom-modal-check">✓</span>
+                    </button>
+                    <button class="gallery-custom-modal-option folder-sort-option" id="folder-sort-option-az" data-value="az">
+                        <span>🔤 A → Z</span>
+                        <span class="gallery-custom-modal-check">✓</span>
+                    </button>
+                    <button class="gallery-custom-modal-option folder-sort-option" id="folder-sort-option-za" data-value="za">
+                        <span>🔡 Z → A</span>
+                        <span class="gallery-custom-modal-check">✓</span>
+                    </button>
+
+                    <div class="gallery-sort-section-label">🖼️ IMAGES</div>
+                    <button class="gallery-custom-modal-option image-sort-option" id="sort-option-newest" data-value="newest">
                         <span>📅 Newest First</span>
                         <span class="gallery-custom-modal-check" id="sort-check-newest">✓</span>
                     </button>
-                    <button class="gallery-custom-modal-option" id="sort-option-oldest" data-value="oldest">
+                    <button class="gallery-custom-modal-option image-sort-option" id="sort-option-oldest" data-value="oldest">
                         <span>🕰️ Oldest First</span>
                         <span class="gallery-custom-modal-check" id="sort-check-oldest">✓</span>
                     </button>
