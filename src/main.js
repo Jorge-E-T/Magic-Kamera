@@ -353,6 +353,8 @@ const ITEMS_PER_PAGE = 16;
 let galleryStartDate = null;
 let galleryEndDate = null;
 let gallerySortOrder = 'newest';
+const GALLERY_FOLDER_SORT_ORDER_KEY = 'r1_gallery_folder_sort_order';
+let galleryFolderSortOrder = 'oldest';
 
 // Batch processing variables
 let isBatchMode = false;
@@ -1763,7 +1765,7 @@ async function showGallery(renderOnly = false) {
   // Each entry is either { type:'folder', folder } or { type:'image', item }
   const allItems = [];
   if (showFolders) {
-    galleryFolders.forEach(folder => allItems.push({ type: 'folder', folder }));
+    getSortedFolders().forEach(folder => allItems.push({ type: 'folder', folder }));
   }
   sortedImages.forEach(item => allItems.push({ type: 'image', item }));
 
@@ -4407,6 +4409,117 @@ function loadFolders() {
   } catch (e) {
     galleryFolders = [];
   }
+  // Remember the folder sort order the user picked last time
+  try {
+    const savedFolderSort = localStorage.getItem(GALLERY_FOLDER_SORT_ORDER_KEY);
+    if (savedFolderSort) galleryFolderSortOrder = savedFolderSort;
+  } catch (e) {}
+}
+
+// Returns a sorted COPY of the folder list. The stored list is never reordered,
+// so folder creation order is preserved no matter what the user picks here.
+function getSortedFolders() {
+  const list = [...galleryFolders];
+  switch (galleryFolderSortOrder) {
+    case 'newest':
+      return list.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+    case 'az':
+      return list.sort((a, b) => (a.name || '').localeCompare((b.name || ''), undefined, { sensitivity: 'base' }));
+    case 'za':
+      return list.sort((a, b) => (b.name || '').localeCompare((a.name || ''), undefined, { sensitivity: 'base' }));
+    case 'oldest':
+    default:
+      return list.sort((a, b) => (a.createdAt || 0) - (b.createdAt || 0));
+  }
+}
+
+// ===== SORT MODAL: SCROLL WHEEL + SIDE BUTTON =====
+
+let _sortModalFocusIndex = 0;
+
+// Every button the wheel can land on, in the order they appear on screen:
+// the 4 folder options, the 2 image options, then Cancel.
+// The section labels are plain text, so the wheel skips right over them.
+function _sortModalItems() {
+  const modal = document.getElementById('gallery-sort-modal');
+  if (!modal) return [];
+  return Array.from(modal.querySelectorAll('.gallery-custom-modal-option, .gallery-custom-modal-cancel'));
+}
+
+function _sortModalPaintFocus() {
+  const items = _sortModalItems();
+  items.forEach((el, i) => el.classList.toggle('wheel-focus', i === _sortModalFocusIndex));
+
+  const target = items[_sortModalFocusIndex];
+  const list = document.getElementById('gallery-sort-modal-list');
+  if (!target || !list) return;
+
+  // Cancel sits outside the scrolling list, so scroll to the bottom for it
+  if (!list.contains(target)) { list.scrollTop = list.scrollHeight; return; }
+
+  const top = target.offsetTop;
+  const bottom = top + target.offsetHeight;
+  if (top < list.scrollTop) {
+    list.scrollTop = top - 8;
+  } else if (bottom > list.scrollTop + list.clientHeight) {
+    list.scrollTop = bottom - list.clientHeight + 8;
+  }
+}
+
+function _sortModalMoveFocus(step) {
+  const items = _sortModalItems();
+  if (!items.length) return;
+  _sortModalFocusIndex = (_sortModalFocusIndex + step + items.length) % items.length;
+  _sortModalPaintFocus();
+}
+
+function _sortModalActivateFocus() {
+  const items = _sortModalItems();
+  const target = items[_sortModalFocusIndex];
+  if (target) target.click();
+}
+
+function _closeGallerySortModal() {
+  const modal = document.getElementById('gallery-sort-modal');
+  if (modal) modal.style.display = 'none';
+  _sortModalItems().forEach(el => el.classList.remove('wheel-focus'));
+}
+
+// Puts the orange checkmark highlight on whatever is currently selected
+// in each section.
+function _syncSortModalChecks() {
+  document.querySelectorAll('#gallery-sort-modal .folder-sort-option').forEach(opt => {
+    opt.classList.toggle('active-sort', opt.dataset.value === galleryFolderSortOrder);
+  });
+  document.querySelectorAll('#gallery-sort-modal .image-sort-option').forEach(opt => {
+    opt.classList.toggle('active-sort', opt.dataset.value === gallerySortOrder);
+  });
+}
+
+// ===== MODAL INPUT GUARD =====
+// While any of these are open, the scroll wheel and side button belong to the
+// modal ONLY and must never reach the screen sitting behind it.
+// Listed top-most first, because some of these stack on top of others
+// (draw settings sits on the image editor, alerts sit on everything).
+const _INPUT_BLOCKING_MODALS = [
+  'custom-alert-modal',
+  'draw-settings-modal',
+  'gallery-sort-modal',
+  'gallery-date-modal',
+  'move-to-folder-modal',
+  'qr-modal',
+  'qr-scanner-modal',
+  'image-editor-modal',
+  'reset-db-confirm-overlay',
+  'reset-db-success-overlay'
+];
+
+function _blockingModalOpen() {
+  for (const id of _INPUT_BLOCKING_MODALS) {
+    const el = document.getElementById(id);
+    if (el && el.style.display === 'flex') return id;
+  }
+  return null;
 }
 
 function saveFolders() {
@@ -9476,6 +9589,7 @@ const TOUR_STEPS = [
   { section: 'Special Modes', title: '📑 Layer presets:', body: 'Located at the bottom of the right carousel. Click to combine and apply multiple presets to a single image. Select primary preset and then add up to 4 more layers (5 in all). Does not work with spoken presets.' },
   { section: 'Special Modes', title: '📝 Master and 🎛️ Options', body: 'Located below the Menu button on the left side within a carousel. The MASTER button accesses Master Prompt settings. The OPTIONS button toggles Manually Select Options mode. Both Glow green when enabled.' },
   { section: 'Gallery', title: '🖼️ Gallery Activities', body: 'Within the gallery there are thumbnails of captured images. You can either select multiple images to apply a preset, or select a single image to either edit, export or apply one or several presets.' },
+  { section: 'Gallery', title: '↔️ Turning Pages', body: 'When you have more images than fit on one screen, the gallery splits them into pages. You may navigate the pages by scrolling to the bottom of the page using the Prev and Next buttons. You may also swipe left or right to go to the next or previous page.' },
   { section: 'Uploading Images', title: '📥 Importing External Images', body: 'In the gallery, you may also bring any image from the web into the gallery using a QR code. Upload the image to catbox.moe, copy the direct link, and generate a QR code at qr-code-generator.com.' },
   { section: 'Uploading Images', title: '📷 Scanning the QR Code', body: 'In the gallery, press Import then Scan QR Code. Point your R1 camera at the QR code and wait. The image will be automatically saved to your gallery.' },
   { section: 'Uploading Images', title: '⚠️ Verify Your Link First ⚠️', body: 'Before making the QR code, paste the link into a browser. If it shows only the image with nothing around it, it will work. If it shows a blank page or a webpage with the image embedded, it will not work.' },
@@ -11774,6 +11888,14 @@ function captureRawPhotoDataUrl() {
 window.addEventListener('sideClick', () => {
   console.log('Side button pressed');
 
+  // A modal is open. The side button belongs to the modal and must never
+  // reach the screen behind it. Modals with no side-button job do nothing.
+  const _openBlockingModal = _blockingModalOpen();
+  if (_openBlockingModal) {
+    if (_openBlockingModal === 'gallery-sort-modal') _sortModalActivateFocus();
+    return;
+  }
+
   // Side button during guided tour — toggle speech for the current step.
   // (Navigation is on-screen Back/Next; the scroll wheel scrolls the text.)
   if (tourActive) {
@@ -12069,6 +12191,14 @@ window.addEventListener('sideClick', () => {
 window.addEventListener('scrollUp', () => {
   console.log('Scroll wheel: up');
 
+  // A modal is open. The wheel belongs to the modal and must never
+  // reach the screen behind it.
+  const _openBlockingModalUp = _blockingModalOpen();
+  if (_openBlockingModalUp) {
+    if (_openBlockingModalUp === 'gallery-sort-modal') _sortModalMoveFocus(-1);
+    return;
+  }
+
   // Preset preview image — highest priority, it covers the whole screen.
   // Wheel up = previous preset, matching every other list in the program.
   if (_previewOverlayIsOpen()) { _previewStepSibling(-1); return; }
@@ -12258,6 +12388,14 @@ window.addEventListener('scrollUp', () => {
 
 window.addEventListener('scrollDown', () => {
   console.log('Scroll wheel: down');
+
+  // A modal is open. The wheel belongs to the modal and must never
+  // reach the screen behind it.
+  const _openBlockingModalDown = _blockingModalOpen();
+  if (_openBlockingModalDown) {
+    if (_openBlockingModalDown === 'gallery-sort-modal') _sortModalMoveFocus(1);
+    return;
+  }
 
   // Preset preview image — highest priority, it covers the whole screen.
   // Wheel down = next preset, matching every other list in the program.
@@ -19212,15 +19350,28 @@ const result = await presetImporter.import();
 
   if (_gallerySortBtn && _gallerySortModal) {
     _gallerySortBtn.addEventListener('click', () => {
-      // Highlight whichever option is currently active
-      document.querySelectorAll('#gallery-sort-modal .gallery-custom-modal-option').forEach(opt => {
-        opt.classList.toggle('active-sort', opt.dataset.value === gallerySortOrder);
-      });
+      _syncSortModalChecks();
       _gallerySortModal.style.display = 'flex';
+      _sortModalFocusIndex = 0;
+      _sortModalPaintFocus();
     });
 
-    // Each option button picks a sort order and closes
-    document.querySelectorAll('#gallery-sort-modal .gallery-custom-modal-option').forEach(opt => {
+    // FOLDERS section — oldest / newest / A-Z / Z-A
+    document.querySelectorAll('#gallery-sort-modal .folder-sort-option').forEach(opt => {
+      opt.addEventListener('click', () => {
+        galleryFolderSortOrder = opt.dataset.value;
+        try {
+          localStorage.setItem(GALLERY_FOLDER_SORT_ORDER_KEY, galleryFolderSortOrder);
+        } catch (err) {
+          console.error('Failed to save folder sort order:', err);
+        }
+        _closeGallerySortModal();
+        onGalleryFilterChange();
+      });
+    });
+
+    // IMAGES section — unchanged behaviour, newest / oldest only
+    document.querySelectorAll('#gallery-sort-modal .image-sort-option').forEach(opt => {
       opt.addEventListener('click', () => {
         const newSort = opt.dataset.value;
         if (sortOrderSelect) {
@@ -19231,7 +19382,7 @@ const result = await presetImporter.import();
         if (_sortLabel) {
           _sortLabel.textContent = '🔀 SORT';
         }
-        _gallerySortModal.style.display = 'none';
+        _closeGallerySortModal();
       });
     });
 
@@ -19239,7 +19390,7 @@ const result = await presetImporter.import();
     const _sortCancelBtn = document.getElementById('gallery-sort-cancel');
     if (_sortCancelBtn) {
       _sortCancelBtn.addEventListener('click', () => {
-        _gallerySortModal.style.display = 'none';
+        _closeGallerySortModal();
       });
     }
 
@@ -19247,9 +19398,15 @@ const result = await presetImporter.import();
     const _sortOverlay = _gallerySortModal.querySelector('.gallery-custom-modal-overlay');
     if (_sortOverlay) {
       _sortOverlay.addEventListener('click', () => {
-        _gallerySortModal.style.display = 'none';
+        _closeGallerySortModal();
       });
     }
+
+    // A real mouse/trackpad wheel moves the highlight too
+    _gallerySortModal.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      _sortModalMoveFocus(e.deltaY > 0 ? 1 : -1);
+    }, { passive: false });
   }
   
   const prevPageBtn = document.getElementById('prev-page');
