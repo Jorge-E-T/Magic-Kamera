@@ -18693,6 +18693,10 @@ document.addEventListener('touchend', () => {
         //   "Opening presets..." = using the copy loaded at startup, no download
         //   "Loading presets..." = something forced a real re-download
         const _willDownload = !window._cachedFactoryPresets || getLastLoadFailures().length > 0;
+        // TEMPORARY DIAGNOSTIC - delete these 4 lines once we know the answer
+        await customAlert('CACHE: ' + (window._cachedFactoryPresets ? window._cachedFactoryPresets.length + ' presets' : 'EMPTY')
+          + '  |  FAILED SOURCES: ' + getLastLoadFailures().length
+          + '  |  DOWNLOADS SO FAR: ' + (window._presetDownloadCount || 0));
         showLoadingOverlay(_willDownload ? 'Loading presets...' : 'Opening presets...');
         // Wait one frame so the browser actually paints the spinner before the heavy work starts
         await new Promise(resolve => setTimeout(resolve, 30));

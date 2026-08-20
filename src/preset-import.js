@@ -368,6 +368,8 @@ export class PresetImporter {
     if (window._cachedFactoryPresets) {
       return window._cachedFactoryPresets;
     }
+    // TEMPORARY DIAGNOSTIC - counts how many times presets are really downloaded
+    window._presetDownloadCount = (window._presetDownloadCount || 0) + 1;
     try {
       const allPresets = [];
       const seenNames = new Set();
