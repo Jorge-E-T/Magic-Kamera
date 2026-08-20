@@ -1597,8 +1597,14 @@ footerSection.innerHTML = `
 
   async import() {
     try {
-      // Always force a fresh fetch so the latest active sources are fully reflected
-      window._cachedFactoryPresets = null;
+      // The session cache is already cleared automatically whenever the preset
+      // file settings change (see saveCustomPresetSources / saveDefaultPresetEnabled),
+      // so there is no need to re-download every time this screen opens.
+      // The one exception: if a source failed on the last load, retry it now in
+      // case it was only a temporary network problem.
+      if (getLastLoadFailures().length > 0) {
+        window._cachedFactoryPresets = null;
+      }
       const availablePresets = await this.loadPresetsFromFile();
 
       // Load failures are shown as a banner inside the import modal below
