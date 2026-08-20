@@ -4454,17 +4454,17 @@ function _switchSortModalTab(which) {
   if (list) list.scrollTop = 0;
 }
 
-// Every button the wheel can land on, in the order they appear on screen:
-// the 2 tabs, then whichever tab's options are currently showing, then Cancel.
+// Every button the wheel can land on: the 2 tabs, then whichever tab's
+// options are currently showing, then the X exit button in the header.
 // Options on the hidden tab are skipped entirely.
 function _sortModalItems() {
   const modal = document.getElementById('gallery-sort-modal');
   if (!modal) return [];
-  const tabs   = Array.from(modal.querySelectorAll('.sort-settings-tab'));
-  const opts   = Array.from(modal.querySelectorAll('.sort-settings-panel.active .gallery-custom-modal-option'));
-  const cancel = modal.querySelector('.gallery-custom-modal-cancel');
-  const items  = tabs.concat(opts);
-  if (cancel) items.push(cancel);
+  const tabs     = Array.from(modal.querySelectorAll('.sort-settings-tab'));
+  const opts     = Array.from(modal.querySelectorAll('.sort-settings-panel.active .gallery-custom-modal-option'));
+  const closeBtn = document.getElementById('gallery-sort-close');
+  const items    = tabs.concat(opts);
+  if (closeBtn) items.push(closeBtn);
   return items;
 }
 
@@ -4483,11 +4483,8 @@ function _sortModalPaintFocus() {
   const list = document.getElementById('gallery-sort-modal-list');
   if (!target || !list) return;
 
-  // Tabs sit above the list and Cancel sits below it
-  if (!list.contains(target)) {
-    list.scrollTop = target.classList.contains('sort-settings-tab') ? 0 : list.scrollHeight;
-    return;
-  }
+  // The X button and the tabs both sit above the list
+  if (!list.contains(target)) { list.scrollTop = 0; return; }
 
   const top = target.offsetTop;
   const bottom = top + target.offsetHeight;
@@ -19438,10 +19435,10 @@ const result = await presetImporter.import();
       });
     });
 
-    // Cancel button
-    const _sortCancelBtn = document.getElementById('gallery-sort-cancel');
-    if (_sortCancelBtn) {
-      _sortCancelBtn.addEventListener('click', () => {
+    // X exit button in the header
+    const _sortCloseBtn = document.getElementById('gallery-sort-close');
+    if (_sortCloseBtn) {
+      _sortCloseBtn.addEventListener('click', () => {
         _closeGallerySortModal();
       });
     }
