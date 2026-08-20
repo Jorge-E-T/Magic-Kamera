@@ -7318,3 +7318,29 @@ button, .touchable {
     color: #FE5F00;
     box-shadow: 0 0 8px rgba(254, 95, 0, 0.5);
 }
+
+/* ===== SETTINGS LISTS: SCROLL WHEEL HIGHLIGHT ===== */
+/* Resolution, Aspect Ratio and Import Resolution rows */
+.resolution-item.menu-selected {
+    background: linear-gradient(90deg, rgba(254, 95, 0, 0.18) 0%, #2a2a2a 100%);
+    border-color: #FE5F00;
+    box-shadow: inset 3px 0 0 #FE5F00, 0 0 10px rgba(254, 95, 0, 0.3);
+    color: #fff;
+}
+
+/* Import Resolution marks its current choice with .selected instead of
+   .active, which had no styling at all, so show it the same way */
+.resolution-item.selected {
+    background-color: #FE5F00;
+    color: #000;
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* When the highlighted row is also the one currently in use, keep the
+   orange fill readable and just add the outline */
+.resolution-item.active.menu-selected,
+.resolution-item.selected.menu-selected {
+    background: #FE5F00;
+    color: #000;
+    box-shadow: inset 0 0 0 2px #fff, 0 0 10px rgba(254, 95, 0, 0.5);
+}

@@ -2468,6 +2468,66 @@ function updateSettingsSelection() {
   }
 }
 
+// ===== SETTINGS LISTS: SCROLL WHEEL + SIDE BUTTON =====
+// Resolution, Aspect Ratio and Import Resolution all show a plain vertical
+// list of .resolution-item rows, so they share one set of helpers.
+
+// Returns the item rows of whichever of the three lists is on screen, or null.
+function _openSettingsListItems() {
+  const ids = ['resolution-submenu', 'aspect-ratio-submenu', 'import-resolution-submenu'];
+  for (const id of ids) {
+    const el = document.getElementById(id);
+    if (el && el.style.display === 'flex') {
+      const items = Array.from(el.querySelectorAll('.resolution-item'));
+      return items.length ? items : null;
+    }
+  }
+  return null;
+}
+
+// Moves the highlight. The first wheel turn simply reveals the highlight on
+// the option that is already chosen, so you always start from where you are.
+function _settingsListMove(step) {
+  const items = _openSettingsListItems();
+  if (!items) return false;
+
+  let i = items.findIndex(el => el.classList.contains('menu-selected'));
+  if (i < 0) {
+    i = items.findIndex(el =>
+      el.classList.contains('active') ||
+      el.classList.contains('selected') ||
+      el.querySelector('input:checked'));
+    if (i < 0) i = 0;
+  } else {
+    i = (i + step + items.length) % items.length;
+  }
+
+  items.forEach(el => el.classList.remove('menu-selected'));
+  items[i].classList.add('menu-selected');
+  items[i].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  return true;
+}
+
+// Side button picks the highlighted option.
+function _settingsListActivate() {
+  const items = _openSettingsListItems();
+  if (!items) return false;
+
+  const target = items.find(el => el.classList.contains('menu-selected'));
+  if (!target) return true;   // nothing highlighted yet, swallow the press
+
+  // Aspect Ratio rows wrap a checkbox, so tick it and let the existing
+  // change handler do the rest. The other two lists just get clicked.
+  const box = target.querySelector('input[type="checkbox"], input[type="radio"]');
+  if (box) {
+    box.checked = !box.checked;
+    box.dispatchEvent(new Event('change', { bubbles: true }));
+  } else {
+    target.click();
+  }
+  return true;
+}
+
 function scrollResolutionMenuUp() {
   const submenu = document.getElementById('resolution-submenu');
   if (!submenu || submenu.style.display !== 'flex') return;
@@ -12036,6 +12096,11 @@ window.addEventListener('sideClick', () => {
     return;
   }
 
+  // Resolution / Aspect Ratio / Import Resolution lists.
+  // Checked before the settings submenu because Import Resolution leaves
+  // isSettingsSubmenuOpen set to true while it is on screen.
+  if (_settingsListActivate()) return;
+
   // Settings submenu - select current item
   if (isSettingsSubmenuOpen) {
     const submenu = document.getElementById('settings-submenu');
@@ -12325,11 +12390,8 @@ window.addEventListener('scrollUp', () => {
     return;
   }
   
-  // Resolution submenu
-  if (isResolutionSubmenuOpen) {
-    scrollResolutionMenuUp();
-    return;
-  }
+    // Resolution / Aspect Ratio / Import Resolution lists
+  if (_settingsListMove(-1)) return;
   
   // Restore Deleted Items submenu
   if (isRestoreSubmenuOpen) {
@@ -12523,11 +12585,8 @@ window.addEventListener('scrollDown', () => {
     return;
   }
   
-  // Resolution submenu
-  if (isResolutionSubmenuOpen) {
-    scrollResolutionMenuDown();
-    return;
-  }
+    // Resolution / Aspect Ratio / Import Resolution lists
+  if (_settingsListMove(1)) return;
   
   // Restore Deleted Items submenu
   if (isRestoreSubmenuOpen) {
@@ -14170,7 +14229,8 @@ function showAspectRatioSubmenu() {
   document.getElementById('settings-submenu').style.display = 'none';
   pauseCamera();
   
-  const submenu = document.getElementById('aspect-ratio-submenu');
+    const submenu = document.getElementById('aspect-ratio-submenu');
+  submenu.querySelectorAll('.resolution-item').forEach(el => el.classList.remove('menu-selected'));
   submenu.style.display = 'flex';
   isAspectRatioSubmenuOpen = true;
   isSettingsSubmenuOpen = false;
