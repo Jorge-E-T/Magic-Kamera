@@ -1032,7 +1032,7 @@ export class PresetImporter {
           // The dialog was closed, or another render restarted the build
           if (!document.body.contains(presetsList)) { _buildTimer = null; return; }
 
-          const CHUNK = 120;
+          const CHUNK = 300;
           const fragment = document.createDocumentFragment();
 
           filteredPresets.slice(start, start + CHUNK).forEach((preset, _offset) => {
