@@ -368,8 +368,7 @@ export class PresetImporter {
     if (window._cachedFactoryPresets) {
       return window._cachedFactoryPresets;
     }
-    // TEMPORARY DIAGNOSTIC - counts how many times presets are really downloaded
-    window._presetDownloadCount = (window._presetDownloadCount || 0) + 1;
+
     try {
       const allPresets = [];
       const seenNames = new Set();
@@ -913,6 +912,8 @@ export class PresetImporter {
       // and hides existing rows, exactly like the main menu and gallery
       // preset searches do, which is why those feel instant.
       let _allRowsBuilt = false;
+      // Handle for the in-progress chunked build, so a new render can cancel it
+      let _buildTimer = null;
 
       presetsList.addEventListener('touchstart', (e) => {
         const item = e.target.closest('.menu-item');
@@ -1021,11 +1022,21 @@ export class PresetImporter {
           return count;
         };
 
-        // Build all items into a fragment — single DOM write at the end
+        // Build the rows a chunk at a time. The first chunk is enough to fill
+        // the screen, so the dialog appears immediately; the remaining rows are
+        // added in the background frames after that, keeping the UI responsive.
+        presetsList.innerHTML = '';
+        if (_buildTimer) { clearTimeout(_buildTimer); _buildTimer = null; }
 
-        const fragment = document.createDocumentFragment();
+        const _buildChunk = (start) => {
+          // The dialog was closed, or another render restarted the build
+          if (!document.body.contains(presetsList)) { _buildTimer = null; return; }
 
-        filteredPresets.forEach((preset, index) => {
+          const CHUNK = 120;
+          const fragment = document.createDocumentFragment();
+
+          filteredPresets.slice(start, start + CHUNK).forEach((preset, _offset) => {
+          const index = start + _offset;
           // Reuse the finished row if this preset was built before — just
           // refresh the bits that can change between renders.
           const _cachedRow = _rowElementCache.get(preset.name);
@@ -1197,17 +1208,23 @@ export class PresetImporter {
           item._importCheckbox = checkbox;
           _rowElementCache.set(preset.name, item);
           fragment.appendChild(item);
-        });
+          });
 
-        // Single DOM write — replaces innerHTML = '' + 800x appendChild
-        presetsList.innerHTML = '';
-        presetsList.appendChild(fragment);
+          presetsList.appendChild(fragment);
+          if (start === 0) updateImportSelection();
 
-        // The one-time full build is done; every render from here on uses
-        // the show/hide fast path above.
-        _allRowsBuilt = true;
+          if (start + CHUNK < filteredPresets.length) {
+            _buildTimer = setTimeout(() => _buildChunk(start + CHUNK), 0);
+          } else {
+            _buildTimer = null;
+            // The full build is done; every render from here on uses the
+            // show/hide fast path above.
+            _allRowsBuilt = true;
+            updateImportSelection();
+          }
+        };
 
-        updateImportSelection();
+        _buildChunk(0);
       };
 
       const updateImportSelection = () => {
