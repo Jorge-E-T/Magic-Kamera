@@ -2446,6 +2446,39 @@ function scrollSettingsDown() {
   updateSettingsSelection();
 }
 
+// ===== SETTINGS: REMEMBER WHERE YOU WERE =====
+// The scroll wheel and the up/down jump buttons keep currentSettingsIndex in
+// step, but TAPPING a settings row never did. So after finger-scrolling down
+// and tapping a row, the index was still 0, and coming back repainted the
+// first row and yanked the list to the top. These two remember the real spot.
+let _settingsSavedScrollTop = 0;
+
+function _settingsListEl() {
+  return document.querySelector('#settings-submenu .submenu-list');
+}
+
+// Capture phase, so this runs BEFORE the row's own handler navigates away.
+document.addEventListener('click', function (e) {
+  const submenu = document.getElementById('settings-submenu');
+  if (!submenu || submenu.style.display !== 'flex') return;
+  if (!e.target || typeof e.target.closest !== 'function') return;
+  const row = e.target.closest('.menu-section-button');
+  if (!row || !submenu.contains(row)) return;
+
+  const rows = Array.from(submenu.querySelectorAll('.menu-section-button'));
+  const i = rows.indexOf(row);
+  if (i >= 0) currentSettingsIndex = i;
+  const list = _settingsListEl();
+  _settingsSavedScrollTop = list ? list.scrollTop : 0;
+}, true);
+
+// Put the list back exactly where it was, then repaint the highlight.
+function _settingsRestorePosition() {
+  const list = _settingsListEl();
+  if (list) list.scrollTop = _settingsSavedScrollTop;
+  updateSettingsSelection();
+}
+
 function updateSettingsSelection() {
   const submenu = document.getElementById('settings-submenu');
   if (!submenu) return;
@@ -13612,9 +13645,9 @@ function showSettingsSubmenu() {
   // sub-setting should land on the row you left. It is reset to 0 only when
   // settings is exited altogether, in hideSettingsSubmenu below.
   
-  // Highlight first item after render
+    // Put the highlight back where the user left it after render
   setTimeout(() => {
-     updateSettingsSelection();
+     _settingsRestorePosition();
   }, 50);
 }
 
@@ -13626,6 +13659,7 @@ function hideSettingsSubmenu() {
     document.getElementById('settings-submenu').style.display = 'none';
     isSettingsSubmenuOpen = false;
     currentSettingsIndex = 0;   // leaving settings for good, start at the top next time
+    _settingsSavedScrollTop = 0;
     document.getElementById('unified-menu').style.display = 'none';
     isMenuOpen = false;
     menuScrollEnabled = false;
@@ -13642,8 +13676,9 @@ function hideSettingsSubmenu() {
   // on top of settings, not on top of the camera behind it.
   showLoadingOverlay('Opening menu...');
 
-  isSettingsSubmenuOpen = false;
+    isSettingsSubmenuOpen = false;
   currentSettingsIndex = 0;
+  _settingsSavedScrollTop = 0;
 
   // Wait one paint frame so the browser renders the spinner over settings,
   // THEN hide settings and open the menu. The overlay stays up until
