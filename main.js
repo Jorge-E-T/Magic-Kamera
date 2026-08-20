@@ -13358,6 +13358,10 @@ YOU MUST RESTART PROGRAM!`];
       await presetImporter.clearImportedPresets();
       // Also drop any saved local source copies so nothing lingers on device.
       try { await presetImporter.clearAllSourceCache(); } catch (e) {}
+      // The on-disk copies are gone, so drop the in-memory copy too. The next
+      // load then re-downloads and rebuilds both, instead of leaving the device
+      // with no saved fallback for the rest of this session.
+      window._cachedFactoryPresets = null;
       hasImportedPresets = false;
       factoryPresets  = [];
       DEFAULT_PRESETS = [];
