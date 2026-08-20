@@ -4437,25 +4437,57 @@ function getSortedFolders() {
 
 let _sortModalFocusIndex = 0;
 
+// Shows one tab's panel and hides the other.
+function _switchSortModalTab(which) {
+  const foldersTab   = document.getElementById('sort-tab-folders');
+  const imagesTab    = document.getElementById('sort-tab-images');
+  const foldersPanel = document.getElementById('sort-panel-folders');
+  const imagesPanel  = document.getElementById('sort-panel-images');
+  const showFolders  = (which !== 'images');
+
+  if (foldersTab)   foldersTab.classList.toggle('active', showFolders);
+  if (imagesTab)    imagesTab.classList.toggle('active', !showFolders);
+  if (foldersPanel) foldersPanel.classList.toggle('active', showFolders);
+  if (imagesPanel)  imagesPanel.classList.toggle('active', !showFolders);
+
+  const list = document.getElementById('gallery-sort-modal-list');
+  if (list) list.scrollTop = 0;
+}
+
 // Every button the wheel can land on, in the order they appear on screen:
-// the 4 folder options, the 2 image options, then Cancel.
-// The section labels are plain text, so the wheel skips right over them.
+// the 2 tabs, then whichever tab's options are currently showing, then Cancel.
+// Options on the hidden tab are skipped entirely.
 function _sortModalItems() {
   const modal = document.getElementById('gallery-sort-modal');
   if (!modal) return [];
-  return Array.from(modal.querySelectorAll('.gallery-custom-modal-option, .gallery-custom-modal-cancel'));
+  const tabs   = Array.from(modal.querySelectorAll('.sort-settings-tab'));
+  const opts   = Array.from(modal.querySelectorAll('.sort-settings-panel.active .gallery-custom-modal-option'));
+  const cancel = modal.querySelector('.gallery-custom-modal-cancel');
+  const items  = tabs.concat(opts);
+  if (cancel) items.push(cancel);
+  return items;
+}
+
+function _sortModalClearFocus() {
+  const modal = document.getElementById('gallery-sort-modal');
+  if (!modal) return;
+  modal.querySelectorAll('.wheel-focus').forEach(el => el.classList.remove('wheel-focus'));
 }
 
 function _sortModalPaintFocus() {
+  _sortModalClearFocus();
   const items = _sortModalItems();
-  items.forEach((el, i) => el.classList.toggle('wheel-focus', i === _sortModalFocusIndex));
-
   const target = items[_sortModalFocusIndex];
+  if (target) target.classList.add('wheel-focus');
+
   const list = document.getElementById('gallery-sort-modal-list');
   if (!target || !list) return;
 
-  // Cancel sits outside the scrolling list, so scroll to the bottom for it
-  if (!list.contains(target)) { list.scrollTop = list.scrollHeight; return; }
+  // Tabs sit above the list and Cancel sits below it
+  if (!list.contains(target)) {
+    list.scrollTop = target.classList.contains('sort-settings-tab') ? 0 : list.scrollHeight;
+    return;
+  }
 
   const top = target.offsetTop;
   const bottom = top + target.offsetHeight;
@@ -4482,7 +4514,7 @@ function _sortModalActivateFocus() {
 function _closeGallerySortModal() {
   const modal = document.getElementById('gallery-sort-modal');
   if (modal) modal.style.display = 'none';
-  _sortModalItems().forEach(el => el.classList.remove('wheel-focus'));
+  _sortModalClearFocus();
 }
 
 // Puts the orange checkmark highlight on whatever is currently selected
@@ -19351,10 +19383,30 @@ const result = await presetImporter.import();
   if (_gallerySortBtn && _gallerySortModal) {
     _gallerySortBtn.addEventListener('click', () => {
       _syncSortModalChecks();
+      _switchSortModalTab('folders');
       _gallerySortModal.style.display = 'flex';
       _sortModalFocusIndex = 0;
       _sortModalPaintFocus();
     });
+
+    // Tab bar
+    const _sortTabFolders = document.getElementById('sort-tab-folders');
+    if (_sortTabFolders) {
+      _sortTabFolders.addEventListener('click', () => {
+        _switchSortModalTab('folders');
+        _sortModalFocusIndex = 0;
+        _sortModalPaintFocus();
+      });
+    }
+
+    const _sortTabImages = document.getElementById('sort-tab-images');
+    if (_sortTabImages) {
+      _sortTabImages.addEventListener('click', () => {
+        _switchSortModalTab('images');
+        _sortModalFocusIndex = 1;
+        _sortModalPaintFocus();
+      });
+    }
 
     // FOLDERS section — oldest / newest / A-Z / Z-A
     document.querySelectorAll('#gallery-sort-modal .folder-sort-option').forEach(opt => {
