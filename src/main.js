@@ -1,5 +1,5 @@
 import { presetStorage } from './storage.js';
-import { presetImporter, earnCredit, unlockAllPresets, getCredits, resetCredits, presetsAreDifferent, getCustomPresetSources, saveCustomPresetSources, getDefaultPresetEnabled, saveDefaultPresetEnabled } from './preset-import.js';
+import { presetImporter, earnCredit, unlockAllPresets, getCredits, resetCredits, presetsAreDifferent, getCustomPresetSources, saveCustomPresetSources, getDefaultPresetEnabled, saveDefaultPresetEnabled, getLastLoadFailures } from './preset-import.js';
 
 // Accent-insensitive search helper — strips diacritics so "cafe" finds "café"
 // NFC → NFD decomposes accented chars; removing \u0300-\u036F strips the accent marks.
@@ -18686,8 +18686,14 @@ document.addEventListener('touchend', () => {
   const importPresetsBtn = document.getElementById('import-presets-button');
   if (importPresetsBtn) {
     importPresetsBtn.addEventListener('click', async () => {
-      try {
-        showLoadingOverlay('Loading presets...');
+            try {
+        // Presets are already in memory from the splash screen, so opening this
+        // screen normally downloads nothing and only builds the list. The two
+        // messages tell you which is actually happening:
+        //   "Opening presets..." = using the copy loaded at startup, no download
+        //   "Loading presets..." = something forced a real re-download
+        const _willDownload = !window._cachedFactoryPresets || getLastLoadFailures().length > 0;
+        showLoadingOverlay(_willDownload ? 'Loading presets...' : 'Opening presets...');
         // Wait one frame so the browser actually paints the spinner before the heavy work starts
         await new Promise(resolve => setTimeout(resolve, 30));
 const result = await presetImporter.import();
