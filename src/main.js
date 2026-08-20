@@ -6515,7 +6515,8 @@ function hideRestoreSubmenu() {
 
 function switchRestoreTab(tab) {
   restoreActiveTab = tab;
-  currentRestoreIndex = 0;
+  // Keep the highlight on the tab that was just opened
+  currentRestoreIndex = (tab === 'images') ? 1 : (tab === 'mp') ? 2 : 0;
   document.getElementById('restore-tab-presets').classList.toggle('active', tab === 'presets');
   document.getElementById('restore-tab-images').classList.toggle('active', tab === 'images');
   document.getElementById('restore-tab-mp').classList.toggle('active', tab === 'mp');
@@ -6591,6 +6592,75 @@ async function populateDeletedImagesList() {
   });
 }
 
+// ===== SETTINGS SCREENS: SCROLL WHEEL + SIDE BUTTON =====
+
+// ---- Reset Database: the checklist rows plus the two bottom buttons ----
+function _resetDbNavItems() {
+  const sub = document.getElementById('reset-database-submenu');
+  if (!sub || sub.style.display !== 'flex') return null;
+  const items = Array.from(sub.querySelectorAll('.reset-db-item'));
+  const clearBtn = document.getElementById('reset-db-clear-btn');
+  const applyBtn = document.getElementById('reset-db-apply-btn');
+  if (clearBtn) items.push(clearBtn);
+  if (applyBtn) items.push(applyBtn);
+  return items.length ? items : null;
+}
+
+function _resetDbMove(step) {
+  const items = _resetDbNavItems();
+  if (!items) return false;
+  let i = items.findIndex(el => el.classList.contains('wheel-focus'));
+  if (i < 0) i = 0;
+  else i = (i + step + items.length) % items.length;
+  items.forEach(el => el.classList.remove('wheel-focus'));
+  items[i].classList.add('wheel-focus');
+  items[i].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  return true;
+}
+
+function _resetDbActivate() {
+  const items = _resetDbNavItems();
+  if (!items) return false;
+  const target = items.find(el => el.classList.contains('wheel-focus'));
+  if (!target) return true;              // nothing highlighted yet, swallow it
+  const box = target.querySelector('input[type="checkbox"]');
+  if (box) box.click();                  // checklist row
+  else target.click();                   // Clear All / Apply
+  return true;
+}
+
+// ---- Preset File Settings + Button Settings: wheel scrolls, side does nothing ----
+function _plainScrollPanel() {
+  const pfs = document.getElementById('preset-file-settings-submenu');
+  if (pfs && pfs.style.display === 'flex') return pfs.querySelector('.submenu-list');
+  const bs = document.getElementById('button-settings-submenu');
+  if (bs && bs.style.display === 'flex') {
+    return bs.querySelector('.btn-settings-panel.active') || bs.querySelector('.btn-settings-panel');
+  }
+  return null;
+}
+
+function _plainScrollMove(step) {
+  const el = _plainScrollPanel();
+  if (!el) return false;
+  el.scrollTop = Math.max(0, el.scrollTop + step * 80);
+  return true;
+}
+
+// True while either of those two screens is open, so the side button is ignored.
+function _plainScrollSwallowsSide() {
+  return _plainScrollPanel() !== null;
+}
+
+// ---- Restore Deleted Items: the 3 tabs, then the rows of the open tab ----
+function _restoreTabEls() {
+  return [
+    document.getElementById('restore-tab-presets'),
+    document.getElementById('restore-tab-images'),
+    document.getElementById('restore-tab-mp')
+  ].filter(Boolean);
+}
+
 function getRestoreItems() {
   if (restoreActiveTab === 'presets') {
     return Array.from(document.querySelectorAll('#restore-presets-list .restore-preset-item'));
@@ -6601,21 +6671,36 @@ function getRestoreItems() {
   }
 }
 
+// currentRestoreIndex now walks the tabs AND the rows:
+//   0, 1, 2  = the Presets / Images / Master tabs
+//   3 and up = the rows inside whichever tab is open
 function updateRestoreSelection() {
+  var tabs = _restoreTabEls();
   var items = getRestoreItems();
-  // Remove highlight from all items
+  var total = tabs.length + items.length;
+
+  tabs.forEach(function(t) { t.classList.remove('wheel-focus'); });
   items.forEach(function(item) {
     item.style.outline = '';
     item.style.outlineOffset = '';
     item.style.background = '';
   });
-  if (items.length === 0) return;
-  currentRestoreIndex = Math.max(0, Math.min(currentRestoreIndex, items.length - 1));
-  var current = items[currentRestoreIndex];
+  if (total === 0) return;
+
+  currentRestoreIndex = Math.max(0, Math.min(currentRestoreIndex, total - 1));
+
+  if (currentRestoreIndex < tabs.length) {
+    var tab = tabs[currentRestoreIndex];
+    tab.classList.add('wheel-focus');
+    tab.scrollIntoView({ block: 'nearest' });
+    return;
+  }
+
+  var current = items[currentRestoreIndex - tabs.length];
   if (current) {
     current.style.outline = '3px solid #FE5F00';
     current.style.outlineOffset = '-2px';
-    if (restoreActiveTab === 'presets') {
+    if (restoreActiveTab !== 'images') {
       current.style.background = 'rgba(254,95,0,0.12)';
     }
     current.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -6624,18 +6709,40 @@ function updateRestoreSelection() {
 
 function scrollRestoreUp() {
   if (!isRestoreSubmenuOpen) return;
-  var items = getRestoreItems();
-  if (items.length === 0) return;
-  currentRestoreIndex = Math.max(0, currentRestoreIndex - 1);
+  var total = _restoreTabEls().length + getRestoreItems().length;
+  if (total === 0) return;
+  currentRestoreIndex = (currentRestoreIndex - 1 + total) % total;
   updateRestoreSelection();
 }
 
 function scrollRestoreDown() {
   if (!isRestoreSubmenuOpen) return;
-  var items = getRestoreItems();
-  if (items.length === 0) return;
-  currentRestoreIndex = Math.min(items.length - 1, currentRestoreIndex + 1);
+  var total = _restoreTabEls().length + getRestoreItems().length;
+  if (total === 0) return;
+  currentRestoreIndex = (currentRestoreIndex + 1) % total;
   updateRestoreSelection();
+}
+
+// Side button: on a tab it switches tab, on a row it ticks the checkbox.
+function _restoreActivate() {
+  var tabs = _restoreTabEls();
+  var items = getRestoreItems();
+  if (tabs.length + items.length === 0) return;
+
+  // On a tab: open that tab. switchRestoreTab parks the highlight on it.
+  if (currentRestoreIndex < tabs.length) {
+    var names = ['presets', 'images', 'mp'];
+    var wanted = names[currentRestoreIndex];
+    if (restoreActiveTab !== wanted) switchRestoreTab(wanted);
+    setTimeout(updateRestoreSelection, 60);
+    return;
+  }
+
+  var current = items[currentRestoreIndex - tabs.length];
+  if (current) {
+    var cb = current.querySelector('input[type="checkbox"]');
+    if (cb) cb.click();
+  }
 }
 
 function restoreSelectAll() {
@@ -12083,18 +12190,18 @@ window.addEventListener('sideClick', () => {
     return;
   }
 
-  // Restore Deleted Items submenu - side button toggles checkbox on highlighted item
+  // Restore Deleted Items submenu - on a tab it switches tab, on a row it ticks it
   if (isRestoreSubmenuOpen) {
-    var restoreItems = getRestoreItems();
-    if (restoreItems.length > 0 && currentRestoreIndex < restoreItems.length) {
-      var currentRestoreItem = restoreItems[currentRestoreIndex];
-      if (currentRestoreItem) {
-        var restoreCb = currentRestoreItem.querySelector('input[type="checkbox"]');
-        if (restoreCb) restoreCb.click();
-      }
-    }
+    _restoreActivate();
     return;
   }
+
+  // Reset Database checklist
+  if (_resetDbActivate()) return;
+
+  // Preset File Settings / Button Settings - side button has no job here,
+  // so swallow it rather than let it act on the screen behind
+  if (_plainScrollSwallowsSide()) return;
 
   // Resolution / Aspect Ratio / Import Resolution lists.
   // Checked before the settings submenu because Import Resolution leaves
@@ -12399,6 +12506,12 @@ window.addEventListener('scrollUp', () => {
     return;
   }
 
+  // Reset Database checklist
+  if (_resetDbMove(-1)) return;
+
+  // Preset File Settings / Button Settings - wheel just scrolls the panel
+  if (_plainScrollMove(-1)) return;
+
   // Settings submenu - CHECK AFTER all other submenus
   if (isResetDatabaseSubmenuOpen) return;
   if (isSettingsSubmenuOpen) {
@@ -12593,6 +12706,12 @@ window.addEventListener('scrollDown', () => {
     scrollRestoreDown();
     return;
   }
+
+  // Reset Database checklist
+  if (_resetDbMove(1)) return;
+
+  // Preset File Settings / Button Settings - wheel just scrolls the panel
+  if (_plainScrollMove(1)) return;
 
   // Settings submenu - CHECK AFTER all other submenus
   if (isResetDatabaseSubmenuOpen) return;
@@ -13489,7 +13608,9 @@ function showSettingsSubmenu() {
   submenu.style.display = 'flex';
   isMenuOpen = false; // ADD THIS LINE
   isSettingsSubmenuOpen = true;
-  currentSettingsIndex = 0;
+  // currentSettingsIndex is deliberately NOT reset here. Coming back from a
+  // sub-setting should land on the row you left. It is reset to 0 only when
+  // settings is exited altogether, in hideSettingsSubmenu below.
   
   // Highlight first item after render
   setTimeout(() => {
@@ -13500,10 +13621,11 @@ function showSettingsSubmenu() {
 // Hide Settings submenu
 function hideSettingsSubmenu() {
   // Check if we should return to gallery
-  if (returnToGalleryFromMasterPrompt) {
+    if (returnToGalleryFromMasterPrompt) {
     returnToGalleryFromMasterPrompt = false;
     document.getElementById('settings-submenu').style.display = 'none';
     isSettingsSubmenuOpen = false;
+    currentSettingsIndex = 0;   // leaving settings for good, start at the top next time
     document.getElementById('unified-menu').style.display = 'none';
     isMenuOpen = false;
     menuScrollEnabled = false;
