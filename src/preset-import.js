@@ -915,6 +915,19 @@ export class PresetImporter {
       // Handle for the in-progress chunked build, so a new render can cancel it
       let _buildTimer = null;
 
+      // Tracks whether the user is touching or scrolling the list right now, so
+      // the background row build can shrink its bursts and stay out of the way.
+      let _userIsScrolling = false;
+      let _scrollIdleTimer = null;
+      const _markScrolling = () => {
+        _userIsScrolling = true;
+        clearTimeout(_scrollIdleTimer);
+        _scrollIdleTimer = setTimeout(() => { _userIsScrolling = false; }, 150);
+      };
+      scrollContainer.addEventListener('scroll', _markScrolling, { passive: true });
+      scrollContainer.addEventListener('touchstart', _markScrolling, { passive: true });
+      scrollContainer.addEventListener('touchmove', _markScrolling, { passive: true });
+
       presetsList.addEventListener('touchstart', (e) => {
         const item = e.target.closest('.menu-item');
         if (!item) return;
@@ -1032,7 +1045,11 @@ export class PresetImporter {
           // The dialog was closed, or another render restarted the build
           if (!document.body.contains(presetsList)) { _buildTimer = null; return; }
 
-          const CHUNK = 300;
+          // The first burst is always full size so the dialog never opens looking
+          // empty. After that: small bursts while the user is scrolling, so each
+          // one fits inside a single frame and the scroll stays smooth, and
+          // bigger bursts when the list is idle so it finishes quickly.
+          const CHUNK = (start > 0 && _userIsScrolling) ? 20 : 150;
           const fragment = document.createDocumentFragment();
 
           filteredPresets.slice(start, start + CHUNK).forEach((preset, _offset) => {
@@ -1214,13 +1231,17 @@ export class PresetImporter {
           if (start === 0) updateImportSelection();
 
           if (start + CHUNK < filteredPresets.length) {
-            _buildTimer = setTimeout(() => _buildChunk(start + CHUNK), 0);
+            // Leave a frame between bursts so touch input gets served first
+            _buildTimer = setTimeout(() => _buildChunk(start + CHUNK), 16);
           } else {
             _buildTimer = null;
             // The full build is done; every render from here on uses the
             // show/hide fast path above.
             _allRowsBuilt = true;
-            updateImportSelection();
+            // updateImportSelection() forces the scroll position (it snaps back
+            // to the top when the highlight is on row 0). Only safe to run while
+            // the user is still at the top, otherwise it yanks them back.
+            if (scrollContainer.scrollTop === 0) updateImportSelection();
           }
         };
 
