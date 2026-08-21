@@ -14599,9 +14599,11 @@ function renderMpSlots() {
     //   hard press -> rename the prompt
     let _nameTimer = null;
     let _nameLongFired = false;
-    const _nameStart = () => {
+    let _nameStartX = 0, _nameStartY = 0;
+    const _nameStart = (e) => {
       if (mpRemoveMode) return;
       _nameLongFired = false;
+      _nameStartX = e.clientX; _nameStartY = e.clientY;
       clearTimeout(_nameTimer);
       _nameTimer = setTimeout(() => {
         _nameTimer = null;
@@ -14618,13 +14620,18 @@ function renderMpSlots() {
       }
     };
     const _nameCancel = () => { clearTimeout(_nameTimer); _nameTimer = null; };
-    label.addEventListener('touchstart',  _nameStart,  { passive: true });
-    label.addEventListener('touchend',    _nameEnd,    { passive: true });
-    label.addEventListener('touchmove',   _nameCancel, { passive: true });
-    label.addEventListener('touchcancel', _nameCancel, { passive: true });
-    label.addEventListener('mousedown',  _nameStart);
-    label.addEventListener('mouseup',    _nameEnd);
-    label.addEventListener('mouseleave', _nameCancel);
+    const _nameMove = (e) => {
+      if (!_nameTimer) return;
+      if (Math.abs(e.clientX - _nameStartX) > 10 || Math.abs(e.clientY - _nameStartY) > 10) _nameCancel();
+    };
+    // Pointer events fire ONCE for both touch and mouse. Listening to touch AND
+    // mouse made every tap run twice, because browsers synthesise mouse events
+    // after a touch, so the collapse toggled straight back and looked dead.
+    label.addEventListener('pointerdown',   _nameStart);
+    label.addEventListener('pointerup',     _nameEnd);
+    label.addEventListener('pointermove',   _nameMove);
+    label.addEventListener('pointercancel', _nameCancel);
+    label.addEventListener('pointerleave',  _nameCancel);
 
     // Tapping the ACTIVE / OFF badge still turns the prompt on and off
     statusBadge.addEventListener('click', () => { if (!mpRemoveMode) toggleMpSlotActive(slot.id); });
@@ -14650,13 +14657,11 @@ function renderMpSlots() {
       }, 500);
     };
     const _speakCancel = () => { clearTimeout(_speakTimer); _speakTimer = null; };
-    textarea.addEventListener('touchstart',  _speakStart,  { passive: true });
-    textarea.addEventListener('touchend',    _speakCancel, { passive: true });
-    textarea.addEventListener('touchmove',   _speakCancel, { passive: true });
-    textarea.addEventListener('touchcancel', _speakCancel, { passive: true });
-    textarea.addEventListener('mousedown',  _speakStart);
-    textarea.addEventListener('mouseup',    _speakCancel);
-    textarea.addEventListener('mouseleave', _speakCancel);
+    textarea.addEventListener('pointerdown',   _speakStart);
+    textarea.addEventListener('pointerup',     _speakCancel);
+    textarea.addEventListener('pointermove',   _speakCancel);
+    textarea.addEventListener('pointercancel', _speakCancel);
+    textarea.addEventListener('pointerleave',  _speakCancel);
     textarea.addEventListener('contextmenu', (e) => { e.preventDefault(); });
 
     textarea.addEventListener('input', async () => {
