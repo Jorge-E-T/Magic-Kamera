@@ -1113,6 +1113,15 @@ export class PresetImporter {
           // empty. After that: small bursts while the user is scrolling, so each
           // one fits inside a single frame and the scroll stays smooth, and
           // bigger bursts when the list is idle so it finishes quickly.
+          // A finger is on the list: stop appending until it lifts. Every append
+          // makes the browser re-lay-out all ~1900 rows to recompute the scroll
+          // height, and that is what makes the first drag feel stuck. Bounded by
+          // the gesture, and chunk 0 always runs so the list is never empty.
+          if (start > 0 && _fingerDown) {
+            _buildTimer = setTimeout(() => _buildChunk(start), 100);
+            return;
+          }
+
           const CHUNK = (start > 0 && _listIsBusy()) ? 20 : 150;
           const fragment = document.createDocumentFragment();
 
@@ -1509,7 +1518,7 @@ footerSection.innerHTML = `
         document.body.removeChild(modal);
       };
 
-      document.getElementById('close-import-modal').onclick = () => {
+      modal.querySelector('#close-import-modal').onclick = () => {
         closeModal();
         resolve(null);
       };

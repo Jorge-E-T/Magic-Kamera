@@ -12241,6 +12241,20 @@ window.addEventListener('sideClick', () => {
   // isSettingsSubmenuOpen set to true while it is on screen.
   if (_settingsListActivate()) return;
 
+  // Import Presets dialog - the side button ticks the highlighted preset.
+  // This MUST come before the settings check: the dialog is an overlay, so
+  // isSettingsSubmenuOpen is still true underneath it. Without this the side
+  // button re-clicks the Import Presets row behind the dialog, which opens a
+  // SECOND dialog whose duplicate element ids break the X and trap the user.
+  if (presetImporter.isImportModalOpen) {
+    const _row = document.querySelector('#import-preset-modal .menu-item.menu-selected');
+    if (_row) {
+      const _cb = _row.querySelector('input[type="checkbox"]');
+      if (_cb) _cb.click();
+    }
+    return;
+  }
+
   // Settings submenu - select current item
   if (isSettingsSubmenuOpen) {
     const submenu = document.getElementById('settings-submenu');
