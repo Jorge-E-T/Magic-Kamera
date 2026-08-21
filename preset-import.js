@@ -918,15 +918,23 @@ export class PresetImporter {
       // Tracks whether the user is touching or scrolling the list right now, so
       // the background row build can shrink its bursts and stay out of the way.
       let _userIsScrolling = false;
+      let _fingerDown = false;
       let _scrollIdleTimer = null;
+      let _revealTimer = null;
       const _markScrolling = () => {
         _userIsScrolling = true;
         clearTimeout(_scrollIdleTimer);
         _scrollIdleTimer = setTimeout(() => { _userIsScrolling = false; }, 150);
       };
+      // A finger resting on the list counts too. A hard press holds still for
+      // 600ms, so without this the background build goes back to big bursts
+      // mid-press and the long-press never gets a chance to fire on time.
+      const _listIsBusy = () => _userIsScrolling || _fingerDown;
       scrollContainer.addEventListener('scroll', _markScrolling, { passive: true });
-      scrollContainer.addEventListener('touchstart', _markScrolling, { passive: true });
       scrollContainer.addEventListener('touchmove', _markScrolling, { passive: true });
+      scrollContainer.addEventListener('touchstart', () => { _fingerDown = true; _markScrolling(); }, { passive: true });
+      scrollContainer.addEventListener('touchend', () => { _fingerDown = false; _markScrolling(); }, { passive: true });
+      scrollContainer.addEventListener('touchcancel', () => { _fingerDown = false; }, { passive: true });
 
       presetsList.addEventListener('touchstart', (e) => {
         const item = e.target.closest('.menu-item');
@@ -1000,12 +1008,33 @@ export class PresetImporter {
         // rows are shown and the rest are hidden with a CSS class.
         if (_allRowsBuilt) {
           const _visibleNames = new Set(filteredPresets.map(p => p.name));
-          _rowElementCache.forEach((row, name) => {
-            row.classList.toggle('import-row-hidden', !_visibleNames.has(name));
-            if (row._importCheckbox) {
-              row._importCheckbox.checked = this.checkboxStates.get(name) || false;
+          const _rows = Array.from(_rowElementCache.entries());
+          if (_revealTimer) { clearTimeout(_revealTimer); _revealTimer = null; }
+
+          // Showing ~1900 hidden rows in one go makes the browser lay out the
+          // whole list at once, which is the freeze when clearing the search.
+          // Do it in chunks: the top of the list updates immediately and the
+          // rest catches up over the next few frames.
+          const _revealChunk = (i) => {
+            if (!document.body.contains(presetsList)) { _revealTimer = null; return; }
+            const STEP = (i > 0 && _listIsBusy()) ? 60 : 250;
+            const end = Math.min(i + STEP, _rows.length);
+            for (; i < end; i++) {
+              const name = _rows[i][0];
+              const row = _rows[i][1];
+              row.classList.toggle('import-row-hidden', !_visibleNames.has(name));
+              if (row._importCheckbox) {
+                row._importCheckbox.checked = this.checkboxStates.get(name) || false;
+              }
             }
-          });
+            if (i < _rows.length) {
+              _revealTimer = setTimeout(() => _revealChunk(i), 16);
+            } else {
+              _revealTimer = null;
+              if (scrollContainer.scrollTop === 0) updateImportSelection();
+            }
+          };
+          _revealChunk(0);
           updateImportSelection();
           return;
         }
@@ -1049,7 +1078,7 @@ export class PresetImporter {
           // empty. After that: small bursts while the user is scrolling, so each
           // one fits inside a single frame and the scroll stays smooth, and
           // bigger bursts when the list is idle so it finishes quickly.
-          const CHUNK = (start > 0 && _userIsScrolling) ? 20 : 150;
+          const CHUNK = (start > 0 && _listIsBusy()) ? 20 : 150;
           const fragment = document.createDocumentFragment();
 
           filteredPresets.slice(start, start + CHUNK).forEach((preset, _offset) => {
