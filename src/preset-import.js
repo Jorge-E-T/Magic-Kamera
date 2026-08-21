@@ -890,11 +890,23 @@ export class PresetImporter {
       // Brief orange flash the moment the hard press registers. The R1's voice
       // takes a beat to come back, so without this the press feels like it did
       // nothing and you end up pressing again.
+      let _speakingRow = null;
+      let _speakingTimer = null;
+      const _clearSpeakingRow = () => {
+        clearTimeout(_speakingTimer);
+        _speakingTimer = null;
+        if (_speakingRow) _speakingRow.classList.remove('import-row-speaking');
+        _speakingRow = null;
+      };
       const _flashSpeakingRow = (row) => {
+        _clearSpeakingRow();
         if (!row) return;
-        const _prev = row.style.backgroundColor;
-        row.style.backgroundColor = 'rgba(254, 95, 0, 0.35)';
-        setTimeout(() => { row.style.backgroundColor = _prev; }, 200);
+        _speakingRow = row;
+        row.classList.add('import-row-speaking');
+        // The R1 takes a second or two to answer, so this has to stay lit long
+        // enough to bridge the wait. It pulses so it reads as "working on it",
+        // not as a button that already finished.
+        _speakingTimer = setTimeout(_clearSpeakingRow, 6000);
       };
 
       // 500ms matches what phones use for a long press (iOS and Android both
@@ -955,6 +967,7 @@ export class PresetImporter {
         if (!item) return;
         const preset = _presetsLookup.get(item.dataset.presetName);
         if (!preset) return;
+        _clearSpeakingRow();   // a new press cancels the previous indicator
         _delegatedLongPressTimer = setTimeout(() => {
           if (_openPresetNames.has(preset.name)) {
             // OPEN row: hard-press reads the preset aloud
