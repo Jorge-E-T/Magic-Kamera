@@ -914,6 +914,7 @@ export class PresetImporter {
       // Set right after a long-press action fires so the click that follows
       // the finger lift doesn't also toggle the row or its checkbox.
       let _suppressNextItemClick = false;
+      let _suppressExpiryTimer = null;
       // Finished row elements, built once per dialog and reused by every
       // later render. Re-arranging existing rows is what makes typing and
       // clearing the search fast — instead of re-creating thousands of
@@ -958,7 +959,6 @@ export class PresetImporter {
           if (_openPresetNames.has(preset.name)) {
             // OPEN row: hard-press reads the preset aloud
             _suppressNextItemClick = true;
-            setTimeout(() => { _suppressNextItemClick = false; }, 400);
             _flashSpeakingRow(item);
             this.speakMessage(preset.message);
           } else {
@@ -971,6 +971,13 @@ export class PresetImporter {
       presetsList.addEventListener('touchend', () => {
         clearTimeout(_delegatedLongPressTimer);
         _delegatedLongPressTimer = null;
+        // Start the click guard's countdown when the finger LIFTS, not when the
+        // press fired. Otherwise holding past ~900ms lets the click through and
+        // the row toggles open/closed right after it speaks.
+        if (_suppressNextItemClick) {
+          clearTimeout(_suppressExpiryTimer);
+          _suppressExpiryTimer = setTimeout(() => { _suppressNextItemClick = false; }, 400);
+        }
       }, { passive: true });
 
       presetsList.addEventListener('touchmove', () => {
