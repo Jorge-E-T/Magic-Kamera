@@ -893,7 +893,7 @@ function hidePresetImagePreview() {
 // getSiblings: optional function returning the full on-screen list this item
 // belongs to, so the preview can swipe through it. Left out -> no swiping.
 function attachPresetLongPress(item, preset, getSiblings, onNavigate, onSideSelect) {
-  const LONG_PRESS_MS = 600;
+  const LONG_PRESS_MS = 500;
   let _timer = null;
   // Always pass the 4th arg explicitly (null when this list does not want the
   // side button), so a callback from an earlier preview can never leak in.

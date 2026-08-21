@@ -887,7 +887,20 @@ export class PresetImporter {
       // Single delegated long-press listener for the whole list (replaces per-item listeners)
       const _presetsLookup = new Map(availablePresets.map(p => [p.name, p]));
       let _delegatedLongPressTimer = null;
-      const LONG_PRESS_MS = 600;
+      // Brief orange flash the moment the hard press registers. The R1's voice
+      // takes a beat to come back, so without this the press feels like it did
+      // nothing and you end up pressing again.
+      const _flashSpeakingRow = (row) => {
+        if (!row) return;
+        const _prev = row.style.backgroundColor;
+        row.style.backgroundColor = 'rgba(254, 95, 0, 0.35)';
+        setTimeout(() => { row.style.backgroundColor = _prev; }, 200);
+      };
+
+      // 500ms matches what phones use for a long press (iOS and Android both
+      // fire at ~500ms) while still being clearly longer than a tap, which
+      // toggles the row open/closed.
+      const LONG_PRESS_MS = 500;
 
       // Cache each preset's NEW/UPDATED status for the life of this dialog.
       // Computing it fresh meant thousands of deep text comparisons on every
@@ -946,6 +959,7 @@ export class PresetImporter {
             // OPEN row: hard-press reads the preset aloud
             _suppressNextItemClick = true;
             setTimeout(() => { _suppressNextItemClick = false; }, 400);
+            _flashSpeakingRow(item);
             this.speakMessage(preset.message);
           } else {
             // CLOSED row: hard-press shows the preview image (as before)
@@ -979,6 +993,7 @@ export class PresetImporter {
           if (_openPresetNames.has(preset.name)) {
             _suppressNextItemClick = true;
             setTimeout(() => { _suppressNextItemClick = false; }, 400);
+            _flashSpeakingRow(item);
             this.speakMessage(preset.message);
           } else {
             showPreview(preset);
