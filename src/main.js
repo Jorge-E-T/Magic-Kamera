@@ -5684,20 +5684,22 @@ async function loadStyles() {
     
     // Always fetch the real preset count so the tutorial display is always correct
     // Save the result so we can reuse it later without downloading the file again
-    let _cachedFactoryPresets = null;
-    try {
-        showLoadingOverlay('Loading presets...');
-        // Wait one frame so the browser actually paints the spinner before the heavy work starts
-        await new Promise(resolve => setTimeout(resolve, 30));
-        _cachedFactoryPresets = await presetImporter.loadPresetsFromFile();
-        totalFactoryPresetCount = _cachedFactoryPresets.length;
+    // presets.json is only needed here for two things: the preset count shown in
+    // the tutorial, and the "new presets available" badge on the Settings screen.
+    // Neither is on screen while the camera starts, and the "has the user got any
+    // imports?" decision below reads IndexedDB, not this file. So load it in the
+    // background and let the user into the program straight away.
+    window._presetsUpdateCheckPromise = (async () => {
+      try {
+        const loaded = await presetImporter.loadPresetsFromFile();
+        totalFactoryPresetCount = loaded.length;
         const tutorialCountEl = document.getElementById('tutorial-preset-count');
         if (tutorialCountEl) tutorialCountEl.textContent = totalFactoryPresetCount;
-    } catch (e) {
+        await checkForPresetsUpdates(loaded);
+      } catch (e) {
         console.log('Could not fetch preset count:', e);
-    } finally {
-        hideLoadingOverlay();
-    }
+      }
+    })();
 
     // Only load presets if user has imports or modifications
     if (hasImports || hasModifications) {
@@ -5806,8 +5808,7 @@ async function loadStyles() {
     // Update the display to show correct count on startup
     updateVisiblePresetsDisplay();
 
-    // Check for updates immediately — store as a promise the camera can wait for
-    window._presetsUpdateCheckPromise = checkForPresetsUpdates(_cachedFactoryPresets);
+    // The update check now runs inside the background load started above.
 }
 
 // Check for updates on startup
@@ -5821,10 +5822,12 @@ async function checkForPresetsUpdates(preloadedPresets) {
 
     let newCount = 0;
     let updatedCount = 0;
-    const importedNames = new Set(importedPresets.map(p => p.name));
+    // One lookup table instead of scanning the whole imported list for every
+    // preset. With ~1900 presets that was ~3.6 million string comparisons.
+    const importedByName = new Map(importedPresets.map(p => [p.name, p]));
 
     for (const jsonPreset of jsonPresets) {
-      const existing = importedPresets.find(p => p.name === jsonPreset.name);
+      const existing = importedByName.get(jsonPreset.name);
       if (!existing) {
         newCount++;
       } else if (presetsAreDifferent(existing, jsonPreset)) {
@@ -5859,10 +5862,12 @@ async function recheckForUpdates() {
 
     let newCount = 0;
     let updatedCount = 0;
-    const importedNames = new Set(importedPresets.map(p => p.name));
+    // One lookup table instead of scanning the whole imported list for every
+    // preset. With ~1900 presets that was ~3.6 million string comparisons.
+    const importedByName = new Map(importedPresets.map(p => [p.name, p]));
 
     for (const jsonPreset of jsonPresets) {
-      const existing = importedPresets.find(p => p.name === jsonPreset.name);
+      const existing = importedByName.get(jsonPreset.name);
       if (!existing) {
         newCount++;
       } else if (presetsAreDifferent(existing, jsonPreset)) {
@@ -9842,7 +9847,8 @@ const TOUR_STEPS = [
   { section: 'Image Editor', title: '↶ Undo and Save', body: 'Undo steps back through your edit history one step at a time. Saving an edited image creates a new image in your gallery. Close (x) exits without saving.' },
   { section: 'Settings', title: '▣ Resolution', body: 'Choose from VGA 640 by 480 up to HD 3264 by 2448. Lower resolutions are recommended if you want images to appear in the magic gallery and you want to save space in your r1 device. Camera program slows if a high resolution is chosen.' },
   { section: 'Settings', title: '📐 Aspect Ratio', body: 'Choose 1 to 1 square or 16 to 9 letterbox. Leave both unchecked for neither. Default is neither. We highly recommend choosing an aspect ratio to display the full image, preventing accidental cropping.' },
-  { section: 'Settings', title: '📝 Master Prompt', body: 'Adds instructions to presets. Enable first, type additions and press field to activate. Add more than one if desired. Add name and occasion to personalize presets. Can also be toggled from MASTER button inside image viewer or main camera screen.' },
+    { section: 'Settings', title: '📝 Master Prompt', body: 'Adds your own instructions to every preset. Turn Master Prompt on first, then type into a prompt box. Tap the ACTIVE or OFF badge on the right of a prompt to switch that one on or off. Add more than one if desired, such as your name and the occasion, to personalize presets. May also be toggled from the MASTER button inside the image viewer or main camera screen.' },
+  { section: 'Settings', title: '🗂️ Naming and Organizing Master Prompts', body: 'Every prompt has a name, shown as Prompt 1, Prompt 2 and so on. Hard press the name to rename. Tapping name expands or collapses text. Hard press the text box itself to hear the prompt read. Roll the scroll wheel to highlight a prompt, then press the side button to activate or deactivate.' },
   { section: 'Settings', title: '👁️ Visible Presets', body: 'Choose which imported presets appear in your menus. Select All, deselect individually, or remove all. Category tags show at the bottom when a preset is highlighted.' },
   { section: 'Settings', title: '🔨 Preset Builder', body: 'Build your own custom AI presets. Choose a template, add chips for quality and style, enable random options with single or multi-selection groups, add critical rules, then save. Also accessible directly from the main menu plus (+) button.' },
   { section: 'Settings', title: '🚫 No Magic Mode', body: 'Disables AI processing and works as a regular camera. Photos save only to the plugin gallery, not to the rabbit hole or magic gallery.' },
