@@ -7147,11 +7147,14 @@ function addStyleSingleOption(text = '', enabled = true) {
   checkbox.style.cssText = 'margin:0; padding:0; flex-shrink:0;';
   checkbox.dataset.role = 'option-enabled';
   
-  const input = document.createElement('input');
-  input.type = 'text';
+    const input = document.createElement('textarea');
+  input.className = 'option-text-input';
+  input.rows = 1;
   input.placeholder = 'Option description';
   input.value = text;
-  input.style.cssText = 'flex:1; min-width:0;';
+  // Enter used to do nothing in the old single-line box; keep it that way so
+  // option text stays a single line of data even though it now wraps visually.
+  input.addEventListener('keydown', (e) => { if (e.key === 'Enter') e.preventDefault(); });
   
   const removeBtn = document.createElement('button');
   removeBtn.textContent = 'Remove';
@@ -7225,11 +7228,14 @@ function addStyleGroupOption(groupId, text = '', enabled = true) {
   checkbox.style.cssText = 'margin:0; padding:0; flex-shrink:0;';
   checkbox.dataset.role = 'option-enabled';
   
-  const input = document.createElement('input');
-  input.type = 'text';
+    const input = document.createElement('textarea');
+  input.className = 'option-text-input';
+  input.rows = 1;
   input.placeholder = 'Option description';
   input.value = text;
-  input.style.cssText = 'flex:1; min-width:0;';
+  // Enter used to do nothing in the old single-line box; keep it that way so
+  // option text stays a single line of data even though it now wraps visually.
+  input.addEventListener('keydown', (e) => { if (e.key === 'Enter') e.preventDefault(); });
   
   const removeBtn = document.createElement('button');
   removeBtn.textContent = 'Remove';
@@ -7246,7 +7252,7 @@ function collectStyleSingleOptions() {
   const items = list.querySelectorAll('.option-item');
   const options = [];
   items.forEach((div, index) => {
-    const input = div.querySelector('input[type="text"]');
+    const input = div.querySelector('.option-text-input');
     const checkbox = div.querySelector('input[type="checkbox"]');
     const text = input ? input.value.trim() : '';
     if (text) {
@@ -7267,7 +7273,7 @@ function collectStyleOptionGroups() {
     const optionDivs = group.querySelectorAll('[data-role="group-options"] .option-item');
     const options = [];
     optionDivs.forEach((div, index) => {
-      const input = div.querySelector('input[type="text"]');
+      const input = div.querySelector('.option-text-input');
       const checkbox = div.querySelector('input[type="checkbox"]');
       const text = input ? input.value.trim() : '';
       if (text) options.push({ id: String(index + 1).padStart(3, '0'), text, enabled: checkbox ? checkbox.checked : true });
@@ -7336,10 +7342,12 @@ function addSingleOption(text = '') {
   div.className = 'option-item';
   div.dataset.optionId = id;
   
-  const input = document.createElement('input');
-  input.type = 'text';
+  const input = document.createElement('textarea');
+  input.className = 'option-text-input';
+  input.rows = 1;
   input.placeholder = 'Option description (e.g., "Red background with blue text")';
   input.value = text;
+  input.addEventListener('keydown', (e) => { if (e.key === 'Enter') e.preventDefault(); });
   
   const removeBtn = document.createElement('button');
   removeBtn.textContent = 'Remove';
@@ -7411,10 +7419,12 @@ function addGroupOption(groupId, text = '') {
   const div = document.createElement('div');
   div.className = 'option-item';
   
-  const input = document.createElement('input');
-  input.type = 'text';
+  const input = document.createElement('textarea');
+  input.className = 'option-text-input';
+  input.rows = 1;
   input.placeholder = 'Option description';
   input.value = text;
+  input.addEventListener('keydown', (e) => { if (e.key === 'Enter') e.preventDefault(); });
   
   const removeBtn = document.createElement('button');
   removeBtn.textContent = 'Remove';
@@ -7428,7 +7438,7 @@ function addGroupOption(groupId, text = '') {
 // Collect single options from UI
 function collectSingleOptions() {
   const list = document.getElementById('single-options-list');
-  const items = list.querySelectorAll('.option-item input');
+  const items = list.querySelectorAll('.option-item .option-text-input');
   const options = [];
   
   items.forEach((input, index) => {
@@ -7456,7 +7466,7 @@ function collectOptionGroups() {
     
     if (!title) return; // Skip groups without title
     
-    const optionInputs = group.querySelectorAll('[data-role="group-options"] .option-item input');
+    const optionInputs = group.querySelectorAll('[data-role="group-options"] .option-item .option-text-input');
     const options = [];
     
     optionInputs.forEach((input, index) => {
