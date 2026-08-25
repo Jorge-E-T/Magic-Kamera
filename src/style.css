@@ -7471,9 +7471,13 @@ button, .touchable {
 }
 
 .option-item .option-text-input {
+    /* order:1 sends the text box below the checkbox/Remove row without having
+       to reorder the elements in JavaScript */
+    order: 1;
     flex: 1 0 100%;
     width: 100%;
     box-sizing: border-box;
+    margin-top: 2vw;
     min-height: 30vh;
     padding: 2vw;
     font-size: 5vw;
@@ -7496,13 +7500,10 @@ button, .touchable {
     box-shadow: 0 0 0 2px rgba(254, 95, 0, 0.2);
 }
 
-/* Remove stays on its own row under the text box, but pushed hard right so it
-   is nowhere near the next option's checkbox on the left. margin-top gives it
-   clearance from the box above (the rows have no gap), and the bigger bottom
-   margin separates one option from the next. */
+/* Remove sits on the top row, hard right, level with this option's own
+   checkbox — so it is nowhere near the NEXT option's checkbox below. */
 .option-item > button {
     margin-left: auto;
-    margin-top: 2vw;
 }
 
 .option-item {
