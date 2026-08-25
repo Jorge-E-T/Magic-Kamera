@@ -7140,7 +7140,7 @@ function renumberOptionItems(container) {
   if (!container) return;
   container.querySelectorAll(':scope > .option-item').forEach((item, i) => {
     const label = item.querySelector('.option-number');
-    if (label) label.textContent = 'Option ' + (i + 1);
+    if (label) label.textContent = 'OPTION ' + (i + 1);
   });
 }
 
