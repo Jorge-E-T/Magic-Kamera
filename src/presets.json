@@ -13154,6 +13154,21 @@
     "additionalInstructions": "FINAL RESULT:\nA stunning transformation into the unmistakable style of Leiji Matsumoto's character design as animated by Toei Animation for Daft Punk's Interstella 5555. The subject becomes an elegant, blue-skinned alien character with impossibly long limbs, large expressive eyes, and flowing hair, set against a dreamy retro-futuristic backdrop. The image captures the romantic, melancholic, and utterly unique aesthetic of early 2000s Japanese animation meeting 1970s space opera glamour, with the analog warmth and artistic detail that defined the Digital Love segment."
   },
   {
+    "name": "DIGITAL WORLD",
+    "category": [
+      "DIGITAL",
+      "FUTURISTIC",
+      "TECHNOLOGY",
+      "CYBER",
+      "SCIENCE FICTION",
+      "TRANSFORMATION"
+    ],
+    "message": "Take a picture and transform the ENTIRE IMAGE into a futuristic digital world in which the physical environment appears to have been constructed by computers, networks, data systems, digital displays, and interconnected technology.\n\nThe subject remains unchanged in identity and recognizable appearance, but must be physically integrated into the transformed digital world.\n\nTHIS IS A COMPLETE ENVIRONMENTAL TRANSFORMATION.\n\nThe result must NOT look like a digital filter has been placed over the original photograph. The subject must physically exist within the futuristic environment with matching lighting, reflections, shadows, perspective, atmospheric effects, and depth.\n\nEverything surrounding the subject should appear to be constructed from futuristic digital technology: enormous luminous screens, data interfaces, network structures, computational architecture, digital surfaces, glowing information systems, holographic-like displays, illuminated pathways, flowing data, and computer-generated infrastructure.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "DIGITAL WORLD TRANSFORMATION:\n\n• Transform the entire environment.\n• Replace ordinary architecture and environmental surfaces with futuristic digital structures.\n• Buildings may incorporate enormous seamless digital displays.\n• Roads and floors may contain illuminated computational patterns and flowing data.\n• Walls may function as giant digital interfaces.\n• Windows may become transparent information displays.\n• Environmental structures may incorporate networks of light and data.\n• Use interconnected lines, nodes, grids, interfaces, data streams, and computational patterns.\n• Incorporate the visual language of computers, networks, servers, digital communications, and the internet.\n• Use futuristic digital typography and interface elements sparingly and naturally.\n• Digital imagery should appear physically embedded into the environment rather than pasted over it.\n\nSUBJECT PRESERVATION:\n\n• Preserve the subject's exact recognizable identity.\n• Preserve facial structure.\n• Preserve facial features.\n• Preserve hairstyle.\n• Preserve body proportions.\n• Preserve clothing unless the master prompt specifies a transformation.\n• Do not turn the subject into a digital avatar.\n• Do not turn the subject into a hologram.\n• Do not pixelate the subject unless specifically requested.\n• Do not cover the subject with digital graphics.\n• The subject remains a real physical person existing inside the digital world.\n\nPHYSICAL INTEGRATION:\n\n• Match environmental lighting to the subject.\n• Cast realistic colored light from digital displays onto the subject.\n• Include accurate reflections where surfaces are reflective.\n• Include realistic shadows.\n• Maintain coherent perspective.\n• Maintain realistic atmospheric depth.\n• The subject must physically interact with the environment.\n• Avoid the appearance of a cut-and-paste composite.\n• Avoid obvious Photoshop-style edges around the subject.\n• The digital environment must surround and naturally illuminate the subject.\n\nVISUAL LANGUAGE:\n\n• Futuristic.\n• Highly technological.\n• Neon-infused but sophisticated.\n• Dense computational architecture.\n• Giant digital displays.\n• Network visualization.\n• Flowing data.\n• Computer-generated geometry.\n• Advanced interfaces.\n• Digital infrastructure.\n• Luminous information systems.\n• Deep spatial layering.\n• High visual detail.\n\nIMPORTANT NEGATIVE REQUIREMENTS:\n\n• Do NOT simply add neon lighting to the original photograph.\n• Do NOT apply a cyberpunk color filter.\n• Do NOT place random neon signs behind the subject while leaving the original environment intact.\n• Do NOT turn the subject into a hologram.\n• Do NOT turn the subject into a computer-generated character.\n• Do NOT make the subject look photoshopped into the environment.\n• Do NOT obscure the subject's identity with digital effects.\n• The WORLD changes; the subject's recognizable identity remains intact.\n\nMASTER PROMPT RULE:\n• Master prompt instructions always override conflicting instructions.\n• If the master prompt specifies a location, action, clothing, object, architecture, mood, camera angle, or composition, incorporate that information into the futuristic digital world.\n\nFINAL VALIDATION:\n✓ Entire environment has been transformed.\n✓ World appears constructed from futuristic digital technology.\n✓ Subject remains recognizable and physically present.\n✓ Subject does not look photoshopped into the scene.\n✓ Lighting and reflections integrate subject and environment.\n✓ Original environment is no longer simply visible underneath a digital filter.\n✓ Digital/network/computational imagery is present throughout the world.\n✓ Result looks like a coherent physical futuristic world rather than an overlay.\n✓ If ANY answer is NO, regenerate until every requirement is satisfied."
+  },
+  {
     "name": "DIGITIZED ARCADE SPRITE",
     "category": [
       "RETRO AESTHETIC",
@@ -17315,6 +17330,46 @@
     "options": [],
     "randomizeOptions": false,
     "additionalInstructions": ""
+  },
+  {
+    "name": "FEAR AND LOATHING",
+    "category": [
+      "PSYCHEDELIC",
+      "SURREAL",
+      "HALLUCINOGENIC",
+      "VISIONARY",
+      "TRANSFORMATION",
+      "OPTIONS"
+    ],
+    "message": "Take a picture and transform the ENTIRE IMAGE into an intensely surreal, distorted, hallucinatory visual experience inspired by the altered perception associated with psychedelic hallucinogens.\n\nThe selected option determines the hallucinogenic visual language used for the transformation.\n\nTHIS IS A COMPLETE VISUAL TRANSFORMATION.\nTHIS IS NOT A COLOR FILTER.\nTHIS IS NOT A SIMPLE PSYCHEDELIC OVERLAY.\n\nThe subject must remain recognizable while the entire visual environment, perspective, geometry, color, texture, scale, lighting, and spatial relationships are transformed into an extraordinary hallucination-like world.\n\nThe result should feel as though ordinary reality has become unstable, dreamlike, fluid, intensely patterned, visually distorted, and impossible while retaining enough of the original subject's identity to recognize who or what was photographed.",
+    "options": [
+    {
+      "id": "001",
+      "text": "LSD — Lysergic acid diethylamide visual experience: extreme geometric repetition, flowing surfaces, recursive patterns, impossible perspective, saturated color transitions, breathing architecture, trails, visual echoes, warped proportions, and objects appearing to melt or flow into one another."
+    },
+    {
+      "id": "002",
+      "text": "PSILOCYBIN — Psilocybin visual experience: organic fractal patterns, mushroom-like geometric structures, rapidly branching forms, breathing textures, flowing natural surfaces, intricate repeating patterns, intensified color, surreal facial distortions, and dreamlike organic transformations."
+    },
+    {
+      "id": "003",
+      "text": "MESCALINE — Mescaline visual experience: intensely detailed geometric ornamentation, elaborate symmetrical patterns, vivid crystalline structures, repeating motifs, heightened color separation, intricate textile-like geometry, and surreal architectural forms."
+    },
+    {
+      "id": "004",
+      "text": "DMT — N,N-Dimethyltryptamine visual experience: impossible multidimensional geometry, rapidly transforming structures, luminous fractal environments, nested realities, intricate repeating forms, extreme spatial distortion, and otherworldly visual complexity."
+    },
+    {
+      "id": "005",
+      "text": "SALVINORIN A — Salvinorin A visual experience: extreme spatial displacement, impossible perspective, duplicated environments, folded geometry, sliding planes, objects appearing simultaneously displaced and connected, and surreal transformations of ordinary surroundings."
+    },
+    {
+      "id": "006",
+      "text": "IBOGAINE — Ibogaine visual experience: dreamlike symbolic imagery, layered geometric structures, fragmented perception, unusual scale relationships, ghosted visual repetition, intricate patterns, and surreal transitions between recognizable reality and abstract imagery."
+    }
+    ],
+    "randomizeOptions": true,
+    "additionalInstructions": "FULL TRANSFORMATION:\n\n• Transform the entire image, not merely the colors.\n• Transform the subject AND environment while preserving recognizable subject identity.\n• Preserve the subject's essential facial identity and distinctive characteristics.\n• Preserve the fundamental subject pose unless the selected visual experience specifically distorts it.\n• Distort perspective, geometry, scale, texture, depth, and environmental structure.\n• Use multiple layers of visual transformation simultaneously.\n• Objects may appear to melt, stretch, duplicate, fold, breathe, ripple, fragment, or recursively repeat.\n• Use impossible spatial relationships.\n• Use visual trails and echoes where appropriate.\n• Use intense but coherent color relationships.\n• Avoid making the result look like a simple Instagram-style psychedelic filter.\n• Do not add drug paraphernalia unless explicitly requested by the master prompt.\n• The visual effect should communicate an altered perceptual state through the IMAGE ITSELF.\n\nMASTER PROMPT RULE:\n• Master prompt instructions always override conflicting instructions.\n• If the master prompt specifies a subject, location, action, pose, object, mood, or composition, preserve that information while transforming it through the selected hallucinogenic visual language.\n\nFINAL VALIDATION:\n✓ Entire image transformed.\n✓ Subject remains recognizable.\n✓ Hallucinatory visual language is unmistakable.\n✓ Perspective and spatial relationships have been substantially transformed.\n✓ Result is surreal rather than merely color-filtered.\n✓ Selected hallucinogen's visual language is clearly represented.\n✓ If ANY answer is NO, regenerate until every requirement is satisfied."
   },
   {
     "name": "FEATHER MOSAIC",
@@ -29559,23 +29614,23 @@
       "TERMINAL",
       "ART"
     ],
-    "message": "Take a picture and display it on a Minitel terminal — coarse character graphics glowing on a small monochrome tube behind slightly curved glass.",
+    "message": "Take a picture and transform the ENTIRE IMAGE into the visible SCREEN of a Minitel terminal. ONLY THE SCREEN CONTENT AND ITS SCREEN SURFACE may be visible in the final image.\n\nThe original subject and image must be completely reconstructed as coarse Minitel character-cell graphics displayed INSIDE the screen. The final image must look like a direct view of the Minitel display itself, not a photograph of a Minitel terminal.\n\nDO NOT SHOW THE Minitel COMPUTER, HOUSING, CASING, KEYBOARD, BUTTONS, STAND, BEZEL, FRAME, DESK, ROOM, OR ANY OTHER PART OF THE PHYSICAL TERMINAL.\n\nThe entire canvas is the Minitel screen. The screen fills the complete image edge-to-edge.",
     "options": [
-      {
-        "id": "001",
-        "text": "Coarse character-cell image glowing amber on a curved screen"
-      },
-      {
-        "id": "002",
-        "text": "Menu page with numbered options and a blinking cursor"
-      },
-      {
-        "id": "003",
-        "text": "Screen photographed at an angle showing the tube curvature"
-      }
+    {
+      "id": "001",
+      "text": "COARSE CHARACTER SCREEN — Transform the entire image into an extremely coarse Minitel character-cell representation with luminous monochrome phosphor graphics filling the entire screen."
+    },
+    {
+      "id": "002",
+      "text": "Minitel MENU SCREEN — Transform the entire image into a coarse Minitel-style character-cell screen resembling an old French videotex display, with the transformed subject rendered entirely through the low-resolution screen graphics."
+    },
+    {
+      "id": "003",
+      "text": "CURVED CRT SCREEN — Transform the entire image into the visible surface of a curved monochrome Minitel CRT display, with subtle glass reflections and phosphor glow while showing absolutely none of the surrounding terminal."
+    }
     ],
     "randomizeOptions": true,
-    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Character-cell resolution, extremely coarse\n• Phosphor glow with slight bloom\n• Screen curvature and reflections\n• Blinking block cursor present."
+    "additionalInstructions": "ABSOLUTE SCREEN-ONLY REQUIREMENT:\n\n• ONLY THE MINITEL SCREEN MAY BE VISIBLE.\n• The screen must fill 100% of the image.\n• Extend the screen all the way to every edge of the canvas.\n• The final image must NOT show the physical Minitel terminal.\n• Do NOT show the outer casing.\n• Do NOT show the bezel.\n• Do NOT show the frame.\n• Do NOT show the keyboard.\n• Do NOT show buttons.\n• Do NOT show a stand.\n• Do NOT show cables.\n• Do NOT show a desk or surrounding environment.\n• Do NOT show a photograph of a Minitel.\n• Do NOT place a Minitel screen inside another image.\n• The image itself IS the Minitel screen.\n\nIMAGE TRANSFORMATION:\n\n• Transform the ENTIRE original image into Minitel screen graphics.\n• The original subject must be represented entirely through the Minitel display's coarse character-cell graphics.\n• Do not merely place the original photograph onto a screen.\n• Do not preserve photographic detail outside the character-cell aesthetic.\n• Reconstruct all visible subject details using extremely low-resolution Minitel-style graphics.\n• The result must look as though the original image was rendered directly by a Minitel videotex system.\n\nMINITEL VISUAL CHARACTER:\n\n• Extremely low character-cell resolution.\n• Coarse block-based graphics.\n• Limited retro display appearance.\n• Monochrome phosphor-style presentation appropriate to the selected option.\n• Slight CRT curvature when appropriate.\n• Subtle phosphor bloom.\n• Subtle screen-glass reflection.\n• Mild CRT softness.\n• Visible pixel/character structure.\n• Authentic-looking early videotex limitations.\n• Keep the transformed subject recognizable despite the extremely coarse resolution.\n\nSCREEN SURFACE:\n\n• The screen may have subtle curved-glass characteristics.\n• Reflections must remain extremely subtle.\n• The screen surface must not obscure the transformed image.\n• No external objects may be reflected strongly enough to reveal a room or terminal.\n• The screen remains the entire composition.\n\nCURSOR:\n\n• A small block cursor may appear when appropriate to the selected option.\n• The cursor must remain part of the screen display.\n• Do not allow the cursor to become a dominant element.\n\nMASTER PROMPT RULE:\n• Master prompt instructions always override conflicting instructions EXCEPT the mandatory screen-only requirement.\n• If the master prompt specifies a subject, pose, setting, action, or composition, incorporate that information into the Minitel screen graphics.\n• Regardless of the master prompt, the final image must consist ONLY of the Minitel screen and its displayed graphics.\n\nFINAL VALIDATION:\n\n✓ The entire canvas is the Minitel screen.\n✓ The screen reaches all four edges of the image.\n✓ The original image has been completely transformed into Minitel graphics.\n✓ The subject is represented using coarse character-cell graphics.\n✓ No physical Minitel terminal is visible.\n✓ No casing is visible.\n✓ No bezel is visible.\n✓ No keyboard is visible.\n✓ No buttons are visible.\n✓ No desk or surrounding environment is visible.\n✓ No photograph of a terminal is visible.\n✓ The result looks like the image itself is being displayed by a Minitel screen.\n✓ If ANY answer is NO, regenerate until every requirement is satisfied."
   },
   {
     "name": "MIRROR IMAGE",
@@ -31752,6 +31807,38 @@
     }
     ],
     "additionalInstructions": "• Transform the entire image into painted mural artwork.\n• Nothing from the original photograph should remain except as interpreted paint.\n• Preserve the subject's exact identity, facial structure, expression, hairstyle, age, ethnicity, pose, and recognizable features.\n• Include authentic wall texture including brick, stucco, concrete, plaster, or other architectural materials appropriate to the selected option.\n• Paint must realistically follow cracks, mortar joints, rough surfaces, and imperfections.\n• Include authentic brush strokes, spray paint, roller marks, overspray, fading, weathering, drips, and paint layering where appropriate.\n• Maintain realistic perspective so the mural appears physically attached to the wall.\n• Avoid making the mural appear digitally composited.\n• The final image should resemble a genuine mural photographed on location.\n• Master prompt instructions always override the selected option whenever conflicts occur.\n\nFINAL VALIDATION:\n\n✓ The image is a genuine painted mural.\n✓ No photographic textures remain.\n✓ The subject remains recognizable.\n✓ Paint follows the physical wall texture.\n✓ The mural appears permanently painted onto the structure.\n✓ The artwork resembles a real public mural."
+  },
+  {
+    "name": "MUSCLE MAG",
+    "category": [
+      "FITNESS",
+      "BODYBUILDING",
+      "MAGAZINE",
+      "PORTRAIT",
+      "TRANSFORMATION",
+      "OPTIONS"
+    ],
+    "message": "Take a picture and transform the subject into the star of an authentic bodybuilding and fitness magazine cover.\n\nThe subject must be transformed into an elite physique athlete while remaining immediately recognizable as the original subject.\n\nThe degree of muscular transformation is determined by the selected option.\n\nThe finished image must look like a professionally photographed magazine cover featuring the transformed subject as its featured athlete.",
+    "options": [
+    {
+      "id": "001",
+      "text": "FITNESS MODEL — Athletic, lean, highly defined physique with visible muscular development, balanced proportions, low body fat, and polished professional fitness-model appearance."
+    },
+    {
+      "id": "002",
+      "text": "CLASSIC PHYSIQUE — Dramatically muscular classic-bodybuilding physique with broad shoulders, defined chest, arms, back, legs, narrow waist, pronounced symmetry, and highly developed but aesthetically balanced proportions."
+    },
+    {
+      "id": "003",
+      "text": "PRO BODYBUILDER — Extreme professional bodybuilding physique with enormous muscular development across the chest, shoulders, arms, back, legs, and torso, while maintaining believable human anatomy."
+    },
+    {
+      "id": "004",
+      "text": "OPEN CLASS MASS MONSTER — Maximum bodybuilding transformation: exceptionally massive muscular development throughout the entire body, extreme shoulder width, huge arms, enormous chest and back, massive legs, and extraordinarily developed musculature while remaining photorealistic."
+    }
+    ],
+    "randomizeOptions": true,
+    "additionalInstructions": "SUBJECT IDENTITY:\n\n• Preserve the subject's recognizable face and identity.\n• Preserve facial geometry, eyes, nose, mouth, jawline, hairstyle, and distinctive characteristics.\n• Do not replace the subject with a generic bodybuilder.\n• The subject's face must remain clearly recognizable.\n\nPHYSIQUE TRANSFORMATION:\n\n• Transform the ENTIRE BODY according to the selected muscularity level.\n• The muscular transformation must be obvious.\n• Increase muscle mass throughout the entire body rather than only enlarging the arms.\n• Shoulders, chest, back, arms, forearms, abdominals, glutes, thighs, calves, and supporting musculature must develop consistently.\n• Maintain coherent human anatomy.\n• Muscle development must correspond to the selected option.\n• Do not create inflatable-looking muscles.\n• Do not create disconnected muscle groups.\n• Do not leave the original body proportions unchanged.\n\nMAGAZINE PRESENTATION:\n\n• Create an authentic professional bodybuilding magazine cover composition.\n• Subject is the dominant cover athlete.\n• Professional studio or competition-style lighting.\n• Dramatic but realistic physique lighting.\n• Magazine-quality photography.\n• Include appropriate magazine-style graphic design and cover typography only when compatible with the master prompt.\n• Do not let graphics obscure the subject.\n• The subject must remain the visual focus.\n\nMASTER PROMPT RULE:\n• Master prompt instructions always override conflicting instructions.\n• If the master prompt specifies pose, clothing, setting, lighting, or composition, incorporate it while maintaining the selected physique transformation.\n\nFINAL VALIDATION:\n✓ Subject remains recognizable.\n✓ Selected level of muscularity is unmistakable.\n✓ Entire body is transformed consistently.\n✓ Anatomy remains believable.\n✓ Result resembles professional fitness/bodybuilding photography.\n✓ Subject appears as the featured magazine athlete.\n✓ If ANY answer is NO, regenerate until every requirement is satisfied."
   },
   {
     "name": "MUSEUM EXHIBIT",
@@ -38947,6 +39034,20 @@
   "additionalInstructions": "PHYSICAL RULES:\n\n• Apply radial motion blur from a single vanishing point\n• ALL streaks must radiate outward in straight lines from the center\n\nANTI-CHEAT RULES:\n• DO NOT overlay speed lines or graphics\n• Motion must come from stretching original pixels\n• NO directional blur that is not radial\n\nFAIL CONDITIONS:\n• No clear center point → FAIL\n• Looks like generic blur → FAIL\n• Multiple conflicting directions → FAIL\n\nQUALITY:\n• Clean radial streaks\n• Strong sense of motion\n• High detail retention near center"
   },
   {
+    "name": "RADIOACTIVE",
+    "category": [
+      "HUMOR",
+      "TRANSFORMATION",
+      "GLOW",
+      "PHOTOREALISTIC",
+      "COMEDY"
+    ],
+    "message": "Take a picture and transform ONLY the subject into a humorous glow-in-the-dark version of themselves, as though their body has become intensely luminous from fictional cartoon-like radioactivity.\n\nTHE ONLY EFFECT IS GLOW.\n\nThe subject remains the same recognizable person with the same face, identity, body, clothing, pose, and recognizable physical characteristics. The transformation is purely visual: the subject itself emits an exaggerated internal glow while remaining in the original environment.\n\nThe environment remains normally lit and unchanged. The subject should visibly glow against the ordinary environment, creating the humorous appearance of a person who has become glow-in-the-dark.\n\nThe effect should resemble a playful visual parody of radioactivity rather than a realistic radiation accident.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "ABSOLUTE GLOW-ONLY RULE:\n\n• The ONLY transformation effect is GLOW.\n• The subject must visibly emit light from their body.\n• The glow should appear to originate naturally from the subject itself.\n• Use luminous skin, hair, clothing edges, and body surfaces to create the glow.\n• The glow may be intense and exaggerated.\n• The subject may have a bright luminous appearance while remaining fully recognizable.\n• Maintain visible facial features and recognizable identity beneath the glow.\n• The glow should remain clearly visible even though the surrounding environment is normally lit.\n• The environment must NOT become radioactive-looking.\n• The background remains normally illuminated.\n• Preserve the original setting.\n• Preserve the original objects.\n• Preserve the original architecture.\n• Preserve the original lighting environment except for light naturally emitted by the glowing subject.\n\nSTRICTLY PROHIBITED:\n\n• NO sparks.\n• NO lightning.\n• NO electrical arcs.\n• NO radiation beams.\n• NO energy blasts.\n• NO smoke.\n• NO radioactive particles.\n• NO floating particles.\n• NO flames.\n• NO explosions.\n• NO radiation clouds.\n• NO radiation symbols.\n• NO warning signs.\n• NO radioactive barrels.\n• NO laboratory equipment unless already present in the original image.\n• NO hazmat suits.\n• NO Geiger counters.\n• NO glowing environmental objects.\n• NO radioactive contamination on the background.\n• NO green radiation mist.\n• NO environmental distortion.\n• NO sci-fi effects.\n• NO energy aura separate from the subject.\n• NO text or labels explaining the effect.\n\nSUBJECT PRESERVATION:\n\n• Preserve the subject's actual face and identity.\n• Preserve facial features.\n• Preserve hairstyle and hair color.\n• Preserve body proportions.\n• Preserve clothing.\n• Preserve pose.\n• Preserve accessories.\n• Preserve the subject's recognizable appearance.\n• Do not transform the subject into a monster.\n• Do not mutate the subject.\n• Do not add extra limbs or body parts.\n• Do not change the subject's anatomy.\n\nGLOW APPEARANCE:\n\n• The glow should be humorous and exaggerated.\n• The subject may have a luminous skin appearance similar to an extreme glow-in-the-dark object.\n• Brightness should visibly emanate from the subject.\n• Use soft luminous falloff immediately around the subject where physically appropriate.\n• The glow should remain attached to the subject rather than becoming a separate special effect.\n• The surrounding environment remains ordinary.\n• The contrast between the normally lit environment and the absurdly glowing subject creates the comedy.\n\nPHOTOREALISTIC REQUIREMENTS:\n\n• Photorealistic image.\n• Realistic skin texture beneath the luminous appearance.\n• Realistic clothing texture beneath the glow.\n• Realistic lighting interaction.\n• Realistic shadows and reflections where appropriate.\n• The subject must look physically present in the original environment.\n• Do not make the image look like a cartoon unless specifically requested by the master prompt.\n\nMASTER PROMPT RULE:\n• Master prompt instructions always override conflicting instructions EXCEPT the mandatory glow-only transformation.\n• If the master prompt specifies pose, clothing, expression, camera angle, or composition, incorporate it while maintaining the glow-only concept.\n\nFINAL VALIDATION:\n\n✓ The subject is the only transformed element.\n✓ The subject clearly glows.\n✓ The environment remains normally lit.\n✓ There are no sparks.\n✓ There are no radiation effects.\n✓ There are no signs or symbols.\n✓ There are no particles or smoke.\n✓ There are no energy effects.\n✓ The subject remains recognizable.\n✓ The subject's clothing and pose remain recognizable.\n✓ The effect is simply an exaggerated glow-in-the-dark appearance.\n✓ If ANY answer is NO, regenerate until every requirement is satisfied."
+  },
+  {
     "name": "RAGDOLL",
     "category": [
       "TOY",
@@ -39033,6 +39134,150 @@
     }
     ],
     "additionalInstructions": "• Transform ONLY the subject.\n• Keep the background completely unchanged.\n• Preserve the original environment, lighting, perspective, colors, shadows, and every background object exactly as photographed.\n• Completely discard the original subject before reconstruction.\n• Do NOT place ramen noodles over the original person.\n• Do NOT blend photographic textures with noodles.\n• Every visible part of the subject must be created entirely from real ramen noodles.\n• Preserve the subject's exact identity, facial structure, hairstyle, hair color, expression, age, ethnicity, body proportions, pose, silhouette, and recognizable features.\n• Facial features must emerge solely through intelligent arrangement of noodle strands.\n• Every noodle must remain recognizable as real ramen.\n• Preserve authentic curly noodle shapes, thickness, fried texture, bends, overlaps, and natural variation.\n• Never flatten noodles into simple lines or digital patterns.\n• Never create a smooth synthetic noodle texture.\n• Use realistic layering, twisting, stacking, and three-dimensional depth.\n• Noodle strands should cast realistic shadows and show physical volume.\n• Hair must be reconstructed entirely from ramen noodles using appropriate strand direction and density.\n• Clothing must also be rebuilt entirely from ramen noodles.\n• Use smaller noodle sections for detailed facial areas and larger noodle structures for broad shapes.\n• Include authentic imperfections such as broken strands, uneven curls, and varied noodle placement.\n• The finished artwork should look like a real handcrafted ramen noodle sculpture photographed after completion.\n• Master prompt instructions always override the selected option whenever conflicts occur.\n\nFINAL VALIDATION — Before producing the final image, verify ALL of the following:\n\n✓ ONLY the subject has been transformed.\n✓ The background remains completely unchanged.\n✓ No original photographic pixels remain on the subject.\n✓ The subject is entirely reconstructed from real ramen noodles.\n✓ Ramen noodles are not simply placed over the original subject.\n✓ Individual noodle strands remain clearly visible.\n✓ Noodle texture, shape, and three-dimensional structure are realistic.\n✓ The subject remains immediately recognizable.\n✓ The artwork resembles a genuine handcrafted ramen sculpture.\n✓ If ANY answer is NO, regenerate the image until every requirement is satisfied."
+  },
+  {
+    "name": "RANDOM ART MEDIUM",
+    "category": [
+      "ART",
+      "MEDIUM",
+      "RANDOM",
+      "TRANSFORMATION",
+      "CREATIVE",
+      "OPTIONS"
+    ],
+    "message": "Take a picture and completely recreate the entire image using a randomly selected artistic medium. The subject and every element of the environment must be physically and visually rendered through the selected medium. The result must look like a genuine artwork created using that medium rather than a photograph with an artistic filter.",
+  "options": [
+    {
+      "id": "001",
+      "text": "COMMON — Randomly select a recognizable artistic medium and recreate the entire image using it."
+    },
+    {
+      "id": "002",
+      "text": "OBSCURE — Randomly select a genuinely obscure, unusual, historical, experimental, or specialized artistic medium or technique and recreate the entire image using it."
+    }
+    ],
+    "randomizeOptions": true,
+    "additionalInstructions": "COMPLETE MEDIUM TRANSFORMATION:\n\n• Transform the entire image into artwork created using the selected medium.\n• The subject itself must be rendered using the medium.\n• The environment must also be rendered using the medium.\n• Do not simply apply an artistic filter.\n• Do not place the photograph onto a canvas or paper.\n• Do not leave photographic details intact underneath the artwork.\n• The selected medium must determine the marks, edges, textures, layering, color behavior, and surface appearance.\n\nMEDIUM FIDELITY:\n• Accurately reproduce the physical characteristics of the selected medium.\n• Preserve recognizable subject identity whenever compatible with the selected medium.\n\nOBSCURE OPTION:\n• Select a real medium or technique rather than an invented one.\n• Favor unusual historical and experimental methods.\n\nMASTER PROMPT RULE:\n• Master prompt instructions always override conflicting instructions except the mandatory artistic-medium transformation.\n• Incorporate master prompt information into the selected medium.\n\nFINAL VALIDATION:\n✓ The entire image is artwork created with the selected medium.\n✓ The subject is transformed into that medium.\n✓ The background is transformed too.\n✓ The result is not a filter over a photograph.\n✓ The selected medium is visually identifiable.\n✓ If ANY answer is NO, regenerate until every requirement is satisfied."
+  },
+  {
+    "name": "RANDOM ARTISTIC STYLE",
+    "category": [
+      "ART",
+      "ART HISTORY",
+      "EXPERIMENTAL",
+      "TRANSFORMATION",
+      "RANDOM",
+      "OPTIONS"
+    ],
+    "message": "Take a picture and completely transform the image into the randomly selected artistic style. The selected artistic style must control the visual treatment of the entire image rather than being added as an effect on top of the original image.\n\nThe original subject, objects, environment, composition, lighting, colors, textures, and visual details must all be reinterpreted through the selected artistic style so that the finished image genuinely looks as though it was created in that style.\n\nDo not simply apply a color filter, texture overlay, frame, border, or decorative effect. The IMAGE ITSELF must be transformed.",
+    "options": [
+    {
+      "id": "001",
+      "text": "COMMON — Take this picture and apply a completely random artistic style. Randomly select an established, recognizable artistic style or art movement from any period, region, medium, or tradition and transform the entire image into that style. The selection must be genuinely random and the resulting artwork must strongly embody the chosen style."
+    },
+    {
+      "id": "002",
+      "text": "OBSCURE — Pick a completely obscure historical or modern art movement at random and apply it to the entire image. Select an unusual, lesser-known, niche, regional, short-lived, experimental, or historically overlooked art movement rather than a famous mainstream style. The selected movement must be a real documented artistic movement or practice, not an invented style, and the transformation must strongly reproduce its distinctive visual characteristics."
+    }
+    ],
+    "randomizeOptions": true,
+    "additionalInstructions": "RANDOMIZATION REQUIREMENTS:\n\n• Randomly select ONE artistic style or movement for the chosen option.\n• Do not allow the same obvious styles to dominate repeated generations.\n• The random selection should span different historical periods, geographic regions, artistic traditions, media, and approaches.\n• The transformation must be substantially different depending on the selected style.\n\nCOMMON OPTION:\n\n• May select famous and recognizable movements.\n• Do not restrict the selection to painting.\n• Styles may come from painting, sculpture, printmaking, illustration, photography, graphic design, collage, textile art, conceptual art, digital art, or other established visual-art traditions.\n\nOBSCURE OPTION:\n\n• Deliberately favor genuinely obscure or lesser-known movements.\n• Prefer movements that are historically real but unlikely to be selected by a typical user.\n• Consider obscure regional movements, short-lived movements, minor avant-garde movements, niche modernist movements, experimental collectives, overlooked historical schools, and unusual artistic practices.\n• Do NOT simply select a famous movement and call it obscure.\n• Do NOT invent a fictional movement.\n• Do NOT combine several unrelated movements unless the selected movement itself historically incorporated that combination.\n• The selected movement should have identifiable characteristics that can be visually reproduced.\n\nFULL-IMAGE TRANSFORMATION:\n\n• Transform the entire image.\n• Transform the subject itself into the selected artistic style.\n• Transform the environment itself into the selected artistic style.\n• Transform objects and background elements into the selected artistic style.\n• Do not leave the original photograph intact underneath the artistic effect.\n• Do not merely add artistic textures over the photograph.\n• Do not create a framed artwork containing the original photograph.\n• Do not add a gallery wall, museum frame, canvas, easel, or presentation surface unless the selected artistic movement specifically requires it.\n• The finished image itself must be the artwork.\n\nSUBJECT PRESERVATION:\n\n• Preserve the subject's recognizable identity unless the selected artistic movement inherently requires substantial abstraction.\n• Preserve important recognizable facial features, silhouette, pose, clothing characteristics, and distinguishing details whenever compatible with the selected style.\n• Do not replace the subject with a generic person.\n• The artistic transformation should change HOW the subject is depicted, not arbitrarily replace WHO the subject is.\n\nSTYLE FIDELITY:\n\n• Identify the defining visual characteristics of the randomly selected movement before constructing the transformation.\n• Apply those characteristics consistently throughout the entire image.\n• Reproduce appropriate composition, line quality, color relationships, geometry, brushwork, mark-making, abstraction, texture, perspective, material appearance, and visual language associated with the selected movement.\n• Avoid generic 'artistic' rendering that does not clearly correspond to the selected movement.\n• The result should be recognizable as an intentional example of the selected artistic style.\n\nMASTER PROMPT RULE:\n• Master prompt instructions always override conflicting instructions except the mandatory random-artistic-style transformation.\n• If the master prompt specifies a subject, pose, setting, action, composition, color, or other visual requirement, incorporate that information into the randomly selected artistic style.\n• If the master prompt explicitly names an artistic style, use that style rather than selecting another random style.\n\nFINAL VALIDATION:\n\n✓ Exactly one artistic style or movement has been selected.\n✓ The selection is genuinely random.\n✓ The entire image has been transformed.\n✓ The subject itself has been transformed rather than merely having an effect placed over it.\n✓ The background and environment have also been transformed.\n✓ The result strongly reflects the selected artistic movement.\n✓ The Common option may use established well-known styles.\n✓ The Obscure option uses a genuinely obscure real artistic movement or practice.\n✓ The Obscure option does not invent a fictional movement.\n✓ The original photograph does not remain visibly intact underneath the artwork.\n✓ No unnecessary frame, border, museum display, or presentation surface has been added.\n✓ The subject remains recognizable when compatible with the selected style.\n✓ If ANY answer is NO, regenerate until every requirement is satisfied."
+  },
+  {
+    "name": "RANDOM CRAFT",
+    "category": [
+      "CRAFT",
+      "RANDOM",
+      "HANDMADE",
+      "TRANSFORMATION",
+      "ART",
+      "OPTIONS"
+    ],
+    "message": "Take a picture and completely reconstruct the ENTIRE IMAGE as a handmade craft using a randomly selected craft tradition or technique. The subject, background, environment, and every visible element must become part of the handmade craft itself. Do not merely add craft textures to the original photograph.",
+    "options": [
+    {
+      "id": "001",
+      "text": "COMMON — Randomly select a recognizable craft and reconstruct the entire image using it."
+    },
+    {
+      "id": "002",
+      "text": "OBSCURE — Randomly select a genuinely obscure historical, regional, traditional, or specialized craft technique and reconstruct the entire image using that craft."
+    }
+    ],
+    "randomizeOptions": true,
+    "additionalInstructions": "COMPLETE CRAFT TRANSFORMATION:\n\n• The ENTIRE image becomes the selected craft.\n• The subject itself must be constructed using the craft.\n• The background and environment must also be constructed using the craft.\n• Every visible element must participate in the handmade construction.\n• Do NOT simply photograph the original image and place a craft texture over it.\n• Do NOT place the subject on a craft background while leaving the subject photographic.\n• Do NOT create a framed craft containing the original photograph.\n\nHANDMADE APPEARANCE:\n• Preserve believable physical construction.\n• Show appropriate seams, cuts, joins, stitches, brush marks, pieces, fibers, grains, folds, or other characteristics appropriate to the selected craft.\n• Allow subtle handmade imperfections.\n• The craft must remain visually convincing rather than looking like CGI.\n\nOBSCURE OPTION:\n• Select a real craft tradition or technique.\n• Favor unusual regional, historical, endangered, specialized, or lesser-known crafts.\n• Do not invent a fictional craft.\n\nSUBJECT IDENTITY:\n• Preserve recognizable facial identity and important distinguishing characteristics whenever compatible with the craft.\n• Reconstruct those features using the selected craft rather than leaving the original face photographic.\n\nMASTER PROMPT RULE:\n• Master prompt instructions always override conflicting instructions except the mandatory complete craft transformation.\n\nFINAL VALIDATION:\n✓ The entire image is the selected craft.\n✓ The subject itself is made using the craft.\n✓ The environment is also made using the craft.\n✓ The result looks handmade.\n✓ The original photograph is not simply textured.\n✓ If ANY answer is NO, regenerate until every requirement is satisfied."
+  },
+  {
+    "name": "RANDOM PRINTING PROCESS",
+    "category": [
+      "PRINT",
+      "PRINTMAKING",
+      "RANDOM",
+      "TRANSFORMATION",
+      "ART",
+      "OPTIONS"
+    ],
+    "message": "Take a picture and completely transform the entire image into a print produced by a randomly selected printing or printmaking process. The subject and entire environment must be reconstructed according to the physical characteristics of the selected process. The final image must look like an authentic example of that printing process rather than a photograph with a print filter.",
+    "options": [
+    {
+      "id": "001",
+      "text": "COMMON — Randomly select a recognizable printing or printmaking process and recreate the entire image using it."
+    },
+    {
+      "id": "002",
+      "text": "OBSCURE — Randomly select a genuinely obscure historical, experimental, obsolete, regional, or specialized printing process and recreate the entire image as though it had actually been produced using that process."
+    }
+    ],
+    "randomizeOptions": true,
+    "additionalInstructions": "COMPLETE PRINT TRANSFORMATION:\n\n• Transform the ENTIRE image into the selected printing process.\n• The subject itself must be rendered through the printing process.\n• The background and environment must also be rendered through the process.\n• Do NOT simply apply a grain, paper texture, halftone filter, or color effect.\n• Do NOT leave the original photograph intact underneath the printing effect.\n• The final image must look like an actual physical print produced by the selected process.\n\nPROCESS FIDELITY:\n• Reproduce the characteristic marks, registration, ink behavior, impression, line quality, dot structure, layering, color separation, texture, and imperfections appropriate to the selected process.\n\nOBSCURE OPTION:\n• Select a real printing or printmaking process.\n• Favor unusual historical, obsolete, experimental, regional, or specialized processes.\n• Do not invent a fictional process.\n\nSUBJECT PRESERVATION:\n• Preserve recognizable subject identity whenever compatible with the selected printing process.\n• Reconstruct the subject's recognizable characteristics using the selected printing method.\n\nMASTER PROMPT RULE:\n• Master prompt instructions always override conflicting instructions except the mandatory complete printing-process transformation.\n• Incorporate master prompt information into the selected printing process.\n\nFINAL VALIDATION:\n✓ The entire image has been transformed into a print.\n✓ The subject itself is printed in the selected process.\n✓ The background is also transformed.\n✓ The physical characteristics of the process are clearly visible.\n✓ The result is not merely a photographic filter.\n✓ The original photograph is not visibly intact underneath the effect.\n✓ If ANY answer is NO, regenerate until every requirement is satisfied."
+  },
+  {
+    "name": "RANDOM MATERIAL",
+    "category": [
+      "MATERIAL",
+      "RANDOM",
+      "TRANSFORMATION",
+      "TEXTURE",
+      "ART",
+      "OPTIONS"
+    ],
+    "message": "Take a picture and completely reconstruct the ENTIRE IMAGE from a randomly selected material. The subject, background, environment, objects, surfaces, and every visible element must appear physically constructed from the selected material. The material is not an overlay or texture placed on the photograph — the image itself must be rebuilt from that material.",
+    "options": [
+    {
+      "id": "001",
+      "text": "COMMON — Randomly select a recognizable physical material and reconstruct the entire image from it."
+    },
+    {
+      "id": "002",
+      "text": "OBSCURE — Randomly select a genuinely unusual or uncommon physical material and reconstruct the entire image from it. The material must be real, visually distinctive, and capable of being represented convincingly."
+    }
+    ],
+    "randomizeOptions": true,
+    "additionalInstructions": "COMPLETE MATERIAL TRANSFORMATION:\n\n• EVERYTHING visible must be reconstructed from the selected material.\n• Transform the subject itself.\n• Transform the background itself.\n• Transform every visible object.\n• Transform surfaces, clothing, architecture, and environmental elements as appropriate.\n• Do NOT simply place a material texture over the original photograph.\n• Do NOT leave photographic subject details underneath the material.\n• The forms, shapes, shadows, highlights, edges, and surface characteristics must all behave as though physically made from the selected material.\n\nMATERIAL PHYSICS:\n• Accurately represent the selected material's characteristic weight, surface, reflectivity, translucency, roughness, grain, imperfections, thickness, and light interaction where applicable.\n• Do not give every material the same generic appearance.\n• The material should be immediately recognizable.\n\nOBSCURE MATERIAL:\n• Select a real unusual material rather than inventing one.\n• Favor materials with distinctive visual properties.\n\nMASTER PROMPT RULE:\n• Master prompt instructions always override conflicting instructions except the mandatory complete material transformation.\n• Incorporate master prompt subject, pose, composition, or setting information into the material reconstruction.\n\nFINAL VALIDATION:\n✓ The entire image has been reconstructed from the selected material.\n✓ The subject itself is made from the material.\n✓ The environment is also made from the material.\n✓ The material is physically convincing.\n✓ The original photograph has not simply been textured.\n✓ If ANY answer is NO, regenerate until every requirement is satisfied."
+  },
+  {
+    "name": "RANDOM PHOTOGRAPHY",
+    "category": [
+      "PHOTOGRAPHY",
+      "RANDOM",
+      "TRANSFORMATION",
+      "ART",
+      "EXPERIMENTAL",
+      "OPTIONS"
+    ],
+    "message": "Take a picture and completely transform the entire image into a randomly selected photographic style. The selected photographic style must determine how the subject, environment, composition, lighting, perspective, tonal treatment, texture, and photographic rendering appear. The result must look like the image was originally photographed using the selected photographic approach, not like a photographic effect or filter was placed over the original image.",
+    "options": [
+    {
+      "id": "001",
+      "text": "COMMON — Randomly select a recognizable photographic style, genre, technique, or established photographic approach and completely transform the image into it."
+    },
+    {
+      "id": "002",
+      "text": "OBSCURE — Randomly select a genuinely obscure historical or modern photographic process, technique, movement, genre, or experimental photographic approach and completely transform the image into it."
+    }
+    ],
+    "randomizeOptions": true,
+    "additionalInstructions": "FULL PHOTOGRAPHIC TRANSFORMATION:\n\n• Transform the ENTIRE image.\n• The subject itself must be transformed by the selected photographic approach.\n• Transform the background, environment, lighting, composition, tonal range, perspective, depth of field, texture, and photographic characteristics as appropriate.\n• Do NOT simply apply a color filter.\n• Do NOT add a photographic texture over the original photograph.\n• Do NOT leave the original photograph intact underneath an effect.\n• The finished image must look as though it was originally captured using the randomly selected photographic approach.\n\nCOMMON OPTION:\n• May select well-known photographic genres, movements, processes, or techniques.\n• Examples include documentary photography, fashion photography, street photography, studio portraiture, photojournalism, high-key photography, low-key photography, infrared photography, macro photography, long-exposure photography, architectural photography, cinematic photography, and other established approaches.\n\nOBSCURE OPTION:\n• Select a real but genuinely obscure photographic process, movement, technique, or historical approach.\n• Prefer unusual historical processes, experimental techniques, regional photographic movements, obsolete photographic technologies, and lesser-known photographic practices.\n• Do NOT invent a fictional photographic process.\n\nSUBJECT PRESERVATION:\n• Preserve the subject's recognizable identity.\n• Preserve important facial features and distinguishing characteristics.\n• Change the photographic treatment, not the identity of the subject.\n\nMASTER PROMPT RULE:\n• Master prompt instructions always override conflicting instructions except the mandatory random photographic transformation.\n• If the master prompt specifies pose, setting, lighting, composition, clothing, or other visual information, incorporate it into the selected photographic style.\n\nFINAL VALIDATION:\n✓ One photographic approach was randomly selected.\n✓ The entire image was transformed.\n✓ The result genuinely looks photographed using that approach.\n✓ The subject remains recognizable.\n✓ The result is not merely a filter or overlay.\n✓ If ANY answer is NO, regenerate until every requirement is satisfied."
   },
   {
     "name": "RANDOM PROFESSIONAL",
@@ -45131,6 +45376,151 @@
     "additionalInstructions": ""
   },
   {
+    "name": "STRIKE A POSE",
+    "category": [
+      "HUMOR",
+      "FITNESS",
+      "BODYBUILDING",
+      "WRESTLING",
+      "POSE",
+      "TRANSFORMATION",
+      "OPTIONS"
+    ],
+    "message": "Take a picture and transform ONLY the subject's pose into the selected famous muscle or wrestling pose while preserving the subject's exact identity, appearance, clothing, body, and the original background.\n\nTHIS IS A POSE TRANSFORMATION ONLY.\n\nThe subject must remain the SAME PERSON with the SAME FACE, SAME BODY, SAME HAIR, SAME CLOTHING, and SAME recognizable physical characteristics. The ONLY intentional transformation is the subject's body position and pose.\n\nThe original background must remain unchanged.\n\nThe selected pose should be immediately recognizable as the famous muscle or wrestling pose being referenced. Reposition the subject's arms, hands, legs, torso, shoulders, head, and body orientation as necessary to accurately reproduce the selected pose while keeping the subject themselves unchanged.",
+    "options": [
+    {
+      "id": "001",
+      "text": "FRONT DOUBLE BICEPS — Classic bodybuilding pose facing forward with both arms raised and flexed symmetrically, fists near head level, elbows outward, displaying the classic double-biceps silhouette."
+    },
+    {
+      "id": "002",
+      "text": "SIDE CHEST — Classic bodybuilding side-chest pose with the torso turned sideways, chest expanded, one arm flexed across the body, and the other arm positioned to emphasize the chest and upper body."
+    },
+    {
+      "id": "003",
+      "text": "SIDE TRICEPS — Classic bodybuilding pose with the subject turned sideways, one arm extended downward and flexed while the opposite hand positions the arm to emphasize the triceps."
+    },
+    {
+      "id": "004",
+      "text": "MOST MUSCULAR — Aggressive classic bodybuilding stance with the subject leaning slightly forward, shoulders raised, arms brought inward, fists clenched, and body compressed into a powerful symmetrical pose."
+    },
+    {
+      "id": "005",
+      "text": "LAT SPREAD — Front-facing bodybuilding pose with both arms positioned outward and slightly forward, shoulders expanded and elbows angled to create the characteristic wide upper-body silhouette."
+    },
+    {
+      "id": "006",
+      "text": "REAR DOUBLE BICEPS — Subject facing away from the camera with both arms raised and flexed, elbows outward, displaying the classic rear double-biceps pose while preserving the subject's recognizable hair, clothing, and body."
+    },
+    {
+      "id": "007",
+      "text": "ABS AND THIGHS — Classic bodybuilding pose with both arms raised behind or beside the head, torso tightened, abdominal area emphasized, and one leg positioned forward to create the traditional competition silhouette."
+    },
+    {
+      "id": "008",
+      "text": "VACUUM POSE — Classic physique pose with the subject standing upright, arms positioned strategically, shoulders raised, and abdomen dramatically drawn inward to create the distinctive vacuum silhouette."
+    },
+    {
+      "id": "009",
+      "text": "ARNOLD-STYLE BICEPS — Dramatic classic bodybuilding stance with one arm raised and flexed while the other arm is positioned naturally to create an iconic old-school bodybuilding silhouette."
+    },
+    {
+      "id": "010",
+      "text": "FRONT MOST MUSCULAR — Subject faces the camera in a powerful stance with both fists brought inward near the waist or torso, shoulders raised, elbows outward, and an intense flexing posture."
+    },
+    {
+      "id": "011",
+      "text": "WRESTLING VICTORY POSE — Subject stands triumphantly with both arms raised overhead, fists clenched, chest forward, and an unmistakable professional-wrestling victory stance."
+    },
+    {
+      "id": "012",
+      "text": "WRESTLER FLEX — Subject strikes an exaggerated professional-wrestling flex with both arms bent and fists clenched, shoulders raised, chest forward, and an intense confident expression."
+    },
+    {
+      "id": "013",
+      "text": "CHAMPIONSHIP POSE — Subject stands with feet planted apart, one arm raised overhead as though celebrating a championship victory and the other arm flexed confidently."
+    },
+    {
+      "id": "014",
+      "text": "WRESTLING THREAT POSE — Subject leans forward slightly with fists clenched, elbows bent, shoulders squared, chest forward, and an intimidating professional-wrestling stance."
+    },
+    {
+      "id": "015",
+      "text": "WRESTLING CROUCH — Subject drops into a low athletic wrestling stance with knees bent, torso forward, arms positioned defensively, and body ready to charge."
+    },
+    {
+      "id": "016",
+      "text": "WRESTLER ROPE POSE — Subject leans backward dramatically against an implied wrestling-rope stance, chest raised, arms extended or gripping outward, creating an exaggerated arena-style wrestling pose."
+    },
+    {
+      "id": "017",
+      "text": "WRESTLING DOUBLE BICEPS — Subject combines a classic double-biceps bodybuilding flex with an exaggerated professional-wrestling presentation and confident championship stance."
+    },
+    {
+      "id": "018",
+      "text": "WRESTLING CHEST FLEX — Subject stands squarely toward the camera with arms bent, fists near the torso, shoulders raised, chest pushed forward, and an exaggerated wrestler's flex."
+    },
+    {
+      "id": "019",
+      "text": "POWER STANCE — Subject stands with legs spread apart, knees slightly bent, fists clenched at the sides, shoulders squared, chest forward, and an unmistakable larger-than-life wrestling entrance pose."
+    },
+    {
+      "id": "020",
+      "text": "TRIUMPHANT POINT — Subject strikes a dramatic wrestling victory pose while pointing upward with one arm and flexing or raising the opposite arm."
+    },
+    {
+      "id": "021",
+      "text": "FOUR-POINT FLEX — Subject creates a symmetrical bodybuilding-style pose with both arms bent outward and both legs positioned deliberately to create a powerful competition silhouette."
+    },
+    {
+      "id": "022",
+      "text": "SIDE BICEPS — Subject turns partially sideways and flexes one bicep dramatically toward the camera while keeping the torso and legs in a classic bodybuilding stance."
+    },
+    {
+      "id": "023",
+      "text": "CLASSIC FRONT POSE — Subject stands upright in a classic physique competition stance with one leg slightly forward, torso angled subtly, arms positioned naturally, and the entire silhouette emphasizing symmetry."
+    },
+    {
+      "id": "024",
+      "text": "WRESTLING ENTRANCE POSE — Subject stands in an exaggerated professional-wrestling entrance stance with legs apart, shoulders back, chest forward, and arms positioned dramatically as though introducing themselves to an arena."
+    },
+    {
+      "id": "025",
+      "text": "FIST-UP FLEX — Subject raises one clenched fist overhead while flexing the opposite arm, creating a powerful combination of bodybuilding and wrestling celebration."
+    },
+    {
+      "id": "026",
+      "text": "DOUBLE FIST FLEX — Subject bends both arms with fists clenched near shoulder height, shoulders raised and chest forward, creating an exaggerated powerful muscle pose."
+    },
+    {
+      "id": "027",
+      "text": "BACK LAT SPREAD — Subject faces away from the camera with arms positioned outward and slightly forward to emphasize the broad-back silhouette of a classic bodybuilding lat spread."
+    },
+    {
+      "id": "028",
+      "text": "ONE-ARM OVERHEAD FLEX — Subject raises one arm overhead and flexes the bicep while the other arm rests at the waist or hip, creating a classic physique-model pose."
+    },
+    {
+      "id": "029",
+      "text": "CHAMPION FLEX — Subject stands upright with both arms flexed, chest forward, shoulders back, fists clenched, and an unmistakable victorious champion pose."
+    },
+    {
+      "id": "030",
+      "text": "ULTIMATE POWER POSE — Subject combines the visual language of an elite bodybuilding pose and an exaggerated professional-wrestling victory stance: legs planted wide, torso forward, shoulders raised, both arms dramatically flexed, fists clenched, and an unmistakable larger-than-life pose."
+    },
+    {
+      "id": "031",
+      "text": "ONE-ARM OUTSIDE FLEX — Subject performs the iconic classic wrestling muscle pose with ONE ARM extended straight outward to the side at approximately shoulder height, palm or fist presented outward, while the OTHER ARM is bent sharply at the elbow and flexed beside the torso. The two arms must clearly form contrasting positions: one long and extended sideways, the other tightly flexed. The pose should have the unmistakable confident, exaggerated presentation of a legendary professional wrestler showing off his physique."
+    },
+    {
+      "id": "032",
+      "text": "EAR CUP — Subject performs the iconic wrestling crowd-hyping pose: ONE HAND is placed behind or beside the corresponding ear with the palm facing outward as though cupping the ear to hear the audience, while the opposite arm hangs naturally or is positioned confidently at the side. The subject's head is turned slightly toward the cupped hand and the body language clearly communicates 'I can't hear you!' and invites the imaginary crowd to become louder. The hand must be anatomically correct and clearly visible beside the ear."
+    }
+    ],
+    "randomizeOptions": true,
+    "additionalInstructions": "ABSOLUTE SUBJECT PRESERVATION:\n\n• Transform ONLY the subject's pose.\n• Preserve the subject's actual face exactly.\n• Preserve facial identity and recognizable facial features.\n• Preserve hairstyle and hair color.\n• Preserve body size, body shape, muscle mass, weight, height, and physical proportions.\n• Do NOT make the subject more muscular.\n• Do NOT make the subject thinner, heavier, younger, older, taller, or shorter.\n• Do NOT turn the subject into a bodybuilder or professional wrestler.\n• Do NOT replace the subject with an athlete.\n• Do NOT change the subject's clothing.\n• Do NOT change clothing colors, patterns, logos, or accessories.\n• Do NOT add wrestling gear, bodybuilding trunks, championship belts, or athletic clothing unless explicitly requested by the master prompt.\n• The subject remains the same person wearing the same clothes.\n\nPOSE TRANSFORMATION:\n\n• The selected option controls the pose ONLY.\n• Accurately reposition the subject's arms, hands, legs, torso, shoulders, head, and body orientation to reproduce the selected pose.\n• Hands and fingers must be anatomically correct.\n• Arms and legs must connect naturally to the subject's existing body.\n• Do not distort or duplicate limbs.\n• Do not add extra arms, legs, hands, or fingers.\n• Preserve the subject's existing body proportions while changing its position.\n• The pose must be physically plausible.\n• If the selected pose normally requires a body orientation different from the source image, rotate and reposition the subject naturally while preserving identity and appearance.\n\nSPECIAL POSE ACCURACY — OPTIONS 031 AND 032:\n\n• For ONE-ARM OUTSIDE FLEX, one arm MUST be clearly extended outward to the side while the opposite arm MUST be clearly bent and flexed.\n• Do not make both arms flexed.\n• Do not make both arms extended.\n• The contrast between the two arm positions is essential to the pose.\n• For EAR CUP, one hand MUST visibly cup the ear with the palm facing outward.\n• The hand must be beside the ear rather than covering the face.\n• The opposite arm must remain separate and naturally positioned.\n• Do not replace the ear-cup hand with a fist, wave, pointing gesture, or generic hand gesture.\n• The selected pose must be immediately recognizable from the silhouette and hand positioning alone.\n\nBACKGROUND PRESERVATION:\n\n• The ORIGINAL BACKGROUND MUST REMAIN UNCHANGED.\n• Do not replace the location.\n• Do not add an arena.\n• Do not add a gym.\n• Do not add a wrestling ring.\n• Do not add bodybuilding stage lighting.\n• Do not add crowds or spectators.\n• Do not add props.\n• Do not add visual effects.\n• Do not change architecture, scenery, furniture, vehicles, objects, or environmental details.\n• Preserve the original background exactly except for natural occlusion caused by the subject's new pose.\n\nPHYSICAL INTEGRATION:\n\n• The repositioned subject must remain physically grounded in the original environment.\n• Preserve realistic contact with the floor or other surfaces.\n• Maintain correct perspective.\n• Maintain realistic lighting and shadows from the original scene.\n• Maintain the original camera viewpoint.\n• The new pose must look as though the subject actually performed it while being photographed in the original location.\n• Do not make the subject look pasted into the image.\n\nMASTER PROMPT RULE:\n• Master prompt instructions always override conflicting instructions EXCEPT the mandatory pose-only transformation and background-preservation requirements.\n• If the master prompt specifies a particular pose, expression, camera angle, action, or composition, incorporate that information while preserving the subject's identity, appearance, clothing, body proportions, and original background.\n\nFINAL VALIDATION:\n\n✓ Only the subject's pose has changed.\n✓ Subject remains the exact same recognizable person.\n✓ Face remains unchanged and recognizable.\n✓ Body proportions remain unchanged.\n✓ Clothing remains unchanged.\n✓ No additional muscles have been added.\n✓ Selected pose is clearly recognizable.\n✓ Hands and limbs are anatomically correct.\n✓ One-arm-outside-flex option has one arm extended and the opposite arm flexed.\n✓ Ear-cup option has one hand clearly cupping the ear.\n✓ Original background remains unchanged.\n✓ No new props or environments have been introduced.\n✓ Subject appears physically present in the original scene.\n✓ If ANY answer is NO, regenerate until every requirement is satisfied."
+  },
+  {
     "name": "STRING ART",
     "category": [
       "CRAFT",
@@ -48721,6 +49111,158 @@
     ],
     "randomizeOptions": true,
     "additionalInstructions": "FINAL RESULT:\nThe final image must convincingly recreate the specific lighting conditions of the selected time of day — not just a color filter but authentic directional lighting, shadow behavior, and atmospheric quality. The subject must be clearly recognizable under the transformed lighting conditions."
+  },
+  {
+    "name": "TIME MACHINE",
+    "category": [
+      "TIME TRAVEL",
+      "HISTORY",
+      "FUTURE",
+      "TRANSFORMATION",
+      "OPTIONS",
+      "PERIOD"
+    ],
+    "message": "Take a picture and transport the entire visible image into the selected century or historical era. The subject must remain the same recognizable person, while EVERYTHING ELSE visible in the scene is completely transformed into the historically appropriate or plausibly futuristic equivalent for the selected period.\n\nTHIS IS A COMPLETE SCENE TRANSFORMATION.\n\nDo NOT merely dress the subject in period clothing. The entire visible environment must belong to the selected time period.\n\nReplace every visible modern or incompatible element with an appropriate equivalent from the selected century or era, including buildings, architecture, streets, roads, vehicles, transportation, furniture, tools, technology, objects, infrastructure, clothing, signage, lighting, materials, and other environmental details.\n\nThe subject remains the same recognizable person and must be naturally integrated into the transformed historical or future environment.\n\nFor historical periods, use historically appropriate objects, architecture, materials, technology, transportation, clothing, and environmental details. Do not introduce objects that did not exist during the selected period.\n\nFor future periods, create realistic, plausible technological replacements based on credible extrapolation from existing technology rather than fantasy technology.",
+    "options": [
+    {
+      "id": "001",
+      "text": "20TH CENTURY — EARLY 1900s: Transform the entire scene into the early 20th century, approximately 1900–1910. Replace all visible modern elements with historically appropriate architecture, transportation, clothing, streets, technology, furniture, lighting, and objects from the early 1900s."
+    },
+    {
+      "id": "002",
+      "text": "19TH CENTURY — 1800s: Transform the entire scene into the 19th century with historically appropriate Victorian-era architecture, horse-drawn transportation, clothing, streets, technology, furniture, tools, lighting, and objects."
+    },
+    {
+      "id": "003",
+      "text": "18TH CENTURY — 1700s: Transform the entire scene into the 1700s with historically appropriate architecture, transportation, clothing, tools, furniture, lighting, technology, and everyday objects."
+    },
+    {
+      "id": "004",
+      "text": "17TH CENTURY — 1600s: Transform the entire scene into the 1600s using historically appropriate architecture, transportation, clothing, tools, furniture, lighting, technology, and objects."
+    },
+    {
+      "id": "005",
+      "text": "16TH CENTURY — 1500s: Transform the entire scene into the 1500s using historically appropriate Renaissance-era architecture, transportation, clothing, tools, furniture, lighting, technology, and objects."
+    },
+    {
+      "id": "006",
+      "text": "15TH CENTURY — 1400s: Transform the entire scene into the 1400s using historically appropriate late-medieval and early-Renaissance architecture, transportation, clothing, tools, furniture, lighting, and objects."
+    },
+    {
+      "id": "007",
+      "text": "14TH CENTURY — 1300s: Transform the entire scene into the 1300s using historically appropriate medieval architecture, transportation, clothing, tools, furniture, lighting, and objects."
+    },
+    {
+      "id": "008",
+      "text": "13TH CENTURY — 1200s: Transform the entire scene into the 1200s using historically appropriate medieval architecture, transportation, clothing, tools, furniture, transportation, lighting, and objects."
+    },
+    {
+      "id": "009",
+      "text": "12TH CENTURY — 1100s: Transform the entire scene into the 1100s using historically appropriate medieval architecture, transportation, clothing, tools, furniture, lighting, and objects."
+    },
+    {
+      "id": "010",
+      "text": "11TH CENTURY — 1000s: Transform the entire scene into the 1000s using historically appropriate medieval architecture, transportation, clothing, tools, furniture, lighting, and objects."
+    },
+    {
+      "id": "011",
+      "text": "10TH CENTURY — 900s: Transform the entire scene into the 900s using historically appropriate early-medieval architecture, transportation, clothing, tools, furniture, lighting, and objects."
+    },
+    {
+      "id": "012",
+      "text": "9TH CENTURY — 800s: Transform the entire scene into the 800s using historically appropriate early-medieval architecture, transportation, clothing, tools, furniture, lighting, and objects."
+    },
+    {
+      "id": "013",
+      "text": "8TH CENTURY — 700s: Transform the entire scene into the 700s using historically appropriate early-medieval architecture, transportation, clothing, tools, furniture, lighting, and objects."
+    },
+    {
+      "id": "014",
+      "text": "7TH CENTURY — 600s: Transform the entire scene into the 600s using historically appropriate early-medieval architecture, transportation, clothing, tools, furniture, lighting, and objects."
+    },
+    {
+      "id": "015",
+      "text": "6TH CENTURY — 500s: Transform the entire scene into the 500s using historically appropriate Late Antiquity and early-medieval architecture, transportation, clothing, tools, furniture, lighting, and objects."
+    },
+    {
+      "id": "016",
+      "text": "5TH CENTURY — 400s: Transform the entire scene into the 400s using historically appropriate Late Roman and Late Antiquity architecture, transportation, clothing, tools, furniture, lighting, and objects."
+    },
+    {
+      "id": "017",
+      "text": "4TH CENTURY — 300s: Transform the entire scene into the 300s using historically appropriate Late Roman-era architecture, transportation, clothing, tools, furniture, lighting, and objects."
+    },
+    {
+      "id": "018",
+      "text": "3RD CENTURY — 200s: Transform the entire scene into the 200s using historically appropriate Roman-era architecture, transportation, clothing, tools, furniture, lighting, and objects."
+    },
+    {
+      "id": "019",
+      "text": "2ND CENTURY — 100s: Transform the entire scene into the 100s using historically appropriate Roman-era architecture, transportation, clothing, tools, furniture, lighting, and objects."
+    },
+    {
+      "id": "020",
+      "text": "1ST CENTURY — 1–100 AD: Transform the entire scene into the 1st century AD using historically appropriate Roman-era or other regionally appropriate ancient architecture, transportation, clothing, tools, furniture, lighting, and objects."
+    },
+    {
+      "id": "021",
+      "text": "1ST CENTURY BC — 100–1 BC: Transform the entire scene into the late 1st century BC using historically appropriate ancient architecture, transportation, clothing, tools, furniture, lighting, and objects."
+    },
+    {
+      "id": "022",
+      "text": "2ND CENTURY BC — 200–101 BC: Transform the entire scene into the 2nd century BC using historically appropriate ancient architecture, transportation, clothing, tools, furniture, lighting, and objects."
+    },
+    {
+      "id": "023",
+      "text": "3RD CENTURY BC — 300–201 BC: Transform the entire scene into the 3rd century BC using historically appropriate ancient architecture, transportation, clothing, tools, furniture, lighting, and objects."
+    },
+    {
+      "id": "024",
+      "text": "4TH CENTURY BC — 400–301 BC: Transform the entire scene into the 4th century BC using historically appropriate ancient architecture, transportation, clothing, tools, furniture, lighting, and objects."
+    },
+    {
+      "id": "025",
+      "text": "5TH CENTURY BC — 500–401 BC: Transform the entire scene into the 5th century BC using historically appropriate ancient architecture, transportation, clothing, tools, furniture, lighting, and objects."
+    },
+    {
+      "id": "026",
+      "text": "6TH CENTURY BC — 600–501 BC: Transform the entire scene into the 6th century BC using historically appropriate ancient architecture, transportation, clothing, tools, furniture, lighting, and objects."
+    },
+    {
+      "id": "027",
+      "text": "7TH CENTURY BC — 700–601 BC: Transform the entire scene into the 7th century BC using historically appropriate ancient architecture, transportation, clothing, tools, furniture, lighting, and objects."
+    },
+    {
+      "id": "028",
+      "text": "8TH CENTURY BC — 800–701 BC: Transform the entire scene into the 8th century BC using historically appropriate ancient architecture, transportation, clothing, tools, furniture, lighting, and objects."
+    },
+    {
+      "id": "029",
+      "text": "9TH CENTURY BC — 900–801 BC: Transform the entire scene into the 9th century BC using historically appropriate ancient architecture, transportation, clothing, tools, furniture, lighting, and objects."
+    },
+    {
+      "id": "030",
+      "text": "10TH CENTURY BC — 1000–901 BC: Transform the entire scene into the 10th century BC using historically appropriate Bronze Age or regionally appropriate ancient architecture, transportation, clothing, tools, furniture, lighting, and objects."
+    },
+    {
+      "id": "031",
+      "text": "PREHISTORIC — BEFORE WRITTEN HISTORY: Transform the entire scene into a prehistoric environment appropriate to early human civilization, replacing every visible modern element with plausible prehistoric equivalents, including natural surroundings, shelters, clothing, tools, transportation, materials, and objects."
+    },
+    {
+      "id": "032",
+      "text": "22ND CENTURY — 2100s: Transform the entire scene into a plausible early-22nd-century future. Replace every visible object, vehicle, building, technology, infrastructure, clothing item, and environmental element with realistic technological successors based on credible advances in robotics, transportation, materials, energy, computing, communications, architecture, and manufacturing."
+    },
+    {
+      "id": "033",
+      "text": "23RD CENTURY — 2200s: Transform the entire scene into a plausible 23rd-century future. Replace everything visible with realistic, technologically advanced successors that could reasonably emerge from continued scientific and engineering development. Avoid fantasy technology."
+    },
+    {
+      "id": "034",
+      "text": "24TH CENTURY — 2300s: Transform the entire scene into a plausible 24th-century future with highly advanced but scientifically grounded replacements for visible vehicles, buildings, infrastructure, technology, clothing, objects, and environmental systems. Avoid magical or impossible technology."
+    }
+    ],
+    "randomizeOptions": true,
+    "additionalInstructions": "COMPLETE TIME TRANSFORMATION:\n\n• Transform the ENTIRE VISIBLE SCENE into the selected century or era.\n• Do not transform only the subject.\n• Do not simply change the subject's clothing.\n• Every visible incompatible object must be replaced with a period-appropriate equivalent.\n• Replace buildings and architecture.\n• Replace streets and roads.\n• Replace vehicles and transportation.\n• Replace furniture.\n• Replace tools and equipment.\n• Replace technology.\n• Replace lighting systems.\n• Replace infrastructure.\n• Replace clothing when necessary.\n• Replace signs and other visible modern elements with period-appropriate equivalents.\n• Replace materials and construction methods when appropriate.\n• Preserve the original composition and general placement of the subject whenever possible.\n\nSUBJECT PRESERVATION:\n\n• Preserve the subject's recognizable facial identity.\n• Preserve the subject's distinctive facial features.\n• Keep the subject recognizable as the same person.\n• Naturally integrate the subject into the selected period.\n• The subject may receive historically appropriate clothing when required by the selected period, but the person's identity must remain unchanged.\n\nHISTORICAL ACCURACY:\n\n• Use objects and technology appropriate to the selected century.\n• Do not mix centuries.\n• Do not introduce modern objects into historical options.\n• Avoid anachronisms.\n• Use historically plausible architecture, transportation, materials, clothing, tools, and technology.\n• For prehistoric scenes, use plausible prehistoric environments and technology appropriate to the chosen interpretation.\n\nFUTURE ACCURACY:\n\n• Future options must be plausible extrapolations rather than fantasy.\n• Replace existing objects with credible technological successors.\n• Do not automatically introduce flying cars, teleportation, aliens, magical holograms, or impossible technology.\n• Future architecture, transportation, computing, energy, materials, and communications should appear technologically advanced but physically plausible.\n\nMASTER PROMPT RULE:\n• Master prompt instructions always override conflicting instructions except the mandatory complete-time-transformation requirement.\n• If the master prompt specifies a subject pose, action, composition, or setting, preserve that information while converting the surrounding scene into the selected period.\n\nFINAL VALIDATION:\n\n✓ The selected century or era is immediately apparent.\n✓ The entire visible scene has been transformed.\n✓ Modern elements have not been left behind in historical options.\n✓ Objects and structures are appropriate to the selected period.\n✓ No obvious anachronisms remain.\n✓ Future options use plausible technological replacements.\n✓ The subject remains recognizable.\n✓ The subject is naturally integrated into the transformed scene.\n✓ If ANY answer is NO, regenerate until every requirement is satisfied."
   },
   {
     "name": "TIME TRAVELER",
