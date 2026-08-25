@@ -7495,3 +7495,16 @@ button, .touchable {
     border-color: #FE5F00;
     box-shadow: 0 0 0 2px rgba(254, 95, 0, 0.2);
 }
+
+/* Remove stays on its own row under the text box, but pushed hard right so it
+   is nowhere near the next option's checkbox on the left. margin-top gives it
+   clearance from the box above (the rows have no gap), and the bigger bottom
+   margin separates one option from the next. */
+.option-item > button {
+    margin-left: auto;
+    margin-top: 2vw;
+}
+
+.option-item {
+    margin-bottom: 5vw;
+}
