@@ -7460,3 +7460,38 @@ button, .touchable {
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
+/* ===== PRESET EDITOR: option boxes match the message box ===== */
+/* They used to be single-line <input>s, so long option wording ran off the
+   side and could not be read. They are textareas now, sized and styled to
+   match #style-message, and they sit on their own full-width row. */
+.option-item {
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.option-item .option-text-input {
+    flex: 1 0 100%;
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 30vh;
+    padding: 2vw;
+    font-size: 5vw;
+    background-color: #2a2a2a;
+    color: #fff;
+    border: 2px solid #444;
+    border-radius: 2vw;
+    font-family: inherit;
+    transition: border-color 0.2s ease;
+    resize: none;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.option-item .option-text-input:focus {
+    outline: none;
+    border-color: #FE5F00;
+    box-shadow: 0 0 0 2px rgba(254, 95, 0, 0.2);
+}
