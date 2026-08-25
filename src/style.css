@@ -7501,9 +7501,28 @@ button, .touchable {
 }
 
 /* Remove sits on the top row, hard right, level with this option's own
-   checkbox — so it is nowhere near the NEXT option's checkbox below. */
+   checkbox — so it is nowhere near the NEXT option's checkbox below.
+   Sized to match .style-option-checkbox (5vw / 20px) rather than the taller
+   default, so the whole row lines up. */
 .option-item > button {
     margin-left: auto;
+    height: 5vw;
+    min-height: 20px;
+    padding: 0 2.5vw;
+    font-size: 3.2vw;
+    border-radius: 1.2vw;
+    line-height: 1;
+}
+
+/* "Option 1", "Option 2"... in the gap between the checkbox and Remove, so it
+   is obvious which option the Remove button belongs to. */
+.option-item .option-number {
+    flex-shrink: 0;
+    color: #FE5F00;
+    font-size: 3.6vw;
+    font-weight: 600;
+    white-space: nowrap;
+    line-height: 1;
 }
 
 .option-item {

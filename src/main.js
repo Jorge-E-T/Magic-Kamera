@@ -7133,6 +7133,17 @@ function updateStyleSelectionTypeVisibility() {
   }
 }
 
+// Keeps the "Option N" labels in step. Called after an option is added or
+// removed so the numbering always runs 1..N with no gaps. Scoped to the
+// immediate container, so each group numbers its own options from 1.
+function renumberOptionItems(container) {
+  if (!container) return;
+  container.querySelectorAll(':scope > .option-item').forEach((item, i) => {
+    const label = item.querySelector('.option-number');
+    if (label) label.textContent = 'Option ' + (i + 1);
+  });
+}
+
 function addStyleSingleOption(text = '', enabled = true) {
   const list = document.getElementById('style-single-options-list');
   const div = document.createElement('div');
@@ -7156,14 +7167,23 @@ function addStyleSingleOption(text = '', enabled = true) {
   // option text stays a single line of data even though it now wraps visually.
   input.addEventListener('keydown', (e) => { if (e.key === 'Enter') e.preventDefault(); });
   
+  const numberLabel = document.createElement('span');
+  numberLabel.className = 'option-number';
+
   const removeBtn = document.createElement('button');
   removeBtn.textContent = 'Remove';
-  removeBtn.onclick = () => div.remove();
+  removeBtn.onclick = () => {
+    const parent = div.parentElement;
+    div.remove();
+    renumberOptionItems(parent);
+  };
   
   div.appendChild(checkbox);
+  div.appendChild(numberLabel);
   div.appendChild(input);
   div.appendChild(removeBtn);
   list.appendChild(div);
+  renumberOptionItems(list);
 }
 
 function addStyleOptionGroup(title = '', options = []) {
@@ -7237,14 +7257,23 @@ function addStyleGroupOption(groupId, text = '', enabled = true) {
   // option text stays a single line of data even though it now wraps visually.
   input.addEventListener('keydown', (e) => { if (e.key === 'Enter') e.preventDefault(); });
   
+  const numberLabel = document.createElement('span');
+  numberLabel.className = 'option-number';
+
   const removeBtn = document.createElement('button');
   removeBtn.textContent = 'Remove';
-  removeBtn.onclick = () => div.remove();
+  removeBtn.onclick = () => {
+    const parent = div.parentElement;
+    div.remove();
+    renumberOptionItems(parent);
+  };
   
   div.appendChild(checkbox);
+  div.appendChild(numberLabel);
   div.appendChild(input);
   div.appendChild(removeBtn);
   optionsContainer.appendChild(div);
+  renumberOptionItems(optionsContainer);
 }
 
 function collectStyleSingleOptions() {
@@ -7349,13 +7378,22 @@ function addSingleOption(text = '') {
   input.value = text;
   input.addEventListener('keydown', (e) => { if (e.key === 'Enter') e.preventDefault(); });
   
+  const numberLabel = document.createElement('span');
+  numberLabel.className = 'option-number';
+
   const removeBtn = document.createElement('button');
   removeBtn.textContent = 'Remove';
-  removeBtn.onclick = () => div.remove();
+  removeBtn.onclick = () => {
+    const parent = div.parentElement;
+    div.remove();
+    renumberOptionItems(parent);
+  };
   
+  div.appendChild(numberLabel);
   div.appendChild(input);
   div.appendChild(removeBtn);
   list.appendChild(div);
+  renumberOptionItems(list);
 }
 
 // Add option group
@@ -7426,13 +7464,22 @@ function addGroupOption(groupId, text = '') {
   input.value = text;
   input.addEventListener('keydown', (e) => { if (e.key === 'Enter') e.preventDefault(); });
   
+  const numberLabel = document.createElement('span');
+  numberLabel.className = 'option-number';
+
   const removeBtn = document.createElement('button');
   removeBtn.textContent = 'Remove';
-  removeBtn.onclick = () => div.remove();
+  removeBtn.onclick = () => {
+    const parent = div.parentElement;
+    div.remove();
+    renumberOptionItems(parent);
+  };
   
+  div.appendChild(numberLabel);
   div.appendChild(input);
   div.appendChild(removeBtn);
   optionsContainer.appendChild(div);
+  renumberOptionItems(optionsContainer);
 }
 
 // Collect single options from UI
