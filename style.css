@@ -7514,17 +7514,31 @@ button, .touchable {
     line-height: 1;
 }
 
-/* "Option 1", "Option 2"... in the gap between the checkbox and Remove, so it
-   is obvious which option the Remove button belongs to. */
+/* "OPTION 1", "OPTION 2"... centred in the gap between the checkbox and the
+   Remove button, so it is obvious which option that button belongs to.
+   flex:1 makes the label fill that gap; text-align centres it inside. */
 .option-item .option-number {
-    flex-shrink: 0;
+    flex: 1;
+    min-width: 0;
+    text-align: center;
+    text-transform: uppercase;
     color: #FE5F00;
     font-size: 3.6vw;
     font-weight: 600;
     white-space: nowrap;
     line-height: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* A full-width rule after every option except the last, so one option can
+   never be mistaken for the next. The containers hold nothing but option
+   rows (the "+ Add Option" buttons are siblings), so :last-child is safe. */
+.option-item:not(:last-child) {
+    border-bottom: 1px solid #4a4a4a;
+    padding-bottom: 4vw;
 }
 
 .option-item {
-    margin-bottom: 5vw;
+    margin-bottom: 4vw;
 }
