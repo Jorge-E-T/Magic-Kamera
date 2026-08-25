@@ -39149,7 +39149,7 @@
   "options": [
     {
       "id": "001",
-      "text": "COMMON — Randomly select a recognizable artistic medium such as oil paint, watercolor, acrylic, charcoal, pastel, ink, graphite, colored pencil, collage, or another established medium and recreate the entire image using it."
+      "text": "COMMON — Randomly select a recognizable artistic medium and recreate the entire image using it."
     },
     {
       "id": "002",
@@ -39157,7 +39157,7 @@
     }
     ],
     "randomizeOptions": true,
-    "additionalInstructions": "COMPLETE MEDIUM TRANSFORMATION:\n\n• Transform the entire image into artwork created using the selected medium.\n• The subject itself must be rendered using the medium.\n• The environment must also be rendered using the medium.\n• Do not simply apply an artistic filter.\n• Do not place the photograph onto a canvas or paper.\n• Do not leave photographic details intact underneath the artwork.\n• The selected medium must determine the marks, edges, textures, layering, color behavior, and surface appearance.\n\nMEDIUM FIDELITY:\n• Accurately reproduce the physical characteristics of the selected medium.\n• Oil should behave like oil paint; watercolor should behave like watercolor; charcoal should behave like charcoal, etc.\n• Preserve recognizable subject identity whenever compatible with the selected medium.\n\nOBSCURE OPTION:\n• Select a real medium or technique rather than an invented one.\n• Favor unusual historical and experimental methods.\n\nMASTER PROMPT RULE:\n• Master prompt instructions always override conflicting instructions except the mandatory artistic-medium transformation.\n• Incorporate master prompt information into the selected medium.\n\nFINAL VALIDATION:\n✓ The entire image is artwork created with the selected medium.\n✓ The subject is transformed into that medium.\n✓ The background is transformed too.\n✓ The result is not a filter over a photograph.\n✓ The selected medium is visually identifiable.\n✓ If ANY answer is NO, regenerate until every requirement is satisfied."
+    "additionalInstructions": "COMPLETE MEDIUM TRANSFORMATION:\n\n• Transform the entire image into artwork created using the selected medium.\n• The subject itself must be rendered using the medium.\n• The environment must also be rendered using the medium.\n• Do not simply apply an artistic filter.\n• Do not place the photograph onto a canvas or paper.\n• Do not leave photographic details intact underneath the artwork.\n• The selected medium must determine the marks, edges, textures, layering, color behavior, and surface appearance.\n\nMEDIUM FIDELITY:\n• Accurately reproduce the physical characteristics of the selected medium.\n• Preserve recognizable subject identity whenever compatible with the selected medium.\n\nOBSCURE OPTION:\n• Select a real medium or technique rather than an invented one.\n• Favor unusual historical and experimental methods.\n\nMASTER PROMPT RULE:\n• Master prompt instructions always override conflicting instructions except the mandatory artistic-medium transformation.\n• Incorporate master prompt information into the selected medium.\n\nFINAL VALIDATION:\n✓ The entire image is artwork created with the selected medium.\n✓ The subject is transformed into that medium.\n✓ The background is transformed too.\n✓ The result is not a filter over a photograph.\n✓ The selected medium is visually identifiable.\n✓ If ANY answer is NO, regenerate until every requirement is satisfied."
   },
   {
     "name": "RANDOM ARTISTIC STYLE",
@@ -39197,7 +39197,7 @@
     "options": [
     {
       "id": "001",
-      "text": "COMMON — Randomly select a recognizable craft such as quilting, embroidery, mosaic, paper cutting, origami, stained glass, pottery, beadwork, weaving, knitting, wood carving, or another established craft and reconstruct the entire image using it."
+      "text": "COMMON — Randomly select a recognizable craft and reconstruct the entire image using it."
     },
     {
       "id": "002",
@@ -39221,7 +39221,7 @@
     "options": [
     {
       "id": "001",
-      "text": "COMMON — Randomly select a recognizable printing or printmaking process such as woodcut, linocut, engraving, etching, lithography, screen printing, letterpress, halftone printing, risograph, or another established process and recreate the entire image using it."
+      "text": "COMMON — Randomly select a recognizable printing or printmaking process and recreate the entire image using it."
     },
     {
       "id": "002",
@@ -39229,7 +39229,7 @@
     }
     ],
     "randomizeOptions": true,
-    "additionalInstructions": "COMPLETE PRINT TRANSFORMATION:\n\n• Transform the ENTIRE image into the selected printing process.\n• The subject itself must be rendered through the printing process.\n• The background and environment must also be rendered through the process.\n• Do NOT simply apply a grain, paper texture, halftone filter, or color effect.\n• Do NOT leave the original photograph intact underneath the printing effect.\n• The final image must look like an actual physical print produced by the selected process.\n\nPROCESS FIDELITY:\n• Reproduce the characteristic marks, registration, ink behavior, impression, line quality, dot structure, layering, color separation, texture, and imperfections appropriate to the selected process.\n• Woodcut should have carved marks and relief-print characteristics.\n• Engraving should use fine incised lines.\n• Lithography should have appropriate drawn and printed tonal qualities.\n• Screen printing should show appropriate ink layering and graphic separation.\n• Halftone processes should construct imagery from appropriate dot patterns.\n• Other processes must similarly reproduce their defining physical characteristics.\n\nOBSCURE OPTION:\n• Select a real printing or printmaking process.\n• Favor unusual historical, obsolete, experimental, regional, or specialized processes.\n• Do not invent a fictional process.\n\nSUBJECT PRESERVATION:\n• Preserve recognizable subject identity whenever compatible with the selected printing process.\n• Reconstruct the subject's recognizable characteristics using the selected printing method.\n\nMASTER PROMPT RULE:\n• Master prompt instructions always override conflicting instructions except the mandatory complete printing-process transformation.\n• Incorporate master prompt information into the selected printing process.\n\nFINAL VALIDATION:\n✓ The entire image has been transformed into a print.\n✓ The subject itself is printed in the selected process.\n✓ The background is also transformed.\n✓ The physical characteristics of the process are clearly visible.\n✓ The result is not merely a photographic filter.\n✓ The original photograph is not visibly intact underneath the effect.\n✓ If ANY answer is NO, regenerate until every requirement is satisfied."
+    "additionalInstructions": "COMPLETE PRINT TRANSFORMATION:\n\n• Transform the ENTIRE image into the selected printing process.\n• The subject itself must be rendered through the printing process.\n• The background and environment must also be rendered through the process.\n• Do NOT simply apply a grain, paper texture, halftone filter, or color effect.\n• Do NOT leave the original photograph intact underneath the printing effect.\n• The final image must look like an actual physical print produced by the selected process.\n\nPROCESS FIDELITY:\n• Reproduce the characteristic marks, registration, ink behavior, impression, line quality, dot structure, layering, color separation, texture, and imperfections appropriate to the selected process.\n\nOBSCURE OPTION:\n• Select a real printing or printmaking process.\n• Favor unusual historical, obsolete, experimental, regional, or specialized processes.\n• Do not invent a fictional process.\n\nSUBJECT PRESERVATION:\n• Preserve recognizable subject identity whenever compatible with the selected printing process.\n• Reconstruct the subject's recognizable characteristics using the selected printing method.\n\nMASTER PROMPT RULE:\n• Master prompt instructions always override conflicting instructions except the mandatory complete printing-process transformation.\n• Incorporate master prompt information into the selected printing process.\n\nFINAL VALIDATION:\n✓ The entire image has been transformed into a print.\n✓ The subject itself is printed in the selected process.\n✓ The background is also transformed.\n✓ The physical characteristics of the process are clearly visible.\n✓ The result is not merely a photographic filter.\n✓ The original photograph is not visibly intact underneath the effect.\n✓ If ANY answer is NO, regenerate until every requirement is satisfied."
   },
   {
     "name": "RANDOM MATERIAL",
@@ -39245,7 +39245,7 @@
     "options": [
     {
       "id": "001",
-      "text": "COMMON — Randomly select a recognizable physical material such as wood, glass, metal, marble, stone, paper, clay, wax, plastic, ceramic, fabric, leather, or another familiar material and reconstruct the entire image from it."
+      "text": "COMMON — Randomly select a recognizable physical material and reconstruct the entire image from it."
     },
     {
       "id": "002",
