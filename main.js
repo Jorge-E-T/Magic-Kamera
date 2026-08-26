@@ -7140,7 +7140,7 @@ function renumberOptionItems(container) {
   if (!container) return;
   container.querySelectorAll(':scope > .option-item').forEach((item, i) => {
     const label = item.querySelector('.option-number');
-    if (label) label.textContent = 'OPTION ' + (i + 1);
+    if (label) label.textContent = 'Option ' + (i + 1);
   });
 }
 
@@ -13696,6 +13696,11 @@ YOU MUST RESTART PROGRAM!`];
     }
   } catch (e) { errors.push('Draw Settings: ' + e.message); }
 
+  // The reset can switch Master Prompt and Manual Options off, so re-light (or
+  // un-light) the camera carousel buttons. Done once here so it covers every
+  // reset branch above rather than needing a call in each one.
+  if (window._syncLeftCamBtns) window._syncLeftCamBtns();
+
   // ── Re-render all preset lists immediately ──────────────────────────────
   try {
     if (presetsNeedReload) {
@@ -19523,6 +19528,11 @@ const result = await presetImporter.import();
   loadManualOptionsMode();
   loadImportResolution();
 
+  // masterPromptEnabled and manualOptionsMode are only real once the two loaders
+  // above have run, so light the camera carousel buttons now rather than relying
+  // on the 200ms fallback timer winning the race.
+  if (window._syncLeftCamBtns) window._syncLeftCamBtns();
+
   const resetBtn = document.getElementById('reset-button');
   if (resetBtn) {
     resetBtn.addEventListener('click', resetToCamera);
@@ -21360,6 +21370,11 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // Initial sync after a brief delay to ensure state is loaded
+  // Exposed so it can be re-run whenever masterPromptEnabled / manualOptionsMode
+  // change. The timer below is only a fallback: it fires 200ms after this script
+  // is evaluated, which on a slow start is BEFORE the load handler has read those
+  // two flags out of localStorage — that is why the buttons were sometimes dark.
+  window._syncLeftCamBtns = syncLeftCamBtns;
   setTimeout(syncLeftCamBtns, 200);
 })();
 
