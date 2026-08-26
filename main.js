@@ -15776,9 +15776,16 @@ async function saveStyle() {
 }
 
 async function deleteStyle() {
+  // TEMPORARY DIAGNOSTIC — remove once we know the answer
+  await customAlert('STEP 1  idx=' + editingStyleIndex + '  presets=' + CAMERA_PRESETS.length);
   if (editingStyleIndex >= 0 && CAMERA_PRESETS.length > 1) {
     if (await confirm('Delete this style?')) {
       const presetName = CAMERA_PRESETS[editingStyleIndex].name;
+      // TEMPORARY DIAGNOSTIC
+      await customAlert('STEP 2  name=' + presetName
+        + '  imported=' + (hasImportedPresets && presetImporter.getImportedPresets().some(p => p.name === presetName))
+        + '  factory=' + factoryPresets.some(p => p.name === presetName)
+        + '  factoryCount=' + factoryPresets.length);
       
       // Check if it's a factory preset, imported preset, or user-created
       const isFactoryPreset = factoryPresets.some(p => p.name === presetName);
@@ -19532,6 +19539,11 @@ const result = await presetImporter.import();
   // above have run, so light the camera carousel buttons now rather than relying
   // on the 200ms fallback timer winning the race.
   if (window._syncLeftCamBtns) window._syncLeftCamBtns();
+
+  // TEMPORARY DIAGNOSTIC — surfaces errors that are otherwise swallowed
+  window.addEventListener('unhandledrejection', (ev) => {
+    customAlert('ERROR: ' + (ev.reason && ev.reason.message ? ev.reason.message : ev.reason));
+  });
 
   const resetBtn = document.getElementById('reset-button');
   if (resetBtn) {
