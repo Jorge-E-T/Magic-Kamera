@@ -1,0 +1,1429 @@
+[
+  {
+    "name": "CALOTYPE",
+    "category": [
+      "PHOTOGRAPHY",
+      "HISTORICAL",
+      "PROCESS",
+      "VICTORIAN",
+      "PAPER"
+    ],
+    "message": "Take a picture and transform it into a Talbot calotype from the 1840s. The calotype was the first negative-positive paper process, and its paper negative left the fibres of the sheet printed into the image. The result should be soft, broad and slightly grainy, with a warm brown salt-print tone, low contrast, blocked shadows, uneven edges where the sensitiser was brushed on, and a general softness that comes from printing through paper rather than glass.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Soft, fibrous detail rather than sharp resolution\n• Warm brown salted-paper tone\n• Brushed sensitiser edges left visible\n• Low contrast with open, dusty shadows\n• Subject clearly recognisable"
+  },
+  {
+    "name": "CHRYSOTYPE",
+    "category": [
+      "PHOTOGRAPHY",
+      "PROCESS",
+      "ALTERNATIVE",
+      "GOLD",
+      "HISTORICAL"
+    ],
+    "message": "Take a picture and transform it into a chrysotype, the gold-based printing process first described by Sir John Herschel in 1842. Colloidal gold gives the print an unusual colour range that no silver process can reach: cold purples, plum, magenta and rose-grey, sometimes splitting into two tones within a single image. The surface should be matte watercolour paper with the image sitting in the fibres.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Gold-tone palette: purple, plum, magenta, rose-grey\n• Matte cotton paper with visible fibre\n• Split tones between highlight and shadow\n• Hand-coated edges\n• Subject clearly recognisable"
+  },
+  {
+    "name": "VANDYKE BROWN PRINT",
+    "category": [
+      "PHOTOGRAPHY",
+      "PROCESS",
+      "ALTERNATIVE",
+      "BROWN",
+      "HISTORICAL"
+    ],
+    "message": "Take a picture and transform it into a Vandyke brown print. Named after the deep brown of Van Dyck's paintings, this iron-silver process produces a rich, slightly reddish chocolate-brown image on hand-coated paper, with soft highlights that fall away gently and shadows that hold warmth rather than going neutral black.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Deep reddish chocolate-brown image colour\n• Gentle highlight roll-off\n• Warm shadows, never neutral black\n• Hand-coated paper with irregular edge\n• Subject clearly recognisable"
+  },
+  {
+    "name": "OPALOTYPE",
+    "category": [
+      "PHOTOGRAPHY",
+      "PROCESS",
+      "GLASS",
+      "VICTORIAN",
+      "HISTORICAL"
+    ],
+    "message": "Take a picture and transform it into an opalotype, a Victorian photograph printed onto milky opal glass. Light seems to come from inside the plate: highlights glow softly, the surface has a faint pearlescent sheen, and the whole image sits in a luminous, slightly translucent white rather than on paper. Many were delicately hand-tinted.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Luminous, internally lit highlights\n• Pearlescent translucent white base\n• Smooth glass surface with no paper texture\n• Optional restrained hand-tinting\n• Subject clearly recognisable"
+  },
+  {
+    "name": "CRYSTOLEUM",
+    "category": [
+      "PHOTOGRAPHY",
+      "PROCESS",
+      "HAND-COLORED",
+      "VICTORIAN",
+      "GLASS"
+    ],
+    "message": "Take a picture and transform it into a crystoleum: a photograph pasted face-down onto curved glass, the paper thinned away, then hand-coloured from behind so the colour glows through the image. The result should have soft, slightly waxy colour, no visible brush marks on the surface, a gentle convex distortion, and the depth of colour sitting beneath a glassy skin.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Colour appears to sit behind the image, glowing through\n• Soft waxy hand-tinted palette\n• Gentle convex glass curvature\n• Glassy surface with no visible brushwork\n• Subject clearly recognisable"
+  },
+  {
+    "name": "CARBRO",
+    "category": [
+      "PHOTOGRAPHY",
+      "PROCESS",
+      "COLOR",
+      "HISTORICAL",
+      "PIGMENT"
+    ],
+    "message": "Take a picture and transform it into a carbro colour print from the 1930s. Built from three pigment layers in physical relief, carbro gives dense, matte, almost painterly colour with extraordinary shadow depth, subtle registration softness between the layers, and a slightly raised gelatin surface that catches raking light.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Dense matte pigment colour, not glossy dye\n• Very deep, detailed shadows\n• Slight softness where the three layers register\n• Faint physical relief in the gelatin\n• Subject clearly recognisable"
+  },
+  {
+    "name": "CIBACHROME",
+    "category": [
+      "PHOTOGRAPHY",
+      "PROCESS",
+      "COLOR",
+      "GLOSSY",
+      "ANALOG"
+    ],
+    "message": "Take a picture and transform it into a Cibachrome print made directly from a colour slide. The image should be brilliantly saturated with an almost lacquered gloss, blacks that go genuinely dense, colours that lean pure and slightly cool, razor-sharp detail, and the mirror-like polyester surface that made these prints look wet.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Extremely saturated, slightly cool colour\n• Dense, glossy blacks\n• Mirror-bright lacquered surface\n• Very high micro-detail and edge sharpness\n• Subject clearly recognisable"
+  },
+  {
+    "name": "HELIOGRAPH",
+    "category": [
+      "PHOTOGRAPHY",
+      "PROCESS",
+      "HISTORICAL",
+      "EXPERIMENTAL"
+    ],
+    "message": "Take a picture and transform it into a heliograph, the earliest photographic image, made by Niepce on a bitumen-coated pewter plate over an exposure of many hours. The result should be crude and barely legible: a metallic grey plate, forms suggested rather than described, light falling from several directions at once because the sun moved during the exposure, and patchy dissolved areas where the bitumen washed unevenly.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Barely legible, suggested forms\n• Metallic pewter plate surface\n• Contradictory light directions from a very long exposure\n• Patchy, uneven dissolved bitumen\n• Subject dimly but genuinely recognisable"
+  },
+  {
+    "name": "LUMEN PRINT",
+    "category": [
+      "PHOTOGRAPHY",
+      "PROCESS",
+      "CAMERALESS",
+      "ALTERNATIVE",
+      "COLOR"
+    ],
+    "message": "Take a picture and transform it into a lumen print: photographic paper exposed to sunlight for hours under an object, developing its own colour without chemistry. Expect improbable soft pinks, mauves, ochres, silvers and olive greens bleeding into one another, hard-edged silhouettes where the object pressed flat, halos of moisture where it lifted, and no sharp detail at all.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Pink, mauve, ochre and olive self-colouring\n• Hard silhouette edges with soft moisture halos\n• No fine detail — mass and outline only\n• Fibre-based paper visible throughout\n• Subject readable as silhouette and tone"
+  },
+  {
+    "name": "SOLARGRAPH",
+    "category": [
+      "PHOTOGRAPHY",
+      "PROCESS",
+      "PINHOLE",
+      "LONG EXPOSURE",
+      "EXPERIMENTAL"
+    ],
+    "message": "Take a picture and transform it into a solargraph: a pinhole exposure lasting weeks or months on paper, never developed, only scanned. Arcs of the sun should burn bright tracks across the sky, the landscape should sit ghostly and semi-transparent beneath them, colours should be inverted and strange in mauve, orange and cyan, and anything that moved should have vanished entirely.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Burned sun-arc tracks across the sky\n• Ghostly, semi-transparent static scene\n• Inverted mauve, orange and cyan palette\n• Moving elements absent or smeared away\n• Subject present but spectral"
+  },
+  {
+    "name": "CLICHE VERRE",
+    "category": [
+      "PHOTOGRAPHY",
+      "PRINTMAKING",
+      "HYBRID",
+      "DRAWING",
+      "HISTORICAL"
+    ],
+    "message": "Take a picture and transform it into a cliche verre, the hybrid used by Corot and Millet: an image drawn by hand into an opaque coating on glass, then printed as a photograph. The result should read as a freely scratched drawing rendered in photographic tones, with needle-thin bright lines, plate edges, dust and smears in the coating, and no photographic detail beyond the drawn marks.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Hand-scratched line quality throughout\n• Bright drawn lines against a dark ground\n• Plate edge, dust and coating smears visible\n• Photographic tonality, not ink\n• Subject recognisable through the drawn marks"
+  },
+  {
+    "name": "AEROCHROME",
+    "category": [
+      "PHOTOGRAPHY",
+      "COLOR",
+      "INFRARED",
+      "SURREAL",
+      "ANALOG"
+    ],
+    "message": "Take a picture and transform it into Kodak Aerochrome colour infrared film. Living foliage records as vivid magenta, crimson and coral while skies go deep cyan, skin takes on a waxy pallor and anything synthetic stays close to its true colour. The effect should be jarring and beautiful rather than a simple hue shift.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Foliage rendered magenta, crimson and coral\n• Deep cyan sky\n• Waxy, pale skin rendering\n• Synthetic materials keep near-normal colour\n• Subject clearly recognisable"
+  },
+  {
+    "name": "STROBOSCOPIC",
+    "category": [
+      "PHOTOGRAPHY",
+      "MOTION",
+      "EXPERIMENTAL",
+      "SCIENCE",
+      "BLACK AND WHITE"
+    ],
+    "message": "Take a picture and transform it into a stroboscopic multiple-flash photograph in the manner of Harold Edgerton. A single frame should hold a sequence of frozen instants of the same subject, evenly spaced across the arc of the motion, each one sharp, overlapping where they cross, against a black background that swallows everything not lit by the flash.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Multiple sharp frozen instants in one frame\n• Even spacing along the arc of motion\n• Overlap and transparency where phases cross\n• Black background with hard flash falloff\n• Subject clearly recognisable in every phase"
+  },
+  {
+    "name": "XEROGRAPHY",
+    "category": [
+      "ART",
+      "PRINT",
+      "COPY ART",
+      "HIGH CONTRAST",
+      "EXPERIMENTAL"
+    ],
+    "message": "Take a picture and transform it into copier art: an image photocopied, re-copied and copied again. Midtones should collapse into harsh black and white, toner should smear and streak down the sheet, the platen edge should print as a black band, dust and hair should appear at full size, and the register should drift with each generation.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Midtones collapsed to harsh black and white\n• Toner streaking and drop-out\n• Black platen band at the edges\n• Dust, hair and register drift from re-copying\n• Subject recognisable despite degradation"
+  },
+  {
+    "name": "AUTOSTEREOSCOPY",
+    "category": [
+      "PHOTOGRAPHY",
+      "3D",
+      "LENTICULAR",
+      "NOVELTY",
+      "OPTICAL"
+    ],
+    "message": "Take a picture and transform it into a lenticular autostereoscopic print. The surface should be ribbed with fine vertical lenses, the image should show slight doubling and colour fringing where the interlaced views separate, depth should feel layered in discrete planes rather than continuous, and the whole card should catch light in vertical bands.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Fine vertical lens ribbing across the surface\n• Doubling and colour fringing at edges\n• Depth in discrete layered planes\n• Vertical banding in the highlights\n• Subject clearly recognisable"
+  },
+  {
+    "name": "LENSBABY",
+    "category": [
+      "PHOTOGRAPHY",
+      "LENS",
+      "SELECTIVE FOCUS",
+      "DREAMY",
+      "ANALOG"
+    ],
+    "message": "Take a picture and reshoot it through a tilting selective-focus lens. One small sweet spot should be genuinely sharp while everything around it smears outward in radial blur that grows stronger toward the corners. The plane of focus should be tilted rather than parallel to the frame, and highlights outside the sweet spot should bloom softly.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• One small, genuinely sharp sweet spot\n• Radial smear increasing toward the corners\n• Tilted, non-parallel plane of focus\n• Soft blooming highlights in the blur\n• Subject's face inside the sharp zone"
+  },
+  {
+    "name": "ZONE PLATE",
+    "category": [
+      "PHOTOGRAPHY",
+      "LENS",
+      "DIFFRACTION",
+      "SOFT FOCUS",
+      "EXPERIMENTAL"
+    ],
+    "message": "Take a picture and reshoot it through a zone plate rather than a lens. Focus by diffraction gives a glowing, veiled image: highlights bleed into the shadows, edges never fully resolve, the whole frame carries a soft luminous haze, and contrast stays low with a dreamlike lift in the blacks.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Glowing halation spreading from highlights\n• Edges that never fully resolve\n• Low contrast with lifted blacks\n• Even, luminous veil across the frame\n• Subject recognisable through the glow"
+  },
+  {
+    "name": "CATADIOPTRIC",
+    "category": [
+      "PHOTOGRAPHY",
+      "LENS",
+      "BOKEH",
+      "OPTICAL",
+      "VINTAGE"
+    ],
+    "message": "Take a picture and reshoot it on a mirror telephoto lens. Out-of-focus highlights should render as bright rings with dark centres, backgrounds should compress and swirl, contrast should be a little flat and veiled, and the depth of field should be paper-thin behind a subject pulled tight against a distant background.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Ring-shaped doughnut bokeh with dark centres\n• Heavily compressed background\n• Slightly flat, veiled contrast\n• Extremely shallow depth of field\n• Subject clearly recognisable"
+  },
+  {
+    "name": "MONOTYPE",
+    "category": [
+      "ART",
+      "PRINTMAKING",
+      "PAINTERLY",
+      "EXPERIMENTAL",
+      "INK"
+    ],
+    "message": "Take a picture and transform it into a monotype: ink painted, wiped and scraped directly on a smooth plate, then pulled once. The image should be unmistakably painterly rather than engraved, with brush and rag marks, soft blotted edges, fingerprints, a plate mark pressed into damp paper, and the slightly starved, uneven ink coverage of a single unrepeatable pull.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Painterly brush, rag and wipe marks\n• Soft blotted edges rather than incised lines\n• Visible plate mark in damp paper\n• Uneven, slightly starved ink coverage\n• Subject recognisable through the marks"
+  },
+  {
+    "name": "SUGAR LIFT",
+    "category": [
+      "ART",
+      "PRINTMAKING",
+      "ETCHING",
+      "INTAGLIO",
+      "PAINTERLY"
+    ],
+    "message": "Take a picture and transform it into a sugar-lift aquatint. The technique records the artist's brushstroke as a positive mark: dense, liquid, confident strokes with soft feathered edges, sitting in a fine aquatint tone, printed in intaglio with a plate mark and the slight relief of ink standing above the paper.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Positive brushstrokes with soft feathered edges\n• Fine granular aquatint tone behind the marks\n• Plate mark and ink relief on damp paper\n• Rich blacks with visible grain structure\n• Subject recognisable through the brushwork"
+  },
+  {
+    "name": "SPIT BITE",
+    "category": [
+      "ART",
+      "PRINTMAKING",
+      "ETCHING",
+      "WATERCOLOR",
+      "INTAGLIO"
+    ],
+    "message": "Take a picture and transform it into a spit-bite aquatint, where acid is brushed straight onto the plate. Tones should pool and feather like watercolour washes, with soft irregular edges, blooms where the acid ran, and a wide delicate grey range printed intaglio on damp rag paper.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Washy, pooled tones with feathered edges\n• Blooms and tidelines where acid ran\n• Wide, delicate grey range\n• Plate mark and damp-paper texture\n• Subject recognisable through the washes"
+  },
+  {
+    "name": "MOKULITO",
+    "category": [
+      "ART",
+      "PRINTMAKING",
+      "LITHOGRAPHY",
+      "WOOD",
+      "JAPANESE"
+    ],
+    "message": "Take a picture and transform it into a mokulito wood lithograph. Printed from a drawn plywood plate, it should show the wood grain running through the whole image, greasy crayon and wash marks, unpredictable breakdown and drop-out where the board rejected ink, and the flat matte deposit of lithographic ink on soft paper.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Wood grain printing through the entire image\n• Greasy crayon and tusche wash marks\n• Unpredictable ink breakdown and drop-out\n• Flat matte lithographic ink\n• Subject recognisable through the grain"
+  },
+  {
+    "name": "LETTERPRESS",
+    "category": [
+      "DESIGN",
+      "PRINT",
+      "TYPOGRAPHY",
+      "CRAFT",
+      "TEXTURE"
+    ],
+    "message": "Take a picture and transform it into a letterpress-printed piece. Type and image should be bitten physically into thick cotton paper so the impression casts its own shadow, ink should sit unevenly with heavier deposit at the edges of forms, register between colours should be very slightly off, and the paper should show a deckle edge.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Visible physical impression pressed into the sheet\n• Uneven ink with heavier edge deposit\n• Slight colour misregistration\n• Thick cotton paper with deckle edge\n• Any text correctly spelled and cleanly set"
+  },
+  {
+    "name": "MIMEOGRAPH",
+    "category": [
+      "PRINT",
+      "RETRO",
+      "ZINE",
+      "TEXTURE",
+      "VINTAGE"
+    ],
+    "message": "Take a picture and transform it into a mimeograph stencil duplication. The image should print in that unmistakable purple-blue aniline ink, patchy and streaked, with clogged solid areas, dropped-out fine lines, ink bleed into cheap absorbent paper, and the faint chemical smell suggested by uneven saturation across the sheet.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Purple-blue aniline duplicator ink\n• Patchy, streaked coverage with clogged solids\n• Fine detail dropping out entirely\n• Bleed into cheap absorbent paper\n• Subject recognisable despite heavy loss"
+  },
+  {
+    "name": "WOOD TYPE",
+    "category": [
+      "DESIGN",
+      "TYPOGRAPHY",
+      "PRINT",
+      "VINTAGE",
+      "POSTER"
+    ],
+    "message": "Take a picture and transform it into a nineteenth-century wood-type poster. Enormous condensed and slab-serif letterforms should fill the sheet in stacked bands, printed in one or two flat colours with grain, splits and chipped corners showing in the letters, on coarse newsprint that has yellowed and foxed.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Huge stacked bands of wood letterforms\n• Grain, splits and chipped corners in the type\n• One or two flat ink colours\n• Yellowed, foxed newsprint\n• Any text correctly spelled and cleanly set"
+  },
+  {
+    "name": "SCUMBLING",
+    "category": [
+      "ART",
+      "PAINTING",
+      "TECHNIQUE",
+      "TEXTURE",
+      "OIL"
+    ],
+    "message": "Take a picture and transform it into an oil painting built by scumbling: dry, broken, semi-opaque light paint dragged over a darker underlayer so the colour beneath keeps flickering through. Edges should be soft and granular, highlights should sit on the tooth of the canvas, and the surface should look worked and atmospheric rather than blended smooth.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Dry, broken paint dragged over a darker ground\n• Underlayer flickering through the top colour\n• Highlights catching only the canvas tooth\n• Soft, granular edges throughout\n• Subject recognisable through the broken paint"
+  },
+  {
+    "name": "METALPOINT",
+    "category": [
+      "ART",
+      "DRAWING",
+      "RENAISSANCE",
+      "TECHNIQUE",
+      "MONOCHROME"
+    ],
+    "message": "Take a picture and transform it into a silverpoint drawing on prepared ground. A metal stylus leaves a line that cannot be erased or varied much in weight, so tone is built entirely from patient hatching. The image should be delicate and silvery, warming to faint brown where the metal has tarnished, on a tinted ground with the paper's prepared coating visible.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Fine, uniform, unerasable line weight\n• Tone built only from patient hatching\n• Silvery grey warming to tarnished brown\n• Tinted prepared ground visible\n• Subject recognisable and delicately modelled"
+  },
+  {
+    "name": "CASEIN PAINT",
+    "category": [
+      "ART",
+      "PAINTING",
+      "MEDIUM",
+      "MATTE",
+      "ILLUSTRATION"
+    ],
+    "message": "Take a picture and transform it into a casein painting. The milk-protein binder dries fast to a completely matte, slightly chalky, velvety surface with a faint sheen only in the thickest passages. Colour should sit flat and opaque with crisp edges between shapes, and thick areas should show fine drying cracks.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Completely matte, chalky, velvety surface\n• Flat opaque colour with crisp shape edges\n• Fine drying cracks in the thickest passages\n• No glossy or transparent glazing\n• Subject recognisable and cleanly shaped"
+  },
+  {
+    "name": "CAMAIEU",
+    "category": [
+      "ART",
+      "PAINTING",
+      "MONOCHROME",
+      "TECHNIQUE",
+      "CLASSICAL"
+    ],
+    "message": "Take a picture and transform it into a camaieu painting: a full picture built in tints and shades of a single hue plus white. Modelling should be complete and sculptural, the range should run from the palest tint to the deepest shade of that one colour, and the effect should read as a considered painting rather than a desaturated photograph.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Single hue plus white across the whole image\n• Full sculptural modelling within that hue\n• Painted surface with visible brushwork\n• No stray colours anywhere in the frame\n• Subject recognisable and fully modelled"
+  },
+  {
+    "name": "PENTIMENTO",
+    "category": [
+      "ART",
+      "PAINTING",
+      "TECHNIQUE",
+      "HISTORICAL",
+      "GHOST"
+    ],
+    "message": "Take a picture and transform it into an old painting in which the artist's earlier version has begun to show through. As the upper paint thinned with age, a discarded arm, a turned head or a moved object should surface faintly beneath the final image, doubled and slightly offset, visible as a ghost within the paint rather than as a transparent overlay.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• An earlier, abandoned version surfacing beneath the paint\n• Ghosting sits within the paint layer, not over it\n• Aged oil surface with fine craquelure\n• Only one or two clear pentimenti, not many\n• Final subject remains the dominant, recognisable image"
+  },
+  {
+    "name": "CRAQUELURE",
+    "category": [
+      "ART",
+      "PAINTING",
+      "AGING",
+      "TEXTURE",
+      "CONSERVATION"
+    ],
+    "message": "Take a picture and transform it into an aged oil painting whose varnish and paint film have cracked. The craquelure pattern should follow the direction of the brushwork and the movement of the panel beneath, running fine and web-like in thin passages and wide and curling in thick ones, with darkened varnish pooling in the cracks.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Crack pattern following brushwork and panel movement\n• Fine webbing in thin paint, wide cracks in thick\n• Darkened varnish collecting in the fissures\n• Slight lifting and cupping at the crack edges\n• Subject clearly recognisable beneath the ageing"
+  },
+  {
+    "name": "VANITAS",
+    "category": [
+      "ART",
+      "PAINTING",
+      "STILL LIFE",
+      "BAROQUE",
+      "SYMBOLIC"
+    ],
+    "message": "Take a picture and transform it into a Dutch vanitas still life in which the subject sits among the emblems of passing time: a guttering candle, a skull, cut flowers already dropping petals, a watch, an overturned glass, fruit just past ripeness. Light should rake in from one side against a deep brown ground, every surface described with obsessive precision.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Emblems of transience arranged with intent\n• Single raking light source against a dark ground\n• Obsessive material description in every surface\n• Deep, warm, restrained palette\n• Subject clearly recognisable within the scene"
+  },
+  {
+    "name": "BODEGON",
+    "category": [
+      "ART",
+      "PAINTING",
+      "SPANISH",
+      "STILL LIFE",
+      "TENEBRISM"
+    ],
+    "message": "Take a picture and transform it into a Spanish bodegon: a severe kitchen still life in the manner of Sanchez Cotan and Zurbaran. Very few humble objects should be placed with almost geometric deliberation in a shallow stone niche, lit by a single hard light out of profound darkness, everything else swallowed by black.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Very few objects, placed with geometric precision\n• Shallow stone niche or ledge\n• One hard light out of profound darkness\n• Humble subject matter treated with gravity\n• Subject clearly recognisable"
+  },
+  {
+    "name": "EX VOTO",
+    "category": [
+      "ART",
+      "FOLK",
+      "DEVOTIONAL",
+      "NARRATIVE",
+      "MEXICAN"
+    ],
+    "message": "Take a picture and transform it into a folk ex-voto painting on a small tin panel: a votive offering giving thanks for deliverance. The scene should show the moment of peril in flat, untrained perspective, a holy figure appearing in the upper corner within a cloud, and a hand-lettered inscription of thanks across the lower edge of the panel.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Flat, untrained folk perspective\n• Holy figure appearing in a cloud at one corner\n• Hand-lettered inscription band along the bottom\n• Small dented tin panel with rusted edges\n• Any text correctly spelled and cleanly lettered"
+  },
+  {
+    "name": "FETE GALANTE",
+    "category": [
+      "ART",
+      "PAINTING",
+      "ROCOCO",
+      "FRENCH",
+      "ROMANTIC"
+    ],
+    "message": "Take a picture and transform it into a fete galante in the manner of Watteau: elegantly dressed figures drifting through a parkland of feathery trees and distant statuary, at an hour when the light has gone golden and slightly melancholy. Silks should shimmer with broken colour and the mood should be languid rather than celebratory.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Feathery parkland with distant statuary\n• Golden, faintly melancholy late light\n• Shimmering broken colour in the silks\n• Languid, unhurried grouping of figures\n• Subject clearly recognisable among them"
+  },
+  {
+    "name": "SOTTO IN SU",
+    "category": [
+      "ART",
+      "PAINTING",
+      "PERSPECTIVE",
+      "BAROQUE",
+      "CEILING"
+    ],
+    "message": "Take a picture and transform it into a ceiling painting seen sotto in su, from directly below. The subject should be foreshortened extremely, soles and undersides nearest the viewer, the body receding sharply upward, surrounded by painted architecture that appears to continue the real room into an open sky full of light.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Extreme upward foreshortening from below\n• Undersides and soles nearest the viewer\n• Painted architecture continuing the real room\n• Open, luminous sky above\n• Subject recognisable despite the foreshortening"
+  },
+  {
+    "name": "TONDO",
+    "category": [
+      "ART",
+      "PAINTING",
+      "FORMAT",
+      "RENAISSANCE",
+      "COMPOSITION"
+    ],
+    "message": "Take a picture and transform it into a Renaissance tondo, a painting in a circular panel. The composition must be built for the circle: forms curving to answer the frame, figures leaning into the round, no important detail stranded in a corner that does not exist, set in a gilded circular moulding.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Composition genuinely built for the circular field\n• Forms curving to echo the frame\n• Gilded circular moulding\n• Balanced weight around the whole rim\n• Subject clearly recognisable"
+  },
+  {
+    "name": "PREDELLA",
+    "category": [
+      "ART",
+      "PAINTING",
+      "NARRATIVE",
+      "ALTARPIECE",
+      "MEDIEVAL"
+    ],
+    "message": "Take a picture and transform it into a predella: the strip of small narrative panels running along the base of an altarpiece. Three or four little scenes should sit side by side in gilded compartments, each telling a moment of the same story in bright tempera on gold ground, at a much smaller scale than the main panel above.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Row of small scenes in gilded compartments\n• Sequential moments of a single story\n• Bright tempera on burnished gold ground\n• Consistent small scale across the panels\n• Subject recognisable in each compartment"
+  },
+  {
+    "name": "SINOPIA",
+    "category": [
+      "ART",
+      "FRESCO",
+      "UNDERDRAWING",
+      "RED",
+      "TECHNIQUE"
+    ],
+    "message": "Take a picture and transform it into a sinopia: the full-size red earth underdrawing brushed onto the rough plaster before a fresco is painted. Only the drawing should remain, confident and economical in red ochre on grey-brown intonaco, with searching corrections, wash shading, and the plaster's grit and lost patches showing through.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Red ochre brush drawing on rough plaster\n• Confident economical line with visible corrections\n• Broad wash shading, no full colour\n• Grit, cracks and lost patches of plaster\n• Subject clearly recognisable from the drawing alone"
+  },
+  {
+    "name": "CAPRICCIO",
+    "category": [
+      "ART",
+      "PAINTING",
+      "ARCHITECTURE",
+      "FANTASY",
+      "VEDUTA"
+    ],
+    "message": "Take a picture and transform it into an architectural capriccio: real monuments from different cities and centuries assembled into one impossible but entirely convincing view. Ruins, obelisks and colonnades should stand together in a plausible light, populated by small figures, painted with topographical precision despite the invented geography.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Real monuments recombined into an invented view\n• Topographical precision despite the fiction\n• Consistent single light across all elements\n• Small figures giving scale\n• Subject clearly recognisable within the scene"
+  },
+  {
+    "name": "TABLEAU VIVANT",
+    "category": [
+      "PHOTOGRAPHY",
+      "STAGED",
+      "THEATRICAL",
+      "HISTORICAL",
+      "PERFORMANCE"
+    ],
+    "message": "Take a picture and transform it into a tableau vivant: living people holding perfectly still in costume to recreate a famous painting. The staging should be theatrical and slightly stiff, the lighting frankly artificial, the set visibly built, and small anachronisms should give away that these are real people posing rather than painted figures.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Frozen, held theatrical pose\n• Frankly artificial stage lighting\n• Visibly constructed set and props\n• Small telling anachronisms\n• Subject clearly recognisable as themselves posing"
+  },
+  {
+    "name": "VKHUTEMAS",
+    "category": [
+      "ART",
+      "DESIGN",
+      "CONSTRUCTIVIST",
+      "SOVIET",
+      "MODERNIST"
+    ],
+    "message": "Take a picture and transform it into a Vkhutemas studio exercise from the Soviet design school of the 1920s. The image should be analysed into pure spatial construction: axes, planes and volumes laid bare, dynamic diagonals, a restricted red-black-grey palette, and the cool investigative feel of a formal experiment rather than a picture.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Analysis into axes, planes and volumes\n• Strong dynamic diagonals\n• Restricted red, black, grey and buff palette\n• Diagrammatic, investigative feel\n• Subject recognisable through the construction"
+  },
+  {
+    "name": "PERIDVIZHNIKI",
+    "category": [
+      "ART",
+      "PAINTING",
+      "RUSSIAN",
+      "REALISM",
+      "19TH CENTURY"
+    ],
+    "message": "Take a picture and transform it into a painting by the Russian Wanderers: unvarnished nineteenth-century social realism with a grave moral weight. The palette should be muted and cold, the light overcast, the setting plainly Russian, and the subject given full dignity and psychological presence rather than picturesque charm.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Muted, cold, overcast palette\n• Grave psychological presence\n• Plain, unglamorised setting\n• Careful academic drawing beneath loose brushwork\n• Subject clearly recognisable and dignified"
+  },
+  {
+    "name": "LAND ART",
+    "category": [
+      "ART",
+      "EARTHWORK",
+      "LANDSCAPE",
+      "MONUMENTAL",
+      "CONCEPTUAL"
+    ],
+    "message": "Take a picture and transform it into a work of land art: a large-scale intervention cut, heaped or laid out in a remote landscape and photographed from a distance or from the air. The gesture should be simple and geometric, made from the material of the site itself, monumental in scale, and already being reclaimed by weather.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Simple geometric gesture at monumental scale\n• Built from the material of the site\n• Remote landscape, distant or aerial viewpoint\n• Visible weathering and reclamation\n• Subject present as scale or as the intervention itself"
+  },
+  {
+    "name": "NEO-GEO",
+    "category": [
+      "ART",
+      "PAINTING",
+      "GEOMETRIC",
+      "1980S",
+      "CONCEPTUAL"
+    ],
+    "message": "Take a picture and transform it into a Neo-Geo painting of the 1980s: cold, hard-edged geometric abstraction that borrows the visual language of corporate graphics and simulation. Flat industrial colour, mechanical edges, repeating modular units and a deliberately synthetic, emotionless surface.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Hard-edged geometry with mechanical edges\n• Flat industrial colour, no gesture\n• Repeating modular units\n• Deliberately synthetic, cool surface\n• Subject abstracted but still traceable"
+  },
+  {
+    "name": "TRANSAVANTGARDE",
+    "category": [
+      "ART",
+      "PAINTING",
+      "NEO-EXPRESSIONIST",
+      "ITALIAN",
+      "1980S"
+    ],
+    "message": "Take a picture and transform it into an Italian Transavanguardia painting: a return to figure, myth and history painted fast and unapologetically. Expect heavy loaded brushwork, clashing hot colour, fragments of classical imagery colliding with modern figures, and deliberate roughness in the drawing.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Heavy, fast, loaded brushwork\n• Clashing hot colour\n• Classical fragments colliding with modern figures\n• Deliberately rough drawing\n• Subject recognisable through the paint"
+  },
+  {
+    "name": "DANSAEKHWA",
+    "category": [
+      "ART",
+      "PAINTING",
+      "MONOCHROME",
+      "KOREAN",
+      "MINIMAL"
+    ],
+    "message": "Take a picture and transform it into a Dansaekhwa work: Korean monochrome painting made by pushing, soaking, dragging or pressing pigment through and across the surface over and over. Colour should be near-white, off-grey, ochre or deep blue, and the interest should lie entirely in repetition, absorption and the physical trace of the hand.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Near-monochrome: white, grey, ochre or deep blue\n• Repetitive physical process visible in the surface\n• Pigment pushed through or soaked into the support\n• Meditative, undramatic composition\n• Subject reduced to a faint physical trace"
+  },
+  {
+    "name": "AFFICHISTE",
+    "category": [
+      "ART",
+      "COLLAGE",
+      "STREET",
+      "DECOLLAGE",
+      "FRENCH"
+    ],
+    "message": "Take a picture and transform it into a decollage in the manner of the affichistes: layers of street posters torn back to reveal fragments of what was pasted beneath. Half-words, split faces and lost colours should collide in ragged torn edges, with damp staining, bleed-through and the rough wall showing through the deepest tears.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Layered posters torn to reveal earlier layers\n• Ragged, irregular torn edges\n• Fragmentary words and split images\n• Damp staining and bleed-through\n• Subject recognisable in fragments"
+  },
+  {
+    "name": "NEW TOPOGRAPHICS",
+    "category": [
+      "PHOTOGRAPHY",
+      "LANDSCAPE",
+      "DEADPAN",
+      "1970S",
+      "DOCUMENTARY"
+    ],
+    "message": "Take a picture and transform it into a New Topographics photograph: the man-altered landscape recorded without drama or judgement. Flat overcast light, a level horizon, everything sharp from front to back, banal built structures given the same weight as everything else, and a deliberately neutral, unemotional description.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Flat overcast light with no drama\n• Level horizon, front-to-back sharpness\n• Banal built structures treated neutrally\n• Restrained, near-monochrome colour\n• Subject present but never romanticised"
+  },
+  {
+    "name": "SHAN SHUI",
+    "category": [
+      "ART",
+      "PAINTING",
+      "CHINESE",
+      "LANDSCAPE",
+      "INK"
+    ],
+    "message": "Take a picture and transform it into a Chinese shan shui landscape: mountains and water rendered in ink and light colour on silk, with mist opening voids between the planes, a shifting viewpoint that rises as the eye climbs, texture strokes describing the rock, and human figures kept small within the whole.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Mountains and water in ink with light colour\n• Mist opening genuine empty voids\n• Shifting rather than fixed perspective\n• Texture strokes describing rock form\n• Subject present but small within the landscape"
+  },
+  {
+    "name": "XIEYI",
+    "category": [
+      "ART",
+      "PAINTING",
+      "CHINESE",
+      "INK",
+      "EXPRESSIVE"
+    ],
+    "message": "Take a picture and transform it into xieyi freehand ink painting. Everything inessential should be discarded: a handful of loaded, decisive strokes should catch the spirit of the subject, ink should bleed and pool into raw paper, and the empty ground should carry as much weight as the marks.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Very few decisive, loaded strokes\n• Ink bleeding and pooling into raw paper\n• Large areas of active empty ground\n• Spirit captured rather than appearance described\n• Subject recognisable from minimal marks"
+  },
+  {
+    "name": "BAIMIAO",
+    "category": [
+      "ART",
+      "DRAWING",
+      "CHINESE",
+      "LINE",
+      "INK"
+    ],
+    "message": "Take a picture and transform it into a baimiao ink drawing: pure outline with no shading, no wash and no colour at all. Every form should be described by an even, controlled, unbroken brush line of consistent weight, on plain paper, with the whole image carried by contour alone.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Pure contour line, no shading or wash\n• Even, controlled, unbroken line weight\n• No colour anywhere in the image\n• Plain paper ground\n• Subject fully described by outline alone"
+  },
+  {
+    "name": "YAMATO-E",
+    "category": [
+      "ART",
+      "PAINTING",
+      "JAPANESE",
+      "NARRATIVE",
+      "GOLD"
+    ],
+    "message": "Take a picture and transform it into a yamato-e painting: Japanese narrative art in bright mineral pigments on a gold ground, seen from a high oblique viewpoint with the roof removed so the interior is visible, and banks of stylised gold cloud cutting across the scene to separate one moment from the next.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• High oblique viewpoint with roofs removed\n• Bright opaque mineral pigments\n• Gold ground with stylised gold cloud bands\n• Flat space with no cast shadows\n• Subject clearly recognisable"
+  },
+  {
+    "name": "BUNJINGA",
+    "category": [
+      "ART",
+      "PAINTING",
+      "JAPANESE",
+      "LITERATI",
+      "INK"
+    ],
+    "message": "Take a picture and transform it into bunjinga literati painting: the amateur scholar's art, made for pleasure rather than display. Dry, sparse, slightly awkward brushwork in ink with pale colour, an unshowy composition, generous empty space, and a inscription with a red seal placed in the upper area.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Dry, sparse, deliberately unpolished brushwork\n• Ink with only pale washes of colour\n• Generous empty space\n• Inscription and red seal in the upper area\n• Subject recognisable through modest means"
+  },
+  {
+    "name": "TENMOKU",
+    "category": [
+      "CERAMICS",
+      "GLAZE",
+      "JAPANESE",
+      "MATERIAL",
+      "CRAFT"
+    ],
+    "message": "Take a picture and transform the subject into a tenmoku-glazed ceramic form. The iron glaze should run thick and glassy black-brown, breaking to rust and amber where it thins over the rims and edges, with hare's fur streaking down the vertical surfaces and a pooled dark well at the base.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Thick glassy black-brown iron glaze\n• Breaking to rust and amber over edges\n• Hare's-fur streaking running downward\n• Pooled dark glaze at the foot\n• Subject recognisable in the ceramic form"
+  },
+  {
+    "name": "SLIPWARE",
+    "category": [
+      "CERAMICS",
+      "FOLK",
+      "ENGLISH",
+      "CRAFT",
+      "EARTHENWARE"
+    ],
+    "message": "Take a picture and transform the subject into English slipware: earthenware decorated with liquid clay trailed straight from a slip cup. Lines should stand slightly proud and slightly wobbly in cream on a warm red-brown body, feathered where a bristle was dragged through, under a honey-coloured lead glaze with crazing.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Trailed slip lines standing proud of the surface\n• Cream slip on warm red-brown earthenware\n• Feathered and combed decoration\n• Honey lead glaze with fine crazing\n• Subject recognisable in the trailed drawing"
+  },
+  {
+    "name": "FAIENCE",
+    "category": [
+      "CERAMICS",
+      "TIN-GLAZE",
+      "EUROPEAN",
+      "CRAFT",
+      "HISTORICAL"
+    ],
+    "message": "Take a picture and transform the subject into tin-glazed faience. The opaque white glaze should sit thick and slightly uneven over the earthenware, painted in high-temperature colours that have sunk into it and blurred very slightly at the edges, with pinholes, glaze crawl and small chips revealing the buff body beneath.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Thick opaque white tin glaze\n• Colours sunk into the glaze with softened edges\n• Pinholes, crawling and glaze pooling\n• Chips revealing the buff earthenware body\n• Subject recognisable in the painted decoration"
+  },
+  {
+    "name": "DELFTWARE",
+    "category": [
+      "CERAMICS",
+      "BLUE AND WHITE",
+      "DUTCH",
+      "HISTORICAL",
+      "CRAFT"
+    ],
+    "message": "Take a picture and transform the subject into Dutch Delftware: cobalt blue painted on a white tin glaze in the manner of seventeenth-century Holland. Brushwork should be confident and calligraphic with washes of pale blue and darker outlines, framed by a border pattern, on a slightly grey-white ground with age crazing.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Cobalt blue on a grey-white tin glaze\n• Confident calligraphic brushwork with blue washes\n• Decorative border framing the scene\n• Age crazing and small glaze chips\n• Subject recognisable in blue and white alone"
+  },
+  {
+    "name": "IMARI",
+    "category": [
+      "CERAMICS",
+      "PORCELAIN",
+      "JAPANESE",
+      "ORNATE",
+      "EXPORT"
+    ],
+    "message": "Take a picture and transform the subject into Imari export porcelain: dense decoration in underglaze cobalt blue with overglaze iron red and gold, every area of the surface filled with panels, brocade grounds and floral reserves, on a hard white porcelain body with a cool glassy glaze.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Underglaze blue with overglaze iron red and gold\n• Densely packed panels and brocade grounds\n• Reserved cartouches holding the main image\n• Hard white porcelain with a cool glassy glaze\n• Subject clearly recognisable in the reserves"
+  },
+  {
+    "name": "SATSUMA",
+    "category": [
+      "CERAMICS",
+      "JAPANESE",
+      "GOLD",
+      "ORNATE",
+      "CRAFT"
+    ],
+    "message": "Take a picture and transform the subject into Satsuma ware: an ivory-cream crackle glaze carrying extraordinarily fine enamel painting with raised gold. Detail should be miniature in scale, gold should stand physically above the surface, and the whole ground should be covered in a fine网 of crackle.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Ivory-cream ground with fine all-over crackle\n• Miniature-scale enamel detail\n• Raised gold standing above the surface\n• Dense but orderly decoration\n• Subject clearly recognisable at miniature scale"
+  },
+  {
+    "name": "BASSE TAILLE",
+    "category": [
+      "ENAMEL",
+      "METALWORK",
+      "MEDIEVAL",
+      "CRAFT",
+      "LUXURY"
+    ],
+    "message": "Take a picture and transform the subject into basse-taille enamel: a design carved in low relief into silver, then flooded with translucent enamel so the metal shines through. Tone should come from the varying depth of the carving, colour should glow where the enamel is thin and darken where it pools, and polished silver should show at the edges.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Translucent enamel over engraved silver relief\n• Tone created by depth of carving\n• Metal glinting through the colour\n• Polished silver borders and edges\n• Subject recognisable in the relief"
+  },
+  {
+    "name": "TALAVERA",
+    "category": [
+      "CERAMICS",
+      "MEXICAN",
+      "FOLK",
+      "COLORFUL",
+      "CRAFT"
+    ],
+    "message": "Take a picture and transform the subject into Talavera poblana: Mexican tin-glazed earthenware in cobalt blue with yellow, green and manganese on a milky white ground. Painting should be bold and folk-confident with heavy outlines, the glaze should sit thick and slightly bubbled, and the surface should show the unevenness of hand-thrown work.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Cobalt blue with yellow, green and manganese\n• Bold folk brushwork with heavy outlines\n• Thick milky-white tin glaze, slightly bubbled\n• Hand-formed unevenness in the body\n• Subject recognisable in the painted design"
+  },
+  {
+    "name": "MUQARNAS",
+    "category": [
+      "ARCHITECTURE",
+      "ISLAMIC",
+      "GEOMETRY",
+      "ORNAMENT",
+      "SCULPTURE"
+    ],
+    "message": "Take a picture and transform the setting into a muqarnas vault: the honeycomb corbelling of Islamic architecture, built from tier upon tier of small niches stepping outward and downward. Geometry should be strictly self-similar, plaster or tile should catch light differently on every facet, and the whole should resolve into a single ordered structure overhead.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Tiered honeycomb niches stepping outward\n• Strict self-similar geometry\n• Every facet catching light differently\n• Plaster or glazed tile surfaces\n• Subject placed beneath and clearly recognisable"
+  },
+  {
+    "name": "ADINKRA",
+    "category": [
+      "TEXTILE",
+      "AFRICAN",
+      "SYMBOL",
+      "PRINT",
+      "GHANAIAN"
+    ],
+    "message": "Take a picture and transform it into Adinkra cloth: hand-stamped symbols pressed in dark bark dye across panels of cotton divided by combed grid lines. Each stamp should be slightly uneven where the calabash carving lifted, ink coverage should vary, and the composition should be built from repeated symbol blocks within ruled bands.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Hand-stamped symbols in dark bark dye\n• Uneven inking and lifting on each impression\n• Combed grid dividing the cloth into panels\n• Repetition within ruled bands\n• Subject recognisable as a stamped motif"
+  },
+  {
+    "name": "KENTE",
+    "category": [
+      "TEXTILE",
+      "AFRICAN",
+      "WEAVING",
+      "PATTERN",
+      "GHANAIAN"
+    ],
+    "message": "Take a picture and transform it into kente: narrow strips of hand-woven silk and cotton sewn edge to edge, each strip alternating warp-faced and weft-faced blocks in gold, red, green, blue and black. Pattern blocks should not align across the seams, and the weave structure should be clearly visible at close range.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Narrow woven strips sewn edge to edge\n• Alternating warp-faced and weft-faced blocks\n• Gold, red, green, blue and black palette\n• Blocks deliberately misaligned across seams\n• Subject recognisable in the woven pattern"
+  },
+  {
+    "name": "CHILKAT",
+    "category": [
+      "TEXTILE",
+      "INDIGENOUS",
+      "WEAVING",
+      "FORMLINE",
+      "CEREMONIAL"
+    ],
+    "message": "Take a picture and transform it into a Chilkat weaving: a Northwest Coast ceremonial robe woven in mountain-goat wool and cedar bark, in black, yellow, blue-green and white. The design should be built from formline shapes, ovoids and U-forms filling the field symmetrically, with a deep fringe hanging from the lower edge.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Formline ovoids and U-forms filling the field\n• Black, yellow, blue-green and white only\n• Symmetrical composition across the robe\n• Long fringe along the lower edge\n• Subject abstracted into formline shapes"
+  },
+  {
+    "name": "MOLA",
+    "category": [
+      "TEXTILE",
+      "APPLIQUE",
+      "INDIGENOUS",
+      "COLORFUL",
+      "PANAMANIAN"
+    ],
+    "message": "Take a picture and transform it into a mola: Kuna reverse applique built from stacked layers of coloured cloth cut back to reveal the colours beneath. Every shape should be outlined by a narrow band of a different layer, background gaps should be filled with fine slits and dots, and hand stitching should be visible throughout.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Layered cloth cut back to reveal lower colours\n• Every shape ringed by a narrow contrasting band\n• Background filled with fine slits and dots\n• Visible hand stitching along every edge\n• Subject recognisable in bold cut shapes"
+  },
+  {
+    "name": "ITAJIME",
+    "category": [
+      "TEXTILE",
+      "JAPANESE",
+      "RESIST DYE",
+      "PATTERN",
+      "CRAFT"
+    ],
+    "message": "Take a picture and transform it into itajime shibori: cloth folded into blocks, clamped between shaped boards and dyed so the clamped areas resist. The result should be a strict grid of repeated geometric shapes with soft bleeding edges where dye crept under the clamp, in indigo on undyed cotton, with fold lines running through.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Strict repeating grid from folding and clamping\n• Soft bleed where dye crept under the boards\n• Indigo on undyed cotton\n• Visible fold creases through the pattern\n• Subject readable through the resist shapes"
+  },
+  {
+    "name": "SUZANI",
+    "category": [
+      "TEXTILE",
+      "EMBROIDERY",
+      "CENTRAL ASIAN",
+      "PATTERN",
+      "FOLK"
+    ],
+    "message": "Take a picture and transform it into a suzani: a large Central Asian embroidered hanging worked in chain and couching stitch on cotton. Enormous stylised flower medallions, vines and sun discs should fill the field in madder red, indigo and saffron, with a strong border, and the panels should not quite match where they were joined.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Large stylised medallions, vines and sun discs\n• Chain and couching stitch clearly visible\n• Madder red, indigo and saffron on natural cotton\n• Strong patterned border\n• Slight mismatch where panels are joined"
+  },
+  {
+    "name": "ARPILLERA",
+    "category": [
+      "TEXTILE",
+      "APPLIQUE",
+      "NARRATIVE",
+      "FOLK",
+      "CHILEAN"
+    ],
+    "message": "Take a picture and transform it into an arpillera: a small burlap panel with a scene built from scraps of cloth, yarn and tiny stitched figures. The style should be naive and direct, the figures simple and doll-like with wool hair, the ground and sky made from patched fabric, and the whole thing stitched with plain visible thread.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Scene appliqued from cloth scraps onto burlap\n• Simple doll-like figures with yarn detail\n• Naive, direct, unschooled composition\n• Plain visible stitching throughout\n• Subject recognisable as a stitched figure"
+  },
+  {
+    "name": "LEDGER ART",
+    "category": [
+      "ART",
+      "DRAWING",
+      "INDIGENOUS",
+      "NARRATIVE",
+      "HISTORICAL"
+    ],
+    "message": "Take a picture and transform it into Plains ledger art: drawings made in coloured pencil and ink on the ruled pages of accountants' ledgers. Figures should be flat, in profile, precisely outlined and filled with solid colour, floating without background on a page whose printed columns, ruled lines and faded handwriting still show through.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Flat profile figures with precise outlines\n• Solid colour fills, no shading\n• Printed ledger rules and handwriting showing through\n• Figures floating without background\n• Subject clearly recognisable in profile"
+  },
+  {
+    "name": "PARFLECHE",
+    "category": [
+      "ART",
+      "INDIGENOUS",
+      "RAWHIDE",
+      "GEOMETRIC",
+      "CRAFT"
+    ],
+    "message": "Take a picture and transform it into a painted parfleche: a folded rawhide envelope painted with earth pigments. The design must be strictly geometric — triangles, hourglasses, bars and diamonds in red, yellow, blue-green and black outlined in dark line — laid out symmetrically across the stiff, slightly translucent hide with visible fold creases.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Strict geometric shapes, no figurative drawing\n• Earth-pigment red, yellow, blue-green and black\n• Dark outlining around every shape\n• Stiff rawhide with fold creases and edge holes\n• Subject abstracted entirely into geometry"
+  },
+  {
+    "name": "NKISI",
+    "category": [
+      "SCULPTURE",
+      "AFRICAN",
+      "CARVING",
+      "POWER FIGURE",
+      "CEREMONIAL"
+    ],
+    "message": "Take a picture and transform the subject into a Kongo nkisi power figure: a carved wooden figure standing frontally with an unwavering outward gaze, its torso studded with driven iron nails and blades, a resin-sealed cavity at the abdomen, and a surface darkened and encrusted by long use.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Frontal carved figure with fixed outward gaze\n• Iron nails and blades driven into the torso\n• Sealed cavity at the abdomen\n• Dark, encrusted, much-handled surface\n• Subject recognisable in the carved features"
+  },
+  {
+    "name": "IFE HEAD",
+    "category": [
+      "SCULPTURE",
+      "AFRICAN",
+      "BRONZE",
+      "NATURALISTIC",
+      "HISTORICAL"
+    ],
+    "message": "Take a picture and transform the subject into an Ife bronze head: the extraordinarily naturalistic cast heads of medieval Yoruba Nigeria. The modelling should be calm, idealised and lifelike, the whole face covered in fine parallel striations, small holes ringing the mouth and hairline, and the metal carrying a dark green and earthy excavated patina.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Calm, idealised, genuinely lifelike modelling\n• Fine parallel striations across the face\n• Small holes ringing the mouth and hairline\n• Dark green excavated bronze patina\n• Subject's likeness clearly readable"
+  },
+  {
+    "name": "BOROBUDUR",
+    "category": [
+      "SCULPTURE",
+      "RELIEF",
+      "STONE",
+      "JAVANESE",
+      "NARRATIVE"
+    ],
+    "message": "Take a picture and transform it into a Borobudur stone relief: a narrative panel carved in shallow relief in grey volcanic andesite. Figures should stand in graceful hipshot poses, layered in two or three shallow planes, framed by stylised trees and architecture, with lichen, weathering and chipped edges across the eroded stone.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Shallow relief in grey volcanic stone\n• Graceful hipshot figures in layered planes\n• Stylised trees and architecture framing the scene\n• Lichen, erosion and chipped edges\n• Subject recognisable among the carved figures"
+  },
+  {
+    "name": "BLACKLETTER",
+    "category": [
+      "TYPOGRAPHY",
+      "CALLIGRAPHY",
+      "MEDIEVAL",
+      "GOTHIC",
+      "TEXT"
+    ],
+    "message": "Take a picture and transform it into a blackletter manuscript page. Dense gothic textura should fill the column in tight vertical strokes with diamond feet and almost no counter space, ruled in two columns on vellum, with a large illuminated initial in gold and vermilion and marginal grotesques in the borders.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Dense vertical gothic textura with diamond feet\n• Ruled two-column layout on vellum\n• Illuminated initial in gold and vermilion\n• Marginal grotesques in the borders\n• Any text correctly spelled and cleanly lettered"
+  },
+  {
+    "name": "UNCIAL",
+    "category": [
+      "TYPOGRAPHY",
+      "CALLIGRAPHY",
+      "EARLY MEDIEVAL",
+      "MANUSCRIPT",
+      "TEXT"
+    ],
+    "message": "Take a picture and transform it into an uncial manuscript page: rounded majuscule letters written broad and generously spaced with a wide-nibbed quill, all one height, on cream vellum ruled with a hard point, with red rubrication and the occasional enlarged initial filled with simple knotwork.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Rounded majuscule letters of a single height\n• Broad-nib quill strokes, generous spacing\n• Cream vellum with hard-point ruling\n• Red rubrication and knotwork initials\n• Any text correctly spelled and cleanly lettered"
+  },
+  {
+    "name": "SPENCERIAN",
+    "category": [
+      "TYPOGRAPHY",
+      "CALLIGRAPHY",
+      "AMERICAN",
+      "ORNAMENTAL",
+      "VINTAGE"
+    ],
+    "message": "Take a picture and transform it into Spencerian penmanship: the flowing American business hand of the nineteenth century, written with a flexible pointed nib in oval-based letterforms at a consistent slant, with hairline upstrokes swelling into shaded downstrokes and elaborate off-hand flourishes of birds and scrolls.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Oval-based letters at a consistent slant\n• Hairline upstrokes swelling to shaded downstrokes\n• Elaborate off-hand flourishes\n• Iron gall ink on aged writing paper\n• Any text correctly spelled and cleanly lettered"
+  },
+  {
+    "name": "NASTALIQ",
+    "category": [
+      "TYPOGRAPHY",
+      "CALLIGRAPHY",
+      "PERSIAN",
+      "ISLAMIC",
+      "TEXT"
+    ],
+    "message": "Take a picture and transform it into nastaliq calligraphy: the hanging Persian hand in which each word cascades downward from right to left. Strokes should swell and taper dramatically from a cut reed pen, the baseline should slope steeply, and the panel should sit within an illuminated border on tinted, marbled paper.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Words cascading downward on a steep sloping baseline\n• Dramatic swelling and tapering reed-pen strokes\n• Illuminated border framing the panel\n• Tinted or marbled paper ground\n• Any text correctly spelled and cleanly lettered"
+  },
+  {
+    "name": "DIWANI",
+    "category": [
+      "TYPOGRAPHY",
+      "CALLIGRAPHY",
+      "OTTOMAN",
+      "ISLAMIC",
+      "ORNATE"
+    ],
+    "message": "Take a picture and transform it into diwani script, the ornamental chancery hand of the Ottoman court. Letters should interlock and climb in dense curving lines packed so tightly that little background survives, with the spaces between them filled by dots and ornaments, finished in gold on a deep tinted ground.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Densely interlocking curved letters\n• Gaps filled with dots and ornament\n• Lines rising toward the end of each row\n• Gold on a deep tinted ground\n• Any text correctly spelled and cleanly lettered"
+  },
+  {
+    "name": "THULUTH",
+    "category": [
+      "TYPOGRAPHY",
+      "CALLIGRAPHY",
+      "ISLAMIC",
+      "MONUMENTAL",
+      "ARCHITECTURE"
+    ],
+    "message": "Take a picture and transform it into monumental thuluth calligraphy: tall curving vertical strokes with deep sweeping bowls, letters overlapping and stacking into a balanced composition, executed in gold on lapis blue as an architectural inscription band, with a strong border framing the panel.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Tall verticals with deep sweeping curved bowls\n• Letters overlapping into a stacked composition\n• Gold on lapis blue\n• Architectural inscription band with border\n• Any text correctly spelled and cleanly lettered"
+  },
+  {
+    "name": "OGHAM",
+    "category": [
+      "TYPOGRAPHY",
+      "CELTIC",
+      "STONE",
+      "ANCIENT",
+      "CARVING"
+    ],
+    "message": "Take a picture and transform it into an ogham inscription: groups of straight notches cut across and either side of the sharp edge of a standing stone, read from the bottom upward. The stone should be weathered granite with lichen, the carving shallow and irregular, standing in flat open ground under overcast light.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Notch groups cut across the stone's edge\n• Reading upward along the corner arris\n• Weathered lichen-covered granite\n• Shallow, irregular hand-cut marks\n• Any inscription rendered cleanly and consistently"
+  },
+  {
+    "name": "RUNIC",
+    "category": [
+      "TYPOGRAPHY",
+      "NORSE",
+      "STONE",
+      "ANCIENT",
+      "CARVING"
+    ],
+    "message": "Take a picture and transform it into a Norse runestone: angular runes cut in a continuous band that winds around the outline of a serpent across the face of a granite slab, the carved channels still holding traces of red pigment, the whole stone weathered, mossed and slightly leaning.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Angular runes in a band following a serpent's body\n• Traces of red pigment in the carved channels\n• Weathered, mossed granite slab\n• Interlace filling the field inside the band\n• Any inscription rendered cleanly and consistently"
+  },
+  {
+    "name": "MUTOSCOPE",
+    "category": [
+      "PHOTOGRAPHY",
+      "PRE-CINEMA",
+      "VICTORIAN",
+      "MOTION",
+      "NOVELTY"
+    ],
+    "message": "Take a picture and transform it into a mutoscope reel card: one frame from a fan of stiff photographic cards flicked past a viewing slot. The image should be a small, contrasty, slightly blurred silver print mounted on a curved card, with the flip-edge and rivet visible, seen inside the brass viewing hood of a penny arcade machine.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Small contrasty silver image on a stiff curved card\n• Flip-edge and mounting rivet visible\n• Slight motion blur from the moment captured\n• Framed by the brass viewing hood\n• Subject clearly recognisable"
+  },
+  {
+    "name": "PRAXINOSCOPE",
+    "category": [
+      "ANIMATION",
+      "PRE-CINEMA",
+      "VICTORIAN",
+      "OPTICAL",
+      "NOVELTY"
+    ],
+    "message": "Take a picture and transform it into a praxinoscope strip: a band of hand-painted sequential figures curving around the inside of a drum, reflected in the mirrored prism at its centre. Each frame should show the same subject slightly advanced, painted flat and bright on a dark strip, with the mirrors catching a warm lamplight.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Sequential frames curving around a drum\n• Same subject advanced slightly in each frame\n• Flat bright hand-painted figures on dark ground\n• Central mirror prism reflecting the strip\n• Subject clearly recognisable in every frame"
+  },
+  {
+    "name": "STEREOCARD",
+    "category": [
+      "PHOTOGRAPHY",
+      "VICTORIAN",
+      "3D",
+      "HISTORICAL",
+      "NOVELTY"
+    ],
+    "message": "Take a picture and transform it into a stereoscopic card: two nearly identical albumen prints mounted side by side on a curved card with rounded corners, taken from viewpoints a few centimetres apart so foreground objects shift noticeably between them, with a printed title and publisher's line beneath.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Two near-identical images side by side\n• Visible parallax shift in the foreground\n• Curved card mount with rounded corners\n• Printed title and publisher line below\n• Subject clearly recognisable in both frames"
+  },
+  {
+    "name": "CARTE DE VISITE",
+    "category": [
+      "PHOTOGRAPHY",
+      "VICTORIAN",
+      "PORTRAIT",
+      "HISTORICAL",
+      "STUDIO"
+    ],
+    "message": "Take a picture and transform it into a carte de visite: a small albumen portrait mounted on a card the size of a visiting card. The sitter should stand full length beside a balustrade and painted backdrop, held still by the stiff formality of a long exposure, with the photographer's ornate imprint on the mount below.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Small full-length studio portrait on card\n• Painted backdrop, balustrade and column prop\n• Stiff formal pose from a long exposure\n• Ornate photographer's imprint on the mount\n• Subject clearly recognisable"
+  },
+  {
+    "name": "PANORAMA",
+    "category": [
+      "PHOTOGRAPHY",
+      "FORMAT",
+      "LANDSCAPE",
+      "WIDE",
+      "HISTORICAL"
+    ],
+    "message": "Take a picture and transform it into a wide rotating-camera panorama. The frame should be extremely elongated, the horizon should bow gently, verticals at the far edges should lean inward, exposure should shift slightly across the sweep, and anything that moved during the rotation should appear stretched or repeated.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Extremely elongated frame with a bowing horizon\n• Verticals leaning inward at the far edges\n• Exposure shifting gradually across the sweep\n• Moving elements stretched or repeated\n• Subject clearly recognisable"
+  },
+  {
+    "name": "CYCLORAMA",
+    "category": [
+      "ART",
+      "PAINTING",
+      "IMMERSIVE",
+      "PANORAMIC",
+      "HISTORICAL"
+    ],
+    "message": "Take a picture and transform it into a nineteenth-century cyclorama: a vast continuous painting curving right around the viewer, its lower edge blending into real three-dimensional terrain and props so the join cannot be found, lit from a concealed skylight above.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Continuous painted scene curving around the viewer\n• Painted ground blending into real foreground terrain\n• Concealed overhead lighting\n• No visible seam between paint and props\n• Subject placed within the illusion and recognisable"
+  },
+  {
+    "name": "WUNDERKAMMER",
+    "category": [
+      "ART",
+      "COLLECTION",
+      "BAROQUE",
+      "HISTORICAL",
+      "OBJECTS"
+    ],
+    "message": "Take a picture and transform it into a wunderkammer: a cabinet of curiosities crammed floor to ceiling with shells, corals, instruments, taxidermy, minerals and antiquities. Everything should be arranged by resemblance rather than science, labelled in a spidery hand, lit warmly, with no empty space anywhere.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Every surface crowded with disparate objects\n• Arranged by resemblance, not by taxonomy\n• Handwritten labels in a spidery script\n• Warm raking light and deep shadow\n• Subject clearly recognisable within the collection"
+  },
+  {
+    "name": "INSULAR ART",
+    "category": [
+      "ART",
+      "MANUSCRIPT",
+      "CELTIC",
+      "MEDIEVAL",
+      "ORNAMENT"
+    ],
+    "message": "Take a picture and transform it into an Insular manuscript page in the tradition of Kells and Lindisfarne. The whole field should be filled with interlace, spirals and zoomorphic knotwork worked at an almost impossible fineness, figures flattened and abstracted into pattern, colour laid in vermilion, orpiment and woad on vellum.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Field entirely filled with interlace and spirals\n• Zoomorphic knots resolving into beasts and birds\n• Figures flattened and abstracted into ornament\n• Vermilion, orpiment and woad on vellum\n• Subject recognisable within the pattern"
+  },
+  {
+    "name": "OTTONIAN",
+    "category": [
+      "ART",
+      "MANUSCRIPT",
+      "MEDIEVAL",
+      "GOLD",
+      "BYZANTINE"
+    ],
+    "message": "Take a picture and transform it into an Ottonian illumination: figures with enormous staring eyes and expressive gesturing hands set against a flat burnished gold ground that abolishes all space. Scale should follow importance rather than perspective, drapery should fall in stylised linear folds, and colour should be saturated and unmodulated.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Flat burnished gold ground abolishing space\n• Enormous staring eyes and gesturing hands\n• Scale set by importance, not perspective\n• Stylised linear drapery folds\n• Subject clearly recognisable"
+  },
+  {
+    "name": "MOZARABIC",
+    "category": [
+      "ART",
+      "MANUSCRIPT",
+      "MEDIEVAL",
+      "SPANISH",
+      "COLOR"
+    ],
+    "message": "Take a picture and transform it into a Mozarabic Beatus illumination. Space should be denied entirely by bands of flat, shocking colour stacked behind the figures — orange, yellow, red and blue — with figures drawn as flat outlined shapes with staring frontal eyes, and horseshoe arches framing the scene.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Flat stacked bands of shocking colour as ground\n• Figures as flat outlined shapes, frontal and staring\n• Horseshoe arches framing the composition\n• No modelling or perspective whatsoever\n• Subject clearly recognisable"
+  },
+  {
+    "name": "EXPLODED VIEW",
+    "category": [
+      "DESIGN",
+      "TECHNICAL",
+      "DIAGRAM",
+      "ILLUSTRATION",
+      "PRECISION"
+    ],
+    "message": "Take a picture and transform it into a technical exploded-view drawing. The subject should be separated into its component parts, each pulled outward along a common axis and held apart in space, with fine dashed centre lines running through the gaps, numbered leader lines to a parts key, and precise line weights on a plain ground.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Components separated along a common axis\n• Dashed centre lines running through the gaps\n• Numbered leader lines to a parts key\n• Precise, consistent technical line weights\n• Subject recognisable as an assembly of its parts"
+  },
+  {
+    "name": "AXONOMETRIC",
+    "category": [
+      "DESIGN",
+      "TECHNICAL",
+      "ARCHITECTURE",
+      "PROJECTION",
+      "DIAGRAM"
+    ],
+    "message": "Take a picture and transform it into an axonometric projection. Parallel lines must stay parallel with no vanishing point anywhere, verticals stay vertical, and the plan is rotated and lifted so all three dimensions are measurable. Render it as an architectural drawing with flat colour fills and crisp line work.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Strictly parallel projection, no vanishing point\n• Verticals remain vertical throughout\n• All three dimensions measurable from the drawing\n• Flat colour fills with crisp line work\n• Subject recognisable in the projection"
+  },
+  {
+    "name": "MOULAGE",
+    "category": [
+      "SCULPTURE",
+      "MEDICAL",
+      "WAX",
+      "HISTORICAL",
+      "REALISM"
+    ],
+    "message": "Take a picture and transform the subject into a nineteenth-century wax moulage: a teaching model cast directly from life in coloured wax and mounted on a black velvet-lined board. The wax should have genuine subsurface translucency, real hair set strand by strand, glass eyes, and a small handwritten catalogue label at the base.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Coloured wax with true subsurface translucency\n• Real hair set strand by strand\n• Glass eyes and a slightly waxen stillness\n• Black velvet mount with handwritten label\n• Subject's likeness clearly preserved"
+  },
+  {
+    "name": "PHOTOBASHING",
+    "category": [
+      "DIGITAL",
+      "CONCEPT ART",
+      "COLLAGE",
+      "PRODUCTION",
+      "TECHNIQUE"
+    ],
+    "message": "Take a picture and transform it into a photobashed concept art frame: dozens of photographic fragments kitbashed together and painted over into a single cinematic environment. Some seams should still be findable under the paint, perspective should be forced to agree, and a strong atmospheric grade should tie the whole thing together.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Photographic fragments unified by painting over\n• A few seams still findable beneath the paint\n• Forced but convincing single perspective\n• Strong atmospheric colour grade tying it together\n• Subject clearly recognisable in the scene"
+  },
+  {
+    "name": "BAYER DITHER",
+    "category": [
+      "DIGITAL",
+      "RETRO",
+      "PIXEL",
+      "GRAPHICS",
+      "TECHNIQUE"
+    ],
+    "message": "Take a picture and transform it into an ordered-dither image on a severely limited palette. Every gradient must be built from a regular Bayer matrix of hard pixels rather than smooth blending, the threshold grid should be plainly visible as a crosshatch in the midtones, and the palette should be restricted to a handful of colours.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Ordered Bayer matrix dithering, not noise\n• Regular crosshatch grid visible in midtones\n• Severely restricted palette\n• Hard pixel edges with no smooth blending\n• Subject recognisable through the dither"
+  },
+  {
+    "name": "KEY ART",
+    "category": [
+      "DESIGN",
+      "POSTER",
+      "CINEMA",
+      "COMPOSITION",
+      "MARKETING"
+    ],
+    "message": "Take a picture and transform it into film key art: the single composed image built to sell a picture. The subject should sit in a strong central or triangular arrangement, lit for drama, with a graded background, a clear focal hierarchy, generous space reserved at the bottom for a title treatment and billing block.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Strong central or triangular composition\n• Dramatic key lighting with a graded background\n• Clear focal hierarchy across the frame\n• Space reserved for title and billing block\n• Any text correctly spelled and cleanly set"
+  },
+  {
+    "name": "LOBBY CARD",
+    "category": [
+      "DESIGN",
+      "CINEMA",
+      "VINTAGE",
+      "PRINT",
+      "EPHEMERA"
+    ],
+    "message": "Take a picture and transform it into a vintage lobby card: a scene photograph printed on card with a hand-tinted look, framed by a decorative border carrying the title and cast in period lettering, on stock that has yellowed, with corner pinholes and a little edge wear from the display frame.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Scene still framed by a decorative titled border\n• Hand-tinted colour over a monochrome base\n• Period display lettering\n• Yellowed card with pinholes and edge wear\n• Any text correctly spelled and cleanly set"
+  },
+  {
+    "name": "POTLATCH",
+    "category": [
+      "INDIGENOUS",
+      "NORTHWEST COAST",
+      "CEREMONIAL",
+      "REGALIA",
+      "GATHERING"
+    ],
+    "message": "Take a picture and place the subject inside a Northwest Coast potlatch: the great winter gift-giving feast of the Kwakwaka'wakw, Haida and Tlingit. The setting is a cedar big house — massive carved house posts, a painted formline screen across the back wall, a central fire throwing light up into the smoke and rafters. The subject stands in full regalia: a button blanket worked in red wool and mother-of-pearl outlining a crest animal, a carved frontlet above the brow, and stacks of coppers, bentwood boxes and folded blankets banked up behind them ready to be given away. Faces around the fire are lit from below, and the whole hall is warm, crowded and celebratory.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Cedar big house with carved posts and a painted formline screen\n• Central fire lighting faces from below, smoke in the rafters\n• Button blanket in red wool with mother-of-pearl crest outline\n• Stacks of coppers, bentwood boxes and blankets ready to be given\n• Treat the gathering with dignity — celebratory, never a costume gag\n• Subject clearly recognisable in the regalia"
+  },
+  {
+    "name": "NAVAJO SANDPAINTING",
+    "category": [
+      "ART",
+      "INDIGENOUS",
+      "SOUTHWEST",
+      "PIGMENT",
+      "SYMMETRY"
+    ],
+    "message": "Take a picture and transform it into a Navajo sandpainting in the permanent commercial form that Diné artists make for sale — coloured sand fixed to a board rather than a ceremonial floor painting. The image should be built entirely from crushed sandstone, charcoal and mineral pigment in white, black, blue-grey, yellow ochre and red, poured by hand so every edge is slightly granular and no line is mechanically straight. Compose it with strict radial or four-fold symmetry around a central figure, elongated angular forms with squared shoulders, and a guardian element enclosing the design on three sides with an opening left at the east. As Diné artists do in work made for display, the design should be an original composition in the idiom rather than a copy of any ceremonial pattern.",
+    "options": [],
+    "randomizeOptions": false,
+    "additionalInstructions": "STYLE ENFORCEMENT:\n\n• Built from poured coloured sand — granular, hand-laid edges\n• White, black, blue-grey, yellow ochre and red mineral palette\n• Strict radial or four-fold symmetry around a central figure\n• Elongated angular forms with squared shoulders\n• Enclosing guardian element open on the east side\n• An original composition in the idiom, not a copy of a ceremonial design\n• Subject recognisable in the stylised central figure"
+  }
+]
